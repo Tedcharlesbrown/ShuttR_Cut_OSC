@@ -1,19 +1,10 @@
 #include "ofApp.h"
 
+float centerX, width, height;
+
 //--------------------------------------------------------------
 void ofApp::setup(){	
-    width = ofGetWidth();
-    height = ofGetHeight();
-    clickDiameter = width / 9.6;
-    clickRadius = clickDiameter / 2;
-    encoderDiameter = width / 6;
-    float screenAdjust = (height / width) - 1;
-    assemblyDiameter = width - (clickDiameter + (clickRadius / 2)) / screenAdjust;
-    assemblyRadius = assemblyDiameter / 2;
-    thrustDiameter = assemblyRadius / 2;
-    centerX = width / 2;
-    centerY = height - assemblyDiameter + assemblyRadius / 3;
-    ofLog() << screenAdjust;
+    styleInit();
 }
 //--------------------------------------------------------------
 void ofApp::update(){
@@ -22,56 +13,61 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofBackground(Style.EOSBackground);
-	
+    ofBackground(EOSBackground);
+    //GUI.settingsBar(settingsBarHeight);
+    GUI.settingsBar(0,0,width,settingsBarHeight,EOSDarkGrey,settingsBarStrokeWeight,EOSDarkGrey);
+    GUI.settingsButton(width - smallButtonWidth, 0, smallButtonWidth, settingsBarHeight, buttonCorner, shutterOutsideStroke, buttonStrokeWeight, white, black);
 }
-
 //--------------------------------------------------------------
 void ofApp::exit(){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::touchDown(ofTouchEventArgs & touch){
-
+    GUI.touchDown(touch);
 }
 
 //--------------------------------------------------------------
 void ofApp::touchMoved(ofTouchEventArgs & touch){
-
+    GUI.touchMoved(touch);
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::touchUp(ofTouchEventArgs & touch){
-
+    GUI.touchUp(touch);
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::touchDoubleTap(ofTouchEventArgs & touch){
-
+    GUI.touchDoubleTap(touch);
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::touchCancelled(ofTouchEventArgs & touch){
+    GUI.touchCancelled(touch);
     
 }
 
 //--------------------------------------------------------------
 void ofApp::lostFocus(){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::gotFocus(){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::gotMemoryWarning(){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::deviceOrientationChanged(int newOrientation){
-
+    
 }

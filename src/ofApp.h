@@ -1,7 +1,12 @@
 #pragma once
 
 #include "ofxiOS.h"
-#include "style.h"
+#include "gui.h"
+
+//extern float height;
+extern float centerX, width, height;
+
+extern ofColor white, EOSDarkGrey, EOSBackground;
 
 class ofApp : public ofxiOSApp {
     
@@ -10,6 +15,8 @@ public:
     void update();
     void draw();
     void exit();
+    
+    void styleInit();
     
     void touchDown(ofTouchEventArgs & touch);
     void touchMoved(ofTouchEventArgs & touch);
@@ -25,12 +32,17 @@ public:
     string name = "ShuttR Cut OSC";
     string version = "v0.1.0 (OpenFrameworks)";
     
-    float width, height;
-    float centerX, centerY, assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
+    float centerY, assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
     int assemblyDiameter;
     //float rotation = radians(0);
     
-    style Style;
+    ofColor black, shutterOutsideStroke;
+    
+    float settingsBarHeight, settingsBarStrokeWeight, buttonCorner, smallButtonWidth, activeChannelWidth, row1Padding, genericButtonWidth, plusMinusButtonWidth, row2Padding, row3Padding,
+    row4Padding, guiLeftAlign, guiCenterAlign, guiRightAlign, buttonHeight, buttonStrokeWeight, largeTextSize, mediumTextSize, smallTextSize, tinyTextSize, parameterButtonWidth, row5Padding,
+    consoleWidth, consoleHeight, consolePadding;
+    
+    gui GUI;
     
 private:
 };

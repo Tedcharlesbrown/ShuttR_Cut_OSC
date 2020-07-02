@@ -1,8 +1,9 @@
-#pragma once
+#ifndef EMPTY_h
+#define EMPTY_h
 
 #include "ofxiOS.h"
 
-class ofApp : public ofxiOSApp {
+class EMPTY : public ofxiOSApp {
     
 public:
     void setup();
@@ -24,4 +25,4 @@ public:
 private:
 };
 
-
+#endif

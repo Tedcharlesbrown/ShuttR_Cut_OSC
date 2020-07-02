@@ -7,7 +7,8 @@ class gui {
     
 public:
     void settingsBar(float x,float y,float width,float height,ofColor stroke,float strokeWeight,ofColor fill);
-    void settingsButton(float x, float y, float width, float height, float round, ofColor stroke, float strokeWeight, ofColor onFill, ofColor offFill);
+    void settingsButton(float x, float y, float width, float height, float round, ofColor stroke, float weight, ofColor onFill, ofColor offFill);
+    void oscLight(string ID, float x, float y, float width, float height, float round, ofColor stroke, float weight, ofColor onSend, ofColor offSend, ofColor onGet, ofColor offGet);
     
     void touchDown(ofTouchEventArgs & touch);
     void touchMoved(ofTouchEventArgs & touch);
@@ -20,8 +21,8 @@ public:
     void gotMemoryWarning();
     void deviceOrientationChanged(int newOrientation);
     
-    bool oscPackageSendLight = false;
-    bool oscPackageReceiveLight = false;
+    bool oscSendLight = false;
+    bool oscReceiveLight = false;
     
     float settingsX, settingsY, settingsWidth, settingsHeight;
     bool settingsMenu = false;

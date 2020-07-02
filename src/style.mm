@@ -1,7 +1,5 @@
 #include "ofApp.h"
 
-ofColor white, EOSDarkGrey, EOSBackground;
-
 //--------------------------------------------------------------
 void ofApp::styleInit(){
     width = ofGetWidth();
@@ -45,6 +43,13 @@ void ofApp::styleInit(){
     
     white = ofColor(255);
     black = ofColor(0);
+    
+    EOSLightGreen = ofColor(6,155,37); //Light Green
+    EOSGreen = ofColor(6,55,37); //PSD
+    EOSLightRed = ofColor(165,21,23); //Light Red
+    EOSRed = ofColor(65,21,23); //Snapshots
+    
+    
     EOSDarkGrey = ofColor(30,30,30);
     EOSBackground = ofColor(15,25,35);
     

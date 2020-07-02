@@ -6,8 +6,6 @@
 //extern float height;
 extern float centerX, width, height;
 
-extern ofColor white, EOSDarkGrey, EOSBackground;
-
 class ofApp : public ofxiOSApp {
     
 public:
@@ -36,7 +34,7 @@ public:
     int assemblyDiameter;
     //float rotation = radians(0);
     
-    ofColor black, shutterOutsideStroke;
+    ofColor white, black,EOSDarkGrey, EOSBackground, shutterOutsideStroke, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed;
     
     float settingsBarHeight, settingsBarStrokeWeight, buttonCorner, smallButtonWidth, activeChannelWidth, row1Padding, genericButtonWidth, plusMinusButtonWidth, row2Padding, row3Padding,
     row4Padding, guiLeftAlign, guiCenterAlign, guiRightAlign, buttonHeight, buttonStrokeWeight, largeTextSize, mediumTextSize, smallTextSize, tinyTextSize, parameterButtonWidth, row5Padding,

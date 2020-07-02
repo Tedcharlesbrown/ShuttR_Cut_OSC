@@ -15,8 +15,10 @@ void ofApp::update(){
 void ofApp::draw(){
     ofBackground(EOSBackground);
     //GUI.settingsBar(settingsBarHeight);
-    GUI.settingsBar(0,0,width,settingsBarHeight,EOSDarkGrey,settingsBarStrokeWeight,EOSDarkGrey);
+    GUI.settingsBar(0,0,width,settingsBarHeight,shutterOutsideStroke,settingsBarStrokeWeight,EOSDarkGrey);
     GUI.settingsButton(width - smallButtonWidth, 0, smallButtonWidth, settingsBarHeight, buttonCorner, shutterOutsideStroke, buttonStrokeWeight, white, black);
+    GUI.oscLight("TX", smallButtonWidth / 2, settingsBarHeight / 4, smallButtonWidth, settingsBarHeight / 2, buttonCorner, black, buttonStrokeWeight, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed);
+    GUI.oscLight("RX", smallButtonWidth / 2, settingsBarHeight - settingsBarHeight / 4, smallButtonWidth, settingsBarHeight / 2, buttonCorner, black, buttonStrokeWeight, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed);
 }
 //--------------------------------------------------------------
 void ofApp::exit(){

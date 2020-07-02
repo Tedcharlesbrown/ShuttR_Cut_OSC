@@ -710,6 +710,11 @@
 				<string>E41D3ED613B38FB500A75A5D</string>
 				<key>buildSettings</key>
 				<dict>
+					<key>HEADER_SEARCH_PATHS</key>
+					<array>
+						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
+					</array>
 					<key>ALWAYS_SEARCH_USER_PATHS</key>
 					<string>YES</string>
 					<key>CLANG_CXX_LIBRARY</key>
@@ -768,6 +773,11 @@
 				<string>E41D3ED613B38FB500A75A5D</string>
 				<key>buildSettings</key>
 				<dict>
+					<key>HEADER_SEARCH_PATHS</key>
+					<array>
+						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
+					</array>
 					<key>ALWAYS_SEARCH_USER_PATHS</key>
 					<string>YES</string>
 					<key>CLANG_CXX_LIBRARY</key>

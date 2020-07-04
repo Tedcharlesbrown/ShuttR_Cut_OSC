@@ -14,6 +14,8 @@ void ofApp::styleInit(){
     centerX = width / 2;
     centerY = height - assemblyDiameter + assemblyRadius / 3;
     
+    //----------------------------------------------------
+    
     guiLeftAlign = centerX - centerX / 1.5;
     guiCenterAlign = centerX;
     guiRightAlign = centerX + centerX / 1.5;
@@ -35,11 +37,15 @@ void ofApp::styleInit(){
     consoleWidth = width / 1.25;
     consoleHeight = height / 20;
     consolePadding = height / 2;
+    
+    //----------------------------------------------------
 
     largeTextSize = width / 19.2; //75
     mediumTextSize = width / 22.15; //65
     smallTextSize = width / 32; //45
     tinyTextSize = width / 57.6; //25
+    
+    //----------------------------------------------------
     
     white = ofColor(255);
     black = ofColor(0);
@@ -49,9 +55,11 @@ void ofApp::styleInit(){
     EOSLightRed = ofColor(165,21,23); //Light Red
     EOSRed = ofColor(65,21,23); //Snapshots
     
-    
+    EOSLightGrey = ofColor(85,90,101);
     EOSDarkGrey = ofColor(30,30,30);
     EOSBackground = ofColor(15,25,35);
     
     shutterOutsideStroke = ofColor(125,115,130);
+    
+    buttonActive = EOSLightGrey;
 }

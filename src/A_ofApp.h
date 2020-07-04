@@ -2,7 +2,9 @@
 
 #include "ofxiOS.h"
 #include "ofxOsc.h"
+#include "A0_globals.h"
 #include "B_gui.h"
+#include "C_keyboard.h"
 
 class ofApp : public ofxiOSApp {
     
@@ -41,22 +43,11 @@ public:
     //----------------------------------------------------
     
     GUI gui;
-    PAGE pageOne, pageTwo, pageThree;
+    //PAGE pageOne, pageTwo, pageThree;
+    SETTINGS settings;
+    KEYBOARD keyboard;
     
     //----------------------------------------------------
     
-    float width, height;
-    float centerX, centerY, assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
-    int assemblyDiameter;
-    //float rotation = radians(0);
-    
-    //----------------------------------------------------
-    
-    float settingsBarHeight, settingsBarStrokeWeight, buttonCorner, smallButtonWidth, activeChannelWidth, row1Padding, genericButtonWidth, plusMinusButtonWidth, row2Padding, row3Padding,
-    row4Padding, guiLeftAlign, guiCenterAlign, guiRightAlign, buttonHeight, buttonStrokeWeight, largeTextSize, mediumTextSize, smallTextSize, tinyTextSize, parameterButtonWidth, row5Padding,
-    consoleWidth, consoleHeight, consolePadding;
-    //----------------------------------------------------
-    
-    ofColor white, black, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterOutsideStroke, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed;
 private:
 };

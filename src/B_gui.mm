@@ -1,6 +1,7 @@
-#include "B_gui.h"
+#include "B_page.h"
 #include "A_ofApp.h"
 
+bool settingsMenu = false;
 
 void GUI::update() {
     if (ofGetElapsedTimeMillis() > sentTime + 200) {
@@ -9,22 +10,38 @@ void GUI::update() {
     if (ofGetElapsedTimeMillis() > receivedTime + 200) {
         oscReceiveLight = false;
     }
+    //--------------------------------------------------------------
+    if (pageOne.action && pageOne.clicked) {
+        pageOne.clicked = true; pageTwo.clicked = false; pageThree.clicked = false;
+        pageOne.action = false;
+        settingsMenu = false;
+    } else if (pageTwo.action && pageTwo.clicked) {
+        pageOne.clicked = false; pageTwo.clicked = true; pageThree.clicked = false;
+        pageTwo.action = false;
+        settingsMenu = false;
+    } else if (pageThree.action && pageThree.clicked) {
+        pageOne.clicked = false; pageTwo.clicked = false; pageThree.clicked = true;
+        pageThree.action = false;
+        settingsMenu = false;
+    }
 }
 
 
 
-void GUI::settingsBar(float _x, float _y, float _w, float _h, ofColor _stroke, float _weight, ofColor _fill) {
+void GUI::settingsBar(float _x, float _y, float _w, float _h, float _weight) {
     ofPushStyle();
-    ofSetColor(_fill);
-    ofFill();
+    ofSetColor(EOSDarkGrey);
     ofDrawRectangle(_x, _y, _w, _h);
-    ofSetColor(_stroke);
-    ofFill();
+    ofSetColor(shutterOutsideStroke);
     ofDrawRectangle(_x, _h, _w, _weight);
     ofPopStyle();
+    
+    pageOne.pageButton(centerX - genericButtonWidth, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight, buttonStrokeWeight);
+    pageTwo.pageButton(centerX, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight, buttonStrokeWeight);
+    pageThree.pageButton(centerX + genericButtonWidth, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight, buttonStrokeWeight);
 }
 
-void GUI::settingsButton(float _x, float _y, float _w, float _h, float _r, ofColor _stroke, float _weight, ofColor _onFill, ofColor _offFill) {
+void GUI::settingsButton(float _x, float _y, float _w, float _h, float _weight) {
     this-> settingsX = _x;
     this-> settingsY = _y;
     this-> settingsWidth = _w;
@@ -32,50 +49,46 @@ void GUI::settingsButton(float _x, float _y, float _w, float _h, float _r, ofCol
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
     
-    ofSetColor(_stroke);
-    ofFill();
-    ofDrawRectRounded(_x + _w / 2, _y + _h / 2, _w, _h, _r);
+    ofSetColor(shutterOutsideStroke); //stroke
+    ofDrawRectRounded(_x + _w / 2, _y + _h / 2, _w, _h, buttonCorner); //outer
     
     if (settingsMenu) {
-        ofSetColor(_onFill);
+        ofSetColor(white); //fill
     } else {
-        ofSetColor(_offFill);
+        ofSetColor(black); //fill
     }
-    
-    ofFill();
-    ofDrawRectRounded(_x + _w / 2, _y + _h / 2, _w - _weight, _h - _weight, _r);
-    ofSetColor(_stroke);
-    ofFill();
-    ofDrawCircle(_x + _w / 2, _y + _h / 2, _w / 5);
+    ofDrawRectRounded(_x + _w / 2, _y + _h / 2, _w - _weight, _h - _weight, buttonCorner); //inner
+    ofSetColor(shutterOutsideStroke); //stroke
+    ofDrawCircle(_x + _w / 2, _y + _h / 2, _w / 5); //circle
     
     ofPopStyle();
 }
 
-void GUI::oscLight(string _ID,float _x,float _y,float _w,float _h,float _r,ofColor _stroke,float _weight, ofColor _onSend,ofColor _offSend,ofColor _onGet,ofColor _offGet){
+void GUI::oscLight(string _ID,float _x,float _y,float _w,float _h, float _weight){
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
     if (_ID == "TX") {
-        ofSetColor(_stroke);
+        ofSetColor(black); //stroke
         ofFill();
-        ofDrawRectRounded(_x, _y, _w, _h, _r / 2);
+        ofDrawRectRounded(_x, _y, _w, _h, buttonCorner / 2); //outer
         if (oscSendLight) {
-            ofSetColor(_onSend);
+            ofSetColor(EOSLightGreen); //fill
         } else {
-            ofSetColor(_offSend);
+            ofSetColor(EOSGreen); //fill
         }
         ofFill();
-        ofDrawRectRounded(_x, _y, _w - _weight, _h - _weight, _r / 2);
+        ofDrawRectRounded(_x, _y, _w - _weight, _h - _weight, buttonCorner / 2);
     } else if (_ID == "RX") {
-        ofSetColor(_stroke);
+        ofSetColor(black); //stroke
         ofFill();
-        ofDrawRectRounded(_x, _y, _w, _h, _r / 2);
+        ofDrawRectRounded(_x, _y, _w, _h, buttonCorner / 2);
         if (oscReceiveLight) {
-            ofSetColor(_onGet);
+            ofSetColor(EOSLightRed); //fill
         } else {
-            ofSetColor(_offGet);
+            ofSetColor(EOSRed); //fill
         }
         ofFill();
-        ofDrawRectRounded(_x, _y, _w - _weight, _h - _weight, _r / 2);
+        ofDrawRectRounded(_x, _y, _w - _weight, _h - _weight, buttonCorner / 2);
     }
     ofPopStyle();
 }
@@ -83,8 +96,11 @@ void GUI::oscLight(string _ID,float _x,float _y,float _w,float _h,float _r,ofCol
 //--------------------------------------------------------------
 void GUI::touchDown(ofTouchEventArgs & touch){
     if (touch.x > settingsX && touch.y < settingsHeight) {
-        settingsMenu = true;
+        settingsMenu = !settingsMenu;
     }
+    pageOne.touchDown(touch);
+    pageTwo.touchDown(touch);
+    pageThree.touchDown(touch);
 }
 
 //--------------------------------------------------------------
@@ -94,7 +110,7 @@ void GUI::touchMoved(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 void GUI::touchUp(ofTouchEventArgs & touch){
-    settingsMenu = false;
+    
 }
 
 //--------------------------------------------------------------
@@ -146,7 +162,7 @@ void GUI::deviceOrientationChanged(int newOrientation){
 //--------------------------------------------------------------
 //--------------------------------------------------------------
 
-void PAGE::pageButton(float _x, float _y, float _w, float _h, float _r, ofColor _stroke, float _weight, ofColor _onFill, ofColor _offFill) {
+void PAGE::pageButton(float _x, float _y, float _w, float _h, float _weight) {
     this-> x = _x;
     this-> y = _y;
     this-> w = _w;
@@ -154,16 +170,16 @@ void PAGE::pageButton(float _x, float _y, float _w, float _h, float _r, ofColor 
     
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
-    ofSetColor(_stroke);
+    ofSetColor(shutterOutsideStroke); //stroke
     ofFill();
-    ofDrawRectRounded(_x, _y, _w, _h, _r);
-    if (this-> clicked) {
-        ofSetColor(_onFill);
+    ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
+    if (this-> clicked && !settingsMenu) {
+        ofSetColor(buttonActive);
     } else {
-    ofSetColor(_offFill);
+        ofSetColor(black);
     }
     ofFill();
-    ofDrawRectRounded(_x, _y, _w - _weight, _h - _weight, _r);
+    ofDrawRectRounded(_x, _y, _w - _weight, _h - _weight, buttonCorner);
     ofPopStyle();
 }
 

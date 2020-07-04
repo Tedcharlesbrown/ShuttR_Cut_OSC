@@ -2,15 +2,18 @@
 #define B_gui_h
 
 #include "ofxiOS.h"
+#include "B_page.h"
+
+extern bool settingsMenu;
 
 class GUI {
     
 public:
     void update();
     
-    void settingsBar(float x,float y,float width,float height,ofColor stroke,float strokeWeight,ofColor fill);
-    void settingsButton(float x, float y, float width, float height, float round, ofColor stroke, float weight, ofColor onFill, ofColor offFill);
-    void oscLight(string ID, float x, float y, float width, float height, float round, ofColor stroke, float weight, ofColor onSend, ofColor offSend, ofColor onGet, ofColor offGet);
+    void settingsBar(float x,float y,float width,float height,float strokeWeight);
+    void settingsButton(float x, float y, float width, float height, float weight);
+    void oscLight(string ID, float x, float y, float width, float height, float weight);
     
     //----------------------------------------------------
     
@@ -19,6 +22,10 @@ public:
     void touchUp(ofTouchEventArgs & touch);
     void touchDoubleTap(ofTouchEventArgs & touch);
     void touchCancelled(ofTouchEventArgs & touch);
+    
+    //----------------------------------------------------
+    
+    PAGE pageOne, pageTwo, pageThree;
     
     //----------------------------------------------------
     
@@ -41,7 +48,6 @@ public:
     //----------------------------------------------------
     
     float settingsX, settingsY, settingsWidth, settingsHeight;
-    bool settingsMenu = false;
     
 private:
 };
@@ -50,15 +56,23 @@ private:
     //----------------------------------------------------
     //----------------------------------------------------
 
-class PAGE {
+class SETTINGS {
 public:
-    void update();
-    void pageButton(float x, float y, float width, float height, float round, ofColor stroke, float weight, ofColor onFill, ofColor offfill);
     
-    float x, y, w, h;
-    bool clicked, action = false;
+    void ipFieldDraw(float x, float y, float width, float height, float weight);
+    void idFieldDraw(float x, float y, float width, float height, float weight);
     
     void touchDown(ofTouchEventArgs & touch);
+    
+    //----------------------------------------------------
+    
+    string userInputIP = "192.168.0.35";
+    string userInputID = "1";
+    float ip_x, ip_y, ip_w, ip_h, id_x, id_y, id_w, id_h;
+    bool ip_clicked = false;
+    bool ip_action = false;
+    bool id_clicked = false;
+    bool id_action = false;
     
 private:
 };

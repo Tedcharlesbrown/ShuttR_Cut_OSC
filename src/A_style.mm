@@ -1,5 +1,22 @@
 #include "A_ofApp.h"
 
+ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
+
+float width, height, centerX, centerY, assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
+int assemblyDiameter;
+//float rotation = radians(0);
+
+//----------------------------------------------------
+
+float settingsBarHeight, settingsBarStrokeWeight, smallButtonWidth, activeChannelWidth, row1Padding, genericButtonWidth, plusMinusButtonWidth, row2Padding, row3Padding, buttonCorner,
+row4Padding, guiLeftAlign, guiCenterAlign, guiRightAlign, buttonHeight, buttonStrokeWeight, largeTextSize, mediumTextSize, smallTextSize, tinyTextSize, parameterButtonWidth, row5Padding,
+consoleWidth, consoleHeight, consolePadding;
+
+//----------------------------------------------------
+
+ofColor white, black, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterOutsideStroke, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind;
+
+
 //--------------------------------------------------------------
 void ofApp::styleInit(){
     width = ofGetWidth();
@@ -45,6 +62,14 @@ void ofApp::styleInit(){
     smallTextSize = width / 32; //45
     tinyTextSize = width / 57.6; //25
     
+    ofTrueTypeFont::setGlobalDpi(72);
+    fontLarge.load("LondonBetween.ttf", largeTextSize);
+    fontLarge.setLetterSpacing(1.25);
+    fontMedium.load("LondonBetween.ttf", mediumTextSize);
+    fontMedium.setLetterSpacing(1);
+    fontSmall.load("LondonBetween.ttf", smallTextSize);
+    fontTiny.load("LondonBetween.ttf", tinyTextSize);
+    
     //----------------------------------------------------
     
     white = ofColor(255);
@@ -58,6 +83,8 @@ void ofApp::styleInit(){
     EOSLightGrey = ofColor(85,90,101);
     EOSDarkGrey = ofColor(30,30,30);
     EOSBackground = ofColor(15,25,35);
+    EOSLive = ofColor(183,128,6);
+    EOSBlind = ofColor(10,115,222);
     
     shutterOutsideStroke = ofColor(125,115,130);
     

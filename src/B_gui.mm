@@ -1,5 +1,5 @@
-#include "gui.h"
-#include "ofApp.h"
+#include "B_gui.h"
+#include "A_ofApp.h"
 
 
 void GUI::update() {
@@ -171,10 +171,6 @@ void PAGE::pageButton(float _x, float _y, float _w, float _h, float _r, ofColor 
 void PAGE::touchDown(ofTouchEventArgs & touch){
     if (touch.x > x - w / 2 && touch.x < x + w / 2 && touch.y > y - h / 2 && touch.y < y + h / 2) {
         this-> clicked = true;
+        this-> action = true;
     }
-}
-
-//--------------------------------------------------------------
-void PAGE::touchUp(ofTouchEventArgs & touch){
-    this-> clicked = false;
 }

@@ -1,5 +1,5 @@
-#ifndef gui_h
-#define gui_h
+#ifndef B_gui_h
+#define B_gui_h
 
 #include "ofxiOS.h"
 
@@ -56,11 +56,9 @@ public:
     void pageButton(float x, float y, float width, float height, float round, ofColor stroke, float weight, ofColor onFill, ofColor offfill);
     
     float x, y, w, h;
-    bool clicked = false;
+    bool clicked, action = false;
     
     void touchDown(ofTouchEventArgs & touch);
-    void touchMoved(ofTouchEventArgs & touch);
-    void touchUp(ofTouchEventArgs & touch);
     
 private:
 };

@@ -2,7 +2,7 @@
 
 #include "ofxiOS.h"
 #include "ofxOsc.h"
-#include "gui.h"
+#include "B_gui.h"
 
 class ofApp : public ofxiOSApp {
     

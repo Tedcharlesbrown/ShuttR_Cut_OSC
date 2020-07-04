@@ -1,4 +1,4 @@
-#include "ofApp.h"
+#include "A_ofApp.h"
 
 int main() {
 

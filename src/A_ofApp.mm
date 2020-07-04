@@ -1,4 +1,4 @@
-#include "ofApp.h"
+#include "A_ofApp.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){	
@@ -11,11 +11,24 @@ void ofApp::update(){
     gui.update();
     oscSent();
     oscEvent();
+    //--------------------------------------------------------------
+    if (pageOne.action && pageOne.clicked) {
+        pageOne.clicked = true; pageTwo.clicked = false; pageThree.clicked = false;
+        pageOne.action = false;
+    } else if (pageTwo.action && pageTwo.clicked) {
+        pageOne.clicked = false; pageTwo.clicked = true; pageThree.clicked = false;
+        pageTwo.action = false;
+    } else if (pageThree.action && pageThree.clicked) {
+        pageOne.clicked = false; pageTwo.clicked = false; pageThree.clicked = true;
+        pageThree.action = false;
+    }
+    //--------------------------------------------------------------
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofBackground(EOSBackground);
+    //--------------------------------------------------------------
     gui.settingsBar(0,0,width,settingsBarHeight,shutterOutsideStroke,settingsBarStrokeWeight,EOSDarkGrey);
     gui.settingsButton(width - smallButtonWidth, 0, smallButtonWidth, settingsBarHeight, buttonCorner, shutterOutsideStroke, buttonStrokeWeight, white, black);
     gui.oscLight("TX", smallButtonWidth / 2, settingsBarHeight / 4, smallButtonWidth, settingsBarHeight / 2, buttonCorner, black, buttonStrokeWeight, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed);
@@ -23,6 +36,7 @@ void ofApp::draw(){
     pageOne.pageButton(centerX - genericButtonWidth, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight, buttonCorner, shutterOutsideStroke, buttonStrokeWeight, buttonActive, black);
     pageTwo.pageButton(centerX, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight, buttonCorner, shutterOutsideStroke, buttonStrokeWeight, buttonActive, black);
     pageThree.pageButton(centerX + genericButtonWidth, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight, buttonCorner, shutterOutsideStroke, buttonStrokeWeight, buttonActive, black);
+    //--------------------------------------------------------------
 }
 //--------------------------------------------------------------
 void ofApp::exit(){
@@ -52,9 +66,6 @@ void ofApp::touchMoved(ofTouchEventArgs & touch){
 //--------------------------------------------------------------
 void ofApp::touchUp(ofTouchEventArgs & touch){
     gui.touchUp(touch);
-    pageOne.touchUp(touch);
-    pageTwo.touchUp(touch);
-    pageThree.touchUp(touch);
 }
 
 //--------------------------------------------------------------

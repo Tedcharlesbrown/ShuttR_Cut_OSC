@@ -10,6 +10,8 @@ public:
     void update();
     void draw();
     
+    void open(bool);
+    
     void touchDown(ofTouchEventArgs & touch);
     void touchUp(ofTouchEventArgs & touch);
     
@@ -21,8 +23,9 @@ public:
     
     string userInput = "";
     float slide = 1;
-    bool open = false;
+    bool show = false;
     bool enter = false;
+    bool clickedOff = false;
     
 private:
 };

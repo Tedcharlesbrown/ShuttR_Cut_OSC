@@ -5,6 +5,7 @@
 #include "A0_globals.h"
 #include "B_gui.h"
 #include "C_keyboard.h"
+#include "D_button.h"
 
 class ofApp : public ofxiOSApp {
     
@@ -31,9 +32,7 @@ public:
     void deviceOrientationChanged(int newOrientation);
     
     //----------------------------------------------------
-    
-    string name = "ShuttR Cut OSC";
-    string version = "v0.1.0 (OpenFrameworks)";
+
     
     //----------------------------------------------------
     
@@ -43,8 +42,6 @@ public:
     //----------------------------------------------------
     
     GUI gui;
-    //PAGE pageOne, pageTwo, pageThree;
-    SETTINGS settings;
     KEYBOARD keyboard;
     
     //----------------------------------------------------

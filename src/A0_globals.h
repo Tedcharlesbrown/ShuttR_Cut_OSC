@@ -3,6 +3,8 @@
 
 #include "ofxiOS.h"
 
+extern string name, version;
+
 extern ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
 extern float buttonCorner;
 

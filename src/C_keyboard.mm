@@ -49,6 +49,14 @@ void KEYBOARD::update(){
     }
 }
 
+void KEYBOARD::open(bool _open) {
+    show = _open;
+    if (!show) {
+        clickedOff = false;
+        enter = false;
+    }
+}
+
 //--------------------------------------------------------------
 void KEYBOARD::draw(){
     float buttonWidth = genericButtonWidth;
@@ -56,11 +64,11 @@ void KEYBOARD::draw(){
     
     ofPushMatrix();
     
-    if (!open) {
+    if (!show) {
         if (slide < 1){
             slide += 0.05;
         }
-    } else if (open) {
+    } else if (show) {
         if (slide > 0) {
             slide -= 0.05;
         }
@@ -116,7 +124,12 @@ void KEYBOARD::touchDown(ofTouchEventArgs & touch){
     sevenButton.touchDown(touch);
     eightButton.touchDown(touch);
     nineButton.touchDown(touch);
+
+    //ofDrawRectRounded(guiCenterAlign, row5Padding - buttonHeight * 2.5, buttonWidth * 4, buttonHeight * 8, buttonCorner * 10);
     
+    if (touch.y < (row5Padding - buttonHeight * 2.5) - (buttonHeight * 4)) {
+        clickedOff = true;
+    }
 }
 
 //--------------------------------------------------------------

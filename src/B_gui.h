@@ -2,7 +2,7 @@
 #define B_gui_h
 
 #include "ofxiOS.h"
-#include "B_page.h"
+#include "D_button.h"
 
 extern bool settingsMenu;
 
@@ -15,6 +15,9 @@ public:
     void settingsButton(float x, float y, float width, float height, float weight);
     void oscLight(string ID, float x, float y, float width, float height, float weight);
     
+    void about();
+    void topUIShow();
+    
     //----------------------------------------------------
     
     void touchDown(ofTouchEventArgs & touch);
@@ -24,8 +27,8 @@ public:
     void touchCancelled(ofTouchEventArgs & touch);
     
     //----------------------------------------------------
-    
-    PAGE pageOne, pageTwo, pageThree;
+
+    BUTTON pageOne, pageTwo, pageThree, minusButton, plusButton, fineButton, highButton, flashButton, channelButton, thrustButton, angleButton, shutterButton, irisButton, edgeButton, zoomButton, frostButton, minusPercentButton, homeButton, plusPercentButton, ipFieldButton, idFieldButton;
     
     //----------------------------------------------------
     
@@ -51,32 +54,6 @@ public:
     
 private:
 };
-
-    //----------------------------------------------------
-    //----------------------------------------------------
-    //----------------------------------------------------
-
-class SETTINGS {
-public:
-    
-    void ipFieldDraw(float x, float y, float width, float height, float weight);
-    void idFieldDraw(float x, float y, float width, float height, float weight);
-    
-    void touchDown(ofTouchEventArgs & touch);
-    
-    //----------------------------------------------------
-    
-    string userInputIP = "192.168.0.35";
-    string userInputID = "1";
-    float ip_x, ip_y, ip_w, ip_h, id_x, id_y, id_w, id_h;
-    bool ip_clicked = false;
-    bool ip_action = false;
-    bool id_clicked = false;
-    bool id_action = false;
-    
-private:
-};
-
 
 
 #endif

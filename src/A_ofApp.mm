@@ -14,56 +14,22 @@ void ofApp::update(){
     oscSent();
     oscEvent();
     keyboard.update();
-
-    //--------------------------------------------------------------
-    if (settingsMenu) {
-        if (settings.ip_clicked) {
-            if (settings.ip_action) {
-                keyboard.open = true;
-                keyboard.userInput = settings.userInputIP;
-                settings.ip_action = false;
-            } else if (keyboard.enter) {
-                keyboard.open = false;
-                settings.ip_clicked = false;
-                keyboard.enter = false;
-                return;
-            }
-            settings.userInputIP = keyboard.userInput;
-        } else if (settings.id_clicked) {
-            if (settings.id_action) {
-                keyboard.open = true;
-                keyboard.userInput = settings.userInputID;
-                settings.id_action = false;
-            } else if (keyboard.enter) {
-                keyboard.open = false;
-                settings.id_clicked = false;
-                keyboard.enter = false;
-                return;
-            }
-            settings.userInputID = keyboard.userInput;
-        }
-    }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofBackground(EOSBackground);
     
+    
     //--------------------------------------------------------------
+    gui.topUIShow();
     gui.settingsBar(0,0,width,settingsBarHeight,settingsBarStrokeWeight);
     gui.settingsButton(width - smallButtonWidth, 0, smallButtonWidth, settingsBarHeight, buttonStrokeWeight);
     gui.oscLight("TX", smallButtonWidth / 2, settingsBarHeight / 4, smallButtonWidth, settingsBarHeight / 2, buttonStrokeWeight);
     gui.oscLight("RX", smallButtonWidth / 2, settingsBarHeight - settingsBarHeight / 4, smallButtonWidth, settingsBarHeight / 2, buttonStrokeWeight);
     //--------------------------------------------------------------
     
-    if (settingsMenu) {
-        settings.ipFieldDraw(centerX, row1Padding * 1.25, activeChannelWidth * 2, buttonHeight, buttonStrokeWeight);
-        settings.idFieldDraw(centerX, row2Padding * 1.25, genericButtonWidth, buttonHeight, buttonStrokeWeight);
-    }
-    
-    //--------------------------------------------------------------
     keyboard.draw();
-    
 }
 //--------------------------------------------------------------
 void ofApp::exit(){
@@ -73,18 +39,15 @@ void ofApp::exit(){
 //--------------------------------------------------------------
 void ofApp::touchDown(ofTouchEventArgs & touch){
     gui.touchDown(touch);
-    if (settingsMenu) {
-        settings.touchDown(touch);
-    }
-    if (keyboard.open) {
+    if (keyboard.show) {
         keyboard.touchDown(touch);
     }
-    //    gui.oscSent(ofGetElapsedTimeMillis());
-    //    ofxOscMessage m;
-    //    m.setAddress("/mouse/button");
-    //    m.addIntArg(1);
-    //    m.addStringArg("down");
-    //    sender.sendMessage(m, false);
+//        gui.oscSent(ofGetElapsedTimeMillis());
+//        ofxOscMessage m;
+//        m.setAddress("/mouse/button");
+//        m.addIntArg(1);
+//        m.addStringArg("down");
+//        sender.sendMessage(m, false);
 }
 
 //--------------------------------------------------------------

@@ -6,15 +6,13 @@
 class BUTTON : public ofxiOSApp {
     
 public:
-    void show(string ID, float x, float y, float width, float height, string textSize);
-    
-    void update();
+    void show(float x, float y, float width, float height); //NO TEXT
+    void show(string ID, float x, float y, float width, float height, string textSize); //ONE TEXT
+    void show(string ID, string ID2, float x, float y, float width, float height); //TWO TEXT
     
     void touchDown(ofTouchEventArgs & touch);
-    void touchMoved(ofTouchEventArgs & touch);
     void touchUp(ofTouchEventArgs & touch);
     void touchDoubleTap(ofTouchEventArgs & touch);
-    void touchCancelled(ofTouchEventArgs & touch);
     
     //----------------------------------------------------
     

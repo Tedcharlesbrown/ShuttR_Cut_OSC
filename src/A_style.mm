@@ -1,5 +1,9 @@
 #include "A_ofApp.h"
 
+
+string name = "ShuttR Cut OSC";
+string version = "v0.1.0 (OpenFrameworks)";
+
 ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
 
 float width, height, centerX, centerY, assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
@@ -45,7 +49,7 @@ void ofApp::styleInit(){
     genericButtonWidth = width / 4.5;
     parameterButtonWidth = genericButtonWidth / 1.25;
     buttonCorner = width / 57.6;
-    buttonStrokeWeight = width / 144;
+    buttonStrokeWeight = (width / 144) * 1.5;
     row1Padding = settingsBarHeight + buttonHeight;
     row2Padding = row1Padding + height / 11.84;
     row3Padding = row2Padding + height / 11.84;
@@ -69,6 +73,7 @@ void ofApp::styleInit(){
     fontMedium.setLetterSpacing(1);
     fontSmall.load("LondonBetween.ttf", smallTextSize);
     fontTiny.load("LondonBetween.ttf", tinyTextSize);
+    fontTiny.setLetterSpacing(1.5);
     
     //----------------------------------------------------
     

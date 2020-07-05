@@ -45,13 +45,6 @@ public:
     
     //----------------------------------------------------
     
-    void lostFocus();
-    void gotFocus();
-    void gotMemoryWarning();
-    void deviceOrientationChanged(int newOrientation);
-    
-    //----------------------------------------------------
-    
     int sentTime, receivedTime;
     bool oscSendLight = false;
     bool oscReceiveLight = false;
@@ -59,6 +52,11 @@ public:
     //----------------------------------------------------
     
     float settingsX, settingsY, settingsWidth, settingsHeight;
+    string userInputIP = "";
+    string userInputID = "1";
+    string userInputTX = "8000";
+    string userInputRX = "9000";
+    int keySwitch = 0;
     
 private:
 };

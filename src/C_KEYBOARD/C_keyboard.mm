@@ -4,42 +4,42 @@
 //--------------------------------------------------------------
 void KEYBOARD::update(){
     if (zeroButton.action) {
-        userInput += "0";
+        input += "0";
         zeroButton.action = false;
     } else if (oneButton.action) {
-        userInput += "1";
+        input += "1";
         oneButton.action = false;
     } else if (twoButton.action) {
-        userInput += "2";
+        input += "2";
         twoButton.action = false;
     } else if (threeButton.action) {
-        userInput += "3";
+        input += "3";
         threeButton.action = false;
     } else if (fourButton.action) {
-        userInput += "4";
+        input += "4";
         fourButton.action = false;
     } else if (fiveButton.action) {
-        userInput += "5";
+        input += "5";
         fiveButton.action = false;
     } else if (sixButton.action) {
-        userInput += "6";
+        input += "6";
         sixButton.action = false;
     } else if (sevenButton.action) {
-        userInput += "7";
+        input += "7";
         sevenButton.action = false;
     } else if (eightButton.action) {
-        userInput += "8";
+        input += "8";
         eightButton.action = false;
     } else if (nineButton.action) {
-        userInput += "9";
+        input += "9";
         nineButton.action = false;
     } else if (dotButton.action) {
-        userInput += ".";
+        input += ".";
         dotButton.action = false;
     } else if (clearButton.action) {
         clearButton.action = false;
-        if (userInput.length() > 0) {
-            userInput = userInput.substr(0, userInput.length() - 1);
+        if (input.length() > 0) {
+            input = input.substr(0, input.length() - 1);
         } else {
             return;
         }
@@ -56,7 +56,7 @@ void KEYBOARD::open() {
 void KEYBOARD::close() {
     show = false;
     clickedOff = false;
-    enter = false;
+    //enter = false;
 }
 
 //--------------------------------------------------------------
@@ -86,23 +86,23 @@ void KEYBOARD::draw(){
     ofDrawRectRounded(guiCenterAlign, row5Padding - buttonHeight * 2.5, buttonPadding * 3.5, buttonHeight * 8, buttonCorner * 5);
     ofPopStyle();
     
-    enterButton.show("ENTER",guiCenterAlign,row5Padding,buttonWidth * 2,buttonHeight,"LARGE", false);
+    enterButton.show("ENTER",guiCenterAlign,row5Padding,buttonWidth * 2,buttonHeight,"LARGE");
     
-    clearButton.show("CLEAR",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 1.25, buttonWidth, buttonHeight, "MEDIUM", false);
-    zeroButton.show("0", guiCenterAlign, row5Padding - buttonHeight * 1.25, buttonWidth, buttonHeight, "MEDIUM", false);
-    dotButton.show(".",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 1.25, buttonWidth, buttonHeight, "MEDIUM", false);
+    clearButton.show("CLEAR",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 1.25, buttonWidth, buttonHeight, "MEDIUM");
+    zeroButton.show("0", guiCenterAlign, row5Padding - buttonHeight * 1.25, buttonWidth, buttonHeight, "MEDIUM");
+    dotButton.show(".",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 1.25, buttonWidth, buttonHeight, "MEDIUM");
     
-    oneButton.show("1",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 2.5, buttonWidth, buttonHeight, "MEDIUM", false);
-    twoButton.show("2", guiCenterAlign, row5Padding - buttonHeight * 2.5, buttonWidth, buttonHeight, "MEDIUM", false);
-    threeButton.show("3",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 2.5, buttonWidth, buttonHeight, "MEDIUM", false);
+    oneButton.show("1",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 2.5, buttonWidth, buttonHeight, "MEDIUM");
+    twoButton.show("2", guiCenterAlign, row5Padding - buttonHeight * 2.5, buttonWidth, buttonHeight, "MEDIUM");
+    threeButton.show("3",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 2.5, buttonWidth, buttonHeight, "MEDIUM");
     
-    fourButton.show("4",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 3.75, buttonWidth, buttonHeight, "MEDIUM", false);
-    fiveButton.show("5", guiCenterAlign, row5Padding - buttonHeight * 3.75, buttonWidth, buttonHeight, "MEDIUM", false);
-    sixButton.show("6",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 3.75, buttonWidth, buttonHeight, "MEDIUM", false);
+    fourButton.show("4",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 3.75, buttonWidth, buttonHeight, "MEDIUM");
+    fiveButton.show("5", guiCenterAlign, row5Padding - buttonHeight * 3.75, buttonWidth, buttonHeight, "MEDIUM");
+    sixButton.show("6",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 3.75, buttonWidth, buttonHeight, "MEDIUM");
     
-    sevenButton.show("7",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 5, buttonWidth, buttonHeight, "MEDIUM", false);
-    eightButton.show("8", guiCenterAlign, row5Padding - buttonHeight * 5, buttonWidth, buttonHeight, "MEDIUM", false);
-    nineButton.show("9",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 5, buttonWidth, buttonHeight, "MEDIUM", false);
+    sevenButton.show("7",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 5, buttonWidth, buttonHeight, "MEDIUM");
+    eightButton.show("8", guiCenterAlign, row5Padding - buttonHeight * 5, buttonWidth, buttonHeight, "MEDIUM");
+    nineButton.show("9",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 5, buttonWidth, buttonHeight, "MEDIUM");
     
     ofPopMatrix();
 }

@@ -4,6 +4,10 @@ bool settingsMenu = false;
 
 void GUI::setup() {
     settingsHelp.load("settingsHelp.png");
+    userInputIP = inputIP;
+    userInputID = inputID;
+    userInputRX = inputRX;
+    userInputTX = inputTX;
 }
 
 //--------------------------------------------------------------
@@ -30,11 +34,54 @@ void GUI::update() {
         pageThree.action = false;
         settingsMenu = false;
     }
-    if (ipFieldButton.clicked) {
+    
+    if (keyboard.enter) {
+        ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false;
+        keyboard.close();
+        inputIP = userInputIP; inputID = userInputID; inputRX = userInputRX; inputTX = userInputTX;
+    } else if (keyboard.clickedOff) {
+        ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false;
+        keyboard.close();
+    } else if (ipFieldButton.action && ipFieldButton.clicked) {
+        ipFieldButton.clicked = true; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false;
+        ipFieldButton.action = false;
+        keyboard.open(); keySwitch = 1;
+        keyboard.input = userInputIP;
+    } else if (idFieldButton.action && idFieldButton.clicked){
+        ipFieldButton.clicked = false; idFieldButton.clicked = true; outgoingButton.clicked = false; incomingButton.clicked = false;
+        idFieldButton.action = false;
+        keyboard.open(); keySwitch = 2;
+        keyboard.input = userInputID;
+    } else if (outgoingButton.action && outgoingButton.clicked){
+        ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = true; incomingButton.clicked = false;
+        outgoingButton.action = false;
+        keyboard.open(); keySwitch = 3;
+        keyboard.input = userInputTX;
+    } else if (incomingButton.action && incomingButton.clicked){
+        ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = true;
+        incomingButton.action = false;
+        keyboard.open(); keySwitch = 4;
+        keyboard.input = userInputRX;
+    } else if (ipFieldButton.clicked || idFieldButton.clicked || outgoingButton.clicked || incomingButton.clicked){
         keyboard.open();
     } else {
         keyboard.close();
     }
+    switch(keySwitch) {
+        case 1:
+            userInputIP = keyboard.input;
+            break;
+        case 2:
+            userInputID = keyboard.input;
+            break;
+        case 3:
+            userInputTX = keyboard.input;
+            break;
+        case 4:
+            userInputRX = keyboard.input;
+            break;
+    }
+
 }
 
 //--------------------------------------------------------------
@@ -50,6 +97,7 @@ void GUI::draw() {
         settingsShow();
     }
     keyboard.draw();
+    
 }
 
 //--------------------------------------------------------------
@@ -62,9 +110,9 @@ void GUI::settingsBar(float _x, float _y, float _w, float _h, float _weight) {
     ofDrawRectangle(_x, _h, _w, _weight);
     ofPopStyle();
     
-    pageOne.show(centerX - genericButtonWidth, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight, false);
-    pageTwo.show(centerX, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight, false);
-    pageThree.show(centerX + genericButtonWidth, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight, false);
+    pageOne.show(centerX - genericButtonWidth, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight);
+    pageTwo.show(centerX, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight);
+    pageThree.show(centerX + genericButtonWidth, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight);
 }
 
 //--------------------------------------------------------------
@@ -128,28 +176,28 @@ void GUI::oscLight(string _ID,float _x,float _y,float _w,float _h, float _weight
 void GUI::topUIShow() {
     string channel = "SELECTED CHANNEL";
     if ((pageOne.clicked || pageTwo.clicked) && !settingsMenu) {
-        minusButton.show("-",guiLeftAlign,row1Padding,plusMinusButtonWidth,buttonHeight,"LARGE", false);
-        plusButton.show("+",guiRightAlign,row1Padding,plusMinusButtonWidth,buttonHeight,"LARGE", false);
-        fineButton.show("FINE",guiLeftAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE", false);
-        highButton.show("HIGH",guiCenterAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE", false);
-        flashButton.show("FLASH",guiRightAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE", false);
-        channelButton.show("CHANNEL", centerX,row1Padding, activeChannelWidth, buttonHeight, "LARGE", false);
+        minusButton.show("-",guiLeftAlign,row1Padding,plusMinusButtonWidth,buttonHeight,"LARGE");
+        plusButton.show("+",guiRightAlign,row1Padding,plusMinusButtonWidth,buttonHeight,"LARGE");
+        fineButton.show("FINE",guiLeftAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE");
+        highButton.show("HIGH",guiCenterAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE");
+        flashButton.show("FLASH",guiRightAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE");
+        channelButton.show("CHANNEL", centerX,row1Padding, activeChannelWidth, buttonHeight, "LARGE");
         fontTiny.drawString(channel, centerX - fontTiny.stringWidth(channel) / 2, row1Padding - buttonHeight / 2 - fontTiny.stringHeight(channel) / 2);
     }
     if (pageOne.clicked && !settingsMenu) {
-        thrustButton.show("THRUST", "HOME", guiLeftAlign, row3Padding, genericButtonWidth, buttonHeight, false);
-        angleButton.show("ANGLE", "HOME", guiCenterAlign, row3Padding, genericButtonWidth, buttonHeight, false);
-        shutterButton.show("SHUTTER", "HOME", guiRightAlign, row3Padding, genericButtonWidth, buttonHeight, false);
+        thrustButton.show("THRUST", "HOME", guiLeftAlign, row3Padding, genericButtonWidth, buttonHeight);
+        angleButton.show("ANGLE", "HOME", guiCenterAlign, row3Padding, genericButtonWidth, buttonHeight);
+        shutterButton.show("SHUTTER", "HOME", guiRightAlign, row3Padding, genericButtonWidth, buttonHeight);
     }
     if (pageTwo.clicked && !settingsMenu) {
-        irisButton.show("IRIS", guiLeftAlign, row3Padding, plusMinusButtonWidth, buttonHeight, "MEDIUM", false);
-        edgeButton.show("EDGE", guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight, "MEDIUM", false);
-        zoomButton.show("ZOOM", guiCenterAlign + genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight, "MEDIUM", false);
-        frostButton.show("FROST", guiRightAlign, row3Padding, plusMinusButtonWidth, buttonHeight, "MEDIUM", false);
+        irisButton.show("IRIS", guiLeftAlign, row3Padding, plusMinusButtonWidth, buttonHeight, "MEDIUM");
+        edgeButton.show("EDGE", guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight, "MEDIUM");
+        zoomButton.show("ZOOM", guiCenterAlign + genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight, "MEDIUM");
+        frostButton.show("FROST", guiRightAlign, row3Padding, plusMinusButtonWidth, buttonHeight, "MEDIUM");
         
-        minusPercentButton.show("-%", guiLeftAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM", false);
-        homeButton.show("HOME", guiCenterAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM", false);
-        plusPercentButton.show("+%", guiRightAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM", false);
+        minusPercentButton.show("-%", guiLeftAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
+        homeButton.show("HOME", guiCenterAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
+        plusPercentButton.show("+%", guiRightAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
     }
 }
 
@@ -161,22 +209,20 @@ void GUI::settingsShow() {
     string ID = "USER";
     string TX = "TX PORT";
     string RX = "RX PORT";
-    TXPort = "8000";
-    RXPort = "9000";
     
-    ipFieldButton.show("", centerX, row1Padding * 1.25, activeChannelWidth * 2, buttonHeight, "LARGE", true);
+    ipFieldButton.show(userInputIP, centerX, row1Padding * 1.25, activeChannelWidth * 2, buttonHeight, "LARGE");
     fontMedium.drawString(IP, centerX - fontMedium.stringWidth(IP) / 2, row1Padding * 1.25 - fontSmall.stringHeight(IP) / 2 - buttonHeight / 2);
     
-    idFieldButton.show("", guiLeftAlign, row2Padding * 1.25, genericButtonWidth, buttonHeight, "LARGE", true);
+    idFieldButton.show(userInputID, guiLeftAlign, row2Padding * 1.25, genericButtonWidth, buttonHeight, "LARGE");
     fontMedium.drawString(ID, guiLeftAlign - fontMedium.stringWidth(ID) / 2, row2Padding * 1.25 - fontSmall.stringHeight(ID) / 2 - buttonHeight / 2);
     
-    outgoingButton.show("", guiCenterAlign, row2Padding * 1.25, genericButtonWidth, buttonHeight, "LARGE", true);
-    fontMedium.drawString(TX, guiCenterAlign - fontMedium.stringWidth(TX) / 2, row2Padding * 1.25 - fontSmall.stringHeight(TX) / 2 - buttonHeight / 2);
+    outgoingButton.show(userInputTX, guiRightAlign, row2Padding * 1.25, genericButtonWidth, buttonHeight, "LARGE");
+    fontMedium.drawString(TX, guiRightAlign - fontMedium.stringWidth(TX) / 2, row2Padding * 1.25 - fontSmall.stringHeight(TX) / 2 - buttonHeight / 2);
     
-    incomingButton.show("", guiRightAlign, row2Padding * 1.25, genericButtonWidth, buttonHeight, "LARGE", true);
-    fontMedium.drawString(RX, guiRightAlign - fontMedium.stringWidth(RX) / 2, row2Padding * 1.25 - fontSmall.stringHeight(RX) / 2 - buttonHeight / 2);
+    incomingButton.show(userInputRX, guiCenterAlign, row2Padding * 1.25, genericButtonWidth, buttonHeight, "LARGE");
+    fontMedium.drawString(RX, guiCenterAlign - fontMedium.stringWidth(RX) / 2, row2Padding * 1.25 - fontSmall.stringHeight(RX) / 2 - buttonHeight / 2);
     
-    helpButton.show("?", guiRightAlign + buttonHeight, row1Padding * 1.25, buttonHeight, buttonHeight, "LARGE", true);
+    helpButton.show("?", guiRightAlign + buttonHeight, row1Padding * 1.25, buttonHeight, buttonHeight, "LARGE");
     
     if (helpButton.clicked) {
         //HELP IMAGE
@@ -188,9 +234,9 @@ void GUI::settingsShow() {
         //IP ADDRESS
         fontMedium.drawString(IPAddress, centerX - (fontMedium.stringWidth(IPAddress) / 2) + settingsHelp.getWidth() / 3.75, (height / 2) + settingsHelp.getHeight() / 2 - fontMedium.stringHeight(IPAddress) / 2);
         //RX PORT
-        fontMedium.drawString(RXPort, centerX - (fontMedium.stringWidth(RXPort) / 2) - settingsHelp.getWidth() / 3.75, (height / 2) - fontMedium.stringHeight(RXPort) / 1.5);
+        fontMedium.drawString(userInputTX, centerX - (fontMedium.stringWidth(userInputTX) / 2) - settingsHelp.getWidth() / 3.75, (height / 2) - fontMedium.stringHeight(userInputTX) / 1.5);
         //TX PORT
-        fontMedium.drawString(TXPort, centerX - (fontMedium.stringWidth(TXPort) / 2) + settingsHelp.getWidth() / 3.75, (height / 2) - fontMedium.stringHeight(TXPort) / 1.5);
+        fontMedium.drawString(userInputRX, centerX - (fontMedium.stringWidth(userInputRX) / 2) + settingsHelp.getWidth() / 3.75, (height / 2) - fontMedium.stringHeight(userInputRX) / 1.5);
         ofPopMatrix();
     }
     
@@ -247,12 +293,16 @@ void GUI::touchDown(ofTouchEventArgs & touch){
     
     
     if (settingsMenu) {
-        ipFieldButton.touchDown(touch);
-        idFieldButton.touchDown(touch);
-        outgoingButton.touchDown(touch);
-        incomingButton.touchDown(touch);
-        helpButton.touchDown(touch);
+        ipFieldButton.touchDown(touch, true);
+        idFieldButton.touchDown(touch, true);
+        outgoingButton.touchDown(touch, true);
+        incomingButton.touchDown(touch, true);
+        helpButton.touchDown(touch, true);
         
+    }
+    
+    if (keyboard.show) {
+        keyboard.touchDown(touch);
     }
 }
 
@@ -285,6 +335,8 @@ void GUI::touchUp(ofTouchEventArgs & touch){
         homeButton.touchUp(touch);
         plusPercentButton.touchUp(touch);
     }
+    
+    keyboard.touchUp(touch);
 }
 
 //--------------------------------------------------------------
@@ -310,24 +362,4 @@ void GUI::oscSent(int _sentTime){
 void GUI::oscEvent(int _receivedTime) {
     receivedTime = _receivedTime;
     oscReceiveLight = true;
-}
-
-//--------------------------------------------------------------
-void GUI::lostFocus(){
-    
-}
-
-//--------------------------------------------------------------
-void GUI::gotFocus(){
-    
-}
-
-//--------------------------------------------------------------
-void GUI::gotMemoryWarning(){
-    
-}
-
-//--------------------------------------------------------------
-void GUI::deviceOrientationChanged(int newOrientation){
-    
 }

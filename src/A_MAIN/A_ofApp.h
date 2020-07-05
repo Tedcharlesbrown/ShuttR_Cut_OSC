@@ -1,10 +1,11 @@
 #pragma once
 
 #include "ofxiOS.h"
-#include "ofxOsc.h"
+#include "ofxOsc.h" //OSC
+#include "ofxXmlSettings.h" //XML
 
-#include <ifaddrs.h>
-#include <arpa/inet.h>
+#include <ifaddrs.h> //IP ADDRESS
+#include <arpa/inet.h> //IP ADDRESS
 
 #include "A0_globals.h"
 #include "B_gui.h"
@@ -17,7 +18,6 @@ public:
     void setup();
     void update();
     void draw();
-    void exit();
     
     void styleInit();
     
@@ -34,12 +34,12 @@ public:
     
     void lostFocus();
     void gotFocus();
-    void gotMemoryWarning();
-    void deviceOrientationChanged(int newOrientation);
     
     //----------------------------------------------------
+    ofxXmlSettings XML;
 
-    
+    string xmlStructure;
+    string message;
     //----------------------------------------------------
     
     ofxOscSender sender;

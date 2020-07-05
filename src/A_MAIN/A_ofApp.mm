@@ -4,19 +4,25 @@
 void ofApp::setup(){	
     styleInit();
     IPAddress = getIPAddress();
-    sender.setup("192.168.0.35",8000);
-    receiver.setup(9000);
+    gotFocus();
     
     gui.setup();
     
     gui.pageOne.clicked = true;
+    
 }
 //--------------------------------------------------------------
 void ofApp::update(){
     gui.update();
     oscSent();
     oscEvent();
-    keyboard.update();
+    
+    if (gui.keyboard.enter) {
+        IPAddress = getIPAddress();
+        sender.setup(inputIP,ofToInt(inputTX));
+        receiver.setup(ofToInt(inputRX));
+        gui.keyboard.enter = false;
+    }
 }
 
 //--------------------------------------------------------------
@@ -24,20 +30,10 @@ void ofApp::draw(){
     ofBackground(EOSBackground);
     
     gui.draw();
-    
-    keyboard.draw();
 }
-//--------------------------------------------------------------
-void ofApp::exit(){
-    
-}
-
 //--------------------------------------------------------------
 void ofApp::touchDown(ofTouchEventArgs & touch){
     gui.touchDown(touch);
-    if (keyboard.show) {
-        keyboard.touchDown(touch);
-    }
 }
 
 //--------------------------------------------------------------
@@ -49,7 +45,6 @@ void ofApp::touchMoved(ofTouchEventArgs & touch){
 //--------------------------------------------------------------
 void ofApp::touchUp(ofTouchEventArgs & touch){
     gui.touchUp(touch);
-    keyboard.touchUp(touch);
 }
 
 //--------------------------------------------------------------
@@ -89,22 +84,31 @@ void ofApp::oscEvent() {
 
 //--------------------------------------------------------------
 void ofApp::lostFocus(){
-    
+    XML.setValue("settings::ip", inputIP);
+    XML.setValue("settings::id", inputID);
+    XML.setValue("settings::rx", inputRX);
+    XML.setValue("settings::tx", inputTX);
+    XML.saveFile( ofxiOSGetDocumentsDirectory() + "settings.xml" );
+    XML.saveFile( "settings.xml" );
+    //cout << "SAVED XML" << endl;
 }
 
 //--------------------------------------------------------------
 void ofApp::gotFocus(){
+    if( XML.loadFile(ofxiOSGetDocumentsDirectory() + "settings.xml") ){
+        message = "settings.xml loaded from documents folder!";
+    }else if( XML.loadFile("settings.xml") ){
+        message = "settings.xml loaded from data folder!";
+    }else{
+        message = "unable to load settings.xml check data/ folder";
+    }
     
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMemoryWarning(){
+    //cout << message << endl;
     
-}
-
-//--------------------------------------------------------------
-void ofApp::deviceOrientationChanged(int newOrientation){
-    
+    inputIP = XML.getValue("settings::ip", "");
+    inputID = XML.getValue("settings::id", "1");
+    inputRX = XML.getValue("settings::rx", "9000");
+    inputTX = XML.getValue("settings::tx", "8000");
 }
 
 //--------------------------------------------------------------

@@ -2,12 +2,11 @@
 #include "A_ofApp.h"
 
 //--------------------------------------------------------------
-void BUTTON::show(float _x, float _y, float _w, float _h, bool toggle) { //NO TEXT
+void BUTTON::show(float _x, float _y, float _w, float _h) { //NO TEXT
     this-> x = _x;
     this-> y = _y;
     this-> w = _w;
     this-> h = _h;
-    this-> toggle = toggle;
     
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
@@ -25,12 +24,11 @@ void BUTTON::show(float _x, float _y, float _w, float _h, bool toggle) { //NO TE
     ofPopStyle();
 }
 
-void BUTTON::show(string _ID, float _x, float _y, float _w, float _h, string _size, bool toggle) { //ONE TEXT
+void BUTTON::show(string _ID, float _x, float _y, float _w, float _h, string _size) { //ONE TEXT
     this-> x = _x;
     this-> y = _y;
     this-> w = _w;
     this-> h = _h;
-    this-> toggle = toggle;
     
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
@@ -55,12 +53,11 @@ void BUTTON::show(string _ID, float _x, float _y, float _w, float _h, string _si
     ofPopStyle();
 }
 
-void BUTTON::show(string _ID, string _ID2, float _x, float _y, float _w, float _h, bool toggle) { //DOUBLE TEXT
+void BUTTON::show(string _ID, string _ID2, float _x, float _y, float _w, float _h) { //DOUBLE TEXT
     this-> x = _x;
     this-> y = _y;
     this-> w = _w;
     this-> h = _h;
-    this-> toggle = toggle;
     
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
@@ -83,23 +80,27 @@ void BUTTON::show(string _ID, string _ID2, float _x, float _y, float _w, float _
 }
 
 
+
+
+//--------------------------------------------------------------
+void BUTTON::touchDown(ofTouchEventArgs & touch){
+    if (touch.x > x - w / 2 && touch.x < x + w / 2 && touch.y > y - h / 2 && touch.y < y + h / 2) {
+        this-> clicked = true;
+        this-> action = true;
+    }
+}
+
 //--------------------------------------------------------------
 void BUTTON::touchDown(ofTouchEventArgs & touch, bool toggle){
     if (touch.x > x - w / 2 && touch.x < x + w / 2 && touch.y > y - h / 2 && touch.y < y + h / 2) {
-        if (toggle && clicked) {
-            this-> clicked = false;
-        } else {
-            this-> clicked = true;
-            this-> action = true;
-        }
+        this-> clicked = !clicked;
+        this-> action = true;
     }
 }
 
 //--------------------------------------------------------------
 void BUTTON::touchUp(ofTouchEventArgs & touch){
-    if (!toggle) {
-        this-> clicked = false;
-    }
+    this-> clicked = false;
 }
 
 //--------------------------------------------------------------

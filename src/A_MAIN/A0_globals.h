@@ -3,7 +3,7 @@
 
 #include "ofxiOS.h"
 
-extern string name, version, IPAddress, RXPort, TXPort;
+extern string name, version, IPAddress, inputIP, inputID, inputRX, inputTX;
 
 extern ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
 extern float buttonCorner;

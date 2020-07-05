@@ -6,10 +6,11 @@
 class BUTTON : public ofxiOSApp {
     
 public:
-    void show(float x, float y, float width, float height, bool toggle); //NO TEXT
-    void show(string ID, float x, float y, float width, float height, string textSize, bool toggle); //ONE TEXT
-    void show(string ID, string ID2, float x, float y, float width, float height, bool toggle); //TWO TEXT
+    void show(float x, float y, float width, float height); //NO TEXT
+    void show(string ID, float x, float y, float width, float height, string textSize); //ONE TEXT
+    void show(string ID, string ID2, float x, float y, float width, float height); //TWO TEXT
     
+    void touchDown(ofTouchEventArgs & touch);
     void touchDown(ofTouchEventArgs & touch, bool toggle);
     void touchUp(ofTouchEventArgs & touch);
     void touchDoubleTap(ofTouchEventArgs & touch);
@@ -22,7 +23,6 @@ public:
     bool doubleClicked = false;
     bool action = false;
     bool released = false;
-    bool toggle = false;
 
     
 private:

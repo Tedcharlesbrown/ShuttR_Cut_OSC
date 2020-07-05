@@ -22,7 +22,7 @@ public:
     
     //----------------------------------------------------
     
-    string userInput = "";
+    string input = "";
     float slide = 1;
     bool show = false;
     bool enter = false;

@@ -10,7 +10,8 @@ public:
     void update();
     void draw();
     
-    void open(bool);
+    void open();
+    void close();
     
     void touchDown(ofTouchEventArgs & touch);
     void touchUp(ofTouchEventArgs & touch);

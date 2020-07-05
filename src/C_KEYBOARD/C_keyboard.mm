@@ -49,18 +49,20 @@ void KEYBOARD::update(){
     }
 }
 
-void KEYBOARD::open(bool _open) {
-    show = _open;
-    if (!show) {
-        clickedOff = false;
-        enter = false;
-    }
+void KEYBOARD::open() {
+    show = true;
+}
+
+void KEYBOARD::close() {
+    show = false;
+    clickedOff = false;
+    enter = false;
 }
 
 //--------------------------------------------------------------
 void KEYBOARD::draw(){
-    float buttonWidth = genericButtonWidth;
-    float buttonPadding = buttonWidth * 1.1;
+    float buttonWidth = plusMinusButtonWidth;
+    float buttonPadding = buttonWidth * 1.25;
     
     ofPushMatrix();
     
@@ -81,26 +83,26 @@ void KEYBOARD::draw(){
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
     ofSetColor(0,150);
-    ofDrawRectRounded(guiCenterAlign, row5Padding - buttonHeight * 2.5, buttonWidth * 4, buttonHeight * 8, buttonCorner * 10);
+    ofDrawRectRounded(guiCenterAlign, row5Padding - buttonHeight * 2.5, buttonPadding * 3.5, buttonHeight * 8, buttonCorner * 5);
     ofPopStyle();
     
-    enterButton.show("ENTER",guiCenterAlign,row5Padding,buttonWidth * 2,buttonHeight,"LARGE");
+    enterButton.show("ENTER",guiCenterAlign,row5Padding,buttonWidth * 2,buttonHeight,"LARGE", false);
     
-    clearButton.show("CLEAR",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 1.25, buttonWidth, buttonHeight, "MEDIUM");
-    zeroButton.show("0", guiCenterAlign, row5Padding - buttonHeight * 1.25, buttonWidth, buttonHeight, "MEDIUM");
-    dotButton.show(".",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 1.25, genericButtonWidth, buttonHeight, "MEDIUM");
+    clearButton.show("CLEAR",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 1.25, buttonWidth, buttonHeight, "MEDIUM", false);
+    zeroButton.show("0", guiCenterAlign, row5Padding - buttonHeight * 1.25, buttonWidth, buttonHeight, "MEDIUM", false);
+    dotButton.show(".",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 1.25, buttonWidth, buttonHeight, "MEDIUM", false);
     
-    oneButton.show("1",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 2.5, buttonWidth, buttonHeight, "MEDIUM");
-    twoButton.show("2", guiCenterAlign, row5Padding - buttonHeight * 2.5, buttonWidth, buttonHeight, "MEDIUM");
-    threeButton.show("3",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 2.5, genericButtonWidth, buttonHeight, "MEDIUM");
+    oneButton.show("1",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 2.5, buttonWidth, buttonHeight, "MEDIUM", false);
+    twoButton.show("2", guiCenterAlign, row5Padding - buttonHeight * 2.5, buttonWidth, buttonHeight, "MEDIUM", false);
+    threeButton.show("3",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 2.5, buttonWidth, buttonHeight, "MEDIUM", false);
     
-    fourButton.show("4",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 3.75, buttonWidth, buttonHeight, "MEDIUM");
-    fiveButton.show("5", guiCenterAlign, row5Padding - buttonHeight * 3.75, buttonWidth, buttonHeight, "MEDIUM");
-    sixButton.show("6",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 3.75, genericButtonWidth, buttonHeight, "MEDIUM");
+    fourButton.show("4",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 3.75, buttonWidth, buttonHeight, "MEDIUM", false);
+    fiveButton.show("5", guiCenterAlign, row5Padding - buttonHeight * 3.75, buttonWidth, buttonHeight, "MEDIUM", false);
+    sixButton.show("6",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 3.75, buttonWidth, buttonHeight, "MEDIUM", false);
     
-    sevenButton.show("7",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 5, buttonWidth, buttonHeight, "MEDIUM");
-    eightButton.show("8", guiCenterAlign, row5Padding - buttonHeight * 5, buttonWidth, buttonHeight, "MEDIUM");
-    nineButton.show("9",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 5, genericButtonWidth, buttonHeight, "MEDIUM");
+    sevenButton.show("7",guiCenterAlign - buttonPadding, row5Padding - buttonHeight * 5, buttonWidth, buttonHeight, "MEDIUM", false);
+    eightButton.show("8", guiCenterAlign, row5Padding - buttonHeight * 5, buttonWidth, buttonHeight, "MEDIUM", false);
+    nineButton.show("9",guiCenterAlign + buttonPadding, row5Padding - buttonHeight * 5, buttonWidth, buttonHeight, "MEDIUM", false);
     
     ofPopMatrix();
 }

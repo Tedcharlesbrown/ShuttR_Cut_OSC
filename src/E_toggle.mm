@@ -1,8 +1,8 @@
-#include "D_button.h"
+#include "E_toggle.h"
 #include "A_ofApp.h"
 
 //--------------------------------------------------------------
-void BUTTON::show(float _x, float _y, float _w, float _h) { //NO TEXT
+void TOGGLE::show(float _x, float _y, float _w, float _h) { //NO TEXT
     this-> x = _x;
     this-> y = _y;
     this-> w = _w;
@@ -11,10 +11,10 @@ void BUTTON::show(float _x, float _y, float _w, float _h) { //NO TEXT
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
     
-    ofSetColor(EOSLive);
+    ofSetColor(shutterOutsideStroke);
     ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
     
-    if (this-> clicked) {
+    if (this-> clicked && !settingsMenu) {
         ofSetColor(buttonActive);
     } else {
         ofSetColor(black);
@@ -24,7 +24,7 @@ void BUTTON::show(float _x, float _y, float _w, float _h) { //NO TEXT
     ofPopStyle();
 }
 
-void BUTTON::show(string _ID, float _x, float _y, float _w, float _h, string _size) { //ONE TEXT
+void TOGGLE::show(string _ID, float _x, float _y, float _w, float _h, string _size) { //ONE TEXT
     this-> x = _x;
     this-> y = _y;
     this-> w = _w;
@@ -53,7 +53,7 @@ void BUTTON::show(string _ID, float _x, float _y, float _w, float _h, string _si
     ofPopStyle();
 }
 
-void BUTTON::show(string _ID, string _ID2, float _x, float _y, float _w, float _h) { //DOUBLE TEXT
+void TOGGLE::show(string _ID, string _ID2, float _x, float _y, float _w, float _h) { //DOUBLE TEXT
     this-> x = _x;
     this-> y = _y;
     this-> w = _w;
@@ -81,7 +81,7 @@ void BUTTON::show(string _ID, string _ID2, float _x, float _y, float _w, float _
 
 
 //--------------------------------------------------------------
-void BUTTON::touchDown(ofTouchEventArgs & touch){
+void TOGGLE::touchDown(ofTouchEventArgs & touch){
     if (touch.x > x - w / 2 && touch.x < x + w / 2 && touch.y > y - h / 2 && touch.y < y + h / 2) {
         this-> clicked = true;
         this-> action = true;
@@ -89,12 +89,12 @@ void BUTTON::touchDown(ofTouchEventArgs & touch){
 }
 
 //--------------------------------------------------------------
-void BUTTON::touchUp(ofTouchEventArgs & touch){
+void TOGGLE::touchUp(ofTouchEventArgs & touch){
     this-> clicked = false;
 }
 
 //--------------------------------------------------------------
-void BUTTON::touchDoubleTap(ofTouchEventArgs & touch){
+void TOGGLE::touchDoubleTap(ofTouchEventArgs & touch){
     
 }
 

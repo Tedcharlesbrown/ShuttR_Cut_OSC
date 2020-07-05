@@ -1,9 +1,9 @@
-#ifndef D_button_h
-#define D_button_h
+#ifndef E_toggle_h
+#define E_toggle_h
 
 #include "ofxiOS.h"
 
-class BUTTON : public ofxiOSApp {
+class TOGGLE : public ofxiOSApp {
     
 public:
     void show(float x, float y, float width, float height); //NO TEXT

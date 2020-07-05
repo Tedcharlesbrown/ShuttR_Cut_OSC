@@ -3,6 +3,7 @@
 
 string name = "ShuttR Cut OSC";
 string version = "v0.1.0 (OpenFrameworks)";
+string IPAddress, RXPort, TXPort = "";
 
 ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
 

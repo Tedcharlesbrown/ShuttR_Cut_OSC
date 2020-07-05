@@ -2,6 +2,10 @@
 
 #include "ofxiOS.h"
 #include "ofxOsc.h"
+
+#include <ifaddrs.h>
+#include <arpa/inet.h>
+
 #include "A0_globals.h"
 #include "B_gui.h"
 #include "C_keyboard.h"
@@ -16,6 +20,8 @@ public:
     void exit();
     
     void styleInit();
+    
+    string getIPAddress();
     
     void touchDown(ofTouchEventArgs & touch);
     void touchMoved(ofTouchEventArgs & touch);

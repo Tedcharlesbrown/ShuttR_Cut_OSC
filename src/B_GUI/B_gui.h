@@ -2,6 +2,7 @@
 #define B_gui_h
 
 #include "ofxiOS.h"
+#include "C_keyboard.h"
 #include "D_button.h"
 
 extern bool settingsMenu;
@@ -9,11 +10,14 @@ extern bool settingsMenu;
 class GUI {
     
 public:
+    void setup();
     void update();
+    void draw();
     
     void settingsBar(float x,float y,float width,float height,float strokeWeight);
     void settingsButton(float x, float y, float width, float height, float weight);
     void oscLight(string ID, float x, float y, float width, float height, float weight);
+    void settingsShow();
     
     void about();
     void topUIShow();
@@ -28,7 +32,11 @@ public:
     
     //----------------------------------------------------
 
-    BUTTON pageOne, pageTwo, pageThree, minusButton, plusButton, fineButton, highButton, flashButton, channelButton, thrustButton, angleButton, shutterButton, irisButton, edgeButton, zoomButton, frostButton, minusPercentButton, homeButton, plusPercentButton, ipFieldButton, idFieldButton;
+    BUTTON pageOne, pageTwo, pageThree, minusButton, plusButton, fineButton, highButton, flashButton, channelButton, thrustButton, angleButton, shutterButton, irisButton, edgeButton, zoomButton, frostButton, minusPercentButton, homeButton, plusPercentButton, ipFieldButton, idFieldButton, incomingButton, outgoingButton, helpButton;
+    
+    KEYBOARD keyboard;
+    
+    ofImage settingsHelp;
     
     //----------------------------------------------------
     

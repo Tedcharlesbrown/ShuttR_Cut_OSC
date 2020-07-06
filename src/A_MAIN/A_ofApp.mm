@@ -6,6 +6,8 @@ void ofApp::setup(){
     IPAddress = getIPAddress();
     gotFocus();
     
+    //ofSleepMillis(5000);
+    
     gui.setup();
     
     gui.pageOne.clicked = true;

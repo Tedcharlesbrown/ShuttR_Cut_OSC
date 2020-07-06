@@ -73,13 +73,48 @@ void BUTTON::show(string _ID, string _ID2, float _x, float _y, float _w, float _
     ofDrawRectRounded(_x, _y, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
     
     ofSetColor(white);
-    fontMedium.drawString(_ID, _x - fontMedium.stringWidth(_ID) / 2, _y);//INPUT
+    fontMedium.drawString(_ID, _x - fontMedium.stringWidth(_ID) / 2, _y );//INPUT
     fontSmall.drawString(_ID2, _x - fontSmall.stringWidth(_ID2) / 2, _y + fontMedium.stringHeight("+") * 1.25);//INPUT
     
     ofPopStyle();
 }
 
-
+void BUTTON::show(string _ID, string _ID2, float _x, float _y, float _w, float _h, bool identifier) { //DOUBLE TEXT WITH BOTTOM
+    this-> x = _x;
+    this-> y = _y + _h / 2;
+    this-> w = _w;
+    this-> h = _h * 1.5;
+    
+    ofPushStyle();
+    ofSetRectMode(OF_RECTMODE_CENTER);
+    
+    ofSetColor(EOSLive);
+    ofDrawRectRounded(_x, _y + _h / 1.5, _w, _h, buttonCorner);
+    if (this-> clicked) {
+        ofSetColor(buttonActive);
+    } else {
+        ofSetColor(black);
+    }
+    ofDrawRectRounded(_x, _y + _h / 1.5, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
+    
+    
+    ofSetColor(EOSLive);
+    
+    ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
+    
+    if (this-> clicked) {
+        ofSetColor(buttonActive);
+    } else {
+        ofSetColor(black);
+    }
+    ofDrawRectRounded(_x, _y, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
+    
+    ofSetColor(white);
+    fontMedium.drawString(_ID, _x - fontMedium.stringWidth(_ID) / 2, _y + fontMedium.stringHeight(_ID) / 2);//INPUT
+    fontMedium.drawString(_ID2, _x - fontMedium.stringWidth(_ID2) / 2, _y + _h / 1.25 + fontMedium.stringHeight(_ID2) / 2);//INPUT
+    
+    ofPopStyle();
+}
 
 
 //--------------------------------------------------------------

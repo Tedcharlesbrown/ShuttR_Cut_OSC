@@ -35,6 +35,21 @@ void GUI::update() {
         settingsMenu = false;
     }
     
+    if (irisButton.action && irisButton.clicked) {
+        irisButton.clicked = true; edgeButton.clicked = false; zoomButton.clicked = false; frostButton.clicked = false;
+        irisButton.action = false;
+    } else if (edgeButton.action && edgeButton.clicked) {
+        irisButton.clicked = false; edgeButton.clicked = true; zoomButton.clicked = false; frostButton.clicked = false;
+        edgeButton.action = false;
+    } else if (zoomButton.action && zoomButton.clicked) {
+        irisButton.clicked = false; edgeButton.clicked = false; zoomButton.clicked = true; frostButton.clicked = false;
+        zoomButton.action = false;
+    } else if (frostButton.action && frostButton.clicked) {
+        irisButton.clicked = false; edgeButton.clicked = false; zoomButton.clicked = false; frostButton.clicked = true;
+        frostButton.action = false;
+    }
+    
+    
     if (keyboard.enter) {
         ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false;
         keyboard.close();
@@ -93,6 +108,7 @@ void GUI::draw() {
     oscLight("TX", smallButtonWidth / 2, settingsBarHeight / 4, smallButtonWidth, settingsBarHeight / 2, buttonStrokeWeight);
     oscLight("RX", smallButtonWidth / 2, settingsBarHeight - settingsBarHeight / 4, smallButtonWidth, settingsBarHeight / 2, buttonStrokeWeight);
     topUIShow();
+    
     if (settingsMenu) {
         settingsShow();
     }
@@ -190,10 +206,10 @@ void GUI::topUIShow() {
         shutterButton.show("SHUTTER", "HOME", guiRightAlign, row3Padding, genericButtonWidth, buttonHeight);
     }
     if (pageTwo.clicked && !settingsMenu) {
-        irisButton.show("IRIS", guiLeftAlign, row3Padding, plusMinusButtonWidth, buttonHeight, "MEDIUM");
-        edgeButton.show("EDGE", guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight, "MEDIUM");
-        zoomButton.show("ZOOM", guiCenterAlign + genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight, "MEDIUM");
-        frostButton.show("FROST", guiRightAlign, row3Padding, plusMinusButtonWidth, buttonHeight, "MEDIUM");
+        irisButton.show("IRIS", "100%", guiLeftAlign, row3Padding, plusMinusButtonWidth, buttonHeight, true);
+        edgeButton.show("EDGE", "40%", guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight, true);
+        zoomButton.show("ZOOM", "20%", guiCenterAlign + genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight, true);
+        frostButton.show("FROST", "74%", guiRightAlign, row3Padding, plusMinusButtonWidth, buttonHeight, true);
         
         minusPercentButton.show("-%", guiLeftAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
         homeButton.show("HOME", guiCenterAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
@@ -271,10 +287,10 @@ void GUI::touchDown(ofTouchEventArgs & touch){
     if ((pageOne.clicked || pageTwo.clicked) && !settingsMenu) {
         minusButton.touchDown(touch);
         plusButton.touchDown(touch);
-        fineButton.touchDown(touch);
-        highButton.touchDown(touch);
+        fineButton.touchDown(touch, true);
+        highButton.touchDown(touch, true);
         flashButton.touchDown(touch);
-        channelButton.touchDown(touch);
+        channelButton.touchDown(touch, true);
     }
     if (pageOne.clicked && !settingsMenu) {
         thrustButton.touchDown(touch);
@@ -282,10 +298,10 @@ void GUI::touchDown(ofTouchEventArgs & touch){
         shutterButton.touchDown(touch);
     }
     if (pageTwo.clicked && !settingsMenu) {
-        irisButton.touchDown(touch);
-        edgeButton.touchDown(touch);
-        zoomButton.touchDown(touch);
-        frostButton.touchDown(touch);
+        irisButton.touchDown(touch, true);
+        edgeButton.touchDown(touch, true);
+        zoomButton.touchDown(touch, true);
+        frostButton.touchDown(touch, true);
         minusPercentButton.touchDown(touch);
         homeButton.touchDown(touch);
         plusPercentButton.touchDown(touch);
@@ -316,10 +332,7 @@ void GUI::touchUp(ofTouchEventArgs & touch){
     if ((pageOne.clicked || pageTwo.clicked) && !settingsMenu) {
         minusButton.touchUp(touch);
         plusButton.touchUp(touch);
-        fineButton.touchUp(touch);
-        highButton.touchUp(touch);
         flashButton.touchUp(touch);
-        channelButton.touchUp(touch);
     }
     if (pageOne.clicked && !settingsMenu) {
         thrustButton.touchUp(touch);
@@ -327,10 +340,6 @@ void GUI::touchUp(ofTouchEventArgs & touch){
         shutterButton.touchUp(touch);
     }
     if (pageTwo.clicked && !settingsMenu) {
-        irisButton.touchUp(touch);
-        edgeButton.touchUp(touch);
-        zoomButton.touchUp(touch);
-        frostButton.touchUp(touch);
         minusPercentButton.touchUp(touch);
         homeButton.touchUp(touch);
         plusPercentButton.touchUp(touch);

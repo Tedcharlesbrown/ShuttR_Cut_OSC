@@ -28,13 +28,13 @@
 		758F42B79CFB7DF1EBD6A0EC /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DC25AF659AA424DD84AC077 /* tinyxml.cpp */; };
 		7B2D66DEAF6AE226DFAD38B4 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A32C1649CFA906B09CD0639 /* OscTypes.cpp */; };
 		8F3564A366BEC7654169DFCB /* D_button.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85ED3E2745DDDE9E9142BCFD /* D_button.mm */; };
-		901808C12053638E004A7774 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901808BF2053636F004A7774 /* GLKit.framework */; };
 		9936F6101BFA4DEE00891288 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9936F60F1BFA4DEE00891288 /* Images.xcassets */; };
 		9936F6121BFA65F100891288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9936F6111BFA65F100891288 /* LaunchScreen.storyboard */; };
 		9969E7561C782C4500DEF0F6 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9969E7551C782C4500DEF0F6 /* CoreMotion.framework */; };
 		9B175FF1ABBBC823B6BBFC9C /* ofxOscBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A969CE13723ECBA9FCB1CDE8 /* ofxOscBundle.cpp */; };
 		B1263242F45888466B30F787 /* B_gui.mm in Sources */ = {isa = PBXBuildFile; fileRef = C42A1635D09BB879ECF843F4 /* B_gui.mm */; };
-		BB16EBD20F2B2A9500518274 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD10F2B2A9500518274 /* OpenGLES.framework */; };
+		B7EB4A9E24B2E20A00387041 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EB4A9C24B2E20A00387041 /* Metal.framework */; };
+		B7EB4A9F24B2E20A00387041 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EB4A9D24B2E20A00387041 /* MetalKit.framework */; };
 		BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD80F2B2AB500518274 /* QuartzCore.framework */; };
 		BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */; };
 		D23F67F10DAD2FA5B4BB602D /* IpEndpointName.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C34D7BE4C1717315F064709 /* IpEndpointName.cpp */; };
@@ -111,6 +111,8 @@
 		AB8A44955139670BD49EF55D /* C_keyboard.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = C_keyboard.mm; path = src/C_KEYBOARD/C_keyboard.mm; sourceTree = SOURCE_ROOT; };
 		AF8D11504B058C9DDB219A5D /* ofxOscParameterSync.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxOscParameterSync.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/src/ofxOscParameterSync.cpp; sourceTree = SOURCE_ROOT; };
 		B705C3964A5506AAC5858C03 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlSettings.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
+		B7EB4A9C24B2E20A00387041 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		B7EB4A9D24B2E20A00387041 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		BB16EBD10F2B2A9500518274 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BB16EBD80F2B2AB500518274 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BB24DDC910DA781C00E9C588 /* ofxiOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ofxiOS-Info.plist"; sourceTree = "<group>"; };
@@ -147,19 +149,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				9969E7561C782C4500DEF0F6 /* CoreMotion.framework in Frameworks */,
-				901808C12053638E004A7774 /* GLKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
-				BB16EBD20F2B2A9500518274 /* OpenGLES.framework in Frameworks */,
 				BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */,
 				BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */,
 				53F323EB10A20EDB00E0DAE4 /* OpenAL.framework in Frameworks */,
 				5326AEA810A23A0500278DE6 /* CoreLocation.framework in Frameworks */,
+				B7EB4A9F24B2E20A00387041 /* MetalKit.framework in Frameworks */,
 				E41D400B13B39D2100A75A5D /* AVFoundation.framework in Frameworks */,
 				E41D400C13B39D2100A75A5D /* CoreMedia.framework in Frameworks */,
 				E41D400D13B39D2100A75A5D /* CoreVideo.framework in Frameworks */,
 				E41D400E13B39D2100A75A5D /* MapKit.framework in Frameworks */,
+				B7EB4A9E24B2E20A00387041 /* Metal.framework in Frameworks */,
 				67DFA53619F92A69003B3434 /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,6 +315,8 @@
 		901808C02053638E004A7774 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B7EB4A9C24B2E20A00387041 /* Metal.framework */,
+				B7EB4A9D24B2E20A00387041 /* MetalKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

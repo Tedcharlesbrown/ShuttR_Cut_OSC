@@ -5,6 +5,8 @@ string name = "ShuttR Cut OSC";
 string version = "v0.1.0 (OpenFrameworks)";
 string IPAddress, inputIP, inputID, inputRX, inputTX = "";
 
+string consoleLog[2];
+
 ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
 
 float width, height, centerX, centerY, assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
@@ -75,6 +77,9 @@ void ofApp::styleInit(){
     fontSmall.load("LondonBetween.ttf", smallTextSize);
     fontTiny.load("LondonBetween.ttf", tinyTextSize);
     fontTiny.setLetterSpacing(1.5);
+    
+    consoleLog[0] = version + " - " + IPAddress;
+    consoleLog[1] = name;
     
     //----------------------------------------------------
     

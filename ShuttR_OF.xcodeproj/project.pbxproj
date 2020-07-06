@@ -33,6 +33,10 @@
 		9969E7561C782C4500DEF0F6 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9969E7551C782C4500DEF0F6 /* CoreMotion.framework */; };
 		9B175FF1ABBBC823B6BBFC9C /* ofxOscBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A969CE13723ECBA9FCB1CDE8 /* ofxOscBundle.cpp */; };
 		B1263242F45888466B30F787 /* B_gui.mm in Sources */ = {isa = PBXBuildFile; fileRef = C42A1635D09BB879ECF843F4 /* B_gui.mm */; };
+		B7269CD024B38B4C00998745 /* B_settings.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CCF24B38B4C00998745 /* B_settings.mm */; };
+		B7269CD224B38C5D00998745 /* B_topbar.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CD124B38C5D00998745 /* B_topbar.mm */; };
+		B7269CD424B38DE700998745 /* B_pageOne.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CD324B38DE700998745 /* B_pageOne.mm */; };
+		B7269CD624B38EA800998745 /* B_pageTwo.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CD524B38EA800998745 /* B_pageTwo.mm */; };
 		B7EB4A9E24B2E20A00387041 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EB4A9C24B2E20A00387041 /* Metal.framework */; };
 		B7EB4A9F24B2E20A00387041 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EB4A9D24B2E20A00387041 /* MetalKit.framework */; };
 		BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD80F2B2AB500518274 /* QuartzCore.framework */; };
@@ -111,6 +115,10 @@
 		AB8A44955139670BD49EF55D /* C_keyboard.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = C_keyboard.mm; path = src/C_KEYBOARD/C_keyboard.mm; sourceTree = SOURCE_ROOT; };
 		AF8D11504B058C9DDB219A5D /* ofxOscParameterSync.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxOscParameterSync.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/src/ofxOscParameterSync.cpp; sourceTree = SOURCE_ROOT; };
 		B705C3964A5506AAC5858C03 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlSettings.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
+		B7269CCF24B38B4C00998745 /* B_settings.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_settings.mm; path = B_GUI/B_settings.mm; sourceTree = "<group>"; };
+		B7269CD124B38C5D00998745 /* B_topbar.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_topbar.mm; path = B_GUI/B_topbar.mm; sourceTree = "<group>"; };
+		B7269CD324B38DE700998745 /* B_pageOne.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_pageOne.mm; path = B_GUI/B_pageOne.mm; sourceTree = "<group>"; };
+		B7269CD524B38EA800998745 /* B_pageTwo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_pageTwo.mm; path = B_GUI/B_pageTwo.mm; sourceTree = "<group>"; };
 		B7EB4A9C24B2E20A00387041 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		B7EB4A9D24B2E20A00387041 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		BB16EBD10F2B2A9500518274 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -255,6 +263,10 @@
 			children = (
 				8AAADDC381C2D9CB7A7ECBC5 /* B_gui.h */,
 				C42A1635D09BB879ECF843F4 /* B_gui.mm */,
+				B7269CD124B38C5D00998745 /* B_topbar.mm */,
+				B7269CD324B38DE700998745 /* B_pageOne.mm */,
+				B7269CD524B38EA800998745 /* B_pageTwo.mm */,
+				B7269CCF24B38B4C00998745 /* B_settings.mm */,
 			);
 			name = B_GUI;
 			sourceTree = "<group>";
@@ -563,6 +575,7 @@
 				8F3564A366BEC7654169DFCB /* D_button.mm in Sources */,
 				5AEF6D83B3D140B97B8C23F4 /* C_keyboard.mm in Sources */,
 				B1263242F45888466B30F787 /* B_gui.mm in Sources */,
+				B7269CD024B38B4C00998745 /* B_settings.mm in Sources */,
 				D23F67F10DAD2FA5B4BB602D /* IpEndpointName.cpp in Sources */,
 				D65CCD8B4CFBAC30EC09A39D /* NetworkingUtils.cpp in Sources */,
 				4552A108325494C86358E102 /* UdpSocket.cpp in Sources */,
@@ -576,6 +589,9 @@
 				0869EC3CEA4FDE5659A9D37C /* ofxOscReceiver.cpp in Sources */,
 				F99F042C599E1BD03A58CE58 /* ofxOscSender.cpp in Sources */,
 				758F42B79CFB7DF1EBD6A0EC /* tinyxml.cpp in Sources */,
+				B7269CD224B38C5D00998745 /* B_topbar.mm in Sources */,
+				B7269CD424B38DE700998745 /* B_pageOne.mm in Sources */,
+				B7269CD624B38EA800998745 /* B_pageTwo.mm in Sources */,
 				EC8921C6969C6E5E2DF78835 /* tinyxmlerror.cpp in Sources */,
 				0A66D4D0B483A5E52210F62A /* tinyxmlparser.cpp in Sources */,
 				55CFC13EC55E35345488CA2F /* ofxXmlSettings.cpp in Sources */,

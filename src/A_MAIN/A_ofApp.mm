@@ -1,9 +1,9 @@
 #include "A_ofApp.h"
 
 //--------------------------------------------------------------
-void ofApp::setup(){	
-    styleInit();
+void ofApp::setup(){
     IPAddress = getIPAddress();
+    styleInit();
     gotFocus();
     
     //ofSleepMillis(5000);

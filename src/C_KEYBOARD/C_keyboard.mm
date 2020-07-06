@@ -56,7 +56,6 @@ void KEYBOARD::open() {
 void KEYBOARD::close() {
     show = false;
     clickedOff = false;
-    //enter = false;
 }
 
 //--------------------------------------------------------------

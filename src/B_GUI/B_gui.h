@@ -14,14 +14,22 @@ public:
     void update();
     void draw();
     
+    //----------------------------------------------------
+    void topBarShow();
+    void topBarUpdate();
     void settingsBar(float x,float y,float width,float height,float strokeWeight);
     void settingsButton(float x, float y, float width, float height, float weight);
     void oscLight(string ID, float x, float y, float width, float height, float weight);
+    //----------------------------------------------------
+    void pageOneUpdate();
+    void pageOneShow();
+    //----------------------------------------------------
+    void pageTwoUpdate();
+    void pageTwoShow();
+    //----------------------------------------------------
     void settingsShow();
-    
+    void console();
     void about();
-    void topUIShow();
-    
     //----------------------------------------------------
     
     void touchDown(ofTouchEventArgs & touch);

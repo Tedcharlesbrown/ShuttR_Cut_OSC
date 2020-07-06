@@ -4,6 +4,7 @@
 #include "ofxiOS.h"
 
 extern string name, version, IPAddress, inputIP, inputID, inputRX, inputTX;
+extern string consoleLog[2];
 
 extern ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
 extern float buttonCorner;

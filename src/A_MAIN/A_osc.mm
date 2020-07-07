@@ -7,6 +7,10 @@ void ofApp::oscInit() {
     listenTargets[0] = "Intens"; listenTargets[1] = "Thrust A"; listenTargets[2] = "Angle A"; listenTargets[3] = "Thrust B"; listenTargets[4] = "Angle B";
     listenTargets[5] = "Thrust C"; listenTargets[6] = "Angle C"; listenTargets[7] = "Thrust D"; listenTargets[8] = "Angle D"; listenTargets[9] = "Frame Assembly";
     listenTargets[10] = "Iris"; listenTargets[11] = "Edge"; listenTargets[12] = "Zoom"; listenTargets[13] = "Diffusn";
+    
+    for (int i = 0; i < (sizeof(listenTargets)/sizeof(*listenTargets)); i++) {
+        hasTargets[i] = false;
+    }
 }
 
 //--------------------------------------------------------------
@@ -51,7 +55,10 @@ void ofApp::oscEvent() {
         // ----------------------- GET ALL WHEEL PARAMS -----------------------
         for (int i = 0; i < 200; i++) {
             if (m.getAddress() == "/eos/out/active/wheel/" + ofToString(i)) {
-                parseWheel(m.getArgAsString(0));
+                //cout << ofToString(m).size() << endl;
+                if (ofToString(m).size() > 32) { //IF NO CHANNEL SELECTED, DONT PARSE WHEEL
+                    parseWheel(m.getArgAsString(0));
+                }
                 return;
             }
         }
@@ -59,76 +66,106 @@ void ofApp::oscEvent() {
 }
 
 void ofApp::parseWheel(string incomingOSC) {
-    
-    
-    //cout << incomingOSC << endl;
-    
-//    for (int i = 0; i < sizeof(listenTargets); i++) {
-//        if (incomingOSC.find(listenTargets[i]) != std::string::npos) {
-//            cout << i << endl;
-//        }
-//    }
-    
-    
-//    for (std::string & s : listenTargets) {
-//        if (incomingOSC.find(s) != std::string::npos) {
-//            cout << s << endl;
-//        }
-//    }
-//        if (!incomingOSC.find("Intens")) {
-//            //cout << incomingOSC << endl;
-//        } else if (!incomingOSC.find("Thrust A")) {
-//            //cout << incomingOSC << endl;
-//        } else if (!incomingOSC.find("Thrust B")) {
-//            //cout << incomingOSC << endl;
-//        } else if (!incomingOSC.find("Thrust C")) {
-//            //cout << incomingOSC << endl;
-//        } else if (!incomingOSC.find("Thrust D")) {
-//            //cout << incomingOSC << endl;
-//        } else if (!incomingOSC.find("Angle A")) {
-//            //cout << incomingOSC << endl;
-//        } else if (!incomingOSC.find("Angle B")) {
-//            //cout << incomingOSC << endl;
-//        } else if (!incomingOSC.find("Angle C")) {
-//            //cout << incomingOSC << endl;
-//        } else if (!incomingOSC.find("Angle D")) {
-//            //cout << incomingOSC << endl;
-//        } else if (!incomingOSC.find("Frame Assembly")) {
-//            //cout << incomingOSC << endl;
-//        } else if (!incomingOSC.find("Iris")) {
-//            gui.irisPercent = incomingOSC;
-//        } else if (!incomingOSC.find("Edge")) {
-//            gui.edgePercent = incomingOSC;
-//        } else if (!incomingOSC.find("Zoom")) {
-//            gui.zoomPercent = incomingOSC;
-//        } else if (!incomingOSC.find("Diffusn")) {
-//            gui.frostPercent = incomingOSC;
-//        }
+    for (int i = 0; i < (sizeof(listenTargets)/sizeof(*listenTargets)); i++) {
+        if (incomingOSC.find(listenTargets[i]) != std::string::npos) {
+            int indexValueStart = incomingOSC.find("[");
+            int indexValueEnd = incomingOSC.find("]");
+            string outputString = incomingOSC.substr(indexValueStart + 1, indexValueEnd - indexValueStart - 1);
+            switch(i) {
+                case 0: //Intensity
+                    hasTargets[i] = true;
+                    break;
+                case 1: //Thrust A
+                    hasTargets[i] = true;
+                    break;
+                case 2: //Angle A
+                    hasTargets[i] = true;
+                    break;
+                case 3: //Thrust B
+                    hasTargets[i] = true;
+                    break;
+                case 4: //Angle B
+                    hasTargets[i] = true;
+                    break;
+                case 5: //Thrust C
+                    hasTargets[i] = true;
+                    break;
+                case 6: //Angle C
+                    hasTargets[i] = true;
+                    break;
+                case 7: //Thrust D
+                    hasTargets[i] = true;
+                    break;
+                case 8: //Angle D
+                    hasTargets[i] = true;
+                    break;
+                case 9: //Frame Assembly
+                    hasTargets[i] = true;
+                    break;
+                case 10: //Iris
+                    hasTargets[i] = true;
+                    gui.irisPercent = outputString + " %";
+                    break;
+                case 11: //Edge
+                    hasTargets[i] = true;
+                    gui.edgePercent = outputString + " %";
+                    break;
+                case 12: //Zoom
+                    hasTargets[i] = true;
+                    gui.zoomPercent = outputString + " %";
+                    break;
+                case 13: //Frost
+                    hasTargets[i] = true;
+                    gui.frostPercent = outputString + " %";
+                    break;
+            }
+        }
+    }
+    for (int i = 0; i < (sizeof(listenTargets)/sizeof(*listenTargets)); i++) {
+        if (!hasTargets[i]) { //IF PARAMETER IS NOT TRUE;
+            switch(i) {
+                case 0: //Intensity
+                    break;
+                case 1: //Thrust A
+                case 2: //Angle A
+                case 3: //Thrust B
+                case 4: //Angle B
+                case 5: //Thrust C
+                case 6: //Angle C
+                case 7: //Thrust D
+                case 8: //Angle D
+                case 9: //Frame Assembly
+                    break;
+                case 10: //Iris
+                    gui.irisPercent = "";
+                    break;
+                case 11: //Edge
+                    gui.edgePercent = "";
+                    break;
+                case 12: //Zoom
+                    gui.zoomPercent = "";
+                    break;
+                case 13: //Frost
+                    gui.frostPercent = "";
+                    break;
+            }
+        }
+    }
 }
 
 void ofApp::parseChannel(string incomingOSC) {
-    if (incomingOSC.size() > 1) {
+    //if (incomingOSC.size() > 1) { //LESS THAN 1 INCOMING OSC MEANS NO CHANNEL IS SELECTED
         if (incomingOSC.find("@") != string::npos) { //IF NO MATCH, RETURNS REDICULOUSLY HIGH NUMBER
             int indexValueEnd = incomingOSC.find(" ");
             incomingOSC = incomingOSC.substr(0,indexValueEnd);
             selectedChannel = incomingOSC;
-        } else {
+        } else { // IF NO CHANNEL IS SELECTED / NO CHANNEL IS PATCHED
             selectedChannel = "---";
+           for (int i = 0; i < (sizeof(listenTargets)/sizeof(*listenTargets)); i++) { //RESET WHEELS, ONLY WORKS IF NO CHANNEL IS SELECTED
+               hasTargets[i] = false;
+           }
         }
-    }
-    
-    
-    
-    
-//    if (incomingOSC.size() > 1) {
-//        if (incomingOSC.find("@") < 1000) { //IF NO MATCH, RETURNS REDICULOUSLY HIGH NUMBER
-//            int indexValueEnd = incomingOSC.find(" ");
-//            incomingOSC = incomingOSC.substr(0,indexValueEnd);
-//            selectedChannel = incomingOSC;
-//        } else {
-//            selectedChannel = "---";
-//        }
-//    }
+   // }
 }
 
 void ofApp::connect() {

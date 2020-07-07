@@ -61,6 +61,11 @@ void GUI::pageTwoTouchMoved(ofTouchEventArgs & touch) {
         encoderPosition = ofDegToRad(ofMap(encoderPosition, -PI, PI, 0, 360));
         if (lastPosition < encoderPosition) {
             //RIGHT
+            oscSent(ofGetElapsedTimeMillis());
+            ofxOscMessage m;
+            m.setAddress("/eos/param/Iris");
+            m.addIntArg(1);
+            sender.sendMessage(m, false);
         } else if (lastPosition > encoderPosition) {
             //LEFT
         }

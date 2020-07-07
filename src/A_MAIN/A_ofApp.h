@@ -12,6 +12,8 @@
 #include "C_keyboard.h"
 #include "D_button.h"
 
+extern ofxOscSender sender;
+
 class ofApp : public ofxiOSApp {
     
 public:
@@ -49,10 +51,10 @@ public:
     string message;
     //----------------------------------------------------
     
-    ofxOscSender sender;
+    //ofxOscSender sender;
     ofxOscReceiver receiver;
-    //vector<string> incomingOSC;
     string listenTargets[14];
+    bool hasTargets[14];
     
     //----------------------------------------------------
     

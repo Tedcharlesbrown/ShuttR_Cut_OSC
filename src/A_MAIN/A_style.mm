@@ -7,6 +7,8 @@ string IPAddress, inputIP, inputID, inputRX, inputTX, selectedChannel = "";
 
 vector<string> consoleLog;
 
+ofxOscSender sender;
+
 bool connectRequest = true;
 bool isConnected = false;
 

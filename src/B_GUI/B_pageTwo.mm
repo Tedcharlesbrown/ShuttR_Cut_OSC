@@ -19,10 +19,10 @@ void GUI::pageTwoUpdate() {
 }
 
 void GUI::pageTwoShow() {
-    irisButton.showBig("IRIS", "100%", guiLeftAlign, row3Padding, plusMinusButtonWidth, buttonHeight);
-    edgeButton.showBig("EDGE", "40%", guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
-    zoomButton.showBig("ZOOM", "20%", guiCenterAlign + genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
-    frostButton.showBig("FROST", "74%", guiRightAlign, row3Padding, plusMinusButtonWidth, buttonHeight);
+    irisButton.showBig("IRIS",irisPercent, guiLeftAlign, row3Padding, plusMinusButtonWidth, buttonHeight);
+    edgeButton.showBig("EDGE",edgePercent, guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
+    zoomButton.showBig("ZOOM",zoomPercent, guiCenterAlign + genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
+    frostButton.showBig("FROST",frostPercent, guiRightAlign, row3Padding, plusMinusButtonWidth, buttonHeight);
     
     minusPercentButton.show("-%", guiLeftAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
     homeButton.show("HOME", guiCenterAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");

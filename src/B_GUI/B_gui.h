@@ -39,6 +39,7 @@ public:
     ofImage encoder;
     float encoderPosition, lastPosition = 0;
     bool encoderClicked = false;
+    string irisPercent, edgePercent, zoomPercent, frostPercent = "";
     //----------------------------------------------------
     void settingsShow();
     void console();

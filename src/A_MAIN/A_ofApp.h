@@ -22,8 +22,8 @@ public:
     void styleInit();
     
     void oscInit();
-    void parseChannel(string incomingOSC);
-    void parseWheel(string incomingOSC);
+    void parseChannel(string m);
+    void parseWheel(string m);
     
     string getIPAddress();
     
@@ -51,7 +51,7 @@ public:
     
     ofxOscSender sender;
     ofxOscReceiver receiver;
-    //vector<string> listenTargets;
+    //vector<string> incomingOSC;
     string listenTargets[14];
     
     //----------------------------------------------------

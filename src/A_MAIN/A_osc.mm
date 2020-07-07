@@ -21,17 +21,6 @@ void ofApp::checkConnection() {
 
 //--------------------------------------------------------------
 
-
-void ofApp::oscSent(){
-    //    gui.oscSent(ofGetElapsedTimeMillis());
-    //    ofxOscMessage m;
-    //    m.setAddress("/mouse/button");
-    //    m.addIntArg(1);
-    //    m.addStringArg("down");
-    //    sender.sendMessage(m, false);
-}
-
-
 void ofApp::oscEvent() {
     while(receiver.hasWaitingMessages()){
         // get the next message
@@ -170,12 +159,11 @@ void ofApp::parseChannel(string incomingOSC) {
 
 void ofApp::connect() {
     IPAddress = getIPAddress();
-    sender.setup(inputIP,ofToInt(inputTX));
+    gui.osc.sender.setup(inputIP, ofToInt(inputTX));
     receiver.setup(ofToInt(inputRX));
     connectRequest = false;
-    
     //gui.oscSent(ofGetElapsedTimeMillis());
     ofxOscMessage m;
     m.setAddress("/eos/ping");
-    sender.sendMessage(m, false);
+    gui.osc.sender.sendMessage(m, false);
 }

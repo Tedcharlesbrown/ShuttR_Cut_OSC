@@ -6,15 +6,19 @@ void GUI::pageTwoUpdate() {
     if (irisButton.action && irisButton.clicked) {
         irisButton.clicked = true; edgeButton.clicked = false; zoomButton.clicked = false; frostButton.clicked = false;
         irisButton.action = false;
+        parameter = "iris";
     } else if (edgeButton.action && edgeButton.clicked) {
         irisButton.clicked = false; edgeButton.clicked = true; zoomButton.clicked = false; frostButton.clicked = false;
         edgeButton.action = false;
+        parameter = "edge";
     } else if (zoomButton.action && zoomButton.clicked) {
         irisButton.clicked = false; edgeButton.clicked = false; zoomButton.clicked = true; frostButton.clicked = false;
         zoomButton.action = false;
+        parameter = "zoom";
     } else if (frostButton.action && frostButton.clicked) {
         irisButton.clicked = false; edgeButton.clicked = false; zoomButton.clicked = false; frostButton.clicked = true;
         frostButton.action = false;
+        parameter = "diffusion";
     }
 }
 
@@ -60,14 +64,11 @@ void GUI::pageTwoTouchMoved(ofTouchEventArgs & touch) {
         encoderPosition = atan2(touch.y - centerY, touch.x - centerX);
         encoderPosition = ofDegToRad(ofMap(encoderPosition, -PI, PI, 0, 360));
         if (lastPosition < encoderPosition) {
-            //RIGHT
             oscSent(ofGetElapsedTimeMillis());
-            ofxOscMessage m;
-            m.setAddress("/eos/param/Iris");
-            m.addIntArg(1);
-            sender.sendMessage(m, false);
+            osc.sendEncoder(inputID, parameter, 1);
         } else if (lastPosition > encoderPosition) {
-            //LEFT
+            oscSent(ofGetElapsedTimeMillis());
+            osc.sendEncoder(inputID, parameter, -1);
         }
     }
 }

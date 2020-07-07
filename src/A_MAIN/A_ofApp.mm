@@ -19,7 +19,6 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     gui.update();
-    oscSent();
     oscEvent();
     if (connectRequest) {
         connect();

@@ -6,6 +6,8 @@
 #include "C_keyboard.h"
 #include "D_button.h"
 
+#include "O_osc.h"
+
 extern bool settingsMenu;
 
 class GUI {
@@ -39,7 +41,7 @@ public:
     ofImage encoder;
     float encoderPosition, lastPosition = 0;
     bool encoderClicked = false;
-    string irisPercent, edgePercent, zoomPercent, frostPercent = "";
+    string irisPercent, edgePercent, zoomPercent, frostPercent, parameter = "";
     //----------------------------------------------------
     void settingsShow();
     void console();
@@ -59,6 +61,8 @@ public:
     KEYBOARD keyboard;
     
     ofImage settingsHelp;
+    
+    OSC osc;
     
     
     //----------------------------------------------------

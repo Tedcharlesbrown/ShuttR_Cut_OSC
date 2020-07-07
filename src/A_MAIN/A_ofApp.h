@@ -12,8 +12,6 @@
 #include "C_keyboard.h"
 #include "D_button.h"
 
-extern ofxOscSender sender;
-
 class ofApp : public ofxiOSApp {
     
 public:
@@ -27,18 +25,17 @@ public:
     void parseChannel(string m);
     void parseWheel(string m);
     
-    string getIPAddress();
-    
     void connect();
     void checkConnection();
+    
+    string getIPAddress();
     
     void touchDown(ofTouchEventArgs & touch);
     void touchMoved(ofTouchEventArgs & touch);
     void touchUp(ofTouchEventArgs & touch);
     void touchDoubleTap(ofTouchEventArgs & touch);
     void touchCancelled(ofTouchEventArgs & touch);
-    
-    void oscSent();
+
     void oscEvent();
     
     void lostFocus();
@@ -51,7 +48,6 @@ public:
     string message;
     //----------------------------------------------------
     
-    //ofxOscSender sender;
     ofxOscReceiver receiver;
     string listenTargets[14];
     bool hasTargets[14];

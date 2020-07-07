@@ -9,7 +9,8 @@ public:
     void show(float x, float y, float width, float height); //NO TEXT
     void show(string ID, float x, float y, float width, float height, string textSize); //ONE TEXT
     void show(string ID, string ID2, float x, float y, float width, float height); //TWO TEXT
-    void show(string ID, string ID2, float x, float y, float width, float height, bool identifier); //TWO TEXT WITH BOTTOM
+    
+    void showBig(string ID, string ID2, float x, float y, float width, float height); //TWO TEXT WITH BOTTOM
     
     void touchDown(ofTouchEventArgs & touch);
     void touchDown(ofTouchEventArgs & touch, bool toggle);

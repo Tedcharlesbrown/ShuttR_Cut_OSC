@@ -19,12 +19,63 @@ void GUI::pageTwoUpdate() {
 }
 
 void GUI::pageTwoShow() {
-    irisButton.show("IRIS", "100%", guiLeftAlign, row3Padding, plusMinusButtonWidth, buttonHeight, true);
-    edgeButton.show("EDGE", "40%", guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight, true);
-    zoomButton.show("ZOOM", "20%", guiCenterAlign + genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight, true);
-    frostButton.show("FROST", "74%", guiRightAlign, row3Padding, plusMinusButtonWidth, buttonHeight, true);
+    irisButton.showBig("IRIS", "100%", guiLeftAlign, row3Padding, plusMinusButtonWidth, buttonHeight);
+    edgeButton.showBig("EDGE", "40%", guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
+    zoomButton.showBig("ZOOM", "20%", guiCenterAlign + genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
+    frostButton.showBig("FROST", "74%", guiRightAlign, row3Padding, plusMinusButtonWidth, buttonHeight);
     
     minusPercentButton.show("-%", guiLeftAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
     homeButton.show("HOME", guiCenterAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
     plusPercentButton.show("+%", guiRightAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
+    
+    ofPushMatrix();
+    ofTranslate(centerX, centerY);
+    ofRotateRad(encoderPosition + ofDegToRad(-90));
+    encoder.resize(assemblyDiameter / 1.25, assemblyDiameter / 1.25);
+    encoder.draw(- encoder.getWidth() / 2, - encoder.getHeight() / 2);
+    ofPopMatrix();
+}
+
+void GUI::pageTwoTouchDown(ofTouchEventArgs & touch) {
+    minusButton.touchDown(touch);
+    plusButton.touchDown(touch);
+    fineButton.touchDown(touch, true);
+    highButton.touchDown(touch, true);
+    flashButton.touchDown(touch);
+    channelButton.touchDown(touch, true);
+    
+    irisButton.touchDown(touch, true);
+    edgeButton.touchDown(touch, true);
+    zoomButton.touchDown(touch, true);
+    frostButton.touchDown(touch, true);
+    minusPercentButton.touchDown(touch);
+    homeButton.touchDown(touch);
+    plusPercentButton.touchDown(touch);
+}
+
+void GUI::pageTwoTouchMoved(ofTouchEventArgs & touch) {
+    if (ofDist(touch.x, touch.y, centerX, centerY) < encoder.getWidth() / 2 || encoderClicked) {
+        encoderClicked = true;
+        lastPosition = encoderPosition;
+        encoderPosition = atan2(touch.y - centerY, touch.x - centerX);
+        encoderPosition = ofDegToRad(ofMap(encoderPosition, -PI, PI, 0, 360));
+        if (lastPosition < encoderPosition) {
+            //RIGHT
+        } else if (lastPosition > encoderPosition) {
+            //LEFT
+        }
+    }
+}
+
+
+void GUI::pageTwoTouchUp(ofTouchEventArgs & touch) {
+    minusButton.touchUp(touch);
+    plusButton.touchUp(touch);
+    flashButton.touchUp(touch);
+    
+    minusPercentButton.touchUp(touch);
+    homeButton.touchUp(touch);
+    plusPercentButton.touchUp(touch);
+    
+    encoderClicked = false;
 }

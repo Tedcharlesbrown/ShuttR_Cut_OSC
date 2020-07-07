@@ -3,9 +3,12 @@
 
 string name = "ShuttR Cut OSC";
 string version = "v0.1.0 (OpenFrameworks)";
-string IPAddress, inputIP, inputID, inputRX, inputTX = "";
+string IPAddress, inputIP, inputID, inputRX, inputTX, selectedChannel = "";
 
-string consoleLog[2];
+vector<string> consoleLog;
+
+bool connectRequest = true;
+bool isConnected = false;
 
 ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
 
@@ -78,8 +81,8 @@ void ofApp::styleInit(){
     fontTiny.load("LondonBetween.ttf", tinyTextSize);
     fontTiny.setLetterSpacing(1.5);
     
-    consoleLog[0] = version + " - " + IPAddress;
-    consoleLog[1] = name;
+    consoleLog.push_back(name);
+    consoleLog.push_back(version);
     
     //----------------------------------------------------
     

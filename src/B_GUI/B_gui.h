@@ -2,6 +2,7 @@
 #define B_gui_h
 
 #include "ofxiOS.h"
+#include "A_ofApp.h"
 #include "C_keyboard.h"
 #include "D_button.h"
 
@@ -23,9 +24,21 @@ public:
     //----------------------------------------------------
     void pageOneUpdate();
     void pageOneShow();
+    
+    void pageOneTouchDown(ofTouchEventArgs & touch);
+    void pageOneTouchUp(ofTouchEventArgs & touch);
     //----------------------------------------------------
     void pageTwoUpdate();
     void pageTwoShow();
+    
+    void pageTwoTouchDown(ofTouchEventArgs & touch);
+    void pageTwoTouchMoved(ofTouchEventArgs & touch);
+    void pageTwoTouchUp(ofTouchEventArgs & touch);
+    void pageTwoDoubleTap(ofTouchEventArgs & touch);
+    
+    ofImage encoder;
+    float encoderPosition, lastPosition = 0;
+    bool encoderClicked = false;
     //----------------------------------------------------
     void settingsShow();
     void console();
@@ -45,6 +58,7 @@ public:
     KEYBOARD keyboard;
     
     ofImage settingsHelp;
+    
     
     //----------------------------------------------------
     

@@ -37,6 +37,7 @@
 		B7269CD224B38C5D00998745 /* B_topbar.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CD124B38C5D00998745 /* B_topbar.mm */; };
 		B7269CD424B38DE700998745 /* B_pageOne.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CD324B38DE700998745 /* B_pageOne.mm */; };
 		B7269CD624B38EA800998745 /* B_pageTwo.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CD524B38EA800998745 /* B_pageTwo.mm */; };
+		B7D46B1B24B3E0F200FFBD60 /* A_osc.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7D46B1A24B3E0F200FFBD60 /* A_osc.mm */; };
 		B7EB4A9E24B2E20A00387041 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EB4A9C24B2E20A00387041 /* Metal.framework */; };
 		B7EB4A9F24B2E20A00387041 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EB4A9D24B2E20A00387041 /* MetalKit.framework */; };
 		BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD80F2B2AB500518274 /* QuartzCore.framework */; };
@@ -119,6 +120,7 @@
 		B7269CD124B38C5D00998745 /* B_topbar.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_topbar.mm; path = B_GUI/B_topbar.mm; sourceTree = "<group>"; };
 		B7269CD324B38DE700998745 /* B_pageOne.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_pageOne.mm; path = B_GUI/B_pageOne.mm; sourceTree = "<group>"; };
 		B7269CD524B38EA800998745 /* B_pageTwo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_pageTwo.mm; path = B_GUI/B_pageTwo.mm; sourceTree = "<group>"; };
+		B7D46B1A24B3E0F200FFBD60 /* A_osc.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = A_osc.mm; path = A_MAIN/A_osc.mm; sourceTree = "<group>"; };
 		B7EB4A9C24B2E20A00387041 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		B7EB4A9D24B2E20A00387041 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		BB16EBD10F2B2A9500518274 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -453,6 +455,7 @@
 				4654C437A0D3E4896867C879 /* A_style.mm */,
 				CCBAE1CED33117A7DC7D107C /* A_ofApp.h */,
 				5E353422425A9FFCD12CF74E /* A_ofApp.mm */,
+				B7D46B1A24B3E0F200FFBD60 /* A_osc.mm */,
 			);
 			name = A_MAIN;
 			sourceTree = "<group>";
@@ -500,6 +503,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1150;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = 72J6UMBGCX;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ShuttR_OF" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -582,6 +590,7 @@
 				6B3480382822F6805C9F6421 /* OscOutboundPacketStream.cpp in Sources */,
 				34F4466FE14098A264815F64 /* OscPrintReceivedElements.cpp in Sources */,
 				712E795AD7744AED1A6E777F /* OscReceivedElements.cpp in Sources */,
+				B7D46B1B24B3E0F200FFBD60 /* A_osc.mm in Sources */,
 				7B2D66DEAF6AE226DFAD38B4 /* OscTypes.cpp in Sources */,
 				9B175FF1ABBBC823B6BBFC9C /* ofxOscBundle.cpp in Sources */,
 				22808C0402EB4FFC719F8364 /* ofxOscMessage.cpp in Sources */,
@@ -616,6 +625,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				DEVELOPMENT_TEAM = 72J6UMBGCX;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -627,7 +637,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "${TARGET_NAME}";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
@@ -638,6 +648,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				DEVELOPMENT_TEAM = 72J6UMBGCX;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -649,7 +660,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "${TARGET_NAME}";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;

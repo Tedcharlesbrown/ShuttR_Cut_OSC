@@ -58,8 +58,11 @@ void GUI::console() {
     ofPushMatrix();
     ofTranslate(- consoleWidth / 2.1, consoleHeight / 20);
     ofSetColor(255);
-    fontSmall.drawString(consoleLog[1], guiCenterAlign, consolePadding - fontMedium.stringHeight("+") / 2);
-    fontSmall.drawString(consoleLog[0], guiCenterAlign, consolePadding + fontMedium.stringHeight("+"));
+    fontSmall.drawString(consoleLog[consoleLog.size() - 2], guiCenterAlign, consolePadding - fontMedium.stringHeight("+") / 2);
+    fontSmall.drawString(consoleLog[consoleLog.size() - 1], guiCenterAlign, consolePadding + fontMedium.stringHeight("+"));
+    if (consoleLog.size() > 2) {
+        consoleLog.erase(consoleLog.begin());
+    }
     ofPopMatrix();
     ofPopStyle();
 }

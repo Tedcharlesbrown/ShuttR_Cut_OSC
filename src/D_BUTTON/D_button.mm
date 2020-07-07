@@ -79,7 +79,7 @@ void BUTTON::show(string _ID, string _ID2, float _x, float _y, float _w, float _
     ofPopStyle();
 }
 
-void BUTTON::show(string _ID, string _ID2, float _x, float _y, float _w, float _h, bool identifier) { //DOUBLE TEXT WITH BOTTOM
+void BUTTON::showBig(string _ID, string _ID2, float _x, float _y, float _w, float _h) { //DOUBLE TEXT WITH BOTTOM
     this-> x = _x;
     this-> y = _y + _h / 2;
     this-> w = _w;

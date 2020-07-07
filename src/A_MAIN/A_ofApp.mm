@@ -2,8 +2,11 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofEnableSmoothing();
+    ofSetCircleResolution(128);
     IPAddress = getIPAddress();
     styleInit();
+    oscInit();
     gotFocus();
     
     //ofSleepMillis(5000);
@@ -18,12 +21,8 @@ void ofApp::update(){
     gui.update();
     oscSent();
     oscEvent();
-    
-    if (gui.keyboard.enter) {
-        IPAddress = getIPAddress();
-        sender.setup(inputIP,ofToInt(inputTX));
-        receiver.setup(ofToInt(inputRX));
-        gui.keyboard.enter = false;
+    if (connectRequest) {
+        connect();
     }
 }
 
@@ -60,29 +59,6 @@ void ofApp::touchCancelled(ofTouchEventArgs & touch){
     gui.touchCancelled(touch);
     
 }
-
-//--------------------------------------------------------------
-
-
-void ofApp::oscSent(){
-    //    gui.oscSent(ofGetElapsedTimeMillis());
-    //    ofxOscMessage m;
-    //    m.setAddress("/mouse/button");
-    //    m.addIntArg(1);
-    //    m.addStringArg("down");
-    //    sender.sendMessage(m, false);
-}
-
-
-void ofApp::oscEvent() {
-    while(receiver.hasWaitingMessages()){
-        // get the next message
-        gui.oscEvent(ofGetElapsedTimeMillis());
-        ofxOscMessage m;
-        receiver.getNextMessage(m);
-    }
-}
-
 
 //--------------------------------------------------------------
 void ofApp::lostFocus(){

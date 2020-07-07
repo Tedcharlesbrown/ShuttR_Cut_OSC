@@ -21,7 +21,14 @@ public:
     
     void styleInit();
     
+    void oscInit();
+    void parseChannel(string incomingOSC);
+    void parseWheel(string incomingOSC);
+    
     string getIPAddress();
+    
+    void connect();
+    void checkConnection();
     
     void touchDown(ofTouchEventArgs & touch);
     void touchMoved(ofTouchEventArgs & touch);
@@ -44,6 +51,8 @@ public:
     
     ofxOscSender sender;
     ofxOscReceiver receiver;
+    //vector<string> listenTargets;
+    string listenTargets[14];
     
     //----------------------------------------------------
     

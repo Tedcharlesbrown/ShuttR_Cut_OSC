@@ -3,8 +3,9 @@
 
 #include "ofxiOS.h"
 
-extern string name, version, IPAddress, inputIP, inputID, inputRX, inputTX;
-extern string consoleLog[2];
+extern string name, version, IPAddress, inputIP, inputID, inputRX, inputTX, selectedChannel;
+extern vector<string> consoleLog;
+extern bool connectRequest, isConnected;
 
 extern ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
 extern float buttonCorner;

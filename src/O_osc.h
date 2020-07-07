@@ -7,7 +7,11 @@
 class OSC : public ofxiOSApp {
     
 public:
-    void sendEncoder(string userID, string ID, int message);
+    void sendPing();
+    
+    void sendEncoder(string userID, string ID, int message, bool fine);
+    void fineEncoder(string userID, int message);
+    void sendEncoderPercent(string userID, string ID, int message);
     
     
     

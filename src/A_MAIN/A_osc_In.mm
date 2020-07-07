@@ -162,8 +162,7 @@ void ofApp::connect() {
     gui.osc.sender.setup(inputIP, ofToInt(inputTX));
     receiver.setup(ofToInt(inputRX));
     connectRequest = false;
-    //gui.oscSent(ofGetElapsedTimeMillis());
-    ofxOscMessage m;
-    m.setAddress("/eos/ping");
-    gui.osc.sender.sendMessage(m, false);
+    
+    gui.osc.sendPing();
+    gui.osc.fineEncoder(inputID, 0); //SET DEFAULT ENCODER TO COURSE
 }

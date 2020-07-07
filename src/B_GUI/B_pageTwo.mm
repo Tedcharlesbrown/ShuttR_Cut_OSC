@@ -20,6 +20,18 @@ void GUI::pageTwoUpdate() {
         frostButton.action = false;
         parameter = "diffusion";
     }
+    
+    //PERCENT BUTTON SEND OSC
+    if (minusPercentButton.action) {
+        osc.sendEncoderPercent(inputID, parameter, -1);
+        minusPercentButton.action = false;
+    } else if (homeButton.action) {
+        osc.sendEncoderPercent(inputID, parameter, 0);
+        homeButton.action = false;
+    } else if (plusPercentButton.action) {
+        osc.sendEncoderPercent(inputID, parameter, 1);
+        plusPercentButton.action = false;
+    }
 }
 
 void GUI::pageTwoShow() {
@@ -65,10 +77,10 @@ void GUI::pageTwoTouchMoved(ofTouchEventArgs & touch) {
         encoderPosition = ofDegToRad(ofMap(encoderPosition, -PI, PI, 0, 360));
         if (lastPosition < encoderPosition) {
             oscSent(ofGetElapsedTimeMillis());
-            osc.sendEncoder(inputID, parameter, 1);
+            osc.sendEncoder(inputID, parameter, 1, fineButton.clicked);
         } else if (lastPosition > encoderPosition) {
             oscSent(ofGetElapsedTimeMillis());
-            osc.sendEncoder(inputID, parameter, -1);
+            osc.sendEncoder(inputID, parameter, -1, fineButton.clicked);
         }
     }
 }

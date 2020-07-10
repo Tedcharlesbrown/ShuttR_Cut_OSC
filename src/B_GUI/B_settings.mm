@@ -2,7 +2,18 @@
 
 //--------------------------------------------------------------
 
-void GUI::settingsShow() {
+void GUI::settingsSetup() {
+    settingsHelp.load("settingsHelp.png");
+    userInputIP = inputIP;
+    userInputID = inputID;
+    userInputRX = inputRX;
+    userInputTX = inputTX;
+    ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false; helpButton.clicked = false; //BUTTON INIT
+}
+
+//--------------------------------------------------------------
+
+void GUI::settingsDraw() {
     string IP = "IP ADDRESS";
     string ID = "USER";
     string TX = "TX PORT";

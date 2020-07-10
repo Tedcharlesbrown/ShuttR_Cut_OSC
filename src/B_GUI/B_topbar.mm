@@ -21,7 +21,7 @@ void GUI::topBarUpdate() {
 
 //--------------------------------------------------------------
 
-void GUI::topBarShow() {
+void GUI::topBarDraw() {
     settingsBar(0,0,width,settingsBarHeight,settingsBarStrokeWeight);
     settingsButton(width - smallButtonWidth, 0, smallButtonWidth, settingsBarHeight, buttonStrokeWeight);
     oscLight("TX", smallButtonWidth / 2, settingsBarHeight / 4, smallButtonWidth, settingsBarHeight / 2, buttonStrokeWeight);

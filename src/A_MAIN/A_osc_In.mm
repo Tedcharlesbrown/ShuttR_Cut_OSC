@@ -164,5 +164,5 @@ void ofApp::connect() {
     connectRequest = false;
     
     gui.osc.sendPing();
-    gui.osc.fineEncoder(inputID, 0); //SET DEFAULT ENCODER TO COURSE
+    gui.osc.fineEncoder(0); //SET DEFAULT ENCODER TO COURSE
 }

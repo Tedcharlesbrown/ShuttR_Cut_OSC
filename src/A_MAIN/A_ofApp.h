@@ -42,6 +42,9 @@ public:
     void gotFocus();
     
     //----------------------------------------------------
+    void saveXML();
+    void getXML();
+    
     ofxXmlSettings XML;
 
     string xmlStructure;

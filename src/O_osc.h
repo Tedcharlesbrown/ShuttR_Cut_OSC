@@ -4,14 +4,16 @@
 #include "ofxiOS.h"
 #include "ofxOsc.h" //OSC
 
+#include "A0_globals.h"
+
 class OSC : public ofxiOSApp {
     
 public:
     void sendPing();
     
-    void sendEncoder(string userID, string ID, int message, bool fine);
-    void fineEncoder(string userID, int message);
-    void sendEncoderPercent(string userID, string ID, int message);
+    void sendEncoder(string ID, int message, bool fine);
+    void fineEncoder(int message);
+    void sendEncoderPercent(string ID, int message);
     
     
     

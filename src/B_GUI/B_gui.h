@@ -6,6 +6,8 @@
 #include "C_keyboard.h"
 #include "D_button.h"
 
+#include "E_shutterHandles.h"
+
 #include "O_osc.h"
 
 extern bool settingsMenu;
@@ -18,20 +20,27 @@ public:
     void draw();
     
     //----------------------------------------------------
-    void topBarShow();
+    void topBarDraw();
     void topBarUpdate();
     void settingsBar(float x,float y,float width,float height,float strokeWeight);
     void settingsButton(float x, float y, float width, float height, float weight);
     void oscLight(string ID, float x, float y, float width, float height, float weight);
     //----------------------------------------------------
+    void pageOneSetup();
     void pageOneUpdate();
-    void pageOneShow();
+    void pageOneDraw();
+    void assemblyBGDraw();
     
     void pageOneTouchDown(ofTouchEventArgs & touch);
     void pageOneTouchUp(ofTouchEventArgs & touch);
+    
+    ofImage bgAssembly;
+    THRUST_HANDLE thrustA, thrustB, thrustC, thrustD;
+    ANGLE_HANDLE angleA, angleB, angleC, angleD;
     //----------------------------------------------------
+    void pageTwoSetup();
     void pageTwoUpdate();
-    void pageTwoShow();
+    void pageTwoDraw();
     
     void pageTwoTouchDown(ofTouchEventArgs & touch);
     void pageTwoTouchMoved(ofTouchEventArgs & touch);
@@ -41,9 +50,10 @@ public:
     ofImage encoder;
     float encoderPosition, lastPosition = 0;
     bool encoderClicked = false;
-    string irisPercent, edgePercent, zoomPercent, frostPercent, parameter = "";
+    string irisPercent, edgePercent, zoomPercent, frostPercent, parameter, parameterShow = "";
     //----------------------------------------------------
-    void settingsShow();
+    void settingsSetup();
+    void settingsDraw();
     void console();
     void about();
     //----------------------------------------------------

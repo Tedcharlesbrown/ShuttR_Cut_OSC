@@ -3,12 +3,11 @@
 bool settingsMenu = false;
 
 void GUI::setup() {
-    settingsHelp.load("settingsHelp.png");
-    encoder.load("Encoder.png");
-    userInputIP = inputIP;
-    userInputID = inputID;
-    userInputRX = inputRX;
-    userInputTX = inputTX;
+    pageOneSetup();
+    pageTwoSetup();
+    settingsSetup();
+    
+    //thrustA;
 }
 
 //--------------------------------------------------------------
@@ -105,7 +104,16 @@ void GUI::update() {
 
 
 void GUI::draw() {
-    topBarShow();
+    topBarDraw();
+    if (pageOne.clicked && !settingsMenu) {
+        pageOneDraw();
+    }
+    if (pageTwo.clicked && !settingsMenu) {
+        pageTwoDraw();
+    }
+    if (settingsMenu) {
+        settingsDraw();
+    }
     if ((pageOne.clicked || pageTwo.clicked) && !settingsMenu) {
         string channel = "SELECTED CHANNEL";
         minusButton.show("-",guiLeftAlign,row1Padding,plusMinusButtonWidth,buttonHeight,"LARGE");
@@ -115,15 +123,6 @@ void GUI::draw() {
         flashButton.show("FLASH",guiRightAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE");
         channelButton.show(selectedChannel, centerX,row1Padding, activeChannelWidth, buttonHeight, "LARGE");
         fontTiny.drawString(channel, centerX - fontTiny.stringWidth(channel) / 2, row1Padding - buttonHeight / 2 - fontTiny.stringHeight(channel) / 2);
-    }
-    if (pageOne.clicked && !settingsMenu) {
-        pageOneShow();
-    }
-    if (pageTwo.clicked && !settingsMenu) {
-        pageTwoShow();
-    }
-    if (settingsMenu) {
-        settingsShow();
     }
     keyboard.draw();
 }

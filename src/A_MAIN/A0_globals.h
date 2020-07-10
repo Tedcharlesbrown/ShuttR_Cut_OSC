@@ -13,16 +13,16 @@ extern float buttonCorner;
 extern float width, height;
 extern float centerX, centerY, assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
 extern int assemblyDiameter;
-//float rotation = radians(0);
+extern float rotation;
 
 //----------------------------------------------------
 
 extern float settingsBarHeight, settingsBarStrokeWeight, smallButtonWidth, activeChannelWidth, row1Padding, genericButtonWidth, plusMinusButtonWidth, row2Padding, row3Padding,
 row4Padding, guiLeftAlign, guiCenterAlign, guiRightAlign, buttonHeight, buttonStrokeWeight, largeTextSize, mediumTextSize, smallTextSize, tinyTextSize, parameterButtonWidth, row5Padding,
-consoleWidth, consoleHeight, consolePadding;
+consoleWidth, consoleHeight, consolePadding, shutterStrokeWeight, outsideWeight, thrustWeight, angleWeight, crosshairWeight, assemblyButtonWeight, assemblyLineWeight;
 //----------------------------------------------------
 
-extern ofColor white, black, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterOutsideStroke, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind;
+extern ofColor white, black, EOSBlue, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterBackground, shutterOutsideStroke, shutterFrameFill, shutterFrameStroke, shutterOutsideStroke, BGFill, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind;
 
 //----------------------------------------------------
 

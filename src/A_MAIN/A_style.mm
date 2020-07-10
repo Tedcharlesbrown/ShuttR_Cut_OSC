@@ -14,23 +14,28 @@ ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
 
 float width, height, centerX, centerY, assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
 int assemblyDiameter;
-//float rotation = radians(0);
+float rotation = 0;
 
 //----------------------------------------------------
 
 float settingsBarHeight, settingsBarStrokeWeight, smallButtonWidth, activeChannelWidth, row1Padding, genericButtonWidth, plusMinusButtonWidth, row2Padding, row3Padding, buttonCorner,
 row4Padding, guiLeftAlign, guiCenterAlign, guiRightAlign, buttonHeight, buttonStrokeWeight, largeTextSize, mediumTextSize, smallTextSize, tinyTextSize, parameterButtonWidth, row5Padding,
-consoleWidth, consoleHeight, consolePadding;
+consoleWidth, consoleHeight, consolePadding, shutterStrokeWeight, outsideWeight, thrustWeight, angleWeight, crosshairWeight, assemblyButtonWeight, assemblyLineWeight;
 
 //----------------------------------------------------
 
-ofColor white, black, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterOutsideStroke, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind;
+ofColor white, black, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterOutsideStroke, EOSBlue, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind, shutterBackground, shutterFrameFill, shutterFrameStroke, BGFill;
 
 
 //--------------------------------------------------------------
 void ofApp::styleInit(){
+    
+    //---------- PARENT WIDTH AND HEIGHT ----------
+    
     width = ofGetWidth();
     height = ofGetHeight();
+    
+    //---------- FRAME ASSEMBLY VARIABLES ----------
     clickDiameter = width / 9.6;
     clickRadius = clickDiameter / 2;
     encoderDiameter = width / 6;
@@ -41,31 +46,54 @@ void ofApp::styleInit(){
     centerX = width / 2;
     centerY = height - assemblyDiameter + assemblyRadius / 3;
     
-    //----------------------------------------------------
+    ///---------- FRAME ASSEMBLY STYLES ----------
+    
+    shutterStrokeWeight = width / 72; //20
+    outsideWeight = width / 96; //15
+    thrustWeight = width / 288; //5
+    angleWeight = width / 288; //5
+    crosshairWeight = width / 144;
+    assemblyButtonWeight = width / 288; //5
+    assemblyLineWeight = width / 144; //10
+    
+    //---------- BUTTON STYLES ----------
+    
+    buttonStrokeWeight = (width / 144) * 1.5;
+    settingsBarStrokeWeight = 5;
+    buttonCorner = width / 57.6;
+    
+    //---------- GUI ALIGNMENT ----------
     
     guiLeftAlign = centerX - centerX / 1.5;
     guiCenterAlign = centerX;
     guiRightAlign = centerX + centerX / 1.5;
+    
+    //---------- GUI HEIGHT ----------
+    
     buttonHeight = height / 19.7;
     settingsBarHeight = height / 20;
-    settingsBarStrokeWeight = 5;
+    consoleHeight = height / 20;
+    
+    
+    //---------- GUI WIDTH ----------
+    
     smallButtonWidth = width / 10;
     activeChannelWidth = (width / 4.5) * 1.5;
     plusMinusButtonWidth = width / 6;
     genericButtonWidth = width / 4.5;
     parameterButtonWidth = genericButtonWidth / 1.25;
-    buttonCorner = width / 57.6;
-    buttonStrokeWeight = (width / 144) * 1.5;
+    consoleWidth = width / 1.25;
+    
+    //---------- GUI PADDDING ----------
+    
     row1Padding = settingsBarHeight + buttonHeight;
     row2Padding = row1Padding + height / 11.84;
     row3Padding = row2Padding + height / 11.84;
     row4Padding = row3Padding + buttonHeight / 2;
     row5Padding = height - height / 15;
-    consoleWidth = width / 1.25;
-    consoleHeight = height / 20;
     consolePadding = height / 2;
     
-    //----------------------------------------------------
+    //---------- TEXT STYLES ----------
 
     largeTextSize = width / 19.2; //75
     mediumTextSize = width / 22.15; //65
@@ -84,23 +112,39 @@ void ofApp::styleInit(){
     consoleLog.push_back(name);
     consoleLog.push_back(version);
     
-    //----------------------------------------------------
+    //---------- COLOR ----------
+    //---------- GENERIC COLOR ----------
     
     white = ofColor(255);
     black = ofColor(0);
     
+    //---------- EOS GENERIC COLORS ----------
+    
+    EOSBlue = ofColor(22,40,58); //Channels In Use
     EOSLightGreen = ofColor(6,155,37); //Light Green
     EOSGreen = ofColor(6,55,37); //PSD
     EOSLightRed = ofColor(165,21,23); //Light Red
     EOSRed = ofColor(65,21,23); //Snapshots
-    
     EOSLightGrey = ofColor(85,90,101);
     EOSDarkGrey = ofColor(30,30,30);
+    
+    //---------- EOS SPECIFIC COLORS ----------
+    
     EOSBackground = ofColor(15,25,35);
     EOSLive = ofColor(183,128,6);
     EOSBlind = ofColor(10,115,222);
     
+    //---------- EOS SHUTTER COLORS ----------
+    
+    shutterBackground = ofColor(150,150,255); //180,181,255
+    shutterOutsideStroke = ofColor(125,115,130);
+    shutterFrameFill = ofColor(62,56,71);
+    shutterFrameStroke = ofColor(204,195,209);
     shutterOutsideStroke = ofColor(125,115,130);
     
+    //---------------------------------------
+    //---------- ASSIGNMENT COLORS ----------
+    
+    BGFill = shutterBackground;
     buttonActive = EOSLightGrey;
 }

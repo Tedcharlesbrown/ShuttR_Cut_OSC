@@ -7,12 +7,11 @@ void ofApp::setup(){
     IPAddress = getIPAddress();
     styleInit();
     oscInit();
-    gotFocus();
+    getXML();
     
     //ofSleepMillis(5000);
     
     gui.setup();
-    
     gui.pageOne.clicked = true;
     
 }
@@ -22,7 +21,10 @@ void ofApp::update(){
     oscEvent();
     if (connectRequest) {
         connect();
+        saveXML();
     }
+    
+    rotation += 0.1;
 }
 
 //--------------------------------------------------------------
@@ -61,6 +63,17 @@ void ofApp::touchCancelled(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 void ofApp::lostFocus(){
+    saveXML();
+}
+
+//--------------------------------------------------------------
+void ofApp::gotFocus(){
+    getXML();
+}
+
+//--------------------------------------------------------------
+
+void ofApp::saveXML() {
     XML.setValue("settings::ip", inputIP);
     XML.setValue("settings::id", inputID);
     XML.setValue("settings::rx", inputRX);
@@ -71,7 +84,8 @@ void ofApp::lostFocus(){
 }
 
 //--------------------------------------------------------------
-void ofApp::gotFocus(){
+
+void ofApp::getXML() {
     if( XML.loadFile(ofxiOSGetDocumentsDirectory() + "settings.xml") ){
         message = "settings.xml loaded from documents folder!";
     }else if( XML.loadFile("settings.xml") ){

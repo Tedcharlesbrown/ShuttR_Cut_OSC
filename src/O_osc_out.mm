@@ -1,4 +1,33 @@
 #include "O_osc.h"
+//--------------------------------------------------------------
+
+void OSC::sendChannel(string parameter) {
+    ofxOscMessage m;
+    if (!noneSelected) { //IF A CHANNEL IS SELECTED
+        for (int i = 1; i >= 0; i--) { //SEND NEXT OR LAST KEY
+            m.clear();
+            m.setAddress("eos/user/" + inputID + "/key/" + parameter);
+            m.addStringArg(ofToString(i));
+            sender.sendMessage(m, false);
+        }
+    }
+}
+//--------------------------------------------------------------
+
+void OSC::sendChannelNumber(string parameter) {
+    ofxOscMessage m;
+    m.setAddress("/eos/user" + inputID + "/cmd/" + parameter + "#");
+    sender.sendMessage(m, false);
+}
+
+//--------------------------------------------------------------
+
+void OSC::sendAngle(string parameter, int message) {
+    ofxOscMessage m;
+    m.setAddress("/eos/user/" + inputID + "/param/frame angle " + parameter);
+    m.addIntArg(message);
+    sender.sendMessage(m, false);
+}
 
 //--------------------------------------------------------------
 

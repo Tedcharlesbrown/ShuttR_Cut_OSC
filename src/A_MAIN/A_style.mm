@@ -9,6 +9,10 @@ vector<string> consoleLog;
 
 bool connectRequest = true;
 bool isConnected = false;
+bool noneSelected = true;
+bool ignoreOSC = false;
+
+int selectedChannelInt;
 
 ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
 

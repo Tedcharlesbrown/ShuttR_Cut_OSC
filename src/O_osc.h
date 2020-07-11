@@ -11,10 +11,14 @@ class OSC : public ofxiOSApp {
 public:
     void sendPing();
     
-    void sendEncoder(string ID, int message, bool fine);
-    void fineEncoder(int message);
-    void sendEncoderPercent(string ID, int message);
+    void sendChannel(string parameter);
+    void sendChannelNumber(string parameter);
     
+    void sendEncoder(string parameter, int message, bool fine);
+    void fineEncoder(int message);
+    void sendEncoderPercent(string parameter, int message);
+    
+    void sendAngle(string parameter, int message);
     
     
     ofxOscSender sender;

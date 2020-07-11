@@ -60,6 +60,7 @@ void ofApp::parseWheel(string incomingOSC) {
             int indexValueStart = incomingOSC.find("[");
             int indexValueEnd = incomingOSC.find("]");
             string outputString = incomingOSC.substr(indexValueStart + 1, indexValueEnd - indexValueStart - 1);
+            int outputInt = ofToInt(outputString);
             switch(i) {
                 case 0: //Intensity
                     hasTargets[i] = true;
@@ -69,24 +70,36 @@ void ofApp::parseWheel(string incomingOSC) {
                     break;
                 case 2: //Angle A
                     hasTargets[i] = true;
+                    if (!ignoreOSC) {
+                        gui.angleA.rotateAngle = -outputInt;
+                    }
                     break;
                 case 3: //Thrust B
                     hasTargets[i] = true;
                     break;
                 case 4: //Angle B
                     hasTargets[i] = true;
+                    if (!ignoreOSC) {
+                        gui.angleB.rotateAngle = -outputInt;
+                    }
                     break;
                 case 5: //Thrust C
                     hasTargets[i] = true;
                     break;
                 case 6: //Angle C
                     hasTargets[i] = true;
+                    if (!ignoreOSC) {
+                        gui.angleC.rotateAngle = -outputInt;
+                    }
                     break;
                 case 7: //Thrust D
                     hasTargets[i] = true;
                     break;
                 case 8: //Angle D
                     hasTargets[i] = true;
+                    if (!ignoreOSC) {
+                        gui.angleD.rotateAngle = -outputInt;
+                    }
                     break;
                 case 9: //Frame Assembly
                     hasTargets[i] = true;
@@ -143,18 +156,25 @@ void ofApp::parseWheel(string incomingOSC) {
 }
 
 void ofApp::parseChannel(string incomingOSC) {
-    //if (incomingOSC.size() > 1) { //LESS THAN 1 INCOMING OSC MEANS NO CHANNEL IS SELECTED
-        if (incomingOSC.find("@") != string::npos) { //IF NO MATCH, RETURNS REDICULOUSLY HIGH NUMBER
-            int indexValueEnd = incomingOSC.find(" ");
-            incomingOSC = incomingOSC.substr(0,indexValueEnd);
-            selectedChannel = incomingOSC;
-        } else { // IF NO CHANNEL IS SELECTED / NO CHANNEL IS PATCHED
-            selectedChannel = "---";
-           for (int i = 0; i < (sizeof(listenTargets)/sizeof(*listenTargets)); i++) { //RESET WHEELS, ONLY WORKS IF NO CHANNEL IS SELECTED
-               hasTargets[i] = false;
-           }
-        }
-   // }
+    if (incomingOSC.find("@") != string::npos) { //IF NO MATCH, RETURNS REDICULOUSLY HIGH NUMBER
+        int indexValueEnd = incomingOSC.find(" ");
+        incomingOSC = incomingOSC.substr(0,indexValueEnd);
+        selectedChannel = incomingOSC;
+        selectedChannelInt = ofToInt(incomingOSC);
+        noneSelected = false;
+    } else if (incomingOSC.find("[") != string::npos){ // IF NO CHANNEL IS PATCHED
+        int indexValueEnd = incomingOSC.find("[");
+        incomingOSC = incomingOSC.substr(0,indexValueEnd - 1);
+        selectedChannel = incomingOSC;
+        selectedChannelInt = ofToInt(incomingOSC);
+        noneSelected = false;
+    } else { // IF NO CHANNEL IS SELECTED
+        noneSelected = true;
+        selectedChannel = "---";
+    }
+    for (int i = 0; i < (sizeof(listenTargets)/sizeof(*listenTargets)); i++) { //RESET WHEELS, ONLY WORKS IF NO CHANNEL IS SELECTED
+        hasTargets[i] = false;
+    }
 }
 
 void ofApp::connect() {

@@ -25,6 +25,8 @@ public:
     void settingsBar(float x,float y,float width,float height,float strokeWeight);
     void settingsButton(float x, float y, float width, float height, float weight);
     void oscLight(string ID, float x, float y, float width, float height, float weight);
+    
+    string oldChannel = "";
     //----------------------------------------------------
     void pageOneSetup();
     void pageOneUpdate();
@@ -32,6 +34,7 @@ public:
     void assemblyBGDraw();
     
     void pageOneTouchDown(ofTouchEventArgs & touch);
+    void pageOneTouchMoved(ofTouchEventArgs & touch);
     void pageOneTouchUp(ofTouchEventArgs & touch);
     
     ofImage bgAssembly;

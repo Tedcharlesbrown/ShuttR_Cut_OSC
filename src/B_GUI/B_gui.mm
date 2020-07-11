@@ -6,14 +6,21 @@ void GUI::setup() {
     pageOneSetup();
     pageTwoSetup();
     settingsSetup();
-    
-    //thrustA;
 }
 
 //--------------------------------------------------------------
 
 void GUI::update() {
     keyboard.update();
+    
+    if (pageOne.clicked && !settingsMenu) {
+        pageOneUpdate();
+    } else if (pageTwo.clicked && !settingsMenu) {
+        pageTwoUpdate();
+    } else if (pageThree.clicked && !settingsMenu) {
+        
+    }
+    
     if (ofGetElapsedTimeMillis() > sentTime + 200) {
         oscSendLight = false;
     }
@@ -30,72 +37,109 @@ void GUI::update() {
     
     //--------------------------------------------------------------
     
-    
-    if (keyboard.clickedOff) {
-        ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false;
-        keyboard.close();
-    } else if (ipFieldButton.action && ipFieldButton.clicked) {
-        ipFieldButton.clicked = true; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false;
-        ipFieldButton.action = false;
-        keyboard.open(); keySwitch = 1;
-        keyboard.input = userInputIP;
-    } else if (idFieldButton.action && idFieldButton.clicked){
-        ipFieldButton.clicked = false; idFieldButton.clicked = true; outgoingButton.clicked = false; incomingButton.clicked = false;
-        idFieldButton.action = false;
-        keyboard.open(); keySwitch = 2;
-        keyboard.input = userInputID;
-    } else if (outgoingButton.action && outgoingButton.clicked){
-        ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = true; incomingButton.clicked = false;
-        outgoingButton.action = false;
-        keyboard.open(); keySwitch = 3;
-        keyboard.input = userInputTX;
-    } else if (incomingButton.action && incomingButton.clicked){
-        ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = true;
-        incomingButton.action = false;
-        keyboard.open(); keySwitch = 4;
-        keyboard.input = userInputRX;
-    } else if (ipFieldButton.clicked || idFieldButton.clicked || outgoingButton.clicked || incomingButton.clicked){
-        keyboard.open();
-    } else {
-        keyboard.close();
+    if (minusButton.action) {
+        oscSent(ofGetElapsedTimeMillis());
+        osc.sendChannel("last");
+        minusButton.action = false;
+    } else if (plusButton.action) {
+        oscSent(ofGetElapsedTimeMillis());
+        osc.sendChannel("next");
+        plusButton.action = false;
     }
-    switch(keySwitch) {
-        case 1:
-            userInputIP = keyboard.input;
-            if (keyboard.enter) {
-                ipFieldButton.clicked = false; keyboard.close();
-                inputIP = userInputIP;
-                consoleLog.push_back("CONNECTING TO: " + inputIP);
-                connectRequest = true;
+    
+    if ((pageOne.clicked || pageTwo.clicked) && !settingsMenu) {
+        if (keyboard.clickedOff) {
+            channelButton.clicked = false;
+            keyboard.close();
+        } else if (channelButton.action && channelButton.clicked) {
+            oldChannel = selectedChannel;
+            keyboard.input = "";
+            channelButton.action = false;
+            keyboard.open();
+        }
+        if (channelButton.clicked) {
+            selectedChannel = keyboard.input;
+        }
+        if (keyboard.enter) {
+            channelButton.clicked = false;
+            keyboard.close();
+            if (selectedChannel == "") {
+                selectedChannel = oldChannel;
+            } else {
+                oscSent(ofGetElapsedTimeMillis());
+                osc.sendChannelNumber(selectedChannel);
             }
-            break;
-        case 2:
-            userInputID = keyboard.input;
-            if (keyboard.enter) {
-                idFieldButton.clicked = false; keyboard.close();
-                inputID = userInputID;
-                consoleLog.push_back("SWITCHING TO USER: " + inputID);
-                connectRequest = true;
-            }
-            break;
-        case 3:
-            userInputTX = keyboard.input;
-            if (keyboard.enter) {
-                outgoingButton.clicked = false; keyboard.close();
-                inputTX = userInputTX;
-                consoleLog.push_back("SENDING ON PORT: " + inputTX);
-                connectRequest = true;
-            }
-            break;
-        case 4:
-            userInputRX = keyboard.input;
-            if (keyboard.enter) {
-                incomingButton.clicked = false; keyboard.close();
-                inputRX = userInputRX;
-                consoleLog.push_back("LISTENING ON PORT: " + inputRX);
-                connectRequest = true;
-            }
-            break;
+        }
+    }
+    
+    if (settingsMenu) {
+        if (keyboard.clickedOff) {
+            ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false;
+            keyboard.close();
+        } else if (ipFieldButton.action && ipFieldButton.clicked) {
+            ipFieldButton.clicked = true; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false;
+            ipFieldButton.action = false;
+            keyboard.open(); keySwitch = 1;
+            keyboard.input = userInputIP;
+        } else if (idFieldButton.action && idFieldButton.clicked){
+            ipFieldButton.clicked = false; idFieldButton.clicked = true; outgoingButton.clicked = false; incomingButton.clicked = false;
+            idFieldButton.action = false;
+            keyboard.open(); keySwitch = 2;
+            keyboard.input = userInputID;
+        } else if (outgoingButton.action && outgoingButton.clicked){
+            ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = true; incomingButton.clicked = false;
+            outgoingButton.action = false;
+            keyboard.open(); keySwitch = 3;
+            keyboard.input = userInputTX;
+        } else if (incomingButton.action && incomingButton.clicked){
+            ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = true;
+            incomingButton.action = false;
+            keyboard.open(); keySwitch = 4;
+            keyboard.input = userInputRX;
+        } else if (ipFieldButton.clicked || idFieldButton.clicked || outgoingButton.clicked || incomingButton.clicked){
+            keyboard.open();
+        } else {
+            keyboard.close();
+        }
+        
+        switch(keySwitch) {
+            case 1:
+                userInputIP = keyboard.input;
+                if (keyboard.enter) {
+                    ipFieldButton.clicked = false; keyboard.close();
+                    inputIP = userInputIP;
+                    consoleLog.push_back("CONNECTING TO: " + inputIP);
+                    connectRequest = true;
+                }
+                break;
+            case 2:
+                userInputID = keyboard.input;
+                if (keyboard.enter) {
+                    idFieldButton.clicked = false; keyboard.close();
+                    inputID = userInputID;
+                    consoleLog.push_back("SWITCHING TO USER: " + inputID);
+                    connectRequest = true;
+                }
+                break;
+            case 3:
+                userInputTX = keyboard.input;
+                if (keyboard.enter) {
+                    outgoingButton.clicked = false; keyboard.close();
+                    inputTX = userInputTX;
+                    consoleLog.push_back("SENDING ON PORT: " + inputTX);
+                    connectRequest = true;
+                }
+                break;
+            case 4:
+                userInputRX = keyboard.input;
+                if (keyboard.enter) {
+                    incomingButton.clicked = false; keyboard.close();
+                    inputRX = userInputRX;
+                    consoleLog.push_back("LISTENING ON PORT: " + inputRX);
+                    connectRequest = true;
+                }
+                break;
+        }
     }
 
 }
@@ -142,7 +186,7 @@ void GUI::touchDown(ofTouchEventArgs & touch){
         pageTwoTouchDown(touch);
     } else if (pageThree.clicked && !settingsMenu) {
         
-    }else if (settingsMenu) {
+    } else if (settingsMenu) {
         ipFieldButton.touchDown(touch, true);
         idFieldButton.touchDown(touch, true);
         outgoingButton.touchDown(touch, true);
@@ -156,6 +200,9 @@ void GUI::touchDown(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 void GUI::touchMoved(ofTouchEventArgs & touch){
+    if (pageOne.clicked && !settingsMenu) {
+        pageOneTouchMoved(touch);
+    }
     if (pageTwo.clicked && !settingsMenu) {
         pageTwoTouchMoved(touch);
     }

@@ -369,6 +369,16 @@
 			name = O_OSC;
 			sourceTree = "<group>";
 		};
+		B7F6E14524C3982D00D69B55 /* E_SHUTTERS */ = {
+			isa = PBXGroup;
+			children = (
+				B790CE9624B6622B008FD0BF /* E_shutterButtons.h */,
+				B790CE9324B62506008FD0BF /* E_shutterHandles.h */,
+				B790CE9424B62506008FD0BF /* E_shutterHandles.mm */,
+			);
+			name = E_SHUTTERS;
+			sourceTree = "<group>";
+		};
 		BB16E9930F2B1E5900518274 /* libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,13 +457,11 @@
 			isa = PBXGroup;
 			children = (
 				E4D8936B11527B74007E1F53 /* main.mm */,
-				B790CE9624B6622B008FD0BF /* E_shutterButtons.h */,
-				B790CE9324B62506008FD0BF /* E_shutterHandles.h */,
-				B790CE9424B62506008FD0BF /* E_shutterHandles.mm */,
 				FBDB6EC143282803010D0E8A /* A_MAIN */,
 				4E9C6BFADA958C5203267AC2 /* B_GUI */,
 				A0E6FC22ECB433C6F40E4BEA /* C_KEYBOARD */,
 				7C31A216066E8CEE3269BF15 /* D_BUTTON */,
+				B7F6E14524C3982D00D69B55 /* E_SHUTTERS */,
 				B7D46B2024B4F21500FFBD60 /* O_OSC */,
 			);
 			path = src;

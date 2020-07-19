@@ -60,11 +60,7 @@ void ANGLE_HANDLE::update() {
     }
     ofPopMatrix();
     
-    float magicNumber = clickRadius / 5.5; //THIS MAGIC NUMBER MUST BE FOUND
-    
-    float rotateAngleBot = -45 + magicNumber;
-    float rotateAngleTop = 45 - magicNumber;
-    rotateAngle = ofClamp(rotateAngle, rotateAngleBot, rotateAngleTop);
+    calculateAngle();
 }
 
 void ANGLE_HANDLE::frameDisplay() {
@@ -84,6 +80,20 @@ void ANGLE_HANDLE::frameDisplay() {
     ofPopMatrix();
 }
 
+//--------------------------------------------------------------
+
+void ANGLE_HANDLE::calculateAngle() {
+    float magicNumber = clickRadius / 5.5; //THIS MAGIC NUMBER MUST BE FOUND
+    
+    float rotateAngleBot = -45 + magicNumber;
+    float rotateAngleTop = 45 - magicNumber;
+    rotateAngle = ofClamp(rotateAngle, rotateAngleBot, rotateAngleTop);
+    
+    anglePercent = ofMap(rotateAngle,rotateAngleBot,rotateAngleTop,45,-45);
+}
+
+//--------------------------------------------------------------
+
 void ANGLE_HANDLE::touchDown(ofTouchEventArgs & touch){
     if (ofDist(touch.x, touch.y, x, y) < clickRadius) {
         clicked = true;
@@ -91,6 +101,7 @@ void ANGLE_HANDLE::touchDown(ofTouchEventArgs & touch){
 }
 
 //--------------------------------------------------------------
+
 void ANGLE_HANDLE::touchMoved(ofTouchEventArgs & touch){
     if (clicked) {
         ignoreOSC = true;
@@ -104,14 +115,7 @@ void ANGLE_HANDLE::touchMoved(ofTouchEventArgs & touch){
             rotateAngle -= (cos(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY()) + sin(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX())) / 5;
         }
     }
-    
-    float magicNumber = clickRadius / 5.5; //THIS MAGIC NUMBER MUST BE FOUND
-    
-    float rotateAngleBot = -45 + magicNumber;
-    float rotateAngleTop = 45 - magicNumber;
-    rotateAngle = ofClamp(rotateAngle, rotateAngleBot, rotateAngleTop);
-    
-    anglePercent = ofMap(rotateAngle,rotateAngleBot,rotateAngleTop,45,-45);
+    calculateAngle();
 }
 
 //--------------------------------------------------------------

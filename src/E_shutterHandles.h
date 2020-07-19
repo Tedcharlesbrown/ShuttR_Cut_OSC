@@ -27,6 +27,8 @@ public:
     void update();
     void frameDisplay();
     
+    void calculateAngle();
+    
     void touchDown(ofTouchEventArgs & touch);
     void touchMoved(ofTouchEventArgs & touch);
     void touchUp(ofTouchEventArgs & touch);

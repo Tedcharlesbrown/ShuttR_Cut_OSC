@@ -51,19 +51,22 @@ void GUI::pageOneDraw() {
 void GUI::assemblyBGDraw() {
     ofPushStyle();
     ofPushMatrix();
-    ofTranslate(centerX,centerY);
     
     ofSetColor(EOSBackground);
-    bgAssembly.draw(- bgAssembly.getWidth() / 2,- bgAssembly.getHeight() / 2); //BACKGROUND ASSEMBLY PNG
+    ofDrawRectangle(0, settingsBarHeight + settingsBarStrokeWeight, width, bgAssembly.getHeight() - settingsBarHeight + settingsBarStrokeWeight); //UPPER FILL
     
+    ofTranslate(centerX,centerY);
+
+    bgAssembly.draw(- bgAssembly.getWidth() / 2,- bgAssembly.getHeight() / 2); //BACKGROUND ASSEMBLY PNG
+
     ofSetColor(shutterOutsideStroke); //OUTER STROKE
     ofDrawCircle(0, 0, assemblyRadius); //OUTER STROKE
-    
+
     ofSetColor(shutterBackground); //INSIDE FILL
     ofDrawCircle(0, 0, assemblyRadius - outsideWeight); //INSIDE FILL
-    
+
     ofRotateDeg(rotation);
-    
+
     ofSetColor(255);
     ofDrawRectangle(- assemblyRadius + outsideWeight,crosshairWeight / 2, assemblyDiameter - outsideWeight * 2, - crosshairWeight / 2); //CROSSHAIR
     ofDrawRectangle(- crosshairWeight / 2, - assemblyRadius + outsideWeight,crosshairWeight / 2, assemblyDiameter - outsideWeight * 2); //CROSSHAIR

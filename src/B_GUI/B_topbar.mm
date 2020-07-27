@@ -32,7 +32,7 @@ void GUI::topBarDraw() {
 
 void GUI::settingsBar(float _x, float _y, float _w, float _h, float _weight) {
     ofPushStyle();
-    ofSetColor(EOSDarkGrey);
+    ofSetColor(EOSBarState);
     ofDrawRectangle(_x, _y, _w, _h);
     ofSetColor(shutterOutsideStroke);
     ofDrawRectangle(_x, _h, _w, _weight);

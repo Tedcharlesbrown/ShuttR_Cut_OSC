@@ -11,6 +11,7 @@ bool connectRequest = true;
 bool isConnected = false;
 bool noneSelected = true;
 bool ignoreOSC = false;
+bool isLive = true;
 
 int selectedChannelInt;
 
@@ -28,9 +29,17 @@ consoleWidth, consoleHeight, consolePadding, shutterStrokeWeight, outsideWeight,
 
 //----------------------------------------------------
 
-ofColor white, black, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterOutsideStroke, EOSBlue, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind, shutterBackground, shutterFrameFill, shutterFrameStroke, BGFill;
-
-
+ofColor white, black, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterOutsideStroke, EOSBlue, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind, shutterBackground, shutterFrameFill, shutterFrameStroke, BGFill, EOSState, EOSBarState;
+//--------------------------------------------------------------
+void ofApp::stateUpdate(){
+    if (isLive){
+        EOSState = EOSLive;
+        EOSBarState = EOSDarkGrey;
+    } else {
+        EOSState = EOSBlind;
+        EOSBarState = EOSBlue;
+    }
+}
 //--------------------------------------------------------------
 void ofApp::styleInit(){
     

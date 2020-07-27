@@ -5,7 +5,7 @@
 
 extern string name, version, IPAddress, inputIP, inputID, inputRX, inputTX, selectedChannel;
 extern vector<string> consoleLog;
-extern bool connectRequest, isConnected, noneSelected, ignoreOSC;
+extern bool connectRequest, isConnected, noneSelected, ignoreOSC, isLive;
 
 extern int selectedChannelInt;
 
@@ -24,7 +24,7 @@ row4Padding, guiLeftAlign, guiCenterAlign, guiRightAlign, buttonHeight, buttonSt
 consoleWidth, consoleHeight, consolePadding, shutterStrokeWeight, outsideWeight, thrustWeight, angleWeight, crosshairWeight, assemblyButtonWeight, assemblyLineWeight;
 //----------------------------------------------------
 
-extern ofColor white, black, EOSBlue, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterBackground, shutterOutsideStroke, shutterFrameFill, shutterFrameStroke, shutterOutsideStroke, BGFill, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind;
+extern ofColor white, black, EOSBlue, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterBackground, shutterOutsideStroke, shutterFrameFill, shutterFrameStroke, shutterOutsideStroke, BGFill, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind, EOSState, EOSBarState;
 
 //----------------------------------------------------
 

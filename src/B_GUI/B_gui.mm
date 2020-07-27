@@ -33,10 +33,6 @@ void GUI::update() {
     
     //--------------------------------------------------------------
     
-    pageTwoUpdate();
-    
-    //--------------------------------------------------------------
-    
     if (minusButton.action) {
         oscSent(ofGetElapsedTimeMillis());
         osc.sendChannel("last");
@@ -75,7 +71,7 @@ void GUI::update() {
     if (settingsMenu) {
         if (keyboard.clickedOff) {
             ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false;
-            keyboard.close();
+            keyboard.close(); keySwitch = 0;
         } else if (ipFieldButton.action && ipFieldButton.clicked) {
             ipFieldButton.clicked = true; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false;
             ipFieldButton.action = false;
@@ -110,6 +106,7 @@ void GUI::update() {
                     inputIP = userInputIP;
                     consoleLog.push_back("CONNECTING TO: " + inputIP);
                     connectRequest = true;
+                    keySwitch = 0;
                 }
                 break;
             case 2:
@@ -119,6 +116,7 @@ void GUI::update() {
                     inputID = userInputID;
                     consoleLog.push_back("SWITCHING TO USER: " + inputID);
                     connectRequest = true;
+                    keySwitch = 0;
                 }
                 break;
             case 3:
@@ -128,6 +126,7 @@ void GUI::update() {
                     inputTX = userInputTX;
                     consoleLog.push_back("SENDING ON PORT: " + inputTX);
                     connectRequest = true;
+                    keySwitch = 0;
                 }
                 break;
             case 4:
@@ -137,6 +136,7 @@ void GUI::update() {
                     inputRX = userInputRX;
                     consoleLog.push_back("LISTENING ON PORT: " + inputRX);
                     connectRequest = true;
+                    keySwitch = 0;
                 }
                 break;
         }
@@ -180,9 +180,9 @@ void GUI::touchDown(ofTouchEventArgs & touch){
     pageTwo.touchDown(touch);
     pageThree.touchDown(touch);
     
-    if (pageOne.clicked && !settingsMenu) {
+    if (pageOne.clicked && !settingsMenu && !keyboard.show) {
         pageOneTouchDown(touch);
-    } else if (pageTwo.clicked && !settingsMenu) {
+    } else if (pageTwo.clicked && !settingsMenu && !keyboard.show) {
         pageTwoTouchDown(touch);
     } else if (pageThree.clicked && !settingsMenu) {
         

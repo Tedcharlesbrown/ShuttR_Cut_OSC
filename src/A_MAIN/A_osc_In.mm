@@ -33,7 +33,15 @@ void ofApp::oscEvent() {
         }
         // ----------------------- GET ALL LIVE / BLIND STATUS -----------------------
         if (m.getAddress() == "/eos/out/event/state") {
-            //BLIND = 0
+            switch(m.getArgAsInt(0)) {
+                case 0: //BLIND
+                    isLive = false;
+                    break;
+                case 1: //LIVE
+                default:
+                    isLive = true;
+                    break;
+            }
             return;
         }
         // ----------------------- GET ALL CHANNEL DATA -----------------------

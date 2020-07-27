@@ -33,7 +33,7 @@ void BUTTON::show(string _ID, float _x, float _y, float _w, float _h, string _si
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
     
-    ofSetColor(EOSLive);
+    ofSetColor(EOSState);
     ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
     
     if (this-> clicked) {
@@ -62,7 +62,7 @@ void BUTTON::show(string _ID, string _ID2, float _x, float _y, float _w, float _
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
     
-    ofSetColor(EOSLive);
+    ofSetColor(EOSState);
     ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
     
     if (this-> clicked) {
@@ -88,7 +88,7 @@ void BUTTON::showBig(string _ID, string _ID2, float _x, float _y, float _w, floa
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
     
-    ofSetColor(EOSLive);
+    ofSetColor(EOSState);
     ofDrawRectRounded(_x, _y + _h / 1.5, _w, _h, buttonCorner);
     if (this-> clicked) {
         ofSetColor(buttonActive);
@@ -98,7 +98,7 @@ void BUTTON::showBig(string _ID, string _ID2, float _x, float _y, float _w, floa
     ofDrawRectRounded(_x, _y + _h / 1.5, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
     
     
-    ofSetColor(EOSLive);
+    ofSetColor(EOSState);
     
     ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
     

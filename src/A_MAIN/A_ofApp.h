@@ -20,6 +20,7 @@ public:
     void draw();
     
     void styleInit();
+    void stateUpdate();
     
     void oscInit();
     void parseChannel(string m);

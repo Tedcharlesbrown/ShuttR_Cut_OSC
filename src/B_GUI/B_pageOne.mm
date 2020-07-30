@@ -49,8 +49,7 @@ void GUI::pageOneDraw() {
 }
 
 void GUI::assemblyBGDraw() {
-    ofPushStyle();
-    ofPushMatrix();
+    ofPushStyle(); ofPushMatrix();
     
     ofSetColor(EOSBackground);
     ofDrawRectangle(0, settingsBarHeight + settingsBarStrokeWeight, width, bgAssembly.getHeight() - settingsBarHeight + settingsBarStrokeWeight); //UPPER FILL
@@ -62,7 +61,8 @@ void GUI::assemblyBGDraw() {
     ofSetColor(shutterOutsideStroke); //OUTER STROKE
     ofDrawCircle(0, 0, assemblyRadius); //OUTER STROKE
 
-    ofSetColor(shutterBackground); //INSIDE FILL
+    //ofSetColor(shutterBackground); //INSIDE FILL
+    ofSetColor(shutterColor);
     ofDrawCircle(0, 0, assemblyRadius - outsideWeight); //INSIDE FILL
 
     ofRotateDeg(rotation);
@@ -71,9 +71,7 @@ void GUI::assemblyBGDraw() {
     ofDrawRectangle(- assemblyRadius + outsideWeight,crosshairWeight / 2, assemblyDiameter - outsideWeight * 2, - crosshairWeight / 2); //CROSSHAIR
     ofDrawRectangle(- crosshairWeight / 2, - assemblyRadius + outsideWeight,crosshairWeight / 2, assemblyDiameter - outsideWeight * 2); //CROSSHAIR
     
-    ofPopMatrix();
-    
-    ofPopStyle();
+    ofPopStyle(); ofPopMatrix();
 }
 
 //--------------------------------------------------------------

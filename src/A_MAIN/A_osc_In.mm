@@ -44,6 +44,16 @@ void ofApp::oscEvent() {
             }
             return;
         }
+        // ----------------------- GET LIGHT COLOR ----------------------------
+        if (m.getAddress() == "/eos/out/color/hs") {
+            if (m.getNumArgs() > 0) {
+                float hue = m.getArgAsFloat(0);
+                float sat = m.getArgAsFloat(1);
+                hue = ofMap(hue,0,360,0,255);
+                sat = ofMap(sat,0,100,0,255);
+                shutterColor.setHsb(hue,sat,255);
+            }
+        }
         // ----------------------- GET ALL CHANNEL DATA -----------------------
         if (m.getAddress() == "/eos/out/active/chan") {
             parseChannel(m.getArgAsString(0));

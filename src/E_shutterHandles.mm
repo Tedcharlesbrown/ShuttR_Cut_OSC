@@ -144,10 +144,8 @@ void ANGLE_BUTTON::draw(string _ID, float _rotateAngle) {
 }
 
 void ANGLE_BUTTON::frameShow() {
-    ofPushStyle();
-    ofPushMatrix();
+    ofPushStyle(); ofPushMatrix();
     ofSetRectMode(OF_RECTMODE_CENTER);
-    
     
     if (ID == "A") {
         ofTranslate(0, - assemblyDiameter - assemblyRadius / 2);
@@ -174,7 +172,6 @@ void ANGLE_BUTTON::frameShow() {
         ofSetColor(shutterFrameFill);
         ofDrawRectangle(assemblyRadius, 0, assemblyRadius - shutterStrokeWeight, assemblyDiameter - shutterStrokeWeight);
     }
-    
-    ofPopMatrix();
-    ofPopStyle();
+
+    ofPopStyle(); ofPopMatrix();
 }

@@ -30,6 +30,7 @@ consoleWidth, consoleHeight, consolePadding, shutterStrokeWeight, outsideWeight,
 //----------------------------------------------------
 
 ofColor white, black, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterOutsideStroke, EOSBlue, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind, shutterBackground, shutterFrameFill, shutterFrameStroke, BGFill, EOSState, EOSBarState;
+ofColor shutterColor = ofColor(0);
 //--------------------------------------------------------------
 void ofApp::stateUpdate(){
     if (isLive){

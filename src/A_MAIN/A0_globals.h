@@ -24,7 +24,7 @@ row4Padding, guiLeftAlign, guiCenterAlign, guiRightAlign, buttonHeight, buttonSt
 consoleWidth, consoleHeight, consolePadding, shutterStrokeWeight, outsideWeight, thrustWeight, angleWeight, crosshairWeight, assemblyButtonWeight, assemblyLineWeight;
 //----------------------------------------------------
 
-extern ofColor white, black, EOSBlue, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterBackground, shutterOutsideStroke, shutterFrameFill, shutterFrameStroke, shutterOutsideStroke, BGFill, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind, EOSState, EOSBarState;
+extern ofColor white, black, EOSBlue, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterBackground, shutterOutsideStroke, shutterFrameFill, shutterFrameStroke, shutterOutsideStroke, BGFill, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind, EOSState, EOSBarState, shutterColor;
 
 //----------------------------------------------------
 

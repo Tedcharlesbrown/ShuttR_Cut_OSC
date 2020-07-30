@@ -35,7 +35,7 @@ void GUI::settingsDraw() {
     
     if (helpButton.clicked) {
         //HELP IMAGE
-        ofPushMatrix();
+        ofPushStyle(); ofPushMatrix();
         ofTranslate(0,-buttonHeight * 1.25);
         float imageResize = width - plusMinusButtonWidth;
         settingsHelp.resize(imageResize, imageResize / 1.5);
@@ -46,7 +46,7 @@ void GUI::settingsDraw() {
         fontMedium.drawString(userInputTX, centerX - (fontMedium.stringWidth(userInputTX) / 2) - settingsHelp.getWidth() / 3.75, (height / 2) - fontMedium.stringHeight(userInputTX) / 1.5);
         //TX PORT
         fontMedium.drawString(userInputRX, centerX - (fontMedium.stringWidth(userInputRX) / 2) + settingsHelp.getWidth() / 3.75, (height / 2) - fontMedium.stringHeight(userInputRX) / 1.5);
-        ofPopMatrix();
+        ofPopStyle(); ofPopMatrix();
     } else {
         console();
     }
@@ -74,8 +74,7 @@ void GUI::console() {
     if (consoleLog.size() > 2) {
         consoleLog.erase(consoleLog.begin());
     }
-    ofPopMatrix();
-    ofPopStyle();
+    ofPopMatrix(); ofPopStyle();
 }
 
 //--------------------------------------------------------------

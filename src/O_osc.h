@@ -14,14 +14,15 @@ public:
     void sendChannel(string parameter);
     void sendChannelNumber(string parameter);
     
+    void sendHigh();
+    void sendFlash(string parameter);
+    
     void sendEncoder(string parameter, int message, bool fine);
     void fineEncoder(int message);
     void sendEncoderPercent(string parameter, int message);
     
     void sendThrust(string parameter, int message);
     void sendAngle(string parameter, int message);
-    
-    
     void sendShutterHome(string parameter);
     
     

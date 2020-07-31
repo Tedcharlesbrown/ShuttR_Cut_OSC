@@ -32,8 +32,8 @@ public:
     void pageOneUpdate();
     void pageOneDraw();
     void pageOneButtonAction();
-    void bgDraw();
-    void assemblyBGDraw();
+    void assemblyColor();
+    void assemblyBG();
     
     void pageOneTouchDown(ofTouchEventArgs & touch);
     void pageOneTouchMoved(ofTouchEventArgs & touch);

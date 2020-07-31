@@ -136,6 +136,7 @@ void BUTTON::touchDown(ofTouchEventArgs & touch, bool toggle){
 //--------------------------------------------------------------
 void BUTTON::touchUp(ofTouchEventArgs & touch){
     this-> clicked = false;
+    this-> released = true;
 }
 
 //--------------------------------------------------------------

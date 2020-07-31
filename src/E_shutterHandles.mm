@@ -45,11 +45,11 @@ void THRUST_HANDLE::update() {
 void THRUST_HANDLE::touchDown(ofTouchEventArgs & touch){
     if (ofDist(touch.x, touch.y, this-> sliderX, this-> sliderY) < clickRadius) {
         this-> clicked = true;
+        ignoreOSC = true;
     }
 }
 
 void THRUST_HANDLE::touchMoved(ofTouchEventArgs & touch){
-    ignoreOSC = true;
     this-> diff = (cos(ofDegToRad(rotation) + rotateOffset) * (touch.x - ofGetPreviousMouseX()) + sin(ofDegToRad(rotation) + rotateOffset) * (touch.y - ofGetPreviousMouseY()));
     if (this-> clicked) {
         if (this-> ID == "A") {
@@ -97,7 +97,6 @@ void THRUST_BUTTON::angleLimit(float _angleRotateLimit){
     float angleLimit = abs(_angleRotateLimit);
     angleLimit = ofMap(angleLimit, 0, 45, 1, (clickDiameter / assemblyRadius) + 0.5);
     position = ofClamp(position, clickDiameter / assemblyRadius, angleLimit);
-    
 }
 
 //--------------------------------------------------------------

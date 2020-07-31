@@ -22,6 +22,66 @@ void OSC::sendChannelNumber(string parameter) {
 
 //--------------------------------------------------------------
 
+void OSC::sendHigh() {
+    ofxOscMessage m;
+    for (int i = 1; i >= 0; i--) {
+        m.clear();
+        m.setAddress("eos/user/" + inputID + "/key/enter");
+        m.addStringArg(ofToString(i));
+        sender.sendMessage(m, false);
+    }
+    for (int i = 1; i >= 0; i--) {
+        m.clear();
+        m.setAddress("eos/user/" + inputID + "/key/highlight");
+        m.addStringArg(ofToString(i));
+        sender.sendMessage(m, false);
+    }
+    for (int i = 1; i >= 0; i--) {
+        m.clear();
+        m.setAddress("eos/user/" + inputID + "/key/enter");
+        m.addStringArg(ofToString(i));
+        sender.sendMessage(m, false);
+    }
+    for (int i = 1; i >= 0; i--) {
+        m.clear();
+        m.setAddress("/eos/user/" + inputID + "/key/select_last");
+        m.addStringArg(ofToString(i));
+        sender.sendMessage(m, false);
+    }
+    for (int i = 1; i >= 0; i--) {
+        m.clear();
+        m.setAddress("eos/user/" + inputID + "/key/enter");
+        m.addStringArg(ofToString(i));
+        sender.sendMessage(m, false);
+    }
+}
+
+//--------------------------------------------------------------
+
+void OSC::sendFlash(string parameter) {
+    ofxOscMessage m;
+    bool released = false;
+    string OSCPrefix = "";
+    if (parameter == "FLASH_OFF") {
+        OSCPrefix = "eos/user/" + inputID + "/key/flash_off";
+    } else if (parameter == "FLASH_ON") {
+        OSCPrefix = "eos/user/" + inputID + "/key/flash_on";
+    } else if (parameter == "OFF") {
+        OSCPrefix = "eos/user/" + inputID + "/key/flash_on";
+        released = true;
+    }
+    m.clear();
+    m.setAddress(OSCPrefix);
+    if (released) {
+        m.addStringArg("0");
+    } else {
+        m.addStringArg("1");
+    }
+    sender.sendMessage(m, false);
+}
+
+//--------------------------------------------------------------
+
 void OSC::sendThrust(string parameter, int message) {
     ofxOscMessage m;
     m.setAddress("/eos/user/" + inputID + "/param/frame thrust " + parameter);

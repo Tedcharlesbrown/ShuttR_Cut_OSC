@@ -83,6 +83,7 @@ void ofApp::parseWheel(string incomingOSC) {
             switch(i) {
                 case 0: //Intensity
                     hasTargets[i] = true;
+                    channelIntensity = outputInt;
                     break;
                 case 1: //Thrust A
                     hasTargets[i] = true;

@@ -13,7 +13,7 @@ bool noneSelected = true;
 bool ignoreOSC = false;
 bool isLive = true;
 
-int selectedChannelInt;
+int selectedChannelInt, channelIntensity;
 
 ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
 

@@ -7,7 +7,7 @@ extern string name, version, IPAddress, inputIP, inputID, inputRX, inputTX, sele
 extern vector<string> consoleLog;
 extern bool connectRequest, isConnected, noneSelected, ignoreOSC, isLive;
 
-extern int selectedChannelInt;
+extern int selectedChannelInt, channelIntensity;
 
 extern ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
 extern float buttonCorner;

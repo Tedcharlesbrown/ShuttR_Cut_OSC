@@ -47,11 +47,12 @@ void GUI::pageOneUpdate() {
 //--------------------------------------------------------------
 
 void GUI::pageOneDraw() {
-    assemblyBGDraw();
+    assemblyColor();
     
     angleA.frameDisplay(thrustA.buttonA.position); angleC.frameDisplay(thrustC.buttonC.position); angleB.frameDisplay(thrustB.buttonB.position); angleD.frameDisplay(thrustD.buttonD.position);
     
-    bgDraw();
+    assemblyBG();
+    
     
     thrustButton.show("THRUST", "HOME", guiLeftAlign, row3Padding, genericButtonWidth, buttonHeight);
     angleButton.show("ANGLE", "HOME", guiCenterAlign, row3Padding, genericButtonWidth, buttonHeight);
@@ -66,8 +67,6 @@ void GUI::pageOneDraw() {
     thrustA.buttonA.angleLimit(angleA.anglePercent); thrustB.buttonB.angleLimit(angleB.anglePercent); thrustC.buttonC.angleLimit(angleC.anglePercent); thrustD.buttonD.angleLimit(angleD.anglePercent);
     
     ofPopMatrix();
-    
-    
 }
 
 //--------------------------------------------------------------
@@ -75,16 +74,20 @@ void GUI::pageOneDraw() {
 void GUI::pageOneButtonAction() {
     if (thrustButton.action) {
         oscSent(ofGetElapsedTimeMillis());
+        thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
         osc.sendShutterHome("THRUST");
         thrustButton.action = false;
     }
     if (angleButton.action) {
         oscSent(ofGetElapsedTimeMillis());
+        angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
         osc.sendShutterHome("ANGLE");
         angleButton.action = false;
     }
     if (shutterButton.action) {
         oscSent(ofGetElapsedTimeMillis());
+        angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
+        thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
         osc.sendShutterHome("SHUTTER");
         shutterButton.action = false;
     }
@@ -92,26 +95,7 @@ void GUI::pageOneButtonAction() {
 
 //--------------------------------------------------------------
 
-void GUI::bgDraw() {
-    ofPushStyle(); ofPushMatrix();
-    
-    ofSetColor(EOSBackground);
-    //ofDrawRectangle(0, settingsBarHeight + settingsBarStrokeWeight, width, bgAssembly.getHeight() - settingsBarHeight + settingsBarStrokeWeight); //UPPER FILL
-    
-    ofTranslate(centerX,centerY);
-    
-    bgAssembly.draw(- bgAssembly.getWidth() / 2,- bgAssembly.getHeight() / 2); //BACKGROUND ASSEMBLY PNG
-    
-    ofRotateDeg(rotation);
-    
-    ofSetColor(255);
-    ofDrawRectangle(- assemblyRadius + outsideWeight,crosshairWeight / 2, assemblyDiameter - outsideWeight * 2, - crosshairWeight / 2); //CROSSHAIR
-    ofDrawRectangle(- crosshairWeight / 2, - assemblyRadius + outsideWeight,crosshairWeight / 2, assemblyDiameter - outsideWeight * 2); //CROSSHAIR
-    
-    ofPopStyle(); ofPopMatrix();
-}
-
-void GUI::assemblyBGDraw() {
+void GUI::assemblyColor() {
     ofPushStyle(); ofPushMatrix();
     
     ofTranslate(centerX,centerY);
@@ -121,6 +105,26 @@ void GUI::assemblyBGDraw() {
 
     ofSetColor(shutterColor);
     ofDrawCircle(0, 0, assemblyRadius - outsideWeight); //INSIDE FILL
+    
+    ofPopStyle(); ofPopMatrix();
+}
+
+void GUI::assemblyBG() {
+    ofPushStyle(); ofPushMatrix();
+    
+    ofSetColor(EOSBackground);
+    ofDrawRectangle(0, settingsBarHeight + settingsBarStrokeWeight, width, centerY - bgAssembly.getHeight() / 2); //UPPER FILL
+    
+    ofTranslate(centerX,centerY);
+    
+    ofSetColor(EOSBackground);
+    bgAssembly.draw(- bgAssembly.getWidth() / 2,- bgAssembly.getHeight() / 2); //BACKGROUND ASSEMBLY PNG
+
+    ofRotateDeg(rotation);
+    
+    ofSetColor(255);
+    ofDrawRectangle(- assemblyRadius + outsideWeight,crosshairWeight / 2, assemblyDiameter - outsideWeight * 2, - crosshairWeight / 2); //CROSSHAIR
+    ofDrawRectangle(- crosshairWeight / 2, - assemblyRadius + outsideWeight,crosshairWeight / 2, assemblyDiameter - outsideWeight * 2); //CROSSHAIR
     
     ofPopStyle(); ofPopMatrix();
 }
@@ -138,7 +142,6 @@ void GUI::pageOneTouchDown(ofTouchEventArgs & touch) {
     thrustButton.touchDown(touch);
     angleButton.touchDown(touch);
     shutterButton.touchDown(touch);
-    
     
     thrustA.touchDown(touch);
     thrustB.touchDown(touch);

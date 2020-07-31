@@ -38,10 +38,30 @@ void GUI::update() {
         oscSent(ofGetElapsedTimeMillis());
         osc.sendChannel("last");
         minusButton.action = false;
-    } else if (plusButton.action) {
+    }
+    if (plusButton.action) {
         oscSent(ofGetElapsedTimeMillis());
         osc.sendChannel("next");
         plusButton.action = false;
+    }
+    if (highButton.action) {
+        oscSent(ofGetElapsedTimeMillis());
+        osc.sendHigh();
+        highButton.action = false;
+    }
+    if (flashButton.action) {
+        oscSent(ofGetElapsedTimeMillis());
+        if (channelIntensity >= 90) {
+            osc.sendFlash("FLASH_OFF");
+        } else {
+            osc.sendFlash("FLASH_ON");
+        }
+        flashButton.action = false;
+    }
+    if (flashButton.released) {
+        oscSent(ofGetElapsedTimeMillis());
+        osc.sendFlash("OFF");
+        flashButton.released = false;
     }
     
     //---------------------------KEYBOARD----------------------------------

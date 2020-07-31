@@ -59,7 +59,6 @@ void GUI::update() {
         flashButton.action = false;
     }
     if (flashButton.released) {
-        oscSent(ofGetElapsedTimeMillis());
         osc.sendFlash("OFF");
         flashButton.released = false;
     }
@@ -86,7 +85,7 @@ void GUI::update() {
             if (selectedChannel == "") {
                 selectedChannel = oldChannel;
             } else {
-                oscSent(ofGetElapsedTimeMillis());
+//                oscSent(ofGetElapsedTimeMillis());
                 noneSelected = false;
                 osc.sendChannelNumber(selectedChannel);
             }

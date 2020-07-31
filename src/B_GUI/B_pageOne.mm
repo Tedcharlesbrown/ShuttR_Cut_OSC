@@ -73,19 +73,19 @@ void GUI::pageOneDraw() {
 
 void GUI::pageOneButtonAction() {
     if (thrustButton.action) {
-        oscSent(ofGetElapsedTimeMillis());
+//        oscSent(ofGetElapsedTimeMillis());
         thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
         osc.sendShutterHome("THRUST");
         thrustButton.action = false;
     }
     if (angleButton.action) {
-        oscSent(ofGetElapsedTimeMillis());
+//        oscSent(ofGetElapsedTimeMillis());
         angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
         osc.sendShutterHome("ANGLE");
         angleButton.action = false;
     }
     if (shutterButton.action) {
-        oscSent(ofGetElapsedTimeMillis());
+//        oscSent(ofGetElapsedTimeMillis());
         angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
         thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
         osc.sendShutterHome("SHUTTER");

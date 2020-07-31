@@ -2,8 +2,8 @@
 //--------------------------------------------------------------
 
 void OSC::sendChannel(string parameter) {
-    ofxOscMessage m;
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
+        ofxOscMessage m;
         for (int i = 1; i >= 0; i--) { //SEND NEXT OR LAST KEY
             m.clear();
             m.setAddress("eos/user/" + inputID + "/key/" + parameter);
@@ -22,11 +22,45 @@ void OSC::sendChannelNumber(string parameter) {
 
 //--------------------------------------------------------------
 
+void OSC::sendThrust(string parameter, int message) {
+    ofxOscMessage m;
+    m.setAddress("/eos/user/" + inputID + "/param/frame thrust " + parameter);
+    m.addFloatArg(message);
+    sender.sendMessage(m, false);
+}
+
+//--------------------------------------------------------------
+
 void OSC::sendAngle(string parameter, int message) {
     ofxOscMessage m;
     m.setAddress("/eos/user/" + inputID + "/param/frame angle " + parameter);
-    m.addIntArg(message);
+    m.addFloatArg(message);
     sender.sendMessage(m, false);
+}
+
+//--------------------------------------------------------------
+
+void OSC::sendShutterHome(string parameter) {
+    if (!noneSelected) { //IF A CHANNEL IS SELECTED
+        ofxOscMessage a,b,c,d;
+        if (parameter == "THRUST") {
+            a.setAddress("/eos/user/" + inputID + "/param/frame thrust a/home");
+            b.setAddress("/eos/user/" + inputID + "/param/frame thrust b/home");
+            c.setAddress("/eos/user/" + inputID + "/param/frame thrust c/home");
+            d.setAddress("/eos/user/" + inputID + "/param/frame thrust d/home");
+        } else if (parameter == "ANGLE") {
+            a.setAddress("/eos/user/" + inputID + "/param/frame angle a/home");
+            b.setAddress("/eos/user/" + inputID + "/param/frame angle b/home");
+            c.setAddress("/eos/user/" + inputID + "/param/frame angle c/home");
+            d.setAddress("/eos/user/" + inputID + "/param/frame angle d/home");
+        } else if (parameter == "SHUTTER") {
+            a.setAddress("/eos/user/" + inputID + "/param/shutter/home");
+            b.setAddress("/eos/user/" + inputID + "/param/shutter/home");
+            c.setAddress("/eos/user/" + inputID + "/param/shutter/home");
+            d.setAddress("/eos/user/" + inputID + "/param/shutter/home");
+        }
+        sender.sendMessage(a, false); sender.sendMessage(b, false); sender.sendMessage(c, false); sender.sendMessage(d, false);
+    }
 }
 
 //--------------------------------------------------------------
@@ -92,3 +126,5 @@ void OSC::sendPing() {
     m.setAddress("/eos/ping");
     sender.sendMessage(m, false);
 }
+
+//--------------------------------------------------------------

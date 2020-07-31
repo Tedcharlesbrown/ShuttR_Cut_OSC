@@ -372,8 +372,8 @@
 		B7F6E14524C3982D00D69B55 /* E_SHUTTERS */ = {
 			isa = PBXGroup;
 			children = (
-				B790CE9624B6622B008FD0BF /* E_shutterButtons.h */,
 				B790CE9324B62506008FD0BF /* E_shutterHandles.h */,
+				B790CE9624B6622B008FD0BF /* E_shutterButtons.h */,
 				B790CE9424B62506008FD0BF /* E_shutterHandles.mm */,
 			);
 			name = E_SHUTTERS;

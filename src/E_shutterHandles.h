@@ -9,9 +9,15 @@ class THRUST_HANDLE : public ofxiOSApp {
     
 public:
     void setup(string ID);
+    void update();
     
+    void touchDown(ofTouchEventArgs & touch);
+    void touchMoved(ofTouchEventArgs & touch);
+    void touchUp(ofTouchEventArgs & touch);
     
-    float offset, rotateOffset, sliderX, sliderY, diff;
+    THRUST_BUTTON buttonA, buttonB, buttonC, buttonD;
+    
+    float rotateOffset, sliderX, sliderY, diff, _thrustDiameter;
     string ID;
     bool clicked = false;
     
@@ -25,7 +31,7 @@ class ANGLE_HANDLE : public ofxiOSApp {
 public:
     void setup(string ID);
     void update();
-    void frameDisplay();
+    void frameDisplay(float thrust);
     
     void calculateAngle();
     
@@ -36,8 +42,7 @@ public:
     ANGLE_BUTTON buttonA, buttonB, buttonC, buttonD;
     
     float offset, rotateOffset, rotateAngle, x, y, diff, anglePercent;
-    //float rotateAngleBot = radians(-45) + radians(clickRadius / (8.5));  //8.5 = 1000 / 100 (11.76) ||| 7 = 800 / 100 (7.14) ||| 7 = 800 / 50 (3.57)
-    //float rotateAngleTop = radians(45) - radians(clickRadius / (8.5));  //(clickRadius / 2) / (assdiameter / clickdiameter)
+    float magicNumber; //THIS MAGIC NUMBER MUST BE FOUND
     string ID;
     bool clicked = false;
     

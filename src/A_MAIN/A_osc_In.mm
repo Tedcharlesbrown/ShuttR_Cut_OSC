@@ -78,13 +78,17 @@ void ofApp::parseWheel(string incomingOSC) {
             int indexValueStart = incomingOSC.find("[");
             int indexValueEnd = incomingOSC.find("]");
             string outputString = incomingOSC.substr(indexValueStart + 1, indexValueEnd - indexValueStart - 1);
-            int outputInt = ofToInt(outputString);
+            float outputInt = ofToFloat(outputString);
+            float outputBinary = ofMap(outputInt, 0, 100, 1, clickDiameter / assemblyRadius);
             switch(i) {
                 case 0: //Intensity
                     hasTargets[i] = true;
                     break;
                 case 1: //Thrust A
                     hasTargets[i] = true;
+                    if (!ignoreOSC) {
+                        gui.thrustA.buttonA.position = outputBinary;
+                    }
                     break;
                 case 2: //Angle A
                     hasTargets[i] = true;
@@ -94,6 +98,9 @@ void ofApp::parseWheel(string incomingOSC) {
                     break;
                 case 3: //Thrust B
                     hasTargets[i] = true;
+                    if (!ignoreOSC) {
+                        gui.thrustB.buttonB.position = outputBinary;
+                    }
                     break;
                 case 4: //Angle B
                     hasTargets[i] = true;
@@ -103,6 +110,9 @@ void ofApp::parseWheel(string incomingOSC) {
                     break;
                 case 5: //Thrust C
                     hasTargets[i] = true;
+                    if (!ignoreOSC) {
+                        gui.thrustC.buttonC.position = outputBinary;
+                    }
                     break;
                 case 6: //Angle C
                     hasTargets[i] = true;
@@ -112,6 +122,9 @@ void ofApp::parseWheel(string incomingOSC) {
                     break;
                 case 7: //Thrust D
                     hasTargets[i] = true;
+                    if (!ignoreOSC) {
+                        gui.thrustD.buttonD.position = outputBinary;
+                    }
                     break;
                 case 8: //Angle D
                     hasTargets[i] = true;

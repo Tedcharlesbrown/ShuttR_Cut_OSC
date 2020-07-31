@@ -23,6 +23,7 @@ void GUI::update() {
     
     if (ofGetElapsedTimeMillis() > sentTime + 200) {
         oscSendLight = false;
+        ignoreOSC = false;
     }
     if (ofGetElapsedTimeMillis() > receivedTime + 200) {
         oscReceiveLight = false;
@@ -42,6 +43,9 @@ void GUI::update() {
         osc.sendChannel("next");
         plusButton.action = false;
     }
+    
+    //---------------------------KEYBOARD----------------------------------
+    //---------------------------CHANNEL-----------------------------------
     
     if ((pageOne.clicked || pageTwo.clicked) && !settingsMenu) {
         if (keyboard.clickedOff) {
@@ -63,10 +67,13 @@ void GUI::update() {
                 selectedChannel = oldChannel;
             } else {
                 oscSent(ofGetElapsedTimeMillis());
+                noneSelected = false;
                 osc.sendChannelNumber(selectedChannel);
             }
         }
     }
+    
+    //---------------------------SETTINGS PAGE -----------------------------------
     
     if (settingsMenu) {
         if (keyboard.clickedOff) {

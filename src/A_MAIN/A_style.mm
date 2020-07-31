@@ -44,6 +44,8 @@ void ofApp::stateUpdate(){
 //--------------------------------------------------------------
 void ofApp::styleInit(){
     
+    shutterColor.setHsb(163.056,103.167,255);
+    
     //---------- PARENT WIDTH AND HEIGHT ----------
     
     width = ofGetWidth();

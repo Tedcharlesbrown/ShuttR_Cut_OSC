@@ -82,18 +82,15 @@ void OSC::sendFlash(string parameter) {
 
 //--------------------------------------------------------------
 
-void OSC::sendThrust(string parameter, int message) {
+void OSC::sendShutter(string parameter, string ID, int message) {
     ofxOscMessage m;
-    m.setAddress("/eos/user/" + inputID + "/param/frame thrust " + parameter);
-    m.addFloatArg(message);
-    sender.sendMessage(m, false);
-}
-
-//--------------------------------------------------------------
-
-void OSC::sendAngle(string parameter, int message) {
-    ofxOscMessage m;
-    m.setAddress("/eos/user/" + inputID + "/param/frame angle " + parameter);
+    if (parameter == "THRUST") {
+        m.setAddress("/eos/user/" + inputID + "/param/frame thrust " + ID);
+    } else if (parameter == "ANGLE") {
+        m.setAddress("/eos/user/" + inputID + "/param/frame angle " + ID);
+    } else if (parameter == "ASSEMBLY") {
+        m.setAddress("/eos/user/" + inputID + "/param/frame assembly");
+    }
     m.addFloatArg(message);
     sender.sendMessage(m, false);
 }

@@ -14,6 +14,9 @@ void ofApp::setup(){
     gui.setup();
     gui.pageOne.clicked = true;
     
+    if (ofxiOSGetDeviceRevision().find("iPad") != std::string::npos) {
+        //cout << "IPAD" << endl; //iPad7,3
+    }
 }
 //--------------------------------------------------------------
 void ofApp::update(){
@@ -53,7 +56,6 @@ void ofApp::touchUp(ofTouchEventArgs & touch){
 //--------------------------------------------------------------
 void ofApp::touchDoubleTap(ofTouchEventArgs & touch){
     gui.touchDoubleTap(touch);
-    
 }
 
 //--------------------------------------------------------------

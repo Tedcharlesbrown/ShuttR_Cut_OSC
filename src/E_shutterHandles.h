@@ -5,6 +5,10 @@
 #include "A0_globals.h"
 #include "E_shutterButtons.h"
 
+//--------------------------------------------------------------
+// MARK: ----------THRUST_HANDLE----------
+//--------------------------------------------------------------
+
 class THRUST_HANDLE : public ofxiOSApp {
     
 public:
@@ -14,17 +18,22 @@ public:
     void touchDown(ofTouchEventArgs & touch);
     void touchMoved(ofTouchEventArgs & touch);
     void touchUp(ofTouchEventArgs & touch);
+    void touchDoubleTap(ofTouchEventArgs & touch);
     
     THRUST_BUTTON buttonA, buttonB, buttonC, buttonD;
     
     float rotateOffset, sliderX, sliderY, diff, _thrustDiameter;
     string ID;
     bool clicked = false;
+    bool doubleClicked = false;
     
     
 private:
 };
 
+//--------------------------------------------------------------
+// MARK: ----------ANGLE_HANDLE----------
+//--------------------------------------------------------------
 
 class ANGLE_HANDLE : public ofxiOSApp {
     
@@ -38,6 +47,7 @@ public:
     void touchDown(ofTouchEventArgs & touch);
     void touchMoved(ofTouchEventArgs & touch);
     void touchUp(ofTouchEventArgs & touch);
+    void touchDoubleTap(ofTouchEventArgs & touch);
     
     ANGLE_BUTTON buttonA, buttonB, buttonC, buttonD;
     
@@ -45,7 +55,32 @@ public:
     float magicNumber; //THIS MAGIC NUMBER MUST BE FOUND
     string ID;
     bool clicked = false;
+    bool doubleClicked = false;
     
+    
+private:
+};
+
+//--------------------------------------------------------------
+// MARK: ----------ASSEMBLY_HANDLE----------
+//--------------------------------------------------------------
+
+class ASSEMBLY_HANDLE : public ofxiOSApp {
+    
+public:
+    void setup();
+    void update();
+    
+    void incomingOSC(float oscMessage);
+    
+    void touchDown(ofTouchEventArgs & touch);
+    void touchMoved(ofTouchEventArgs & touch);
+    void touchUp(ofTouchEventArgs & touch);
+    void touchDoubleTap(ofTouchEventArgs & touch);
+    
+    float frameX, frameY, defaultX, botLimit, topLimit, output;
+    bool clicked = false;
+    bool doubleClicked = false;
     
 private:
 };

@@ -135,6 +135,9 @@ void ofApp::parseWheel(string incomingOSC) {
                     break;
                 case 9: //Frame Assembly
                     hasTargets[i] = true;
+                    if (!ignoreOSC) {
+                        gui.assembly.incomingOSC(outputInt);
+                    }
                     break;
                 case 10: //Iris
                     hasTargets[i] = true;

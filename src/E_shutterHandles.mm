@@ -1,6 +1,8 @@
 #include "E_shutterHandles.h"
 
 //--------------------------------------------------------------
+// MARK: ----------THRUST_HANDLE----------
+//--------------------------------------------------------------
 
 void THRUST_HANDLE::setup(string _ID) {
     this-> ID = _ID;
@@ -66,10 +68,32 @@ void THRUST_HANDLE::touchMoved(ofTouchEventArgs & touch){
 
 void THRUST_HANDLE::touchUp(ofTouchEventArgs & touch){
     this-> clicked = false;
+    this-> doubleClicked = false;
 }
 
 //--------------------------------------------------------------
+
+void THRUST_HANDLE::touchDoubleTap(ofTouchEventArgs & touch){
+    if (ofDist(touch.x, touch.y, this-> sliderX, this-> sliderY) < clickRadius) {
+        this-> doubleClicked = true;
+        if (ID == "A") {
+            buttonA.position = 1;
+            buttonA.output = 0;
+        } else if (ID == "B") {
+            buttonB.output = 0;
+            buttonB.position = 1;
+        } else if (ID == "C") {
+            buttonC.position = 1;
+            buttonC.output = 0;
+        } else if (ID == "D") {
+            buttonD.position = 1;
+            buttonD.output = 0;
+        }
+    }
+}
+
 //--------------------------------------------------------------
+// MARK: ----------THRUST_BUTTON----------
 //--------------------------------------------------------------
 
 void THRUST_BUTTON::draw(string _ID, float _rotateAngle) {
@@ -94,13 +118,143 @@ void THRUST_BUTTON::addOffset(float _diff) {
 }
 
 void THRUST_BUTTON::angleLimit(float _angleRotateLimit){
-    float angleLimit = abs(_angleRotateLimit);
-    angleLimit = ofMap(angleLimit, 0, 45, 1, (clickDiameter / assemblyRadius) + 0.5);
-    position = ofClamp(position, clickDiameter / assemblyRadius, angleLimit);
+    float topLimit = clickDiameter / assemblyRadius;
+    int angle = abs(_angleRotateLimit);
+    float angleLimit = 0;
+    
+    //TODO: FIX THIS IMPLEMENTATION, WHAT IS SPECIAL ABOUT 0.375? (PERCENTAGE OF THRUST)
+    switch(angle) {
+        case 0:
+            angleLimit = angle;
+            break;
+        case 1:
+            angleLimit = angle - 0.1;
+            break;
+        case 2:
+            angleLimit = angle - 0.3;
+            break;
+        case 3:
+            angleLimit = angle - 0.4;
+            break;
+        case 4:
+            angleLimit = angle - 0.5;
+            break;
+        case 5:
+            angleLimit = angle - 0.6;
+            break;
+        case 6:
+            angleLimit = angle - 0.7;
+            break;
+        case 7:
+            angleLimit = angle - 0.9;
+            break;
+        case 8:
+            angleLimit = angle - 1;
+            break;
+        case 9:
+            angleLimit = angle - 1.1;
+            break;
+        case 10:
+            angleLimit = angle - 1.2;
+            break;
+        case 11:
+            angleLimit = angle - 1.3;
+            break;
+        case 12:
+            angleLimit = angle - 1.4;
+            break;
+        case 13:
+        case 14:
+            angleLimit = angle - 1.5;
+            break;
+        case 15:
+            angleLimit = angle - 1.6;
+            break;
+        case 16:
+        case 17:
+            angleLimit = angle - 1.7;
+            break;
+        case 18:
+        case 19:
+        case 20:
+        case 21:
+        case 22:
+        case 23:
+            angleLimit = angle - 1.8;
+            break;
+        case 24:
+        case 25:
+            angleLimit = angle - 1.7;
+            break;
+        case 26:
+            angleLimit = angle - 1.6;
+            break;
+        case 27:
+            angleLimit = angle - 1.5;
+            break;
+        case 28:
+            angleLimit = angle - 1.4;
+            break;
+        case 29:
+            angleLimit = angle - 1.3;
+            break;
+        case 30:
+            angleLimit = angle - 1.1;
+            break;
+        case 31:
+            angleLimit = angle - 1;
+            break;
+        case 32:
+            angleLimit = angle - 0.8;
+            break;
+        case 33:
+            angleLimit = angle - 0.5;
+            break;
+        case 34:
+            angleLimit = angle - 0.3;
+            break;
+        case 35:
+            angleLimit = angle;
+            break;
+        case 36:
+            angleLimit = angle + 0.3;
+            break;
+        case 37:
+            angleLimit = angle + 0.7;
+            break;
+        case 38:
+            angleLimit = angle + 1.1;
+            break;
+        case 39:
+            angleLimit = angle + 1.5;
+            break;
+        case 40:
+            angleLimit = angle + 2;
+            break;
+        case 41:
+            angleLimit = angle + 2.5;
+            break;
+        case 42:
+            angleLimit = angle + 3;
+            break;
+        case 43:
+            angleLimit = angle + 3.6;
+            break;
+        case 44:
+            angleLimit = angle + 4.3;
+            break;
+        case 45:
+            angleLimit = angle + 5;
+            break;
+    }
+    
+    float angleBotLimit = ofMap(angleLimit, 0, 50, 1, topLimit + 0.375);
+    float angleTopLimit = 1 - angleBotLimit;
+    position = ofClamp(position, topLimit + angleTopLimit, angleBotLimit);
 }
 
 //--------------------------------------------------------------
-//--------------------------------------------------------------
+// MARK: ----------ANGLE_HANDLE----------
 //--------------------------------------------------------------
 
 void ANGLE_HANDLE::setup(string _ID) {
@@ -182,7 +336,7 @@ void ANGLE_HANDLE::calculateAngle() {
 
 void ANGLE_HANDLE::touchDown(ofTouchEventArgs & touch){
     if (ofDist(touch.x, touch.y, x, y) < clickRadius) {
-        clicked = true;
+        this-> clicked = true;
     }
 }
 
@@ -206,11 +360,21 @@ void ANGLE_HANDLE::touchMoved(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 void ANGLE_HANDLE::touchUp(ofTouchEventArgs & touch){
-    clicked = false;
+    this-> clicked = false;
+    this-> doubleClicked = false;
 }
 
 //--------------------------------------------------------------
+
+void ANGLE_HANDLE::touchDoubleTap(ofTouchEventArgs & touch){
+    if (ofDist(touch.x, touch.y, x, y) < clickRadius) {
+        this-> doubleClicked = true;
+        rotateAngle = 0;
+    }
+}
+
 //--------------------------------------------------------------
+// MARK: ----------ANGLE_BUTTON----------
 //--------------------------------------------------------------
 
 void ANGLE_BUTTON::draw(string _ID, float _rotateAngle) {
@@ -264,3 +428,85 @@ void ANGLE_BUTTON::frameShow(float _thrust) {
     
     ofPopStyle(); ofPopMatrix();
 }
+
+//--------------------------------------------------------------
+// MARK: ----------ASSEMBLY----------
+//--------------------------------------------------------------
+
+void ASSEMBLY_HANDLE::setup() {
+    frameX = centerX;
+    frameY = centerY + assemblyRadius + clickDiameter * 1.5;
+    defaultX = frameX;
+    botLimit = centerX - assemblyRadius;
+    topLimit = centerX + assemblyRadius;
+}
+
+//--------------------------------------------------------------
+
+void ASSEMBLY_HANDLE::update() {
+    frameX = ofClamp(frameX, botLimit, topLimit);
+    rotation = ofMap(frameX, botLimit, topLimit, 45, -45);
+    
+    ofPushStyle();
+
+    // ----------HORIZONTAL LINE----------
+    ofSetColor(shutterOutsideStroke);
+    ofDrawRectRounded(botLimit, frameY - assemblyLineWeight / 2, assemblyDiameter, assemblyLineWeight, buttonCorner);
+    
+    // ----------VERTICAL LINE----------
+    ofSetColor(shutterOutsideStroke);
+    ofDrawRectRounded(centerX - assemblyLineWeight / 2, frameY - clickRadius / 2, assemblyLineWeight, clickRadius, buttonCorner);
+    
+    // ----------BUTTON----------
+    // OUTSIDE BUTTON
+    ofSetColor(shutterFrameStroke);
+    ofDrawCircle(frameX, frameY, clickRadius);
+    // INSIDE BUTTON
+    ofSetColor(shutterOutsideStroke);
+    ofDrawCircle(frameX, frameY, clickRadius - assemblyButtonWeight);
+    
+    ofPopStyle();
+}
+
+//--------------------------------------------------------------
+
+void ASSEMBLY_HANDLE::incomingOSC(float value){
+    frameX = ofMap(value, -50, 50, botLimit, topLimit);
+}
+
+//--------------------------------------------------------------
+
+void ASSEMBLY_HANDLE::touchDown(ofTouchEventArgs & touch){
+    if (ofDist(touch.x, touch.y, frameX, frameY) < clickRadius) {
+        this-> clicked = true;
+        ignoreOSC = true;
+    }
+}
+
+//--------------------------------------------------------------
+
+void ASSEMBLY_HANDLE::touchMoved(ofTouchEventArgs & touch){
+    if (clicked) {
+        frameX += (touch.x - ofGetPreviousMouseX());
+        output = ofMap(frameX, botLimit, topLimit, -50, 50);
+    }
+}
+
+//--------------------------------------------------------------
+
+void ASSEMBLY_HANDLE::touchUp(ofTouchEventArgs & touch){
+    this-> clicked = false;
+    this-> doubleClicked = false;
+}
+
+//--------------------------------------------------------------
+
+void ASSEMBLY_HANDLE::touchDoubleTap(ofTouchEventArgs & touch){
+    if (ofDist(touch.x, touch.y, frameX, frameY) < clickRadius) {
+        this-> doubleClicked = true;
+        rotation = 0;
+        frameX = defaultX;
+        output = 0;
+    }
+}
+

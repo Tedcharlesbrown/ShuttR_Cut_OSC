@@ -8,39 +8,12 @@ void GUI::pageOneSetup() {
 
     thrustA.setup("A"); thrustB.setup("B"); thrustC.setup("C"); thrustD.setup("D");
     angleA.setup("A"); angleB.setup("B"); angleC.setup("C"); angleD.setup("D");
-    
+    assembly.setup();
 }
 
 //--------------------------------------------------------------
 
 void GUI::pageOneUpdate() {
-    if (thrustA.clicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendThrust("a",thrustA.buttonA.output);
-    } else if (thrustB.clicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendThrust("b",thrustB.buttonB.output);
-    } else if (thrustC.clicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendThrust("c",thrustC.buttonC.output);
-    } else if (thrustD.clicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendThrust("d",thrustD.buttonD.output);
-    }
-    
-    if (angleA.clicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendAngle("a",angleA.anglePercent);
-    } else if (angleB.clicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendAngle("b",angleB.anglePercent);
-    } else if (angleC.clicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendAngle("c",angleC.anglePercent);
-    } else if (angleD.clicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendAngle("d",angleD.anglePercent);
-    }
     pageOneButtonAction();
 }
 
@@ -67,29 +40,64 @@ void GUI::pageOneDraw() {
     thrustA.buttonA.angleLimit(angleA.anglePercent); thrustB.buttonB.angleLimit(angleB.anglePercent); thrustC.buttonC.angleLimit(angleC.anglePercent); thrustD.buttonD.angleLimit(angleD.anglePercent);
     
     ofPopMatrix();
+    
+    assembly.update();
 }
 
 //--------------------------------------------------------------
 
 void GUI::pageOneButtonAction() {
     if (thrustButton.action) {
-//        oscSent(ofGetElapsedTimeMillis());
+        oscSent(ofGetElapsedTimeMillis());
         thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
         osc.sendShutterHome("THRUST");
         thrustButton.action = false;
     }
     if (angleButton.action) {
-//        oscSent(ofGetElapsedTimeMillis());
+        oscSent(ofGetElapsedTimeMillis());
         angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
         osc.sendShutterHome("ANGLE");
         angleButton.action = false;
     }
     if (shutterButton.action) {
-//        oscSent(ofGetElapsedTimeMillis());
+        oscSent(ofGetElapsedTimeMillis());
         angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
         thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
         osc.sendShutterHome("SHUTTER");
         shutterButton.action = false;
+    }
+    
+    if (thrustA.clicked || thrustA.doubleClicked) {
+        oscSent(ofGetElapsedTimeMillis());
+        osc.sendShutter("THRUST","a",thrustA.buttonA.output);
+    } else if (thrustB.clicked || thrustB.doubleClicked) {
+        oscSent(ofGetElapsedTimeMillis());
+        osc.sendShutter("THRUST","b",thrustB.buttonB.output);
+    } else if (thrustC.clicked || thrustC.doubleClicked) {
+        oscSent(ofGetElapsedTimeMillis());
+        osc.sendShutter("THRUST","c",thrustC.buttonC.output);
+    } else if (thrustD.clicked || thrustD.doubleClicked) {
+        oscSent(ofGetElapsedTimeMillis());
+        osc.sendShutter("THRUST","d",thrustD.buttonD.output);
+    }
+    
+    if (angleA.clicked || angleA.doubleClicked) {
+        oscSent(ofGetElapsedTimeMillis());
+        osc.sendShutter("ANGLE","a",angleA.anglePercent);
+    } else if (angleB.clicked || angleB.doubleClicked) {
+        oscSent(ofGetElapsedTimeMillis());
+        osc.sendShutter("ANGLE","b",angleB.anglePercent);
+    } else if (angleC.clicked || angleC.doubleClicked) {
+        oscSent(ofGetElapsedTimeMillis());
+        osc.sendShutter("ANGLE","c",angleC.anglePercent);
+    } else if (angleD.clicked || angleD.doubleClicked) {
+        oscSent(ofGetElapsedTimeMillis());
+        osc.sendShutter("ANGLE","d",angleD.anglePercent);
+    }
+    
+    if (assembly.clicked || assembly.doubleClicked) {
+        oscSent(ofGetElapsedTimeMillis());
+        osc.sendShutter("ASSEMBLY","",assembly.output);
     }
 }
 
@@ -143,29 +151,17 @@ void GUI::pageOneTouchDown(ofTouchEventArgs & touch) {
     angleButton.touchDown(touch);
     shutterButton.touchDown(touch);
     
-    thrustA.touchDown(touch);
-    thrustB.touchDown(touch);
-    thrustC.touchDown(touch);
-    thrustD.touchDown(touch);
-    
-    angleA.touchDown(touch);
-    angleB.touchDown(touch);
-    angleC.touchDown(touch);
-    angleD.touchDown(touch);
+    thrustA.touchDown(touch); thrustB.touchDown(touch); thrustC.touchDown(touch); thrustD.touchDown(touch);
+    angleA.touchDown(touch); angleB.touchDown(touch); angleC.touchDown(touch); angleD.touchDown(touch);
+    assembly.touchDown(touch);
 }
 
 //--------------------------------------------------------------
 
 void GUI::pageOneTouchMoved(ofTouchEventArgs & touch) {
-    thrustA.touchMoved(touch);
-    thrustB.touchMoved(touch);
-    thrustC.touchMoved(touch);
-    thrustD.touchMoved(touch);
-    
-    angleA.touchMoved(touch);
-    angleB.touchMoved(touch);
-    angleC.touchMoved(touch);
-    angleD.touchMoved(touch);
+    thrustA.touchMoved(touch); thrustB.touchMoved(touch); thrustC.touchMoved(touch); thrustD.touchMoved(touch);
+    angleA.touchMoved(touch); angleB.touchMoved(touch); angleC.touchMoved(touch); angleD.touchMoved(touch);
+    assembly.touchMoved(touch);
 }
 
 //--------------------------------------------------------------
@@ -179,15 +175,15 @@ void GUI::pageOneTouchUp(ofTouchEventArgs & touch) {
     angleButton.touchUp(touch);
     shutterButton.touchUp(touch);
     
-    thrustA.touchUp(touch);
-    thrustB.touchUp(touch);
-    thrustC.touchUp(touch);
-    thrustD.touchUp(touch);
-    
-    angleA.touchUp(touch);
-    angleB.touchUp(touch);
-    angleC.touchUp(touch);
-    angleD.touchUp(touch);
+    thrustA.touchUp(touch); thrustB.touchUp(touch); thrustC.touchUp(touch); thrustD.touchUp(touch);
+    angleA.touchUp(touch); angleB.touchUp(touch); angleC.touchUp(touch); angleD.touchUp(touch);
+    assembly.touchUp(touch);
 }
 
 //--------------------------------------------------------------
+
+void GUI::pageOneDoubleTap(ofTouchEventArgs & touch) {
+    thrustA.touchDoubleTap(touch); thrustB.touchDoubleTap(touch); thrustC.touchDoubleTap(touch); thrustD.touchDoubleTap(touch);
+    angleA.touchDoubleTap(touch); angleB.touchDoubleTap(touch); angleC.touchDoubleTap(touch); angleD.touchDoubleTap(touch);
+    assembly.touchDoubleTap(touch);
+}

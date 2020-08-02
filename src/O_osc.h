@@ -21,6 +21,7 @@ public:
     void fineEncoder(int message);
     void sendEncoderPercent(string parameter, int message);
     
+    void sendShutter(string parameter, string ID, int message);
     void sendThrust(string parameter, int message);
     void sendAngle(string parameter, int message);
     void sendShutterHome(string parameter);

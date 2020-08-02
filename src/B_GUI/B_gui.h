@@ -38,10 +38,12 @@ public:
     void pageOneTouchDown(ofTouchEventArgs & touch);
     void pageOneTouchMoved(ofTouchEventArgs & touch);
     void pageOneTouchUp(ofTouchEventArgs & touch);
+    void pageOneDoubleTap(ofTouchEventArgs & touch);
     
     ofImage bgAssembly;
     THRUST_HANDLE thrustA, thrustB, thrustC, thrustD;
     ANGLE_HANDLE angleA, angleB, angleC, angleD;
+    ASSEMBLY_HANDLE assembly;
     //----------------------------------------------------
     void pageTwoSetup();
     void pageTwoUpdate();

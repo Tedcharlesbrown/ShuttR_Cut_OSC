@@ -57,6 +57,7 @@ void GUI::update() {
             osc.sendFlash("FLASH_ON");
         }
         flashButton.action = false;
+        
     }
     if (flashButton.released) {
         osc.sendFlash("OFF");
@@ -85,7 +86,7 @@ void GUI::update() {
             if (selectedChannel == "") {
                 selectedChannel = oldChannel;
             } else {
-//                oscSent(ofGetElapsedTimeMillis());
+                oscSent(ofGetElapsedTimeMillis());
                 noneSelected = false;
                 osc.sendChannelNumber(selectedChannel);
             }
@@ -249,7 +250,7 @@ void GUI::touchUp(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 void GUI::touchDoubleTap(ofTouchEventArgs & touch){
-    
+    pageOneDoubleTap(touch);
 }
 
 //--------------------------------------------------------------

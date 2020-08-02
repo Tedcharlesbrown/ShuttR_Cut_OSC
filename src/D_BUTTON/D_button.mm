@@ -116,7 +116,6 @@ void BUTTON::showBig(string _ID, string _ID2, float _x, float _y, float _w, floa
     ofPopStyle();
 }
 
-
 //--------------------------------------------------------------
 void BUTTON::touchDown(ofTouchEventArgs & touch){
     if (touch.x > x - w / 2 && touch.x < x + w / 2 && touch.y > y - h / 2 && touch.y < y + h / 2) {
@@ -135,14 +134,16 @@ void BUTTON::touchDown(ofTouchEventArgs & touch, bool toggle){
 
 //--------------------------------------------------------------
 void BUTTON::touchUp(ofTouchEventArgs & touch){
+    if (clicked) {
+        this-> released = true;
+    }
     this-> clicked = false;
-    this-> released = true;
+    this-> doubleClicked = false;
 }
 
 //--------------------------------------------------------------
 void BUTTON::touchDoubleTap(ofTouchEventArgs & touch){
-    
+    this-> doubleClicked = true;
 }
-
 //--------------------------------------------------------------
 

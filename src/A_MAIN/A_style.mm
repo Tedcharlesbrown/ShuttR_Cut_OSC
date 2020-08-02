@@ -64,7 +64,7 @@ void ofApp::styleInit(){
     
     ///---------- FRAME ASSEMBLY STYLES ----------
     
-    shutterStrokeWeight = width / 72; //20
+    shutterStrokeWeight = width / 50; //72
     outsideWeight = width / 96; //15
     thrustWeight = width / 288; //5
     angleWeight = width / 288; //5
@@ -90,7 +90,6 @@ void ofApp::styleInit(){
     settingsBarHeight = height / 20;
     consoleHeight = height / 20;
     
-    
     //---------- GUI WIDTH ----------
     
     smallButtonWidth = width / 10;
@@ -103,8 +102,8 @@ void ofApp::styleInit(){
     //---------- GUI PADDDING ----------
     
     row1Padding = settingsBarHeight + buttonHeight;
-    row2Padding = row1Padding + height / 11.84;
-    row3Padding = row2Padding + height / 11.84;
+    row2Padding = row1Padding + height / 13;
+    row3Padding = row2Padding + height / 13;
     row4Padding = row3Padding + buttonHeight / 2;
     row5Padding = height - height / 15;
     consolePadding = height / 2;

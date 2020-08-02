@@ -51,9 +51,19 @@ void THRUST_HANDLE::touchDown(ofTouchEventArgs & touch){
     }
 }
 
-void THRUST_HANDLE::touchMoved(ofTouchEventArgs & touch){
-    this-> diff = (cos(ofDegToRad(rotation) + rotateOffset) * (touch.x - ofGetPreviousMouseX()) + sin(ofDegToRad(rotation) + rotateOffset) * (touch.y - ofGetPreviousMouseY()));
+void THRUST_HANDLE::touchMoved(ofTouchEventArgs & touch, bool fine){
+    if (fine) {
+        this-> diff = (cos(ofDegToRad(rotation) + rotateOffset) * (touch.x - ofGetPreviousMouseX()) + sin(ofDegToRad(rotation) + rotateOffset) * (touch.y - ofGetPreviousMouseY())) / 6;
+    } else {
+        this-> diff = cos(ofDegToRad(rotation) + rotateOffset) * (touch.x - ofGetPreviousMouseX()) + sin(ofDegToRad(rotation) + rotateOffset) * (touch.y - ofGetPreviousMouseY());
+    }
     if (this-> clicked) {
+        //        if (pairAC) {
+        //            if (this-> ID == "A" || this-> ID == "C") { //WILL HAVE TO FLIP ONE INPUT
+        //                buttonA.addOffset(ofMap(this-> diff, 0, _thrustDiameter, 0, 1));
+        //                buttonC.addOffset(ofMap(this-> diff, 0, _thrustDiameter, 0, 1));
+        //            }
+        //        }
         if (this-> ID == "A") {
             buttonA.addOffset(ofMap(this-> diff, 0, _thrustDiameter, 0, 1));
         } else if (this-> ID == "B") {
@@ -342,17 +352,23 @@ void ANGLE_HANDLE::touchDown(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 
-void ANGLE_HANDLE::touchMoved(ofTouchEventArgs & touch){
+void ANGLE_HANDLE::touchMoved(ofTouchEventArgs & touch, bool fine){
     if (clicked) {
         ignoreOSC = true;
+        
+        int fineAdjust = 5;
+        if (fine) {
+            fineAdjust = 20;
+        }
+        
         if (ID == "A") {
-            rotateAngle += (cos(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX()) + sin(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY())) / 5;
+            rotateAngle += (cos(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX()) + sin(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY())) / fineAdjust;
         } else if (ID == "B") {
-            rotateAngle += (cos(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY()) + sin(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX())) / 5;
+            rotateAngle += (cos(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY()) + sin(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX())) / fineAdjust;
         } else if (ID == "C") {
-            rotateAngle -= (cos(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX()) + sin(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY())) / 5;
+            rotateAngle -= (cos(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX()) + sin(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY())) / fineAdjust;
         } else if (ID == "D") {
-            rotateAngle -= (cos(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY()) + sin(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX())) / 5;
+            rotateAngle -= (cos(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY()) + sin(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX())) / fineAdjust;
         }
     }
     calculateAngle();
@@ -485,9 +501,13 @@ void ASSEMBLY_HANDLE::touchDown(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 
-void ASSEMBLY_HANDLE::touchMoved(ofTouchEventArgs & touch){
+void ASSEMBLY_HANDLE::touchMoved(ofTouchEventArgs & touch, bool fine){
     if (clicked) {
-        frameX += (touch.x - ofGetPreviousMouseX());
+        if (fine) {
+            frameX += (touch.x - ofGetPreviousMouseX()) / 3;
+        } else {
+            frameX += (touch.x - ofGetPreviousMouseX());
+        }
         output = ofMap(frameX, botLimit, topLimit, -50, 50);
     }
 }

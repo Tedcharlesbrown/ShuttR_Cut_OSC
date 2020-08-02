@@ -131,15 +131,11 @@ void OSC::fineEncoder(int message) { //ONLY USED TO RESET OSC TICKS, ONLY CALLED
 }
 
 //--------------------------------------------------------------
-void OSC::sendEncoder(string parameter, int message, bool fine){
+void OSC::sendEncoder(string parameter, int message){
     if (parameter != "form") {
         ofxOscMessage m;
-        float fineAdjust = 2;
-        if (fine) {
-            fineAdjust = 0.001;
-        }
         m.setAddress("/eos/user/" + inputID + "/wheel/" + parameter);
-        m.addFloatArg(message * fineAdjust);
+        m.addFloatArg(message);
         sender.sendMessage(m, false);
     }
 }

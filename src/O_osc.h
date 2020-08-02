@@ -17,7 +17,7 @@ public:
     void sendHigh();
     void sendFlash(string parameter);
     
-    void sendEncoder(string parameter, int message, bool fine);
+    void sendEncoder(string parameter, int message);
     void fineEncoder(int message);
     void sendEncoderPercent(string parameter, int message);
     

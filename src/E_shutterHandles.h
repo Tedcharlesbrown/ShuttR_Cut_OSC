@@ -16,7 +16,7 @@ public:
     void update();
     
     void touchDown(ofTouchEventArgs & touch);
-    void touchMoved(ofTouchEventArgs & touch);
+    void touchMoved(ofTouchEventArgs & touch, bool fine);
     void touchUp(ofTouchEventArgs & touch);
     void touchDoubleTap(ofTouchEventArgs & touch);
     
@@ -45,7 +45,7 @@ public:
     void calculateAngle();
     
     void touchDown(ofTouchEventArgs & touch);
-    void touchMoved(ofTouchEventArgs & touch);
+    void touchMoved(ofTouchEventArgs & touch, bool fine);
     void touchUp(ofTouchEventArgs & touch);
     void touchDoubleTap(ofTouchEventArgs & touch);
     
@@ -74,7 +74,7 @@ public:
     void incomingOSC(float oscMessage);
     
     void touchDown(ofTouchEventArgs & touch);
-    void touchMoved(ofTouchEventArgs & touch);
+    void touchMoved(ofTouchEventArgs & touch, bool fine);
     void touchUp(ofTouchEventArgs & touch);
     void touchDoubleTap(ofTouchEventArgs & touch);
     

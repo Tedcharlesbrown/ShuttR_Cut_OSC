@@ -63,6 +63,7 @@ void GUI::pageOneButtonAction() {
         oscSent(ofGetElapsedTimeMillis());
         angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
         thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
+        assembly.frameX = assembly.defaultX;
         osc.sendShutterHome("SHUTTER");
         shutterButton.action = false;
     }
@@ -130,7 +131,7 @@ void GUI::assemblyBG() {
 
     ofRotateDeg(rotation);
     
-    ofSetColor(255);
+    ofSetColor(255,25);
     ofDrawRectangle(- assemblyRadius + outsideWeight,crosshairWeight / 2, assemblyDiameter - outsideWeight * 2, - crosshairWeight / 2); //CROSSHAIR
     ofDrawRectangle(- crosshairWeight / 2, - assemblyRadius + outsideWeight,crosshairWeight / 2, assemblyDiameter - outsideWeight * 2); //CROSSHAIR
     
@@ -159,9 +160,9 @@ void GUI::pageOneTouchDown(ofTouchEventArgs & touch) {
 //--------------------------------------------------------------
 
 void GUI::pageOneTouchMoved(ofTouchEventArgs & touch) {
-    thrustA.touchMoved(touch); thrustB.touchMoved(touch); thrustC.touchMoved(touch); thrustD.touchMoved(touch);
-    angleA.touchMoved(touch); angleB.touchMoved(touch); angleC.touchMoved(touch); angleD.touchMoved(touch);
-    assembly.touchMoved(touch);
+    thrustA.touchMoved(touch,fineButton.clicked); thrustB.touchMoved(touch,fineButton.clicked); thrustC.touchMoved(touch,fineButton.clicked); thrustD.touchMoved(touch,fineButton.clicked);
+    angleA.touchMoved(touch,fineButton.clicked); angleB.touchMoved(touch,fineButton.clicked); angleC.touchMoved(touch,fineButton.clicked); angleD.touchMoved(touch,fineButton.clicked);
+    assembly.touchMoved(touch,fineButton.clicked);
 }
 
 //--------------------------------------------------------------

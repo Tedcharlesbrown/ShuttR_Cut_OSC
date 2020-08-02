@@ -58,7 +58,7 @@ void GUI::pageTwoDraw() {
     
     ofPushMatrix();
     ofTranslate(centerX, centerY);
-    ofRotateRad(encoderPosition + ofDegToRad(-90));
+    ofRotateRad(ofDegToRad(encoderPosition) + ofDegToRad(-90));
     encoder.draw(- encoder.getWidth() / 2, - encoder.getHeight() / 2);
     ofPopMatrix();
 }
@@ -85,15 +85,28 @@ void GUI::pageTwoTouchMoved(ofTouchEventArgs & touch) {
         encoderClicked = true;
         lastPosition = encoderPosition;
         encoderPosition = atan2(touch.y - centerY, touch.x - centerX);
-        encoderPosition = ofDegToRad(ofMap(encoderPosition, -PI, PI, 0, 360));
-        if (parameter != "form") { //if param is form, don't send.
-            if (lastPosition < encoderPosition) {
+        encoderPosition = ofMap(encoderPosition, -PI, PI, 0, 360);
+        
+        int fineAdjust = 1;
+        if (fineButton.clicked) {
+            fineAdjust = 8;
+        }
+        
+        int tick = fmod(encoderPosition, fineAdjust);
+        int direction = 0;
+        
+        if (encoderPosition > lastPosition) {
+            direction = 1;
+        } else if (encoderPosition < lastPosition) {
+            direction = -1;
+        }
+        
+        if (tick == 0) {
+            if (parameter != "form") { //if param is form, don't send.
                 oscSent(ofGetElapsedTimeMillis());
-                osc.sendEncoder(parameter, 1, fineButton.clicked);
-            } else if (lastPosition > encoderPosition) {
-                oscSent(ofGetElapsedTimeMillis());
-                osc.sendEncoder(parameter, -1, fineButton.clicked);
+                osc.sendEncoder(parameter, direction);
             }
+            tick = -1;
         }
     }
 }

@@ -33,6 +33,8 @@
 		9969E7561C782C4500DEF0F6 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9969E7551C782C4500DEF0F6 /* CoreMotion.framework */; };
 		9B175FF1ABBBC823B6BBFC9C /* ofxOscBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A969CE13723ECBA9FCB1CDE8 /* ofxOscBundle.cpp */; };
 		B1263242F45888466B30F787 /* B_gui.mm in Sources */ = {isa = PBXBuildFile; fileRef = C42A1635D09BB879ECF843F4 /* B_gui.mm */; };
+		B70E6D2224D86478008D2ED9 /* B_pageThree.mm in Sources */ = {isa = PBXBuildFile; fileRef = B70E6D2124D86477008D2ED9 /* B_pageThree.mm */; };
+		B70E6D2524D8665C008D2ED9 /* D_bank.mm in Sources */ = {isa = PBXBuildFile; fileRef = B70E6D2324D8665B008D2ED9 /* D_bank.mm */; };
 		B7269CD024B38B4C00998745 /* B_settings.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CCF24B38B4C00998745 /* B_settings.mm */; };
 		B7269CD224B38C5D00998745 /* B_topbar.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CD124B38C5D00998745 /* B_topbar.mm */; };
 		B7269CD424B38DE700998745 /* B_pageOne.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CD324B38DE700998745 /* B_pageOne.mm */; };
@@ -118,6 +120,9 @@
 		AB8A44955139670BD49EF55D /* C_keyboard.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = C_keyboard.mm; path = src/C_KEYBOARD/C_keyboard.mm; sourceTree = SOURCE_ROOT; };
 		AF8D11504B058C9DDB219A5D /* ofxOscParameterSync.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxOscParameterSync.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/src/ofxOscParameterSync.cpp; sourceTree = SOURCE_ROOT; };
 		B705C3964A5506AAC5858C03 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlSettings.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
+		B70E6D2124D86477008D2ED9 /* B_pageThree.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_pageThree.mm; path = B_GUI/B_pageThree.mm; sourceTree = "<group>"; };
+		B70E6D2324D8665B008D2ED9 /* D_bank.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = D_bank.mm; path = D_BUTTON/D_bank.mm; sourceTree = "<group>"; };
+		B70E6D2424D8665B008D2ED9 /* D_bank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = D_bank.h; path = D_BUTTON/D_bank.h; sourceTree = "<group>"; };
 		B7269CCF24B38B4C00998745 /* B_settings.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_settings.mm; path = B_GUI/B_settings.mm; sourceTree = "<group>"; };
 		B7269CD124B38C5D00998745 /* B_topbar.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_topbar.mm; path = B_GUI/B_topbar.mm; sourceTree = "<group>"; };
 		B7269CD324B38DE700998745 /* B_pageOne.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_pageOne.mm; path = B_GUI/B_pageOne.mm; sourceTree = "<group>"; };
@@ -275,6 +280,7 @@
 				B7269CD124B38C5D00998745 /* B_topbar.mm */,
 				B7269CD324B38DE700998745 /* B_pageOne.mm */,
 				B7269CD524B38EA800998745 /* B_pageTwo.mm */,
+				B70E6D2124D86477008D2ED9 /* B_pageThree.mm */,
 				B7269CCF24B38B4C00998745 /* B_settings.mm */,
 			);
 			name = B_GUI;
@@ -321,6 +327,8 @@
 			children = (
 				C433A4A266B3CED27706AB90 /* D_button.h */,
 				85ED3E2745DDDE9E9142BCFD /* D_button.mm */,
+				B70E6D2424D8665B008D2ED9 /* D_bank.h */,
+				B70E6D2324D8665B008D2ED9 /* D_bank.mm */,
 			);
 			name = D_BUTTON;
 			sourceTree = "<group>";
@@ -607,6 +615,7 @@
 			files = (
 				E4D8936E11527B74007E1F53 /* main.mm in Sources */,
 				177DEE307D75193AFA25A293 /* A_style.mm in Sources */,
+				B70E6D2224D86478008D2ED9 /* B_pageThree.mm in Sources */,
 				0DE958A88392734A4E08CC3C /* A_ofApp.mm in Sources */,
 				8F3564A366BEC7654169DFCB /* D_button.mm in Sources */,
 				B790CE9524B62506008FD0BF /* E_shutterHandles.mm in Sources */,
@@ -620,6 +629,7 @@
 				34F4466FE14098A264815F64 /* OscPrintReceivedElements.cpp in Sources */,
 				712E795AD7744AED1A6E777F /* OscReceivedElements.cpp in Sources */,
 				B7D46B1B24B3E0F200FFBD60 /* A_osc_In.mm in Sources */,
+				B70E6D2524D8665C008D2ED9 /* D_bank.mm in Sources */,
 				7B2D66DEAF6AE226DFAD38B4 /* OscTypes.cpp in Sources */,
 				9B175FF1ABBBC823B6BBFC9C /* ofxOscBundle.cpp in Sources */,
 				22808C0402EB4FFC719F8364 /* ofxOscMessage.cpp in Sources */,

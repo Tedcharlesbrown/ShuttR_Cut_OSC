@@ -30,6 +30,8 @@ consoleWidth, consoleHeight, consolePadding, shutterStrokeWeight, outsideWeight,
 //----------------------------------------------------
 
 ofColor white, black, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterOutsideStroke, EOSBlue, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind, shutterBackground, shutterFrameFill, shutterFrameStroke, BGFill, EOSState, EOSBarState;
+ofColor EOSChannel, EOSGroup, EOSIntensity, EOSColor, EOSFocus, EOSSnap, EOSBeam, EOSPreset, EOSfx, EOSMacro, EOSMagic, EOSScene;
+
 ofColor shutterColor = ofColor(0);
 //--------------------------------------------------------------
 void ofApp::stateUpdate(){
@@ -156,6 +158,22 @@ void ofApp::styleInit(){
     shutterFrameFill = ofColor(62,56,71);
     shutterFrameStroke = ofColor(204,195,209);
     shutterOutsideStroke = ofColor(125,115,130);
+    
+    //---------- EOS DIRECT SELECT COLORS ----------
+//    ofColor c = ofColor::fromHex(0xFFFF00); // c is yellow.
+
+    EOSChannel = ofColor::fromHex(0x275787);
+    EOSGroup = ofColor::fromHex(0x517ba0);
+    EOSIntensity = ofColor::fromHex(0xb14932);
+    EOSColor = ofColor::fromHex(0x495476);
+    EOSFocus = ofColor::fromHex(0x00624c);
+    EOSBeam = ofColor::fromHex(0x0e3089);
+    EOSPreset = ofColor::fromHex(0x085f7e);
+    EOSfx = ofColor::fromHex(0x512789);
+    EOSMacro = ofColor::fromHex(0x62626a);
+    EOSSnap = ofColor::fromHex(0x9d1f2a);
+    EOSMagic = ofColor::fromHex(0x891951);
+    EOSScene = ofColor::fromHex(0x007e4e);
     
     //---------------------------------------
     //---------- ASSIGNMENT COLORS ----------

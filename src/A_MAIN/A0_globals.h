@@ -25,6 +25,7 @@ consoleWidth, consoleHeight, consolePadding, shutterStrokeWeight, outsideWeight,
 //----------------------------------------------------
 
 extern ofColor white, black, EOSBlue, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterBackground, shutterOutsideStroke, shutterFrameFill, shutterFrameStroke, shutterOutsideStroke, BGFill, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind, EOSState, EOSBarState, shutterColor;
+extern ofColor EOSChannel, EOSGroup, EOSIntensity, EOSColor, EOSFocus, EOSSnap, EOSBeam, EOSPreset, EOSfx, EOSMacro, EOSMagic, EOSScene;
 
 //----------------------------------------------------
 

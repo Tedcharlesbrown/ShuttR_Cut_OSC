@@ -5,6 +5,7 @@ bool settingsMenu = false;
 void GUI::setup() {
     pageOneSetup();
     pageTwoSetup();
+    pageThreeSetup();
     settingsSetup();
 }
 
@@ -18,7 +19,7 @@ void GUI::update() {
     } else if (pageTwo.clicked && !settingsMenu) {
         pageTwoUpdate();
     } else if (pageThree.clicked && !settingsMenu) {
-        
+        pageThreeUpdate();
     }
     
     if (ofGetElapsedTimeMillis() > sentTime + 200) {
@@ -67,7 +68,7 @@ void GUI::update() {
     //---------------------------KEYBOARD----------------------------------
     //---------------------------CHANNEL-----------------------------------
     
-    if ((pageOne.clicked || pageTwo.clicked) && !settingsMenu) {
+    if ((pageOne.clicked || pageTwo.clicked || pageThree.clicked) && !settingsMenu) {
         if (keyboard.clickedOff) {
             channelButton.clicked = false;
             keyboard.close();
@@ -182,6 +183,9 @@ void GUI::draw() {
     if (pageTwo.clicked && !settingsMenu) {
         pageTwoDraw();
     }
+    if (pageThree.clicked && !settingsMenu) {
+        pageThreeDraw();
+    }
     if (settingsMenu) {
         settingsDraw();
     }
@@ -212,7 +216,7 @@ void GUI::touchDown(ofTouchEventArgs & touch){
     } else if (pageTwo.clicked && !settingsMenu && !keyboard.show) {
         pageTwoTouchDown(touch);
     } else if (pageThree.clicked && !settingsMenu) {
-        
+        pageThreeTouchDown(touch);
     } else if (settingsMenu) {
         ipFieldButton.touchDown(touch, true);
         idFieldButton.touchDown(touch, true);
@@ -242,7 +246,7 @@ void GUI::touchUp(ofTouchEventArgs & touch){
     } else if (pageTwo.clicked && !settingsMenu) {
         pageTwoTouchUp(touch);
     } else if (pageThree.clicked && !settingsMenu) {
-        
+        pageThreeTouchUp(touch);
     }
     
     keyboard.touchUp(touch);
@@ -250,7 +254,13 @@ void GUI::touchUp(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 void GUI::touchDoubleTap(ofTouchEventArgs & touch){
-    pageOneDoubleTap(touch);
+    if (pageOne.clicked && !settingsMenu) {
+        pageOneDoubleTap(touch);
+    } else if (pageTwo.clicked && !settingsMenu) {
+        //pageTwoDoubleTap(touch);
+    } else if (pageThree.clicked && !settingsMenu) {
+        pageThreeDoubleTap(touch);
+    }
 }
 
 //--------------------------------------------------------------

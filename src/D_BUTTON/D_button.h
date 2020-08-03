@@ -8,8 +8,9 @@ class BUTTON : public ofxiOSApp {
 public:
     void show(float x, float y, float width, float height); //NO TEXT
     void show(string ID, float x, float y, float width, float height, string textSize); //ONE TEXT
+    void show(string ID, float x, float y, float width, float height, string textSize, ofColor color); //ONE TEXT WITH COLOR
     void show(string ID, string ID2, float x, float y, float width, float height); //TWO TEXT
-    
+    void show(string ID, string ID2, float x, float y, float width, float height, string textSize, ofColor color); //TWO TEXT
     void showBig(string ID, string ID2, float x, float y, float width, float height); //TWO TEXT WITH BOTTOM
     
     void touchDown(ofTouchEventArgs & touch);

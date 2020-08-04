@@ -2,33 +2,42 @@
 
 //--------------------------------------------------------------
 void GUI::panTiltPageSetup(){
-    float encoderSize = assemblyDiameter / 2;
-    
-    panTiltEncoder.load("Encoder.png");
-    panTiltEncoder.resize(encoderSize, encoderSize);
+    ptEncoder.setup(assemblyDiameter / 1.25);
+//    panTiltEncoder.load("Encoder.png");
+//    panTiltEncoder.resize(assemblyDiameter / 1.25, assemblyDiameter / 1.25);
 }
 //--------------------------------------------------------------
 void GUI::panTiltPageUpdate(){
+    string parameter = "";
+    if (panButton.action && panButton.clicked) {
+        panButton.clicked = true; tiltButton.clicked = false;
+        panButton.action = false;
+        panTiltShow = "PAN"; //parameter = "iris";
+    } else if (tiltButton.action && tiltButton.clicked) {
+        panButton.clicked = false; tiltButton.clicked = true;
+        tiltButton.action = false;
+        panTiltShow = "TILT"; //parameter = "edge";
+    } else if (!panButton.clicked && !tiltButton.clicked) {
+        panTiltShow = "FOCUS"; //parameter = "edge";
+    }
+
+    if (ptEncoder.clicked) {
+        oscSent(ofGetElapsedTimeMillis());
+        osc.sendEncoder(parameter, ptEncoder.output);
+    }
 }
 
 //--------------------------------------------------------------
 void GUI::panTiltPageDraw(){
     
-    ofPushMatrix();
-    ofTranslate(centerX,centerY);
-    panTiltEncoder.draw(- panTiltEncoder.getWidth() / 2, - panTiltEncoder.getHeight() * 1.1);
-    panTiltEncoder.draw(- panTiltEncoder.getWidth() / 2, 0);
-    ofPopMatrix();
+    panButton.showBig("PAN",panPercent, guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
+    tiltButton.showBig("TILT",tiltPercent, guiCenterAlign + genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
     
-    ofPushMatrix();
-    ofTranslate(centerX + panTiltEncoder.getWidth() / 1.75, centerY);
-    //    panTiltEncoder.draw(- panTiltEncoder.getWidth() / 2, - panTiltEncoder.getHeight() / 2);
-    ofPopMatrix();
+    minusPercentButton.show("-%", guiLeftAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
+    homeButton.show(panTiltShow, "HOME", guiCenterAlign, row5Padding, genericButtonWidth, buttonHeight);
+    plusPercentButton.show("+%", guiRightAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
     
-    ofPushMatrix();
-    ofTranslate(centerX - panTiltEncoder.getWidth() / 1.75, centerY);
-    //    panTiltEncoder.draw(- panTiltEncoder.getWidth() / 2, - panTiltEncoder.getHeight() / 2);
-    ofPopMatrix();
+    ptEncoder.draw(centerX, centerY);
 }
 
 //--------------------------------------------------------------
@@ -39,11 +48,16 @@ void GUI::panTiltPageTouchDown(ofTouchEventArgs & touch){
     highButton.touchDown(touch, true);
     flashButton.touchDown(touch);
     channelButton.touchDown(touch, true);
+    
+    panButton.touchDown(touch, true);
+    tiltButton.touchDown(touch, true);
+    
+    ptEncoder.touchDown(touch);
 }
 
 //--------------------------------------------------------------
 void GUI::panTiltPageTouchMoved(ofTouchEventArgs & touch){
-
+    ptEncoder.touchMoved(touch, fineButton.clicked);
 }
 
 //--------------------------------------------------------------
@@ -55,6 +69,8 @@ void GUI::panTiltPageTouchUp(ofTouchEventArgs & touch){
     thrustButton.touchUp(touch);
     angleButton.touchUp(touch);
     shutterButton.touchUp(touch);
+    
+    ptEncoder.touchUp(touch);
 }
 
 //--------------------------------------------------------------

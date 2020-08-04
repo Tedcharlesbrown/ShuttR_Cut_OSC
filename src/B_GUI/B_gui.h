@@ -6,6 +6,7 @@
 #include "C_keyboard.h"
 #include "D_button.h"
 #include "D_bank.h"
+#include "D_encoder.h"
 
 #include "E_shutterHandles.h"
 
@@ -76,7 +77,15 @@ public:
     void panTiltPageTouchUp(ofTouchEventArgs & touch);
     void panTiltPageDoubleTap(ofTouchEventArgs & touch);
     
+    ENCODER ptEncoder;
+    
     ofImage panTiltEncoder;
+    
+    float ptEncoderPosition, ptLastPosition = 0;
+    bool ptEncoderClicked = false;
+    string panPercent, tiltPercent, panTiltShow = "";
+    
+    BUTTON panButton, tiltButton;
     
     //--------------------------------------------------------------
     // MARK: ----------ENCODER PAGE----------

@@ -36,6 +36,7 @@
 		B70E6D2224D86478008D2ED9 /* B_directSelectPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = B70E6D2124D86477008D2ED9 /* B_directSelectPage.mm */; };
 		B70E6D2524D8665C008D2ED9 /* D_bank.mm in Sources */ = {isa = PBXBuildFile; fileRef = B70E6D2324D8665B008D2ED9 /* D_bank.mm */; };
 		B70E6D2724D9253F008D2ED9 /* B_panTiltPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = B70E6D2624D9253E008D2ED9 /* B_panTiltPage.mm */; };
+		B70E6D2D24D9EE1E008D2ED9 /* D_encoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = B70E6D2C24D9EE1E008D2ED9 /* D_encoder.mm */; };
 		B7269CD024B38B4C00998745 /* B_settings.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CCF24B38B4C00998745 /* B_settings.mm */; };
 		B7269CD224B38C5D00998745 /* B_topbar.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CD124B38C5D00998745 /* B_topbar.mm */; };
 		B7269CD424B38DE700998745 /* B_shutterPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CD324B38DE700998745 /* B_shutterPage.mm */; };
@@ -125,6 +126,8 @@
 		B70E6D2324D8665B008D2ED9 /* D_bank.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = D_bank.mm; path = D_BUTTON/D_bank.mm; sourceTree = "<group>"; };
 		B70E6D2424D8665B008D2ED9 /* D_bank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = D_bank.h; path = D_BUTTON/D_bank.h; sourceTree = "<group>"; };
 		B70E6D2624D9253E008D2ED9 /* B_panTiltPage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_panTiltPage.mm; path = B_GUI/B_panTiltPage.mm; sourceTree = "<group>"; };
+		B70E6D2B24D9EE1D008D2ED9 /* D_encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = D_encoder.h; path = D_BUTTON/D_encoder.h; sourceTree = "<group>"; };
+		B70E6D2C24D9EE1E008D2ED9 /* D_encoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = D_encoder.mm; path = D_BUTTON/D_encoder.mm; sourceTree = "<group>"; };
 		B7269CCF24B38B4C00998745 /* B_settings.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_settings.mm; path = B_GUI/B_settings.mm; sourceTree = "<group>"; };
 		B7269CD124B38C5D00998745 /* B_topbar.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_topbar.mm; path = B_GUI/B_topbar.mm; sourceTree = "<group>"; };
 		B7269CD324B38DE700998745 /* B_shutterPage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_shutterPage.mm; path = B_GUI/B_shutterPage.mm; sourceTree = "<group>"; };
@@ -332,6 +335,8 @@
 				85ED3E2745DDDE9E9142BCFD /* D_button.mm */,
 				B70E6D2424D8665B008D2ED9 /* D_bank.h */,
 				B70E6D2324D8665B008D2ED9 /* D_bank.mm */,
+				B70E6D2B24D9EE1D008D2ED9 /* D_encoder.h */,
+				B70E6D2C24D9EE1E008D2ED9 /* D_encoder.mm */,
 			);
 			name = D_BUTTON;
 			sourceTree = "<group>";
@@ -647,6 +652,7 @@
 				B7269CD624B38EA800998745 /* B_encoderPage.mm in Sources */,
 				EC8921C6969C6E5E2DF78835 /* tinyxmlerror.cpp in Sources */,
 				0A66D4D0B483A5E52210F62A /* tinyxmlparser.cpp in Sources */,
+				B70E6D2D24D9EE1E008D2ED9 /* D_encoder.mm in Sources */,
 				55CFC13EC55E35345488CA2F /* ofxXmlSettings.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

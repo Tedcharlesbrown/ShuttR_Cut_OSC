@@ -244,6 +244,9 @@ void GUI::touchMoved(ofTouchEventArgs & touch){
     if (shutterPage.clicked && !settingsMenu) {
         shutterPageTouchMoved(touch);
     }
+    if (panTiltPage.clicked && !settingsMenu) {
+        panTiltPageTouchMoved(touch);
+    }
     if (encoderPage.clicked && !settingsMenu) {
         encoderPageTouchMoved(touch);
     }

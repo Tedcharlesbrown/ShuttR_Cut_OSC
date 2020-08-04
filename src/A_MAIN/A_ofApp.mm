@@ -14,7 +14,7 @@ void ofApp::setup(){
     gui.setup();
     gui.pageOne.clicked = true;
     
-    cout << ofxiOSGetDeviceRevision() << endl;
+//    cout << ofxiOSGetDeviceRevision() << endl;
     
     if (ofxiOSGetDeviceRevision().find("iPad") != std::string::npos) {
         //cout << "IPAD" << endl; //iPad7,3

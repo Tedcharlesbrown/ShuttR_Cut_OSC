@@ -218,7 +218,11 @@ void BUTTON::touchDown(ofTouchEventArgs & touch){
 //--------------------------------------------------------------
 void BUTTON::touchDown(ofTouchEventArgs & touch, bool toggle){
     if (touch.x > x - w / 2 && touch.x < x + w / 2 && touch.y > y - h / 2 && touch.y < y + h / 2) {
-        this-> clicked = !clicked;
+        if (toggle) {
+            this-> clicked = !clicked;
+        } else {
+            this-> clicked = true;
+        }
         this-> action = true;
     }
 }

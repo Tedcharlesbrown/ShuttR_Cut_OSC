@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void BANK::setup(){
-    buttonSize = plusMinusButtonWidth;
+    buttonSize = plusMinusButtonWidth / 1.1;
     oneAlign = guiCenterAlign - buttonSize * 2.2;
     twoAlign = guiCenterAlign - buttonSize * 1.1;
     middleAlign = guiCenterAlign;
@@ -11,6 +11,15 @@ void BANK::setup(){
     
     selected = "DIRECT";
     colorSelect = EOSLive;
+    
+    totalSelects = 20;
+    for (int i = 0; i <= totalSelects; i++) {
+        directSelect.push_back(button);
+    }
+    totalPalettes = 12;
+    for (int i = 0; i <= totalPalettes; i++) {
+        palette.push_back(button);
+    }
 }
 //--------------------------------------------------------------
 void BANK::update(){
@@ -18,19 +27,8 @@ void BANK::update(){
         leftButton.action = false; quickButton.clicked = false;
     } else if (rightButton.action) {
         rightButton.action = false; quickButton.clicked = false;
-    } else if (channelButton.action) { toggleDS(0);
-    } else if (groupButton.action) { toggleDS(1);
-    } else if (IPButton.action) { toggleDS(2);
-    } else if (FPButton.action) { toggleDS(3);
-    } else if (CPButton.action) { toggleDS(4);
-    } else if (BPButton.action) { toggleDS(5);
-    } else if (presetButton.action) { toggleDS(6);
-    } else if (macroButton.action) { toggleDS(7);
-    } else if (effectsButton.action) { toggleDS(8);
-    } else if (snapButton.action) { toggleDS(9);
-    } else if (MSButton.action) { toggleDS(10);
-    } else if (sceneButton.action) { toggleDS(11);
     }
+    quickSelectAction();
 }
 
 //--------------------------------------------------------------
@@ -42,38 +40,99 @@ void BANK::draw(string ID, float _padding){
     quickButton.show(selected, "SELECTS", middleAlign, padding, genericButtonWidth * 2, buttonHeight, "MEDIUM", colorSelect);
     
     rightButton.show(">", fiveAlign, padding, buttonSize, buttonHeight, "MEDIUM");
+    
+    int x = 0;
+    float y = 0.9;
+    for (int i = 0; i < totalSelects; i++) {
+        x = i % 5;
+        switch(x) {
+        case 0: align = oneAlign; break;
+        case 1: align = twoAlign; break;
+        case 2: align = middleAlign; break;
+        case 3: align = fourAlign; break;
+        case 4: align = fiveAlign; break;
+        }s
+        directSelect.at(i).show("", "", align, padding + buttonSize * (y + y * 0.1), buttonSize, buttonSize, "SMALL", colorSelect);
+        if (x == 4) {
+            y++;
+        }
+    }
 }
 
 //--------------------------------------------------------------
 
 void BANK::quickSelectsShow() {
-    float DSRowOne = padding + buttonSize;
+    float DSRowOne = padding + buttonSize * 1.5;
     
-    channelButton.show("CHANNEL", oneAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSChannel);
-    groupButton.show("GROUP", twoAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSGroup);
-    IPButton.show("INTENS.", "PALETTE", middleAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSIntensity);
-    FPButton.show("FOCUS", "PALETTE", fourAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSFocus);
-    CPButton.show("COLOR", "PALETTE", fiveAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSColor);
+    palette.at(0).show("CHANNEL", oneAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSChannel);
+    palette.at(1).show("GROUP", twoAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSGroup);
+    palette.at(2).show("INTENS.", "PALETTE", middleAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSIntensity);
+    palette.at(3).show("FOCUS", "PALETTE", fourAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSFocus);
+    palette.at(4).show("COLOR", "PALETTE", fiveAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSColor);
     
-    BPButton.show("BEAM", "PALETTE", oneAlign, DSRowOne + buttonSize * 1.1, buttonSize, buttonSize, "SMALL", EOSBeam);
-    presetButton.show("PRESET", twoAlign, DSRowOne + buttonSize * 1.1, buttonSize, buttonSize, "SMALL", EOSPreset);
-    macroButton.show("MACRO", middleAlign, DSRowOne + buttonSize * 1.1, buttonSize, buttonSize, "SMALL", EOSMacro);
-    effectsButton.show("EFFECTS", fourAlign, DSRowOne + buttonSize * 1.1, buttonSize, buttonSize, "SMALL", EOSfx);
-    snapButton.show("SNAP", fiveAlign, DSRowOne + buttonSize * 1.1, buttonSize, buttonSize, "SMALL", EOSSnap);
+    palette.at(5).show("BEAM", "PALETTE", oneAlign, DSRowOne + buttonSize * 1.1, buttonSize, buttonSize, "SMALL", EOSBeam);
+    palette.at(6).show("PRESET", twoAlign, DSRowOne + buttonSize * 1.1, buttonSize, buttonSize, "SMALL", EOSPreset);
+    palette.at(7).show("MACRO", middleAlign, DSRowOne + buttonSize * 1.1, buttonSize, buttonSize, "SMALL", EOSMacro);
+    palette.at(8).show("EFFECTS", fourAlign, DSRowOne + buttonSize * 1.1, buttonSize, buttonSize, "SMALL", EOSfx);
+    palette.at(9).show("SNAP", fiveAlign, DSRowOne + buttonSize * 1.1, buttonSize, buttonSize, "SMALL", EOSSnap);
     
-    MSButton.show("MAGIC", "SHEET", oneAlign, DSRowOne + buttonSize * 2.2, buttonSize, buttonSize, "SMALL", EOSMagic);
-    sceneButton.show("SCENE", twoAlign, DSRowOne + buttonSize * 2.2, buttonSize, buttonSize, "SMALL", EOSScene);
+    palette.at(10).show("MAGIC", "SHEET", oneAlign, DSRowOne + buttonSize * 2.2, buttonSize, buttonSize, "SMALL", EOSMagic);
+    palette.at(11).show("SCENE", twoAlign, DSRowOne + buttonSize * 2.2, buttonSize, buttonSize, "SMALL", EOSScene);
     
-    flexiButton.show("FLEXI", fourAlign, DSRowOne + buttonSize * 2.2, buttonSize * 2, buttonSize, "MEDIUM");
+    palette.at(12).show("FLEXI", fourAlign, DSRowOne + buttonSize * 2.2, buttonSize * 2, buttonSize, "MEDIUM");
+}
+
+//--------------------------------------------------------------
+
+void BANK::quickSelectAction() {
+    
+    for (int i = 0; i <= totalPalettes - 1; i++) {
+        if (palette.at(i).action) {
+            quickButton.clicked = false;
+            palette.at(i).action = false;
+            for (int j = i + 1; j <= totalPalettes - 1; j++) { //ITERATE FORWARDS AND CLICK OFF
+                palette.at(j).clicked = false;
+            }
+            for (int j = i - 1; j >= 0; j--) { //ITERATE BACKWARDS AND CLICK OFF
+                palette.at(j).clicked = false;
+            }
+            switch(i) {
+                case 0:
+                    selected = "CHANNEL"; colorSelect = EOSChannel; break;
+                case 1:
+                    selected = "GROUP"; colorSelect = EOSGroup; break;
+                case 2:
+                    selected = "INTENSITY"; colorSelect = EOSIntensity; break;
+                case 3:
+                    selected = "FOCUS"; colorSelect = EOSFocus; break;
+                case 4:
+                    selected = "COLOR"; colorSelect = EOSColor; break;
+                case 5:
+                    selected = "BEAM"; colorSelect = EOSBeam; break;
+                case 6:
+                    selected = "PRESET"; colorSelect = EOSPreset; break;
+                case 7:
+                    selected = "MACRO"; colorSelect = EOSMacro;  break;
+                case 8:
+                    selected = "EFFECT"; colorSelect = EOSfx;  break;
+                case 9:
+                    selected = "SNAP"; colorSelect = EOSSnap; break;
+                case 10:
+                    selected = "MAGIC SHEET"; colorSelect = EOSMagic; break;
+                case 11:
+                    selected = "SCENE"; colorSelect = EOSScene; break;
+            }
+        }
+    }
+    
 }
 
 //--------------------------------------------------------------
 void BANK::touchDown(ofTouchEventArgs & touch){
     leftButton.touchDown(touch); quickButton.touchDown(touch, true); rightButton.touchDown(touch);
-    channelButton.touchDown(touch, true); groupButton.touchDown(touch, true); IPButton.touchDown(touch, true);
-    FPButton.touchDown(touch, true); CPButton.touchDown(touch, true); BPButton.touchDown(touch, true);
-    presetButton.touchDown(touch, true); macroButton.touchDown(touch, true); effectsButton.touchDown(touch, true); snapButton.touchDown(touch, true);
-    MSButton.touchDown(touch, true); sceneButton.touchDown(touch, true); flexiButton.touchDown(touch, true);
+    for (int i = 0; i <= totalPalettes; i++) {
+        palette.at(i).touchDown(touch, false);
+    }
 }
 
 //--------------------------------------------------------------
@@ -89,41 +148,4 @@ void BANK::touchUp(ofTouchEventArgs & touch){
 //--------------------------------------------------------------
 void BANK::touchDoubleTap(ofTouchEventArgs & touch){
 
-}
-
-//--------------------------------------------------------------
-
-void BANK::toggleDS(int keySwitch) {
-    
-    channelButton.clicked = false; groupButton.clicked = false; IPButton.clicked = false; FPButton.clicked = false; CPButton.clicked = false; BPButton.clicked = false; presetButton.clicked = false; macroButton.clicked = false; effectsButton.clicked = false; snapButton.clicked = false; MSButton.clicked = false; sceneButton.clicked = false;
-    
-    quickButton.clicked = false;
-    
-    switch(keySwitch) {
-        case 0:
-            selected = "CHANNEL"; colorSelect = EOSChannel; channelButton.clicked = true; channelButton.action = false; break;
-        case 1:
-            selected = "GROUP"; colorSelect = EOSGroup; groupButton.clicked = true; groupButton.action = false; break;
-        case 2:
-            selected = "INTENSITY"; colorSelect = EOSIntensity; IPButton.clicked = true; IPButton.action = false; break;
-        case 3:
-            selected = "FOCUS"; colorSelect = EOSFocus; FPButton.clicked = true; FPButton.action = false; break;
-        case 4:
-            selected = "COLOR"; colorSelect = EOSColor; CPButton.clicked = true; CPButton.action = false; break;
-        case 5:
-            selected = "BEAM"; colorSelect = EOSBeam; BPButton.clicked = true; BPButton.action = false; break;
-        case 6:
-            selected = "PRESET"; colorSelect = EOSPreset; presetButton.clicked = true; presetButton.action = false; break;
-        case 7:
-            selected = "MACRO"; colorSelect = EOSMacro; macroButton.clicked = true; macroButton.action = false; break;
-        case 8:
-            selected = "EFFECT"; colorSelect = EOSfx; effectsButton.clicked = true; effectsButton.action = false; break;
-        case 9:
-            selected = "SNAP"; colorSelect = EOSSnap; snapButton.clicked = true; snapButton.action = false; break;
-        case 10:
-            selected = "MAGIC SHEET"; colorSelect = EOSMagic; MSButton.clicked = true; MSButton.action = false; break;
-        case 11:
-            selected = "SCENE"; colorSelect = EOSScene; sceneButton.clicked = true; sceneButton.action = false; break;
-    }
-    
 }

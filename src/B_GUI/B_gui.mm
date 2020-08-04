@@ -14,11 +14,11 @@ void GUI::setup() {
 void GUI::update() {
     keyboard.update();
     
-    if (pageOne.clicked && !settingsMenu) {
+    if (shutterPage.clicked && !settingsMenu) {
         pageOneUpdate();
-    } else if (pageTwo.clicked && !settingsMenu) {
+    } else if (encoderPage.clicked && !settingsMenu) {
         pageTwoUpdate();
-    } else if (pageThree.clicked && !settingsMenu) {
+    } else if (directSelectPage.clicked && !settingsMenu) {
         pageThreeUpdate();
     }
     
@@ -68,7 +68,7 @@ void GUI::update() {
     //---------------------------KEYBOARD----------------------------------
     //---------------------------CHANNEL-----------------------------------
     
-    if ((pageOne.clicked || pageTwo.clicked || pageThree.clicked) && !settingsMenu) {
+    if ((shutterPage.clicked || encoderPage.clicked || directSelectPage.clicked) && !settingsMenu) {
         if (keyboard.clickedOff) {
             channelButton.clicked = false;
             keyboard.close();
@@ -177,19 +177,19 @@ void GUI::update() {
 
 void GUI::draw() {
     topBarDraw();
-    if (pageOne.clicked && !settingsMenu) {
+    if (shutterPage.clicked && !settingsMenu) {
         pageOneDraw();
     }
-    if (pageTwo.clicked && !settingsMenu) {
+    if (encoderPage.clicked && !settingsMenu) {
         pageTwoDraw();
     }
-    if (pageThree.clicked && !settingsMenu) {
+    if (directSelectPage.clicked && !settingsMenu) {
         pageThreeDraw();
     }
     if (settingsMenu) {
         settingsDraw();
     }
-    if ((pageOne.clicked || pageTwo.clicked) && !settingsMenu) {
+    if ((shutterPage.clicked || encoderPage.clicked) && !settingsMenu) {
         string channel = "SELECTED CHANNEL";
         minusButton.show("-",guiLeftAlign,row1Padding,plusMinusButtonWidth,buttonHeight,"LARGE");
         plusButton.show("+",guiRightAlign,row1Padding,plusMinusButtonWidth,buttonHeight,"LARGE");
@@ -207,15 +207,15 @@ void GUI::touchDown(ofTouchEventArgs & touch){
     if (touch.x > settingsX && touch.y < settingsHeight) {
         settingsMenu = !settingsMenu;
     }
-    pageOne.touchDown(touch);
-    pageTwo.touchDown(touch);
-    pageThree.touchDown(touch);
+    shutterPage.touchDown(touch);
+    encoderPage.touchDown(touch);
+    directSelectPage.touchDown(touch);
     
-    if (pageOne.clicked && !settingsMenu && !keyboard.show) {
+    if (shutterPage.clicked && !settingsMenu && !keyboard.show) {
         pageOneTouchDown(touch);
-    } else if (pageTwo.clicked && !settingsMenu && !keyboard.show) {
+    } else if (encoderPage.clicked && !settingsMenu && !keyboard.show) {
         pageTwoTouchDown(touch);
-    } else if (pageThree.clicked && !settingsMenu) {
+    } else if (directSelectPage.clicked && !settingsMenu) {
         pageThreeTouchDown(touch);
     } else if (settingsMenu) {
         ipFieldButton.touchDown(touch, true);
@@ -231,21 +231,21 @@ void GUI::touchDown(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 void GUI::touchMoved(ofTouchEventArgs & touch){
-    if (pageOne.clicked && !settingsMenu) {
+    if (shutterPage.clicked && !settingsMenu) {
         pageOneTouchMoved(touch);
     }
-    if (pageTwo.clicked && !settingsMenu) {
+    if (encoderPage.clicked && !settingsMenu) {
         pageTwoTouchMoved(touch);
     }
 }
 
 //--------------------------------------------------------------
 void GUI::touchUp(ofTouchEventArgs & touch){
-    if (pageOne.clicked && !settingsMenu) {
+    if (shutterPage.clicked && !settingsMenu) {
         pageOneTouchUp(touch);
-    } else if (pageTwo.clicked && !settingsMenu) {
+    } else if (encoderPage.clicked && !settingsMenu) {
         pageTwoTouchUp(touch);
-    } else if (pageThree.clicked && !settingsMenu) {
+    } else if (directSelectPage.clicked && !settingsMenu) {
         pageThreeTouchUp(touch);
     }
     
@@ -254,11 +254,11 @@ void GUI::touchUp(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 void GUI::touchDoubleTap(ofTouchEventArgs & touch){
-    if (pageOne.clicked && !settingsMenu) {
+    if (shutterPage.clicked && !settingsMenu) {
         pageOneDoubleTap(touch);
-    } else if (pageTwo.clicked && !settingsMenu) {
+    } else if (encoderPage.clicked && !settingsMenu) {
         //pageTwoDoubleTap(touch);
-    } else if (pageThree.clicked && !settingsMenu) {
+    } else if (directSelectPage.clicked && !settingsMenu) {
         pageThreeDoubleTap(touch);
     }
 }

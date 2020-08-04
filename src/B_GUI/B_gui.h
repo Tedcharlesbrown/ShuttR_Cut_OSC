@@ -38,7 +38,7 @@ public:
     
     string oldChannel = "";
     
-    BUTTON pageOne, pageTwo, pageThree, minusButton, plusButton, fineButton, highButton, flashButton, channelButton;
+    BUTTON shutterPage, encoderPage, directSelectPage, panTiltPage, minusButton, plusButton, fineButton, highButton, flashButton, channelButton;
     
     //--------------------------------------------------------------
     // MARK: ----------PAGE ONE----------

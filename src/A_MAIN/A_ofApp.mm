@@ -12,7 +12,7 @@ void ofApp::setup(){
     //ofSleepMillis(5000);
     
     gui.setup();
-    gui.pageOne.clicked = true;
+    gui.shutterPage.clicked = true;
     
 //    cout << ofxiOSGetDeviceRevision() << endl;
     

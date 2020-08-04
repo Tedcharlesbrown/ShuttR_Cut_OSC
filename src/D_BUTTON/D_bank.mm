@@ -10,7 +10,7 @@ void BANK::setup(){
     fiveAlign = guiCenterAlign + buttonSize * 2.2;
     
     selected = "DIRECT";
-    colorSelect = EOSLive;
+    colorSelect = black;
     
     totalSelects = 20;
     for (int i = 0; i <= totalSelects; i++) {
@@ -51,11 +51,18 @@ void BANK::draw(string ID, float _padding){
         case 2: align = middleAlign; break;
         case 3: align = fourAlign; break;
         case 4: align = fiveAlign; break;
-        }s
+        }
         directSelect.at(i).show("", "", align, padding + buttonSize * (y + y * 0.1), buttonSize, buttonSize, "SMALL", colorSelect);
         if (x == 4) {
             y++;
         }
+    }
+    
+    if (quickButton.clicked) {
+        ofPushStyle();
+        ofSetColor(EOSBackground, 150);
+        ofDrawRectangle(0, padding + buttonSize / 2 - buttonStrokeWeight, width, padding + (buttonSize * 3.3) + buttonSize / 2 + buttonStrokeWeight);
+        ofPopStyle();
     }
 }
 
@@ -64,7 +71,7 @@ void BANK::draw(string ID, float _padding){
 void BANK::quickSelectsShow() {
     float DSRowOne = padding + buttonSize * 1.5;
     
-    palette.at(0).show("CHANNEL", oneAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSChannel);
+    palette.at(0).show("CHAN", oneAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSChannel);
     palette.at(1).show("GROUP", twoAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSGroup);
     palette.at(2).show("INTENS.", "PALETTE", middleAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSIntensity);
     palette.at(3).show("FOCUS", "PALETTE", fourAlign, DSRowOne, buttonSize, buttonSize, "SMALL", EOSFocus);
@@ -130,8 +137,10 @@ void BANK::quickSelectAction() {
 //--------------------------------------------------------------
 void BANK::touchDown(ofTouchEventArgs & touch){
     leftButton.touchDown(touch); quickButton.touchDown(touch, true); rightButton.touchDown(touch);
-    for (int i = 0; i <= totalPalettes; i++) {
-        palette.at(i).touchDown(touch, false);
+    if (quickButton.clicked) {
+        for (int i = 0; i <= totalPalettes; i++) {
+            palette.at(i).touchDown(touch, false);
+        }
     }
 }
 

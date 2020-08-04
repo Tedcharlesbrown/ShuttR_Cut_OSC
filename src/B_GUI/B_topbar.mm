@@ -3,17 +3,17 @@
 //--------------------------------------------------------------
 
 void GUI::topBarUpdate() {
-    if (pageOne.action && pageOne.clicked) {
-        pageOne.clicked = true; pageTwo.clicked = false; pageThree.clicked = false;
-        pageOne.action = false;
+    if (shutterPage.action && shutterPage.clicked) {
+        shutterPage.clicked = true; encoderPage.clicked = false; directSelectPage.clicked = false;
+        shutterPage.action = false;
         settingsMenu = false;
-    } else if (pageTwo.action && pageTwo.clicked) {
-        pageOne.clicked = false; pageTwo.clicked = true; pageThree.clicked = false;
-        pageTwo.action = false;
+    } else if (encoderPage.action && encoderPage.clicked) {
+        shutterPage.clicked = false; encoderPage.clicked = true; directSelectPage.clicked = false;
+        encoderPage.action = false;
         settingsMenu = false;
-    } else if (pageThree.action && pageThree.clicked) {
-        pageOne.clicked = false; pageTwo.clicked = false; pageThree.clicked = true;
-        pageThree.action = false;
+    } else if (directSelectPage.action && directSelectPage.clicked) {
+        shutterPage.clicked = false; encoderPage.clicked = false; directSelectPage.clicked = true;
+        directSelectPage.action = false;
         settingsMenu = false;
     }
 }
@@ -37,10 +37,11 @@ void GUI::settingsBar(float _x, float _y, float _w, float _h, float _weight) {
     ofSetColor(shutterOutsideStroke);
     ofDrawRectangle(_x, _h, _w, _weight);
     ofPopStyle();
-    
-    pageOne.show(centerX - genericButtonWidth, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight);
-    pageTwo.show(centerX, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight);
-    pageThree.show(centerX + genericButtonWidth, settingsBarHeight / 2, genericButtonWidth, settingsBarHeight);
+  
+    shutterPage.show(centerX - plusMinusButtonWidth * 1.5, settingsBarHeight / 2, plusMinusButtonWidth, settingsBarHeight);
+    panTiltPage.show(centerX - plusMinusButtonWidth / 2, settingsBarHeight / 2, plusMinusButtonWidth, settingsBarHeight);
+    encoderPage.show(centerX + plusMinusButtonWidth / 2, settingsBarHeight / 2, plusMinusButtonWidth, settingsBarHeight);
+    directSelectPage.show(centerX + plusMinusButtonWidth * 1.5, settingsBarHeight / 2, plusMinusButtonWidth, settingsBarHeight);
 }
 
 //--------------------------------------------------------------

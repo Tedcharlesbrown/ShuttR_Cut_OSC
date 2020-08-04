@@ -4,15 +4,19 @@
 
 void GUI::topBarUpdate() {
     if (shutterPage.action && shutterPage.clicked) {
-        shutterPage.clicked = true; encoderPage.clicked = false; directSelectPage.clicked = false;
+        shutterPage.clicked = true; panTiltPage.clicked = false; encoderPage.clicked = false; directSelectPage.clicked = false;
         shutterPage.action = false;
         settingsMenu = false;
+    } else if (panTiltPage.action && panTiltPage.clicked) {
+        shutterPage.clicked = false; panTiltPage.clicked = true; encoderPage.clicked = false; directSelectPage.clicked = false;
+        panTiltPage.action = false;
+        settingsMenu = false;
     } else if (encoderPage.action && encoderPage.clicked) {
-        shutterPage.clicked = false; encoderPage.clicked = true; directSelectPage.clicked = false;
+        shutterPage.clicked = false; panTiltPage.clicked = false; encoderPage.clicked = true; directSelectPage.clicked = false;
         encoderPage.action = false;
         settingsMenu = false;
     } else if (directSelectPage.action && directSelectPage.clicked) {
-        shutterPage.clicked = false; encoderPage.clicked = false; directSelectPage.clicked = true;
+        shutterPage.clicked = false; panTiltPage.clicked = false; encoderPage.clicked = false; directSelectPage.clicked = true;
         directSelectPage.action = false;
         settingsMenu = false;
     }

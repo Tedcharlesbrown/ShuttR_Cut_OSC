@@ -42,6 +42,7 @@ void ofApp::draw(){
 //--------------------------------------------------------------
 void ofApp::touchDown(ofTouchEventArgs & touch){
     gui.touchDown(touch);
+    cout << touch.id << endl;
 }
 
 //--------------------------------------------------------------

@@ -2,14 +2,14 @@
 
 //--------------------------------------------------------------
 
-void GUI::pageTwoSetup() {
+void GUI::encoderPageSetup() {
     encoder.load("Encoder.png");
     encoder.resize(assemblyDiameter / 1.25, assemblyDiameter / 1.25);
 }
 
 //--------------------------------------------------------------
 
-void GUI::pageTwoUpdate() {
+void GUI::encoderPageUpdate() {
     if (irisButton.action && irisButton.clicked) {
         irisButton.clicked = true; edgeButton.clicked = false; zoomButton.clicked = false; frostButton.clicked = false;
         irisButton.action = false;
@@ -45,7 +45,7 @@ void GUI::pageTwoUpdate() {
     }
 }
 
-void GUI::pageTwoDraw() {
+void GUI::encoderPageDraw() {
     irisButton.showBig("IRIS",irisPercent, guiLeftAlign, row3Padding, plusMinusButtonWidth, buttonHeight);
     edgeButton.showBig("EDGE",edgePercent, guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
     zoomButton.showBig("ZOOM",zoomPercent, guiCenterAlign + genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
@@ -55,7 +55,6 @@ void GUI::pageTwoDraw() {
     homeButton.show(parameterShow, "HOME", guiCenterAlign, row5Padding, genericButtonWidth, buttonHeight);
     plusPercentButton.show("+%", guiRightAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
     
-    
     ofPushMatrix();
     ofTranslate(centerX, centerY);
     ofRotateRad(ofDegToRad(encoderPosition) + ofDegToRad(-90));
@@ -63,7 +62,7 @@ void GUI::pageTwoDraw() {
     ofPopMatrix();
 }
 
-void GUI::pageTwoTouchDown(ofTouchEventArgs & touch) {
+void GUI::encoderPageTouchDown(ofTouchEventArgs & touch) {
     minusButton.touchDown(touch);
     plusButton.touchDown(touch);
     fineButton.touchDown(touch, true);
@@ -80,7 +79,7 @@ void GUI::pageTwoTouchDown(ofTouchEventArgs & touch) {
     plusPercentButton.touchDown(touch);
 }
 
-void GUI::pageTwoTouchMoved(ofTouchEventArgs & touch) {
+void GUI::encoderPageTouchMoved(ofTouchEventArgs & touch) {
     if (ofDist(touch.x, touch.y, centerX, centerY) < encoder.getWidth() / 2 || encoderClicked) {
         encoderClicked = true;
         lastPosition = encoderPosition;
@@ -112,7 +111,7 @@ void GUI::pageTwoTouchMoved(ofTouchEventArgs & touch) {
 }
 
 
-void GUI::pageTwoTouchUp(ofTouchEventArgs & touch) {
+void GUI::encoderPageTouchUp(ofTouchEventArgs & touch) {
     minusButton.touchUp(touch);
     plusButton.touchUp(touch);
     flashButton.touchUp(touch);

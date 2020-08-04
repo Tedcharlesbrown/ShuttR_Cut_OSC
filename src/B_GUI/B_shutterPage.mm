@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 
-void GUI::pageOneSetup() {
+void GUI::shutterPageSetup() {
     bgAssembly.load("IMG_bgAssembly.png");
     bgAssembly.resize(assemblyDiameter * 2, assemblyDiameter * 2);
 
@@ -13,13 +13,13 @@ void GUI::pageOneSetup() {
 
 //--------------------------------------------------------------
 
-void GUI::pageOneUpdate() {
-    pageOneButtonAction();
+void GUI::shutterPageUpdate() {
+    shutterPageAction();
 }
 
 //--------------------------------------------------------------
 
-void GUI::pageOneDraw() {
+void GUI::shutterPageDraw() {
     assemblyColor();
     
     angleA.frameDisplay(thrustA.buttonA.position); angleC.frameDisplay(thrustC.buttonC.position); angleB.frameDisplay(thrustB.buttonB.position); angleD.frameDisplay(thrustD.buttonD.position);
@@ -46,7 +46,7 @@ void GUI::pageOneDraw() {
 
 //--------------------------------------------------------------
 
-void GUI::pageOneButtonAction() {
+void GUI::shutterPageAction() {
     if (thrustButton.action) {
         oscSent(ofGetElapsedTimeMillis());
         thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
@@ -140,7 +140,7 @@ void GUI::assemblyBG() {
 
 //--------------------------------------------------------------
 
-void GUI::pageOneTouchDown(ofTouchEventArgs & touch) {
+void GUI::shutterPageTouchDown(ofTouchEventArgs & touch) {
     minusButton.touchDown(touch);
     plusButton.touchDown(touch);
     fineButton.touchDown(touch, true);
@@ -159,7 +159,7 @@ void GUI::pageOneTouchDown(ofTouchEventArgs & touch) {
 
 //--------------------------------------------------------------
 
-void GUI::pageOneTouchMoved(ofTouchEventArgs & touch) {
+void GUI::shutterPageTouchMoved(ofTouchEventArgs & touch) {
     thrustA.touchMoved(touch,fineButton.clicked); thrustB.touchMoved(touch,fineButton.clicked); thrustC.touchMoved(touch,fineButton.clicked); thrustD.touchMoved(touch,fineButton.clicked);
     angleA.touchMoved(touch,fineButton.clicked); angleB.touchMoved(touch,fineButton.clicked); angleC.touchMoved(touch,fineButton.clicked); angleD.touchMoved(touch,fineButton.clicked);
     assembly.touchMoved(touch,fineButton.clicked);
@@ -167,7 +167,7 @@ void GUI::pageOneTouchMoved(ofTouchEventArgs & touch) {
 
 //--------------------------------------------------------------
 
-void GUI::pageOneTouchUp(ofTouchEventArgs & touch) {
+void GUI::shutterPageTouchUp(ofTouchEventArgs & touch) {
     minusButton.touchUp(touch);
     plusButton.touchUp(touch);
     flashButton.touchUp(touch);
@@ -183,7 +183,7 @@ void GUI::pageOneTouchUp(ofTouchEventArgs & touch) {
 
 //--------------------------------------------------------------
 
-void GUI::pageOneDoubleTap(ofTouchEventArgs & touch) {
+void GUI::shutterPageDoubleTap(ofTouchEventArgs & touch) {
     thrustA.touchDoubleTap(touch); thrustB.touchDoubleTap(touch); thrustC.touchDoubleTap(touch); thrustD.touchDoubleTap(touch);
     angleA.touchDoubleTap(touch); angleB.touchDoubleTap(touch); angleC.touchDoubleTap(touch); angleD.touchDoubleTap(touch);
     assembly.touchDoubleTap(touch);

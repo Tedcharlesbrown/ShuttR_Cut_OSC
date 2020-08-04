@@ -41,20 +41,20 @@ public:
     BUTTON shutterPage, encoderPage, directSelectPage, panTiltPage, minusButton, plusButton, fineButton, highButton, flashButton, channelButton;
     
     //--------------------------------------------------------------
-    // MARK: ----------PAGE ONE----------
+    // MARK: ----------SHUTTER PAGE----------
     //--------------------------------------------------------------
     
-    void pageOneSetup();
-    void pageOneUpdate();
-    void pageOneDraw();
-    void pageOneButtonAction();
+    void shutterPageSetup();
+    void shutterPageUpdate();
+    void shutterPageDraw();
+    void shutterPageAction();
     void assemblyColor();
     void assemblyBG();
     
-    void pageOneTouchDown(ofTouchEventArgs & touch);
-    void pageOneTouchMoved(ofTouchEventArgs & touch);
-    void pageOneTouchUp(ofTouchEventArgs & touch);
-    void pageOneDoubleTap(ofTouchEventArgs & touch);
+    void shutterPageTouchDown(ofTouchEventArgs & touch);
+    void shutterPageTouchMoved(ofTouchEventArgs & touch);
+    void shutterPageTouchUp(ofTouchEventArgs & touch);
+    void shutterPageDoubleTap(ofTouchEventArgs & touch);
     
     ofImage bgAssembly;
     THRUST_HANDLE thrustA, thrustB, thrustC, thrustD;
@@ -64,17 +64,32 @@ public:
     BUTTON thrustButton, angleButton, shutterButton;
     
     //--------------------------------------------------------------
-    // MARK: ----------PAGE TWO----------
+    // MARK: ----------PAN TILT PAGE----------
     //--------------------------------------------------------------
     
-    void pageTwoSetup();
-    void pageTwoUpdate();
-    void pageTwoDraw();
+    void panTiltPageSetup();
+    void panTiltPageUpdate();
+    void panTiltPageDraw();
     
-    void pageTwoTouchDown(ofTouchEventArgs & touch);
-    void pageTwoTouchMoved(ofTouchEventArgs & touch);
-    void pageTwoTouchUp(ofTouchEventArgs & touch);
-    void pageTwoDoubleTap(ofTouchEventArgs & touch);
+    void panTiltPageTouchDown(ofTouchEventArgs & touch);
+    void panTiltPageTouchMoved(ofTouchEventArgs & touch);
+    void panTiltPageTouchUp(ofTouchEventArgs & touch);
+    void panTiltPageDoubleTap(ofTouchEventArgs & touch);
+    
+    ofImage panTiltEncoder;
+    
+    //--------------------------------------------------------------
+    // MARK: ----------ENCODER PAGE----------
+    //--------------------------------------------------------------
+    
+    void encoderPageSetup();
+    void encoderPageUpdate();
+    void encoderPageDraw();
+    
+    void encoderPageTouchDown(ofTouchEventArgs & touch);
+    void encoderPageTouchMoved(ofTouchEventArgs & touch);
+    void encoderPageTouchUp(ofTouchEventArgs & touch);
+    void encoderPageDoubleTap(ofTouchEventArgs & touch);
     
     ofImage encoder;
     float encoderPosition, lastPosition = 0;
@@ -84,17 +99,17 @@ public:
     BUTTON irisButton, edgeButton, zoomButton, frostButton, minusPercentButton, homeButton, plusPercentButton;
     
     //--------------------------------------------------------------
-    // MARK: ----------PAGE THREE----------
+    // MARK: ----------DIRECT SELECT PAGE----------
     //--------------------------------------------------------------
     
-    void pageThreeSetup();
-    void pageThreeUpdate();
-    void pageThreeDraw();
+    void DSPageSetup();
+    void DSPageUpdate();
+    void DSPageDraw();
     
-    void pageThreeTouchDown(ofTouchEventArgs & touch);
-    void pageThreeTouchMoved(ofTouchEventArgs & touch);
-    void pageThreeTouchUp(ofTouchEventArgs & touch);
-    void pageThreeDoubleTap(ofTouchEventArgs & touch);
+    void DSPageTouchDown(ofTouchEventArgs & touch);
+    void DSPageTouchMoved(ofTouchEventArgs & touch);
+    void DSPageTouchUp(ofTouchEventArgs & touch);
+    void DSPageDoubleTap(ofTouchEventArgs & touch);
     
     BANK bankOne, bankTwo;
     

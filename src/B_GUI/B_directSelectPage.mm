@@ -1,16 +1,16 @@
 #include "A_ofApp.h"
 
 //--------------------------------------------------------------
-void GUI::pageThreeSetup(){
+void GUI::DSPageSetup(){
     bankOne.setup(); bankTwo.setup();
 }
 //--------------------------------------------------------------
-void GUI::pageThreeUpdate(){
+void GUI::DSPageUpdate(){
     bankOne.update(); bankTwo.update();
 }
 
 //--------------------------------------------------------------
-void GUI::pageThreeDraw(){
+void GUI::DSPageDraw(){
     bankOne.draw("1", row1Padding);
     bankTwo.draw("21", row1Padding * 5.5);
     
@@ -23,21 +23,21 @@ void GUI::pageThreeDraw(){
 }
 
 //--------------------------------------------------------------
-void GUI::pageThreeTouchDown(ofTouchEventArgs & touch){
+void GUI::DSPageTouchDown(ofTouchEventArgs & touch){
     bankOne.touchDown(touch); bankTwo.touchDown(touch);
 }
 
 //--------------------------------------------------------------
-void GUI::pageThreeTouchMoved(ofTouchEventArgs & touch){
+void GUI::DSPageTouchMoved(ofTouchEventArgs & touch){
 
 }
 
 //--------------------------------------------------------------
-void GUI::pageThreeTouchUp(ofTouchEventArgs & touch){
+void GUI::DSPageTouchUp(ofTouchEventArgs & touch){
     bankOne.touchUp(touch); bankTwo.touchUp(touch);
 }
 
 //--------------------------------------------------------------
-void GUI::pageThreeDoubleTap(ofTouchEventArgs & touch){
+void GUI::DSPageDoubleTap(ofTouchEventArgs & touch){
 
 }

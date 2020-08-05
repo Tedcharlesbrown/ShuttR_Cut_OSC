@@ -28,8 +28,9 @@ void GUI::panTiltPageUpdate(){
     }
 
     if (ptEncoder.clicked && ptEncoder.output != 0) {
+        cout << ptEncoder.output << endl;
         oscSent(ofGetElapsedTimeMillis());
-        osc.sendEncoder(_parameter, ptEncoder.output);
+//        osc.sendEncoder(_parameter, ptEncoder.output);
     }
 }
 

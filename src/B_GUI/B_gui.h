@@ -96,6 +96,8 @@ public:
     void encoderPageDraw();
     
     void encoderPageTouchDown(ofTouchEventArgs & touch);
+    ofVec2f extracted();
+    
     void encoderPageTouchMoved(ofTouchEventArgs & touch);
     void encoderPageTouchUp(ofTouchEventArgs & touch);
     void encoderPageDoubleTap(ofTouchEventArgs & touch);

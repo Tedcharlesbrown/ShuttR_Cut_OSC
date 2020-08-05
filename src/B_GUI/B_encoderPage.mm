@@ -57,7 +57,7 @@ void GUI::encoderPageDraw() {
     
     ofPushMatrix();
     ofTranslate(centerX, centerY);
-    ofRotateRad(ofDegToRad(encoderPosition) + ofDegToRad(-90));
+    ofRotateRad(ofDegToRad(encoderPosition) + ofDegToRad(150));
     encoder.draw(- encoder.getWidth() / 2, - encoder.getHeight() / 2);
     ofPopMatrix();
 }
@@ -82,36 +82,52 @@ void GUI::encoderPageTouchDown(ofTouchEventArgs & touch) {
 void GUI::encoderPageTouchMoved(ofTouchEventArgs & touch) {
     if (ofDist(touch.x, touch.y, centerX, centerY) < encoder.getWidth() / 2 || encoderClicked) {
         encoderClicked = true;
-        lastPosition = encoderPosition;
-        encoderPosition = atan2(touch.y - centerY, touch.x - centerX);
-        encoderPosition = ofMap(encoderPosition, -PI, PI, 0, 360);
         
+        ofVec2f center;
+        ofVec2f prevTouch;
+        ofVec2f currentTouch;
+        center.set(centerX, centerY);
+        prevTouch.set(ofGetPreviousMouseX(),ofGetPreviousMouseY());
+        currentTouch.set(touch.x,touch.y);
         
+        ofVec2f oldVector;
+        oldVector = prevTouch - center;
+        float angleOld = oldVector.angle(prevTouch);
         
-        int fineAdjust = 2;
-        if (fineButton.clicked) {
-            fineAdjust = 8;
+        ofVec2f newVector;
+        newVector = currentTouch - center;
+        float angleNew = newVector.angle(currentTouch);
+        
+        encoderPosition = -angleNew; //ROTATE ENCODER
+        
+        float diff = ofDegToRad(angleOld - angleNew);
+
+        if (diff > 1) {
+            diff = 0;
+        } else if (diff>PI) {
+            diff = TWO_PI - diff;
+        } else if (diff<-PI) {
+            diff = TWO_PI + diff;
         }
         
-        int tick = fmod(encoderPosition, fineAdjust);
         int direction = 0;
-        
-        if (encoderPosition > lastPosition) {
+        if (diff > 0) { //CLOCKWISE
+            oscSent(ofGetElapsedTimeMillis());
             direction = 1;
-        } else if (encoderPosition < lastPosition) {
+        } else if (diff < 0) { //COUNTER-CLOCKWISE
+            oscSent(ofGetElapsedTimeMillis());
             direction = -1;
         }
-            
-        if (tick == 0) {
-            if (send) {
-                if (parameter != "form") { //if param is form, don't send.
-                    oscSent(ofGetElapsedTimeMillis());
-                    osc.sendEncoder(parameter, direction);
-                }
-                send = false;
+        
+        if (fineButton.clicked) {
+            if (parameter == "edge") {
+                direction *= 100;
+            } else if (parameter == "zoom") {
+                direction *= 500;
             }
+            osc.sendEncoder("fine/" + parameter, direction);
         } else {
-            send = true;
+            osc.sendEncoder(parameter, direction);
         }
     }
 }

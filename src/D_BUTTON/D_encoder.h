@@ -3,7 +3,7 @@
 
 #include "ofxiOS.h"
 
-class ENCODER : public ofxiOSApp {
+class ENCODER{
     
 public:
     void setup(float size);

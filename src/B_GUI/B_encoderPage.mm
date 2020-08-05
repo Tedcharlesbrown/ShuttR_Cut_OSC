@@ -86,7 +86,9 @@ void GUI::encoderPageTouchMoved(ofTouchEventArgs & touch) {
         encoderPosition = atan2(touch.y - centerY, touch.x - centerX);
         encoderPosition = ofMap(encoderPosition, -PI, PI, 0, 360);
         
-        int fineAdjust = 1;
+        
+        
+        int fineAdjust = 2;
         if (fineButton.clicked) {
             fineAdjust = 8;
         }
@@ -99,13 +101,17 @@ void GUI::encoderPageTouchMoved(ofTouchEventArgs & touch) {
         } else if (encoderPosition < lastPosition) {
             direction = -1;
         }
-        
+            
         if (tick == 0) {
-            if (parameter != "form") { //if param is form, don't send.
-                oscSent(ofGetElapsedTimeMillis());
-                osc.sendEncoder(parameter, direction);
+            if (send) {
+                if (parameter != "form") { //if param is form, don't send.
+                    oscSent(ofGetElapsedTimeMillis());
+                    osc.sendEncoder(parameter, direction);
+                }
+                send = false;
             }
-            tick = -1;
+        } else {
+            send = true;
         }
     }
 }

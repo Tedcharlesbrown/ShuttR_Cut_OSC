@@ -8,22 +8,28 @@ void GUI::panTiltPageSetup(){
 }
 //--------------------------------------------------------------
 void GUI::panTiltPageUpdate(){
-    string parameter = "";
+    string _parameter = "";
     if (panButton.action && panButton.clicked) {
         panButton.clicked = true; tiltButton.clicked = false;
         panButton.action = false;
-        panTiltShow = "PAN"; //parameter = "iris";
+        panTiltShow = "PAN";
     } else if (tiltButton.action && tiltButton.clicked) {
         panButton.clicked = false; tiltButton.clicked = true;
         tiltButton.action = false;
-        panTiltShow = "TILT"; //parameter = "edge";
+        panTiltShow = "TILT";
     } else if (!panButton.clicked && !tiltButton.clicked) {
-        panTiltShow = "FOCUS"; //parameter = "edge";
+        panTiltShow = "FOCUS";
+    }
+    
+    if (panButton.clicked) {
+        _parameter = "pan";
+    } else if (tiltButton.clicked) {
+        _parameter = "tilt";
     }
 
-    if (ptEncoder.clicked) {
+    if (ptEncoder.clicked && ptEncoder.output != 0) {
         oscSent(ofGetElapsedTimeMillis());
-        osc.sendEncoder(parameter, ptEncoder.output);
+        osc.sendEncoder(_parameter, ptEncoder.output);
     }
 }
 

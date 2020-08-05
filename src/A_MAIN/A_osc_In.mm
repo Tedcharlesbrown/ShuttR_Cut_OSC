@@ -59,10 +59,19 @@ void ofApp::oscEvent() {
             parseChannel(m.getArgAsString(0));
             return;
         }
+        // ----------------------- GET PAN TILT DATA -----------------------
+        if (m.getAddress() == "/eos/out/pantilt") {
+            if (m.getNumArgs() > 0) {
+                int panPercent = m.getArgAsFloat(4);
+                int tiltPercent = m.getArgAsFloat(5);
+                gui.panPercent = ofToString(panPercent) + " %";
+                gui.tiltPercent = ofToString(tiltPercent) + " %";
+            }
+            return;
+        }
         // ----------------------- GET ALL WHEEL PARAMS -----------------------
         for (int i = 0; i < 200; i++) {
             if (m.getAddress() == "/eos/out/active/wheel/" + ofToString(i)) {
-                //cout << ofToString(m).size() << endl;
                 if (ofToString(m).size() > 32) { //IF NO CHANNEL SELECTED, DONT PARSE WHEEL
                     parseWheel(m.getArgAsString(0));
                 }

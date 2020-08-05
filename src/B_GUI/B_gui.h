@@ -103,6 +103,7 @@ public:
     ofImage encoder;
     float encoderPosition, lastPosition = 0;
     bool encoderClicked = false;
+    bool send = false;
     string irisPercent, edgePercent, zoomPercent, frostPercent, parameter, parameterShow = "";
     
     BUTTON irisButton, edgeButton, zoomButton, frostButton, minusPercentButton, homeButton, plusPercentButton;

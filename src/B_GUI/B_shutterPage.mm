@@ -15,20 +15,29 @@ void GUI::shutterPageSetup() {
 
 void GUI::shutterPageUpdate() {
     if (thrustButton.action) {
-        thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
-        osc.sendShutterHome("THRUST");
+        if (noneSelected) {
+            thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
+        } else {
+            osc.sendShutterHome("THRUST");
+        }
         thrustButton.action = false;
     }
     if (angleButton.action) {
-        angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
-        osc.sendShutterHome("ANGLE");
+        if (noneSelected) {
+            angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
+        } else {
+            osc.sendShutterHome("ANGLE");
+        }
         angleButton.action = false;
     }
     if (shutterButton.action) {
-        angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
-        thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
-        assembly.frameX = assembly.defaultX;
-        osc.sendShutterHome("SHUTTER");
+        if (noneSelected) {
+            angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
+            thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
+            assembly.frameX = assembly.defaultX;
+        } else {
+            osc.sendShutterHome("SHUTTER");
+        }
         shutterButton.action = false;
     }
 }

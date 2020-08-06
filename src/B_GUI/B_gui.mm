@@ -30,7 +30,6 @@ void GUI::update() {
         ignoreOSC = false;
     } else {
         oscSendLight = true;
-        ignoreOSC = true;
     }
     if (ofGetElapsedTimeMillis() > oscReceivedTime + 200) {
         oscReceiveLight = false;
@@ -202,7 +201,15 @@ void GUI::draw() {
         fineButton.show("FINE",guiLeftAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE");
         highButton.show("HIGH",guiCenterAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE");
         flashButton.show("FLASH",guiRightAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE");
-        channelButton.show(selectedChannel, centerX,row1Padding, activeChannelWidth, buttonHeight, "LARGE");
+        
+        if (selectedChannel.length() <= 10) {
+            channelButton.show(selectedChannel, centerX,row1Padding, activeChannelWidth, buttonHeight, "LARGE");
+        } else if (selectedChannel.length() > 10 && selectedChannel.length() < 15) {
+            channelButton.show(selectedChannel, centerX,row1Padding, activeChannelWidth, buttonHeight, "MEDIUM");
+        } else if (selectedChannel.length() >= 15) {
+            channelButton.show(selectedChannel, centerX,row1Padding, activeChannelWidth, buttonHeight, "SMALL");
+        }
+        
         fontTiny.drawString(channel, centerX - fontTiny.stringWidth(channel) / 2, row1Padding - buttonHeight / 2 - fontTiny.stringHeight(channel) / 2);
     }
     keyboard.draw();

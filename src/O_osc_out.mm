@@ -92,6 +92,7 @@ void OSC::sendFlash(string parameter) {
 
 void OSC::sendShutter(string parameter, string ID, int message) {
     oscSentTime = ofGetElapsedTimeMillis();
+    ignoreOSC = true;
     
     ofxOscMessage m;
     if (parameter == "THRUST") {
@@ -117,17 +118,18 @@ void OSC::sendShutterHome(string parameter) {
             b.setAddress("/eos/user/" + inputID + "/param/frame thrust b/home");
             c.setAddress("/eos/user/" + inputID + "/param/frame thrust c/home");
             d.setAddress("/eos/user/" + inputID + "/param/frame thrust d/home");
+            sender.sendMessage(a, false); sender.sendMessage(b, false); sender.sendMessage(c, false); sender.sendMessage(d, false);
         } else if (parameter == "ANGLE") {
             a.setAddress("/eos/user/" + inputID + "/param/frame angle a/home");
             b.setAddress("/eos/user/" + inputID + "/param/frame angle b/home");
             c.setAddress("/eos/user/" + inputID + "/param/frame angle c/home");
             d.setAddress("/eos/user/" + inputID + "/param/frame angle d/home");
+            sender.sendMessage(a, false); sender.sendMessage(b, false); sender.sendMessage(c, false); sender.sendMessage(d, false);
         } else if (parameter == "SHUTTER") {
             a.setAddress("/eos/user/" + inputID + "/param/shutter/home");
-            b.setAddress("/eos/user/" + inputID + "/param/shutter/home");
-            c.setAddress("/eos/user/" + inputID + "/param/shutter/home");
-            d.setAddress("/eos/user/" + inputID + "/param/shutter/home");
+            sender.sendMessage(a, false);
         }
+        //a.addStringArg(""); b.addStringArg(""); c.addStringArg(""); d.addStringArg("");
         sender.sendMessage(a, false); sender.sendMessage(b, false); sender.sendMessage(c, false); sender.sendMessage(d, false);
     }
 }

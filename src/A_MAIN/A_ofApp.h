@@ -52,9 +52,12 @@ public:
     string message;
     //----------------------------------------------------
     
+    string multiChannelPrefix = "";
+    
     ofxOscReceiver receiver;
     string listenTargets[14];
     bool hasTargets[14];
+    bool hasPanTilt = false;
     
     //----------------------------------------------------
     

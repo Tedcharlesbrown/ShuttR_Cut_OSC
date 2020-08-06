@@ -2,9 +2,7 @@
 
 //--------------------------------------------------------------
 void GUI::panTiltPageSetup(){
-    ptEncoder.setup(assemblyDiameter / 1.25);
-//    panTiltEncoder.load("Encoder.png");
-//    panTiltEncoder.resize(assemblyDiameter / 1.25, assemblyDiameter / 1.25);
+    focusEncoder.setup(assemblyDiameter / 1.25);
 }
 //--------------------------------------------------------------
 void GUI::panTiltPageUpdate(){
@@ -12,25 +10,24 @@ void GUI::panTiltPageUpdate(){
     if (panButton.action && panButton.clicked) {
         panButton.clicked = true; tiltButton.clicked = false;
         panButton.action = false;
-        panTiltShow = "PAN";
+        panTiltShow = "PAN"; focusEncoder.update("pan"); focusParameter = "pan";
     } else if (tiltButton.action && tiltButton.clicked) {
         panButton.clicked = false; tiltButton.clicked = true;
         tiltButton.action = false;
-        panTiltShow = "TILT";
+        panTiltShow = "TILT"; focusEncoder.update("tilt"); focusParameter = "tilt";
     } else if (!panButton.clicked && !tiltButton.clicked) {
-        panTiltShow = "FOCUS";
+        panTiltShow = "FOCUS"; focusEncoder.update("focus"); focusParameter = "focus";
     }
     
-    if (panButton.clicked) {
-        ptEncoder.update("pan");
-//        _parameter = "pan";
-    } else if (tiltButton.clicked) {
-        ptEncoder.update("tilt");
-//        _parameter = "tilt";
-    }
-
-    if (ptEncoder.clicked && ptEncoder.output != 0) {
-
+    if (minusPercentButton.action && focusParameter != "focus") { //if param is focus, don't send.
+        osc.sendEncoderPercent(focusParameter, -1);
+        minusPercentButton.action = false;
+    } else if (homeButton.action) {
+        osc.sendEncoderPercent(focusParameter, 0);
+        homeButton.action = false;
+    } else if (plusPercentButton.action && focusParameter != "focus") { //if param is focus, don't send.
+        osc.sendEncoderPercent(focusParameter, 1);
+        plusPercentButton.action = false;
     }
 }
 
@@ -44,7 +41,7 @@ void GUI::panTiltPageDraw(){
     homeButton.show(panTiltShow, "HOME", guiCenterAlign, row5Padding, genericButtonWidth, buttonHeight);
     plusPercentButton.show("+%", guiRightAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
     
-    ptEncoder.draw(centerX, centerY);
+    focusEncoder.draw(centerX, centerY);
 }
 
 //--------------------------------------------------------------
@@ -59,12 +56,16 @@ void GUI::panTiltPageTouchDown(ofTouchEventArgs & touch){
     panButton.touchDown(touch, true);
     tiltButton.touchDown(touch, true);
     
-    ptEncoder.touchDown(touch);
+    minusPercentButton.touchDown(touch);
+    homeButton.touchDown(touch);
+    plusPercentButton.touchDown(touch);
+    
+    focusEncoder.touchDown(touch);
 }
 
 //--------------------------------------------------------------
 void GUI::panTiltPageTouchMoved(ofTouchEventArgs & touch){
-    ptEncoder.touchMoved(touch, fineButton.clicked);
+    focusEncoder.touchMoved(touch, fineButton.clicked);
 }
 
 //--------------------------------------------------------------
@@ -77,7 +78,11 @@ void GUI::panTiltPageTouchUp(ofTouchEventArgs & touch){
     angleButton.touchUp(touch);
     shutterButton.touchUp(touch);
     
-    ptEncoder.touchUp(touch);
+    minusPercentButton.touchUp(touch);
+    homeButton.touchUp(touch);
+    plusPercentButton.touchUp(touch);
+    
+    focusEncoder.touchUp(touch);
 }
 
 //--------------------------------------------------------------

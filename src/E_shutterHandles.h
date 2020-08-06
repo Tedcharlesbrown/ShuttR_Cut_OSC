@@ -28,7 +28,6 @@ public:
     bool clicked = false;
     bool doubleClicked = false;
     
-    
 private:
 };
 

@@ -6,13 +6,13 @@
 
 void THRUST_HANDLE::setup(string _ID) {
     this-> ID = _ID;
-    if (ID == "A") {
+    if (ID == "a") {
         rotateOffset = ofDegToRad(-90);
-    } else if (ID == "B") {
+    } else if (ID == "b") {
         rotateOffset = ofDegToRad(0);
-    } else if (ID == "C") {
+    } else if (ID == "c") {
         rotateOffset = ofDegToRad(90);
-    } else if (ID == "D") {
+    } else if (ID == "d") {
         rotateOffset = ofDegToRad(180);
     }
 }
@@ -20,22 +20,22 @@ void THRUST_HANDLE::setup(string _ID) {
 void THRUST_HANDLE::update() {
     _thrustDiameter = thrustDiameter * 1.5;
     ofPushMatrix();
-    if (this-> ID == "A") {
+    if (this-> ID == "a") {
         this-> sliderX = centerX + cos(ofDegToRad(rotation) + (rotateOffset))  * buttonA.position * _thrustDiameter;
         this-> sliderY = centerY + sin(ofDegToRad(rotation) + (rotateOffset))  * buttonA.position * _thrustDiameter;
         ofTranslate(0,- buttonA.position * _thrustDiameter);
         buttonA.draw(this-> ID, (rotateOffset));
-    } else if (this-> ID == "B") {
+    } else if (this-> ID == "b") {
         this-> sliderX = centerX + cos(ofDegToRad(rotation) + (rotateOffset)) * buttonB.position * _thrustDiameter;
         this-> sliderY = centerY + sin(ofDegToRad(rotation) + (rotateOffset)) * buttonB.position * _thrustDiameter;
         ofTranslate(buttonB.position * _thrustDiameter,0);
         buttonB.draw(this-> ID, (rotateOffset));
-    } else if (this-> ID == "C") {
+    } else if (this-> ID == "c") {
         this-> sliderX = centerX + cos(ofDegToRad(rotation) + (rotateOffset)) * buttonC.position * _thrustDiameter;
         this-> sliderY = centerY + sin(ofDegToRad(rotation) + (rotateOffset)) * buttonC.position * _thrustDiameter;
         ofTranslate(0,buttonC.position * _thrustDiameter);
         buttonC.draw(this-> ID, (rotateOffset));
-    } else if (this-> ID == "D") {
+    } else if (this-> ID == "d") {
         this-> sliderX = centerX + cos(ofDegToRad(rotation) + (rotateOffset)) * buttonD.position * _thrustDiameter;
         this-> sliderY = centerY + sin(ofDegToRad(rotation) + (rotateOffset)) * buttonD.position * _thrustDiameter;
         ofTranslate(- buttonD.position * _thrustDiameter, 0);
@@ -64,13 +64,13 @@ void THRUST_HANDLE::touchMoved(ofTouchEventArgs & touch, bool fine){
         //                buttonC.addOffset(ofMap(this-> diff, 0, _thrustDiameter, 0, 1));
         //            }
         //        }
-        if (this-> ID == "A") {
+        if (this-> ID == "a") {
             buttonA.addOffset(ofMap(this-> diff, 0, _thrustDiameter, 0, 1));
-        } else if (this-> ID == "B") {
+        } else if (this-> ID == "b") {
             buttonB.addOffset(ofMap(this-> diff, 0, _thrustDiameter, 0, 1));
-        } else if (this-> ID == "C") {
+        } else if (this-> ID == "c") {
             buttonC.addOffset(ofMap(this-> diff, 0, _thrustDiameter, 0, 1));
-        } else if (this-> ID == "D") {
+        } else if (this-> ID == "d") {
             buttonD.addOffset(ofMap(this-> diff, 0, _thrustDiameter, 0, 1));
         }
     }
@@ -86,18 +86,22 @@ void THRUST_HANDLE::touchUp(ofTouchEventArgs & touch){
 void THRUST_HANDLE::touchDoubleTap(ofTouchEventArgs & touch){
     if (ofDist(touch.x, touch.y, this-> sliderX, this-> sliderY) < clickRadius) {
         this-> doubleClicked = true;
-        if (ID == "A") {
+        if (ID == "a") {
             buttonA.position = 1;
             buttonA.output = 0;
-        } else if (ID == "B") {
+            buttonA.osc.sendShutter("THRUST", ID, 0);
+        } else if (ID == "b") {
             buttonB.output = 0;
             buttonB.position = 1;
-        } else if (ID == "C") {
+            buttonB.osc.sendShutter("THRUST", ID, 0);
+        } else if (ID == "c") {
             buttonC.position = 1;
             buttonC.output = 0;
-        } else if (ID == "D") {
+            buttonC.osc.sendShutter("THRUST", ID, 0);
+        } else if (ID == "d") {
             buttonD.position = 1;
             buttonD.output = 0;
+            buttonD.osc.sendShutter("THRUST", ID, 0);
         }
     }
 }
@@ -110,6 +114,17 @@ void THRUST_BUTTON::draw(string _ID, float _rotateAngle) {
     this-> ID = _ID;
     this-> rotateAngle = _rotateAngle;
     
+    string showID = "";
+    if (_ID == "a") {
+        showID = "A";
+    } else if (_ID == "b") {
+        showID = "B";
+    } else if (_ID == "c") {
+        showID = "C";
+    } else if (_ID == "d") {
+        showID = "D";
+    }
+    
     ofSetColor(shutterFrameStroke);
     ofDrawCircle(0,0,clickRadius);
     ofSetColor(EOSBlue);
@@ -118,13 +133,15 @@ void THRUST_BUTTON::draw(string _ID, float _rotateAngle) {
     ofRotateDeg(-rotateAngle-rotation);
     
     ofSetColor(white);
-    fontMedium.drawString(this-> ID, - fontMedium.stringWidth(ID) / 2, - (fontSmall.stringHeight(ID) / 2) + clickRadius / 2);
+    fontMedium.drawString(showID, - fontMedium.stringWidth(showID) / 2, - (fontSmall.stringHeight(showID) / 2) + clickRadius / 2);
 }
 
 void THRUST_BUTTON::addOffset(float _diff) {
     float topLimit = clickDiameter / assemblyRadius;
     position = ofClamp(position + _diff, topLimit, 1);
     output = ofMap(position,topLimit,1,100,0);
+    
+    osc.sendShutter("THRUST", ID, output);
 }
 
 void THRUST_BUTTON::angleLimit(float _angleRotateLimit){
@@ -269,13 +286,13 @@ void THRUST_BUTTON::angleLimit(float _angleRotateLimit){
 
 void ANGLE_HANDLE::setup(string _ID) {
     this-> ID = _ID;
-    if (ID == "A") {
+    if (ID == "a") {
         rotateOffset = ofDegToRad(-90);
-    } else if (ID == "B") {
+    } else if (ID == "b") {
         rotateOffset = ofDegToRad(0);
-    } else if (ID == "C") {
+    } else if (ID == "c") {
         rotateOffset = ofDegToRad(90);
-    } else if (ID == "D") {
+    } else if (ID == "d") {
         rotateOffset = ofDegToRad(180);
     }
     magicNumber = clickRadius / 5.5; //THIS MAGIC NUMBER MUST BE FOUND
@@ -291,18 +308,18 @@ void ANGLE_HANDLE::update() {
     this-> x = centerX + rotateX * assemblyRadius;
     this-> y = centerY + rotateY * assemblyRadius;
     
-    if (this-> ID == "A") {
+    if (this-> ID == "a") {
         ofTranslate(0, -assemblyRadius);
-        buttonA.draw("A", rotateAngle);
-    } else if (this-> ID == "B") {
+        buttonA.draw("a", rotateAngle);
+    } else if (this-> ID == "b") {
         ofTranslate(assemblyRadius, 0);
-        buttonB.draw("B", rotateAngle);
-    } else if (this-> ID == "C") {
+        buttonB.draw("b", rotateAngle);
+    } else if (this-> ID == "c") {
         ofTranslate(0, assemblyRadius);
-        buttonC.draw("C", rotateAngle);
-    } else if (this-> ID == "D") {
+        buttonC.draw("c", rotateAngle);
+    } else if (this-> ID == "d") {
         ofTranslate(-assemblyRadius, 0);
-        buttonD.draw("D", rotateAngle);
+        buttonD.draw("d", rotateAngle);
     }
     ofPopMatrix();
     
@@ -320,13 +337,13 @@ void ANGLE_HANDLE::frameDisplay(float _thrust) {
     
     ofRotateDeg(rotateAngleReal + rotation);
     
-    if (this-> ID == "A") {
+    if (this-> ID == "a") {
         buttonA.frameShow(_thrust);
-    } else if (this-> ID == "B") {
+    } else if (this-> ID == "b") {
         buttonB.frameShow(_thrust);
-    } else if (this-> ID == "C") {
+    } else if (this-> ID == "c") {
         buttonC.frameShow(_thrust);
-    } else if (this-> ID == "D") {
+    } else if (this-> ID == "d") {
         buttonD.frameShow(_thrust);
     }
     ofPopMatrix();
@@ -361,14 +378,18 @@ void ANGLE_HANDLE::touchMoved(ofTouchEventArgs & touch, bool fine){
             fineAdjust = 20;
         }
         
-        if (ID == "A") {
+        if (ID == "a") {
             rotateAngle += (cos(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX()) + sin(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY())) / fineAdjust;
-        } else if (ID == "B") {
+            osc.sendShutter("ANGLE", ID, anglePercent);
+        } else if (ID == "b") {
             rotateAngle += (cos(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY()) + sin(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX())) / fineAdjust;
-        } else if (ID == "C") {
+            osc.sendShutter("ANGLE", ID, anglePercent);
+        } else if (ID == "c") {
             rotateAngle -= (cos(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX()) + sin(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY())) / fineAdjust;
-        } else if (ID == "D") {
+            osc.sendShutter("ANGLE", ID, anglePercent);
+        } else if (ID == "d") {
             rotateAngle -= (cos(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY()) + sin(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX())) / fineAdjust;
+            osc.sendShutter("ANGLE", ID, anglePercent);
         }
     }
     calculateAngle();
@@ -386,6 +407,8 @@ void ANGLE_HANDLE::touchDoubleTap(ofTouchEventArgs & touch){
     if (ofDist(touch.x, touch.y, x, y) < clickRadius) {
         this-> doubleClicked = true;
         rotateAngle = 0;
+        
+        osc.sendShutter("ANGLE", ID, anglePercent);
     }
 }
 
@@ -397,6 +420,17 @@ void ANGLE_BUTTON::draw(string _ID, float _rotateAngle) {
     this-> ID = _ID;
     this-> rotateAngle = _rotateAngle;
     
+    string showID = "";
+    if (_ID == "a") {
+        showID = "A";
+    } else if (_ID == "b") {
+        showID = "B";
+    } else if (_ID == "c") {
+        showID = "C";
+    } else if (_ID == "d") {
+        showID = "D";
+    }
+    
     ofSetColor(shutterFrameStroke);
     ofDrawCircle(0,0,clickRadius);
     ofSetColor(EOSBlue);
@@ -405,7 +439,7 @@ void ANGLE_BUTTON::draw(string _ID, float _rotateAngle) {
     ofRotateDeg(-rotateAngle-rotation);
     
     ofSetColor(white);
-    fontMedium.drawString(this-> ID, - fontMedium.stringWidth(ID) / 2, - (fontSmall.stringHeight(ID) / 2) + clickRadius / 2);
+    fontMedium.drawString(showID, - fontMedium.stringWidth(showID) / 2, - (fontSmall.stringHeight(showID) / 2) + clickRadius / 2);
 }
 
 void ANGLE_BUTTON::frameShow(float _thrust) {
@@ -416,25 +450,25 @@ void ANGLE_BUTTON::frameShow(float _thrust) {
     float shutterWidth = assemblyDiameter + outsideWeight * 2;
     float shutterHeight = assemblyRadius + outsideWeight;
     
-    if (ID == "A") {
+    if (ID == "a") {
         ofTranslate(0, - assemblyDiameter + assemblyRadius / 2);
         ofSetColor(shutterFrameStroke);
         ofDrawRectangle(0, assemblyRadius * thrustOffset, shutterWidth, shutterHeight);
         ofSetColor(shutterFrameFill);
         ofDrawRectangle(0, assemblyRadius * thrustOffset, shutterWidth - shutterStrokeWeight, shutterHeight - shutterStrokeWeight);
-    } else if (ID == "B") {
+    } else if (ID == "b") {
         ofTranslate(assemblyDiameter - assemblyRadius / 2, 0);
         ofSetColor(shutterFrameStroke);
         ofDrawRectangle(-assemblyRadius * thrustOffset, 0, shutterHeight, shutterWidth);
         ofSetColor(shutterFrameFill);
         ofDrawRectangle(-assemblyRadius * thrustOffset, 0, shutterHeight - shutterStrokeWeight, shutterWidth - shutterStrokeWeight);
-    } else if (ID == "C") {
+    } else if (ID == "c") {
         ofTranslate(0, assemblyDiameter - assemblyRadius / 2);
         ofSetColor(shutterFrameStroke);
         ofDrawRectangle(0, -assemblyRadius * thrustOffset, shutterWidth, shutterHeight);
         ofSetColor(shutterFrameFill);
         ofDrawRectangle(0, -assemblyRadius * thrustOffset, shutterWidth - shutterStrokeWeight, shutterHeight - shutterStrokeWeight);
-    } else if (ID == "D") {
+    } else if (ID == "d") {
         ofTranslate(- assemblyDiameter + assemblyRadius / 2, 0);
         ofSetColor(shutterFrameStroke);
         ofDrawRectangle(assemblyRadius * thrustOffset, 0, shutterHeight, shutterWidth);
@@ -509,6 +543,7 @@ void ASSEMBLY_HANDLE::touchMoved(ofTouchEventArgs & touch, bool fine){
             frameX += (touch.x - ofGetPreviousMouseX());
         }
         output = ofMap(frameX, botLimit, topLimit, -50, 50);
+        osc.sendShutter("ASSEMBLY", "", output);
     }
 }
 
@@ -527,6 +562,7 @@ void ASSEMBLY_HANDLE::touchDoubleTap(ofTouchEventArgs & touch){
         rotation = 0;
         frameX = defaultX;
         output = 0;
+        osc.sendShutter("ASSEMBLY", "", output);
     }
 }
 

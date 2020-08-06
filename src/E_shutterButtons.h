@@ -38,7 +38,5 @@ public:
     string ID;
     float rotateAngle;
     
-    OSC osc;
-    
 private:
 };

@@ -65,16 +65,18 @@ void ENCODER::touchMoved(ofTouchEventArgs & touch, bool fine){
         } else {
             output = 0;
         }
-    
-        if (fine) {
-            if (parameter == "edge" || parameter == "pan" || parameter == "tilt") {
-                output *= 100;
-            } else if (parameter == "zoom") {
-                output *= 500;
+
+        if (parameter != "form" && parameter != "focus") {
+            if (fine) {
+                if (parameter == "edge" || parameter == "pan" || parameter == "tilt") {
+                    output *= 100;
+                } else if (parameter == "zoom") {
+                    output *= 500;
+                }
+                osc.sendEncoder("fine/" + parameter, output);
+            } else {
+                osc.sendEncoder(parameter, output);
             }
-            osc.sendEncoder("fine/" + parameter, output);
-        } else {
-            osc.sendEncoder(parameter, output);
         }
     }
 }

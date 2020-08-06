@@ -47,7 +47,6 @@ public:
     void shutterPageSetup();
     void shutterPageUpdate();
     void shutterPageDraw();
-    void shutterPageAction();
     void assemblyColor();
     void assemblyBG();
     
@@ -76,13 +75,10 @@ public:
     void panTiltPageTouchUp(ofTouchEventArgs & touch);
     void panTiltPageDoubleTap(ofTouchEventArgs & touch);
     
-    ENCODER ptEncoder;
-    
-    ofImage panTiltEncoder;
-    
+    ENCODER focusEncoder;
     float ptEncoderPosition, ptLastPosition = 0;
     bool ptEncoderClicked = false;
-    string panPercent, tiltPercent, panTiltShow = "";
+    string panPercent, tiltPercent, focusParameter, panTiltShow = "";
     
     BUTTON panButton, tiltButton;
     
@@ -95,17 +91,15 @@ public:
     void encoderPageDraw();
     
     void encoderPageTouchDown(ofTouchEventArgs & touch);
-    ofVec2f extracted();
-    
     void encoderPageTouchMoved(ofTouchEventArgs & touch);
     void encoderPageTouchUp(ofTouchEventArgs & touch);
     void encoderPageDoubleTap(ofTouchEventArgs & touch);
     
-    ofImage encoder;
+    ENCODER formEncoder;
     float encoderPosition, lastPosition = 0;
     bool encoderClicked = false;
     bool send = false;
-    string irisPercent, edgePercent, zoomPercent, frostPercent, parameter, parameterShow = "";
+    string irisPercent, edgePercent, zoomPercent, frostPercent, formParameter, parameterShow = "";
     
     BUTTON irisButton, edgeButton, zoomButton, frostButton, minusPercentButton, homeButton, plusPercentButton;
     
@@ -155,10 +149,6 @@ public:
     
     //----------------------------------------------------
     
-    void oscSent(int time);
-    void oscEvent(int time);
-    
-    int sentTime, receivedTime;
     bool oscSendLight = false;
     bool oscReceiveLight = false;
     

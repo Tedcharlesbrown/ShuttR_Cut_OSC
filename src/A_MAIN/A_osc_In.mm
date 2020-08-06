@@ -223,10 +223,7 @@ void ofApp::parseChannel(string incomingOSC) {
 
 void ofApp::connect() {
     IPAddress = getIPAddress();
-    gui.osc.sender.setup(inputIP, ofToInt(inputTX));
-    receiver.setup(ofToInt(inputRX));
+    gui.osc.connect();
+    gui.osc.receiver.setup(ofToInt(inputRX));
     connectRequest = false;
-    
-    gui.osc.sendPing();
-    gui.osc.fineEncoder(0); //SET DEFAULT ENCODER TO COURSE
 }

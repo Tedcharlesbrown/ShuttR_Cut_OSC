@@ -6,8 +6,8 @@ void ENCODER::setup(float _size){
     encoder.resize(_size, _size);
 }
 //--------------------------------------------------------------
-void ENCODER::update(){
-    
+void ENCODER::update(string _parameter){
+    this-> parameter = _parameter;
 }
 
 //--------------------------------------------------------------
@@ -65,7 +65,8 @@ void ENCODER::touchMoved(ofTouchEventArgs & touch, bool fine){
         } else {
             output = 0;
         }
-            
+    
+        osc.sendEncoder(parameter, output);
     }
 }
 

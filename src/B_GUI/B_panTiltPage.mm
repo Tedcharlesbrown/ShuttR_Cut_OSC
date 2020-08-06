@@ -22,15 +22,15 @@ void GUI::panTiltPageUpdate(){
     }
     
     if (panButton.clicked) {
-        _parameter = "pan";
+        ptEncoder.update("pan");
+//        _parameter = "pan";
     } else if (tiltButton.clicked) {
-        _parameter = "tilt";
+        ptEncoder.update("tilt");
+//        _parameter = "tilt";
     }
 
     if (ptEncoder.clicked && ptEncoder.output != 0) {
-        cout << ptEncoder.output << endl;
-        oscSent(ofGetElapsedTimeMillis());
-//        osc.sendEncoder(_parameter, ptEncoder.output);
+
     }
 }
 

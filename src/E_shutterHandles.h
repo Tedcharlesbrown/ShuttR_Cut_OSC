@@ -4,6 +4,8 @@
 #include "A0_globals.h"
 #include "E_shutterButtons.h"
 
+#include "O_osc.h"
+
 //--------------------------------------------------------------
 // MARK: ----------THRUST_HANDLE----------
 //--------------------------------------------------------------
@@ -25,7 +27,6 @@ public:
     string ID;
     bool clicked = false;
     bool doubleClicked = false;
-    
     
 private:
 };
@@ -56,6 +57,7 @@ public:
     bool clicked = false;
     bool doubleClicked = false;
     
+    OSC osc;
     
 private:
 };
@@ -80,6 +82,8 @@ public:
     float frameX, frameY, defaultX, botLimit, topLimit, output;
     bool clicked = false;
     bool doubleClicked = false;
+    
+    OSC osc;
     
 private:
 };

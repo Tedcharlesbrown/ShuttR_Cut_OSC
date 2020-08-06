@@ -25,12 +25,17 @@ void GUI::update() {
         DSPageUpdate();
     }
     
-    if (ofGetElapsedTimeMillis() > sentTime + 200) {
+    if (ofGetElapsedTimeMillis() > oscSentTime + 200) {
         oscSendLight = false;
         ignoreOSC = false;
+    } else {
+        oscSendLight = true;
+        ignoreOSC = true;
     }
-    if (ofGetElapsedTimeMillis() > receivedTime + 200) {
+    if (ofGetElapsedTimeMillis() > oscReceivedTime + 200) {
         oscReceiveLight = false;
+    } else {
+        oscReceiveLight = true;
     }
     //--------------------------------------------------------------
     
@@ -39,22 +44,18 @@ void GUI::update() {
     //--------------------------------------------------------------
     
     if (minusButton.action) {
-        oscSent(ofGetElapsedTimeMillis());
         osc.sendChannel("last");
         minusButton.action = false;
     }
     if (plusButton.action) {
-        oscSent(ofGetElapsedTimeMillis());
         osc.sendChannel("next");
         plusButton.action = false;
     }
     if (highButton.action) {
-        oscSent(ofGetElapsedTimeMillis());
         osc.sendHigh();
         highButton.action = false;
     }
     if (flashButton.action) {
-        oscSent(ofGetElapsedTimeMillis());
         if (channelIntensity >= 90) {
             osc.sendFlash("FLASH_OFF");
         } else {
@@ -90,7 +91,6 @@ void GUI::update() {
             if (selectedChannel == "") {
                 selectedChannel = oldChannel;
             } else {
-                oscSent(ofGetElapsedTimeMillis());
                 noneSelected = false;
                 osc.sendChannelNumber(selectedChannel);
             }
@@ -283,19 +283,4 @@ void GUI::touchDoubleTap(ofTouchEventArgs & touch){
 //--------------------------------------------------------------
 void GUI::touchCancelled(ofTouchEventArgs & touch){
     
-}
-
-
-//--------------------------------------------------------------
-
-
-void GUI::oscSent(int _sentTime){
-    sentTime = _sentTime;
-    oscSendLight = true;
-}
-
-
-void GUI::oscEvent(int _receivedTime) {
-    receivedTime = _receivedTime;
-    oscReceiveLight = true;
 }

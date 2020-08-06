@@ -6,8 +6,8 @@ void ENCODER::setup(float _size){
     encoder.resize(_size, _size);
 }
 //--------------------------------------------------------------
-void ENCODER::update(){
-    
+void ENCODER::update(string _parameter){
+    this-> parameter = _parameter;
 }
 
 //--------------------------------------------------------------
@@ -65,7 +65,19 @@ void ENCODER::touchMoved(ofTouchEventArgs & touch, bool fine){
         } else {
             output = 0;
         }
-            
+
+        if (parameter != "form" && parameter != "focus") {
+            if (fine) {
+                if (parameter == "edge" || parameter == "pan" || parameter == "tilt") {
+                    output *= 100;
+                } else if (parameter == "zoom") {
+                    output *= 500;
+                }
+                osc.sendEncoder("fine/" + parameter, output);
+            } else {
+                osc.sendEncoder(parameter, output);
+            }
+        }
     }
 }
 

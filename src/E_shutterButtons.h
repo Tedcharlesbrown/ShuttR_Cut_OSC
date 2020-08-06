@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofxiOS.h"
+#include "O_osc.h"
 
 //--------------------------------------------------------------
 // MARK: ----------THRUST_BUTTON----------
@@ -17,8 +18,10 @@ public:
     string ID;
     float rotateAngle;
     float output;
-private:
     
+    OSC osc;
+    
+private:
 };
 
 //--------------------------------------------------------------
@@ -34,6 +37,6 @@ public:
     float position = 1; // The position of the slider between 0 and 1
     string ID;
     float rotateAngle;
-private:
     
+private:
 };

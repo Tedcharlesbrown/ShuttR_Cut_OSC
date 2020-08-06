@@ -25,9 +25,11 @@ public:
     void sendAngle(string parameter, int message);
     void sendShutterHome(string parameter);
     
-    
     ofxOscSender sender;
-    ofxOscReceiver receiver;
+    
+    void connect() {
+        sender.setup(inputIP, ofToInt(inputTX));
+    }
     
 private:
 };

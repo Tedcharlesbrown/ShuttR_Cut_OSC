@@ -3,8 +3,7 @@
 //--------------------------------------------------------------
 
 void GUI::encoderPageSetup() {
-    encoder.load("Encoder.png");
-    encoder.resize(assemblyDiameter / 1.25, assemblyDiameter / 1.25);
+    formEncoder.setup(assemblyDiameter / 1.25);
 }
 
 //--------------------------------------------------------------
@@ -13,34 +12,31 @@ void GUI::encoderPageUpdate() {
     if (irisButton.action && irisButton.clicked) {
         irisButton.clicked = true; edgeButton.clicked = false; zoomButton.clicked = false; frostButton.clicked = false;
         irisButton.action = false;
-        parameterShow = "IRIS"; parameter = "iris";
+        parameterShow = "IRIS"; formEncoder.update("iris"); formParameter = "iris";
     } else if (edgeButton.action && edgeButton.clicked) {
         irisButton.clicked = false; edgeButton.clicked = true; zoomButton.clicked = false; frostButton.clicked = false;
         edgeButton.action = false;
-        parameterShow = "EDGE"; parameter = "edge";
+        parameterShow = "EDGE"; formEncoder.update("edge"); formParameter = "edge";
     } else if (zoomButton.action && zoomButton.clicked) {
         irisButton.clicked = false; edgeButton.clicked = false; zoomButton.clicked = true; frostButton.clicked = false;
         zoomButton.action = false;
-        parameterShow = "ZOOM"; parameter = "zoom";
+        parameterShow = "ZOOM"; formEncoder.update("zoom"); formParameter = "zoom";
     } else if (frostButton.action && frostButton.clicked) {
         irisButton.clicked = false; edgeButton.clicked = false; zoomButton.clicked = false; frostButton.clicked = true;
         frostButton.action = false;
-        parameterShow = "FROST"; parameter = "diffusion";
+        parameterShow = "FROST"; formEncoder.update("diffusion"); formParameter = "diffusion";
     } else if (!irisButton.clicked && !edgeButton.clicked && !zoomButton.clicked && !frostButton.clicked) {
-        parameterShow = "FORM"; parameter = "form";
+        parameterShow = "FORM"; formEncoder.update("form"); formParameter = "form";
     }
-    //PERCENT BUTTON SEND OSC
-    if (minusPercentButton.action && parameter != "form") { //if param is form, don't send.
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendEncoderPercent(parameter, -1);
+    
+    if (minusPercentButton.action && formParameter != "form") { //if param is form, don't send.
+        osc.sendEncoderPercent(formParameter, -1);
         minusPercentButton.action = false;
     } else if (homeButton.action) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendEncoderPercent(parameter, 0);
+        osc.sendEncoderPercent(formParameter, 0);
         homeButton.action = false;
-    } else if (plusPercentButton.action && parameter != "form") { //if param is form, don't send.
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendEncoderPercent(parameter, 1);
+    } else if (plusPercentButton.action && formParameter != "form") { //if param is form, don't send.
+        osc.sendEncoderPercent(formParameter, 1);
         plusPercentButton.action = false;
     }
 }
@@ -55,11 +51,7 @@ void GUI::encoderPageDraw() {
     homeButton.show(parameterShow, "HOME", guiCenterAlign, row5Padding, genericButtonWidth, buttonHeight);
     plusPercentButton.show("+%", guiRightAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
     
-    ofPushMatrix();
-    ofTranslate(centerX, centerY);
-    ofRotateRad(ofDegToRad(encoderPosition) + ofDegToRad(150));
-    encoder.draw(- encoder.getWidth() / 2, - encoder.getHeight() / 2);
-    ofPopMatrix();
+    formEncoder.draw(centerX, centerY);
 }
 
 void GUI::encoderPageTouchDown(ofTouchEventArgs & touch) {
@@ -77,59 +69,12 @@ void GUI::encoderPageTouchDown(ofTouchEventArgs & touch) {
     minusPercentButton.touchDown(touch);
     homeButton.touchDown(touch);
     plusPercentButton.touchDown(touch);
+    
+    formEncoder.touchDown(touch);
 }
 
 void GUI::encoderPageTouchMoved(ofTouchEventArgs & touch) {
-    if (ofDist(touch.x, touch.y, centerX, centerY) < encoder.getWidth() / 2 || encoderClicked) {
-        encoderClicked = true;
-        
-        ofVec2f center;
-        ofVec2f prevTouch;
-        ofVec2f currentTouch;
-        center.set(centerX, centerY);
-        prevTouch.set(ofGetPreviousMouseX(),ofGetPreviousMouseY());
-        currentTouch.set(touch.x,touch.y);
-        
-        ofVec2f oldVector;
-        oldVector = prevTouch - center;
-        float angleOld = oldVector.angle(prevTouch);
-        
-        ofVec2f newVector;
-        newVector = currentTouch - center;
-        float angleNew = newVector.angle(currentTouch);
-        
-        encoderPosition = -angleNew; //ROTATE ENCODER
-        
-        float diff = ofDegToRad(angleOld - angleNew);
-
-        if (diff > 1) {
-            diff = 0;
-        } else if (diff>PI) {
-            diff = TWO_PI - diff;
-        } else if (diff<-PI) {
-            diff = TWO_PI + diff;
-        }
-        
-        int direction = 0;
-        if (diff > 0) { //CLOCKWISE
-            oscSent(ofGetElapsedTimeMillis());
-            direction = 1;
-        } else if (diff < 0) { //COUNTER-CLOCKWISE
-            oscSent(ofGetElapsedTimeMillis());
-            direction = -1;
-        }
-        
-        if (fineButton.clicked) {
-            if (parameter == "edge") {
-                direction *= 100;
-            } else if (parameter == "zoom") {
-                direction *= 500;
-            }
-            osc.sendEncoder("fine/" + parameter, direction);
-        } else {
-            osc.sendEncoder(parameter, direction);
-        }
-    }
+    formEncoder.touchMoved(touch, fineButton.clicked);
 }
 
 
@@ -142,5 +87,5 @@ void GUI::encoderPageTouchUp(ofTouchEventArgs & touch) {
     homeButton.touchUp(touch);
     plusPercentButton.touchUp(touch);
     
-    encoderClicked = false;
+    formEncoder.touchUp(touch);
 }

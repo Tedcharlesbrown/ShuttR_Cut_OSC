@@ -23,8 +23,8 @@ void ofApp::checkConnection() {
 
 void ofApp::oscEvent() {
     while(receiver.hasWaitingMessages()){
-        // get the next message
-        gui.oscEvent(ofGetElapsedTimeMillis());
+        oscReceivedTime = ofGetElapsedTimeMillis();
+        
         ofxOscMessage m;
         receiver.getNextMessage(m);
         
@@ -223,10 +223,18 @@ void ofApp::parseChannel(string incomingOSC) {
 
 void ofApp::connect() {
     IPAddress = getIPAddress();
-    gui.osc.sender.setup(inputIP, ofToInt(inputTX));
+    gui.osc.connect();
+    
+    gui.thrustA.buttonA.osc.connect(); gui.thrustB.buttonB.osc.connect(); gui.thrustC.buttonC.osc.connect(); gui.thrustD.buttonD.osc.connect();
+    gui.angleA.osc.connect(); gui.angleB.osc.connect(); gui.angleC.osc.connect(); gui.angleD.osc.connect();
+    gui.assembly.osc.connect();
+    
+    gui.focusEncoder.osc.connect();
+    gui.formEncoder.osc.connect();
+    
     receiver.setup(ofToInt(inputRX));
     connectRequest = false;
     
     gui.osc.sendPing();
-    gui.osc.fineEncoder(0); //SET DEFAULT ENCODER TO COURSE
+    gui.osc.fineEncoder(0);
 }

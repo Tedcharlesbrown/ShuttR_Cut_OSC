@@ -3,6 +3,7 @@
 #include "D_button.h"
 
 #include "ofxiOS.h"
+#include "O_osc.h"
 
 class BANK {
     
@@ -32,6 +33,8 @@ public:
     
     BUTTON quickButton, customButton, leftButton, rightButton;
     BUTTON channelButton, groupButton, IPButton, FPButton, CPButton, BPButton, presetButton, macroButton, effectsButton, snapButton, MSButton, sceneButton, flexiButton;
+    
+    OSC osc;
     
 private:
 };

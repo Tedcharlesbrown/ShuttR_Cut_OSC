@@ -2,6 +2,8 @@
 //--------------------------------------------------------------
 
 void OSC::sendChannel(string parameter) {
+    oscSentTime = ofGetElapsedTimeMillis();
+    
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
         ofxOscMessage m;
         for (int i = 1; i >= 0; i--) { //SEND NEXT OR LAST KEY
@@ -15,6 +17,8 @@ void OSC::sendChannel(string parameter) {
 //--------------------------------------------------------------
 
 void OSC::sendChannelNumber(string parameter) {
+    oscSentTime = ofGetElapsedTimeMillis();
+    
     ofxOscMessage m;
     m.setAddress("/eos/user" + inputID + "/cmd/" + parameter + "#");
     sender.sendMessage(m, false);
@@ -23,6 +27,8 @@ void OSC::sendChannelNumber(string parameter) {
 //--------------------------------------------------------------
 
 void OSC::sendHigh() {
+    oscSentTime = ofGetElapsedTimeMillis();
+    
     ofxOscMessage m;
     for (int i = 1; i >= 0; i--) {
         m.clear();
@@ -59,6 +65,8 @@ void OSC::sendHigh() {
 //--------------------------------------------------------------
 
 void OSC::sendFlash(string parameter) {
+    oscSentTime = ofGetElapsedTimeMillis();
+    
     ofxOscMessage m;
     bool released = false;
     string OSCPrefix = "";
@@ -83,6 +91,8 @@ void OSC::sendFlash(string parameter) {
 //--------------------------------------------------------------
 
 void OSC::sendShutter(string parameter, string ID, int message) {
+    oscSentTime = ofGetElapsedTimeMillis();
+    
     ofxOscMessage m;
     if (parameter == "THRUST") {
         m.setAddress("/eos/user/" + inputID + "/param/frame thrust " + ID);
@@ -98,6 +108,8 @@ void OSC::sendShutter(string parameter, string ID, int message) {
 //--------------------------------------------------------------
 
 void OSC::sendShutterHome(string parameter) {
+    oscSentTime = ofGetElapsedTimeMillis();
+    
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
         ofxOscMessage a,b,c,d;
         if (parameter == "THRUST") {
@@ -123,8 +135,9 @@ void OSC::sendShutterHome(string parameter) {
 //--------------------------------------------------------------
 
 void OSC::fineEncoder(int message) { //ONLY USED TO RESET OSC TICKS, ONLY CALLED IN CONNECT();
-    ofxOscMessage m;
+    oscSentTime = ofGetElapsedTimeMillis();
     
+    ofxOscMessage m;
     m.setAddress("/eos/user/" + inputID + "/wheel");
     m.addIntArg(message);
     sender.sendMessage(m, false);
@@ -132,6 +145,8 @@ void OSC::fineEncoder(int message) { //ONLY USED TO RESET OSC TICKS, ONLY CALLED
 
 //--------------------------------------------------------------
 void OSC::sendEncoder(string parameter, int message){
+    oscSentTime = ofGetElapsedTimeMillis();
+    
     if (parameter != "form") {
         ofxOscMessage m;
         m.setAddress("/eos/user/" + inputID + "/wheel/" + parameter);
@@ -143,6 +158,8 @@ void OSC::sendEncoder(string parameter, int message){
 //--------------------------------------------------------------
 
 void OSC::sendEncoderPercent(string parameter, int message) {
+    oscSentTime = ofGetElapsedTimeMillis();
+    
         ofxOscMessage m;
         for (int i = 0; i >= 0; i--) { //SEND ENTER
             m.clear();
@@ -174,6 +191,8 @@ void OSC::sendEncoderPercent(string parameter, int message) {
 //--------------------------------------------------------------
 
 void OSC::sendPing() {
+    oscSentTime = ofGetElapsedTimeMillis();
+    
     ofxOscMessage m;
     
     m.setAddress("/eos/ping");

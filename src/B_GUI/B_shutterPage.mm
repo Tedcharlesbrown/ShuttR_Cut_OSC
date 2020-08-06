@@ -6,15 +6,31 @@ void GUI::shutterPageSetup() {
     bgAssembly.load("IMG_bgAssembly.png");
     bgAssembly.resize(assemblyDiameter * 2, assemblyDiameter * 2);
 
-    thrustA.setup("A"); thrustB.setup("B"); thrustC.setup("C"); thrustD.setup("D");
-    angleA.setup("A"); angleB.setup("B"); angleC.setup("C"); angleD.setup("D");
+    thrustA.setup("a"); thrustB.setup("b"); thrustC.setup("c"); thrustD.setup("d");
+    angleA.setup("a"); angleB.setup("b"); angleC.setup("c"); angleD.setup("d");
     assembly.setup();
 }
 
 //--------------------------------------------------------------
 
 void GUI::shutterPageUpdate() {
-    shutterPageAction();
+    if (thrustButton.action) {
+        thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
+        osc.sendShutterHome("THRUST");
+        thrustButton.action = false;
+    }
+    if (angleButton.action) {
+        angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
+        osc.sendShutterHome("ANGLE");
+        angleButton.action = false;
+    }
+    if (shutterButton.action) {
+        angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
+        thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
+        assembly.frameX = assembly.defaultX;
+        osc.sendShutterHome("SHUTTER");
+        shutterButton.action = false;
+    }
 }
 
 //--------------------------------------------------------------
@@ -25,7 +41,6 @@ void GUI::shutterPageDraw() {
     angleA.frameDisplay(thrustA.buttonA.position); angleC.frameDisplay(thrustC.buttonC.position); angleB.frameDisplay(thrustB.buttonB.position); angleD.frameDisplay(thrustD.buttonD.position);
     
     assemblyBG();
-    
     
     thrustButton.show("THRUST", "HOME", guiLeftAlign, row3Padding, genericButtonWidth, buttonHeight);
     angleButton.show("ANGLE", "HOME", guiCenterAlign, row3Padding, genericButtonWidth, buttonHeight);
@@ -42,64 +57,6 @@ void GUI::shutterPageDraw() {
     ofPopMatrix();
     
     assembly.update();
-}
-
-//--------------------------------------------------------------
-
-void GUI::shutterPageAction() {
-    if (thrustButton.action) {
-        oscSent(ofGetElapsedTimeMillis());
-        thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
-        osc.sendShutterHome("THRUST");
-        thrustButton.action = false;
-    }
-    if (angleButton.action) {
-        oscSent(ofGetElapsedTimeMillis());
-        angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
-        osc.sendShutterHome("ANGLE");
-        angleButton.action = false;
-    }
-    if (shutterButton.action) {
-        oscSent(ofGetElapsedTimeMillis());
-        angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
-        thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
-        assembly.frameX = assembly.defaultX;
-        osc.sendShutterHome("SHUTTER");
-        shutterButton.action = false;
-    }
-    
-    if (thrustA.clicked || thrustA.doubleClicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendShutter("THRUST","a",thrustA.buttonA.output);
-    } else if (thrustB.clicked || thrustB.doubleClicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendShutter("THRUST","b",thrustB.buttonB.output);
-    } else if (thrustC.clicked || thrustC.doubleClicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendShutter("THRUST","c",thrustC.buttonC.output);
-    } else if (thrustD.clicked || thrustD.doubleClicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendShutter("THRUST","d",thrustD.buttonD.output);
-    }
-    
-    if (angleA.clicked || angleA.doubleClicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendShutter("ANGLE","a",angleA.anglePercent);
-    } else if (angleB.clicked || angleB.doubleClicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendShutter("ANGLE","b",angleB.anglePercent);
-    } else if (angleC.clicked || angleC.doubleClicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendShutter("ANGLE","c",angleC.anglePercent);
-    } else if (angleD.clicked || angleD.doubleClicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendShutter("ANGLE","d",angleD.anglePercent);
-    }
-    
-    if (assembly.clicked || assembly.doubleClicked) {
-        oscSent(ofGetElapsedTimeMillis());
-        osc.sendShutter("ASSEMBLY","",assembly.output);
-    }
 }
 
 //--------------------------------------------------------------
@@ -188,3 +145,6 @@ void GUI::shutterPageDoubleTap(ofTouchEventArgs & touch) {
     angleA.touchDoubleTap(touch); angleB.touchDoubleTap(touch); angleC.touchDoubleTap(touch); angleD.touchDoubleTap(touch);
     assembly.touchDoubleTap(touch);
 }
+
+
+//--------------------------------------------------------------

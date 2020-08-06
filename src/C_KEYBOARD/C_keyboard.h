@@ -1,10 +1,9 @@
-#ifndef C_keyboard_h
-#define C_keyboard_h
+#pragma once
 
 #include "ofxiOS.h"
 #include "D_button.h"
 
-class KEYBOARD : public ofxiOSApp {
+class KEYBOARD {
     
 public:
     void update();
@@ -30,5 +29,3 @@ public:
     
 private:
 };
-
-#endif

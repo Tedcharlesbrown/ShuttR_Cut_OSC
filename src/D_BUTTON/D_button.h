@@ -1,9 +1,8 @@
-#ifndef D_button_h
-#define D_button_h
+#pragma once
 
 #include "ofxiOS.h"
 
-class BUTTON : public ofxiOSApp {
+class BUTTON {
     
 public:
     void show(float x, float y, float width, float height); //NO TEXT
@@ -31,4 +30,3 @@ public:
 private:
 };
 
-#endif

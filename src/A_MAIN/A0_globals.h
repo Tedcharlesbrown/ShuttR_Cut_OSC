@@ -1,5 +1,4 @@
-#ifndef A0_globals_h
-#define A0_globals_h
+#pragma once
 
 #include "ofxiOS.h"
 
@@ -28,5 +27,3 @@ extern ofColor white, black, EOSBlue, buttonActive, EOSLightGrey, EOSDarkGrey, E
 extern ofColor EOSChannel, EOSGroup, EOSIntensity, EOSColor, EOSFocus, EOSSnap, EOSBeam, EOSPreset, EOSfx, EOSMacro, EOSMagic, EOSScene;
 
 //----------------------------------------------------
-
-#endif

@@ -1,12 +1,11 @@
-#ifndef O_osc_h
-#define O_osc_h
+#pragma once
 
 #include "ofxiOS.h"
 #include "ofxOsc.h" //OSC
 
 #include "A0_globals.h"
 
-class OSC : public ofxiOSApp {
+class OSC {
     
 public:
     void sendPing();
@@ -32,5 +31,3 @@ public:
     
 private:
 };
-
-#endif

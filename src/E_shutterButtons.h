@@ -1,5 +1,4 @@
-#ifndef E_shutterButtons_h
-#define E_shutterButtons_h
+#pragma once
 
 #include "ofxiOS.h"
 
@@ -7,7 +6,7 @@
 // MARK: ----------THRUST_BUTTON----------
 //--------------------------------------------------------------
 
-class THRUST_BUTTON : public ofxiOSApp {
+class THRUST_BUTTON {
 
 public:
     void draw(string ID, float rotateAngle);
@@ -26,7 +25,7 @@ private:
 // MARK: ----------ANGLE_BUTTON----------
 //--------------------------------------------------------------
 
-class ANGLE_BUTTON : public ofxiOSApp {
+class ANGLE_BUTTON {
 
 public:
     void draw(string ID, float rotateAngle);
@@ -38,5 +37,3 @@ public:
 private:
     
 };
-
-#endif

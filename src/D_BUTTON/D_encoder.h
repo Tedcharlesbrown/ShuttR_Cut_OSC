@@ -1,5 +1,4 @@
-#ifndef D_encoder_h
-#define D_encoder_h
+#pragma once
 
 #include "ofxiOS.h"
 
@@ -23,5 +22,3 @@ public:
     
 private:
 };
-
-#endif

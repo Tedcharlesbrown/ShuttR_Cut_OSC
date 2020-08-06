@@ -1,5 +1,4 @@
-#ifndef B_gui_h
-#define B_gui_h
+#pragma once
 
 #include "ofxiOS.h"
 #include "A_ofApp.h"
@@ -167,6 +166,3 @@ public:
     
 private:
 };
-
-
-#endif

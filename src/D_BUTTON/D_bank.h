@@ -1,11 +1,10 @@
-#ifndef D_bank_h
-#define D_bank_h
+#pragma once
 
 #include "D_button.h"
 
 #include "ofxiOS.h"
 
-class BANK : public ofxiOSApp {
+class BANK {
     
 public:
     void setup();
@@ -36,5 +35,3 @@ public:
     
 private:
 };
-
-#endif

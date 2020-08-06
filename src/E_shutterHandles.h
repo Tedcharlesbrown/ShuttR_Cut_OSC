@@ -1,5 +1,4 @@
-#ifndef E_shutterHandles_h
-#define E_shutterHandles_h
+#pragma once
 
 #include "ofxiOS.h"
 #include "A0_globals.h"
@@ -35,7 +34,7 @@ private:
 // MARK: ----------ANGLE_HANDLE----------
 //--------------------------------------------------------------
 
-class ANGLE_HANDLE : public ofxiOSApp {
+class ANGLE_HANDLE {
     
 public:
     void setup(string ID);
@@ -65,7 +64,7 @@ private:
 // MARK: ----------ASSEMBLY_HANDLE----------
 //--------------------------------------------------------------
 
-class ASSEMBLY_HANDLE : public ofxiOSApp {
+class ASSEMBLY_HANDLE {
     
 public:
     void setup();
@@ -84,5 +83,3 @@ public:
     
 private:
 };
-
-#endif

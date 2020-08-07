@@ -70,8 +70,8 @@ void ofApp::oscEvent() {
             return;
         }
         if (!hasPanTilt) {
-            gui.panPercent = "";
-            gui.tiltPercent = "";
+            gui.panPercent = noParameter;
+            gui.tiltPercent = noParameter;
         }
         // ----------------------- GET ALL WHEEL PARAMS -----------------------
         for (int i = 0; i < 200; i++) {
@@ -212,16 +212,16 @@ void ofApp::parseWheel(string incomingOSC) {
                 case 9: //Frame Assembly
                     break;
                 case 10: //Iris
-                    gui.irisPercent = "";
+                    gui.irisPercent = noParameter;
                     break;
                 case 11: //Edge
-                    gui.edgePercent = "";
+                    gui.edgePercent = noParameter;
                     break;
                 case 12: //Zoom
-                    gui.zoomPercent = "";
+                    gui.zoomPercent = noParameter;
                     break;
                 case 13: //Frost
-                    gui.frostPercent = "";
+                    gui.frostPercent = noParameter;
                     break;
             }
         }
@@ -236,6 +236,8 @@ void ofApp::parseChannel(string incomingOSC) {
         if (oscLength == 5 + incomingOSC.length()) { //IF NO CHANNEL IS PATCHED (OFFSET BY LENGTH OF CHANNEL NUMBER)
             noneSelected = true;
             selectedChannel = "(" + incomingOSC + ")";
+            gui.irisPercent = noParameter; gui.edgePercent = noParameter; gui.zoomPercent = noParameter; gui.frostPercent = noParameter;
+            gui.panPercent = noParameter; gui.tiltPercent = noParameter;
         } else {
             selectedChannel = multiChannelPrefix + incomingOSC;
             selectedChannelInt = ofToInt(incomingOSC);

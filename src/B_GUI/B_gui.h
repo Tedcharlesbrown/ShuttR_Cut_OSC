@@ -76,8 +76,6 @@ public:
     void panTiltPageDoubleTap(ofTouchEventArgs & touch);
     
     ENCODER focusEncoder;
-    float ptEncoderPosition, ptLastPosition = 0;
-    bool ptEncoderClicked = false;
     string panPercent, tiltPercent, focusParameter, panTiltShow = "";
     
     BUTTON panButton, tiltButton;
@@ -96,9 +94,6 @@ public:
     void encoderPageDoubleTap(ofTouchEventArgs & touch);
     
     ENCODER formEncoder;
-    float encoderPosition, lastPosition = 0;
-    bool encoderClicked = false;
-    bool send = false;
     string irisPercent, edgePercent, zoomPercent, frostPercent, formParameter, parameterShow = "";
     
     BUTTON irisButton, edgeButton, zoomButton, frostButton, minusPercentButton, homeButton, plusPercentButton;

@@ -178,7 +178,6 @@ void GUI::update() {
 
 
 void GUI::draw() {
-    topBarDraw();
     if (shutterPage.clicked && !settingsMenu) {
         shutterPageDraw();
     }
@@ -212,6 +211,7 @@ void GUI::draw() {
         
         fontTiny.drawString(channel, centerX - fontTiny.stringWidth(channel) / 2, row1Padding - buttonHeight / 2 - fontTiny.stringHeight(channel) / 2);
     }
+    topBarDraw();
     keyboard.draw();
 }
 

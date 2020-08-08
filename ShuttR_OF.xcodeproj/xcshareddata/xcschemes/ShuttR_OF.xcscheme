@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-               BuildableName = "ShuttR_OF.app"
-               BlueprintName = "ShuttR_OF"
+               BuildableName = "ShuttR Cut OSC.app"
+               BlueprintName = "ShuttR Cut OSC"
                ReferencedContainer = "container:ShuttR_OF.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -31,8 +31,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "ShuttR_OF.app"
-            BlueprintName = "ShuttR_OF"
+            BuildableName = "ShuttR Cut OSC.app"
+            BlueprintName = "ShuttR Cut OSC"
             ReferencedContainer = "container:ShuttR_OF.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -54,8 +54,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "ShuttR_OF.app"
-            BlueprintName = "ShuttR_OF"
+            BuildableName = "ShuttR Cut OSC.app"
+            BlueprintName = "ShuttR Cut OSC"
             ReferencedContainer = "container:ShuttR_OF.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,8 +71,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "ShuttR_OF.app"
-            BlueprintName = "ShuttR_OF"
+            BuildableName = "ShuttR Cut OSC.app"
+            BlueprintName = "ShuttR Cut OSC"
             ReferencedContainer = "container:ShuttR_OF.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -2,6 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    getNotchHeight();
+    
     ofEnableSmoothing();
     ofSetCircleResolution(128);
     IPAddress = getIPAddress();
@@ -13,12 +15,6 @@ void ofApp::setup(){
     
     gui.setup();
     gui.shutterPage.clicked = true;
-    
-//    cout << ofxiOSGetDeviceRevision() << endl;
-    
-    if (ofxiOSGetDeviceRevision().find("iPad") != std::string::npos) {
-        //cout << "IPAD" << endl; //iPad7,3
-    }
 }
 //--------------------------------------------------------------
 void ofApp::update(){
@@ -29,8 +25,6 @@ void ofApp::update(){
         connect();
         saveXML();
     }
-    
-    //rotation += 0.01;
 }
 
 //--------------------------------------------------------------
@@ -38,6 +32,26 @@ void ofApp::draw(){
     ofBackground(EOSBackground);
     
     gui.draw();
+
+    
+    string amPM = "AM";
+    if (ofGetHours() > 12) {
+        amPM = "PM";
+    }
+    
+    string time = ofToString(ofGetHours() % 12) + ":" + ofToString(ofGetMinutes()) + " " + amPM;
+    string time24 = ofToString(ofGetHours()) + ":" + ofToString(ofGetMinutes());
+    
+    fontSmall.drawString(time, width - fontSmall.stringWidth(time) * 1.25, notchHeight - fontSmall.stringHeight(time) / 2); //TIME
+    
+    ofSetColor(50,50,50);
+    ofDrawRectangle(centerX - plusMinusButtonWidth * 2, 0, plusMinusButtonWidth * 4, notchHeight); //OUTSIDE
+    ofSetColor(black);
+    ofDrawRectangle((centerX - plusMinusButtonWidth * 2) + buttonStrokeWeight / 2, buttonStrokeWeight / 2, (plusMinusButtonWidth * 4) - buttonStrokeWeight, notchHeight - buttonStrokeWeight); //INSIDE
+    
+    
+    ofSetColor(EOSState);
+    fontSmall.drawString(appNameV, centerX - plusMinusButtonWidth * 1.85, notchHeight - fontSmall.stringHeight(appNameV) / 2); //APP NAME
 }
 //--------------------------------------------------------------
 void ofApp::touchDown(ofTouchEventArgs & touch){
@@ -137,4 +151,97 @@ string ofApp::getIPAddress() {
         ip = "CHECK WIFI";
     }
     return ip;
+}
+
+//--------------------------------------------------------------
+
+void ofApp::getNotchHeight() {
+    
+    string deviceName = ofxiOSGetDeviceRevision();
+    if (deviceName.find("iPhone") != std::string::npos) { //DEVICE IS IPHONE
+        int indexValueEnd = deviceName.find(",");
+        int iPhoneGeneration = ofToInt(deviceName.substr(6, indexValueEnd - 6)); //GET DEVICE GENERATION
+        int iPhoneVersion = ofToInt(deviceName.substr(indexValueEnd + 1)); //GET DEVICE VERSION
+        int iPhoneID = iPhoneGeneration * 10 + iPhoneVersion; //SET ID TO GENERATION.VERSION NUMBER
+        
+//        iPhoneID = 101; //IPHONE 8
+//        iPhoneID = 123; //IPHONE PRO + PRO MAX
+        
+        switch(iPhoneID) {
+            case 11: //iPhone           - 1x
+            case 12: //iPhone3G         - 1x
+            case 21: //iPhone3Gs        - 1x
+                notchHeight = 22;
+                break;
+            case 31: //iPhone4          - 2x
+            case 32: //iPhone4 GSM      - 2x
+            case 33: //iPhone4 CDMA     - 2x
+            case 41: //iPhone4s         - 2x
+            case 51: //iPhone5_GSM      - 2x
+            case 52: //iPhone5_CMDA     - 2x
+            case 53: //iPhone5c_GSM     - 2x
+            case 54: //iPhone5c         - 2x
+            case 61: //iPhone5s_GSM     - 2x
+            case 62: //iPhone5s         - 2x
+                notchHeight = 44;
+                break;
+            case 71: //iPhone6_Plus     - 3x
+                notchHeight = 66;
+                break;
+            case 72: //iPhone6          - 2x
+            case 81: //iPhone6s         - 2x
+                notchHeight = 44;
+                break;
+            case 82: //iPhone6s_Plus    - 3x
+                notchHeight = 66;
+                break;
+            case 84: //iPhoneSE         - 2x
+            case 91: //iPhone7          - 2x
+                notchHeight = 44;
+                break;
+            case 92: //iPhone7_Plus     - 3x
+                notchHeight = 66;
+                break;
+            case 93: //iPhone7_Alt      - 2x
+                notchHeight = 44;
+                break;
+            case 94: //iPhone7_Plus_Alt - 3x
+                notchHeight = 66;
+                break;
+            case 101: //iPhone8         - 2x
+                notchHeight = 44;
+                break;
+            case 102: //iPhone8_Plus    - 3x
+                notchHeight = 66;
+                break;
+            case 103: //iPhoneX         - 3x - NOTCH
+                notchHeight = 132;
+                break;
+            case 104: //iPhone8_Alt     - 2x
+                notchHeight = 44;
+                break;
+            case 105: //iPhone8_Plus    - 3x
+                notchHeight = 66;
+                break;
+            case 106: //iPhoneX_GSM     - 3x - NOTCH
+            case 112: //iPhoneXS        - 3x - NOTCH
+            case 114: //iPhoneXS_Max    - 3x - NOTCH
+            case 116: //iPhoneXS_Max_A  - 3x - NOTCH
+                notchHeight = 132;
+                break;
+            case 118: //iPhoneXR        - 2x - NOTCH
+            case 121: //iPhone11        - 2x - NOTCH
+                notchHeight = 88;
+                break;
+            case 123: //iPhone11_Pro    - 3x - NOTCH
+            case 125: //iPhone11_ProMax - 3x - NOTCH
+                notchHeight = 132;
+                break;
+            case 128: //iPhoneSE_2ndGen - 2x
+                notchHeight = 44;
+                break;
+            default:
+                notchHeight = 0;
+        }
+    }
 }

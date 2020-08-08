@@ -25,9 +25,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="YrQ-jI-Xcn">
                                 <rect key="frame" x="30" y="80" width="354" height="306"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSP-JQ-Buu">
-                                <rect key="frame" x="43" y="650" width="329" height="78"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSP-JQ-Buu">
+                                <rect key="frame" x="42.666666666666657" y="656.33333333333337" width="329" height="71.666666666666629"/>
                                 <string key="text">ShuttR Cut OSC v0.1.0 (INTERNAL ALPHA) Made by Ted Charles Brown TedCharlesBrown.com Please email all questions / bugs / requests to Tedcharlesbrown@gmail.com</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -42,9 +41,12 @@
                             <constraint firstItem="1Ps-5a-wQE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="GSg-5h-nnq"/>
                             <constraint firstItem="YrQ-jI-Xcn" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="10" id="LcF-SO-mDJ"/>
                             <constraint firstItem="1Ps-5a-wQE" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="OzM-uZ-fRu"/>
+                            <constraint firstItem="WSP-JQ-Buu" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="22.5" id="WpE-Qg-UFe"/>
                             <constraint firstAttribute="trailing" secondItem="1Ps-5a-wQE" secondAttribute="trailing" id="gJy-oR-Q2M"/>
                             <constraint firstItem="1Ps-5a-wQE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="k0V-Zu-d85"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YrQ-jI-Xcn" secondAttribute="trailing" constant="10" id="klR-t2-MDv"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="WSP-JQ-Buu" secondAttribute="bottom" constant="8" id="ray-GR-v9h"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WSP-JQ-Buu" secondAttribute="trailing" constant="22.5" id="x52-IA-yhZ"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="YrQ-jI-Xcn" secondAttribute="bottom" constant="350" id="y5v-Ck-7Dy"/>
                         </constraints>
                     </view>

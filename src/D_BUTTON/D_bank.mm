@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 void BANK::setup(){
     buttonSize = plusMinusButtonWidth / 1.1;
+    bankHeight = buttonSize * 5.1;
     oneAlign = guiCenterAlign - buttonSize * 2.2;
     twoAlign = guiCenterAlign - buttonSize * 1.1;
     middleAlign = guiCenterAlign;

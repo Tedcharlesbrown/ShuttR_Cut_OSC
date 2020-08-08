@@ -217,7 +217,7 @@ void GUI::draw() {
 
 //--------------------------------------------------------------
 void GUI::touchDown(ofTouchEventArgs & touch){
-    if (touch.x > settingsX && touch.y < settingsHeight) {
+    if (touch.x > settingsX && touch.y < settingsHeight && touch.y > notchHeight) {
         settingsMenu = !settingsMenu;
         channelButton.clicked = false;
     }

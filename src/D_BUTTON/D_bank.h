@@ -29,6 +29,8 @@ public:
     float totalPalettes;
     vector<BUTTON> palette, directSelect;
     
+    float bankHeight;
+    
     BUTTON button;
     
     BUTTON quickButton, customButton, leftButton, rightButton;

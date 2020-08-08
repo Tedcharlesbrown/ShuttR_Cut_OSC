@@ -84,6 +84,8 @@ void ofApp::oscEvent() {
         }
         // ----------------------- GET COMMAND LINE -----------------------
         if (m.getAddress() == "/eos/out/user/" + inputID + "/cmd") {
+            appNameV = m.getArgAsString(0);
+            
             string incomingOSC = m.getArgAsString(0);
             
             if (incomingOSC.find("LIVE") != string::npos) {

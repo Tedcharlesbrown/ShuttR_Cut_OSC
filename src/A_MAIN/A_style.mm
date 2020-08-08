@@ -1,7 +1,9 @@
 #include "A_ofApp.h"
 
+float notchHeight;
 
-string name = "ShuttR Cut OSC";
+string appName = "ShuttR Cut OSC";
+string appNameV = appName + " v0.1.0";
 string version = "v0.1.0 (OpenFrameworks)";
 string IPAddress, inputIP, inputID, inputRX, inputTX, selectedChannel = "";
 
@@ -53,7 +55,7 @@ void ofApp::styleInit(){
     //---------- PARENT WIDTH AND HEIGHT ----------
     
     width = ofGetWidth();
-    height = ofGetHeight();
+    height = ofGetHeight() - notchHeight;
     
     //---------- FRAME ASSEMBLY VARIABLES ----------
     clickDiameter = width / 9.6;
@@ -64,7 +66,7 @@ void ofApp::styleInit(){
     assemblyRadius = assemblyDiameter / 2;
     thrustDiameter = assemblyRadius / 2;
     centerX = width / 2;
-    centerY = height - assemblyDiameter + assemblyRadius / 3;
+    centerY = (height - assemblyDiameter + assemblyRadius / 3) + notchHeight;
     
     ///---------- FRAME ASSEMBLY STYLES ----------
     
@@ -105,12 +107,12 @@ void ofApp::styleInit(){
     
     //---------- GUI PADDDING ----------
     
-    row1Padding = settingsBarHeight + buttonHeight;
+    row1Padding = (settingsBarHeight + buttonHeight) + notchHeight;
     row2Padding = row1Padding + height / 13;
     row3Padding = row2Padding + height / 13;
     row4Padding = row3Padding + buttonHeight / 2;
-    row5Padding = height - height / 15;
-    consolePadding = height / 2;
+    row5Padding = (height - height / 15) + notchHeight;
+    consolePadding = (height / 2) + notchHeight;
     
     //---------- TEXT STYLES ----------
 
@@ -128,7 +130,7 @@ void ofApp::styleInit(){
     fontTiny.load("LondonBetween.ttf", tinyTextSize);
     fontTiny.setLetterSpacing(1.5);
     
-    consoleLog.push_back(name);
+    consoleLog.push_back(appName);
     consoleLog.push_back(version);
     
     //---------- COLOR ----------

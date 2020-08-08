@@ -22,6 +22,8 @@ public:
     void styleInit();
     void stateUpdate();
     
+    void getNotchHeight();
+    
     void oscInit();
     void parseChannel(string m);
     void parseWheel(string m);

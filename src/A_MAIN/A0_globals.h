@@ -2,7 +2,9 @@
 
 #include "ofxiOS.h"
 
-extern string name, version, IPAddress, inputIP, inputID, inputRX, inputTX, selectedChannel;
+extern float notchHeight;
+
+extern string appName, version, appNameV, IPAddress, inputIP, inputID, inputRX, inputTX, selectedChannel;
 extern vector<string> consoleLog;
 extern bool connectRequest, isConnected, noneSelected, ignoreOSC, isLive;
 extern float oscSentTime, oscReceivedTime;

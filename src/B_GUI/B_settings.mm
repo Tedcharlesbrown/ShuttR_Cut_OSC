@@ -36,7 +36,7 @@ void GUI::settingsDraw() {
     if (helpButton.clicked) {
         //HELP IMAGE
         ofPushStyle(); ofPushMatrix();
-        ofTranslate(0,-buttonHeight * 1.25);
+        //ofTranslate(0,-buttonHeight * 1.25);
         float imageResize = width - plusMinusButtonWidth;
         settingsHelp.resize(imageResize, imageResize / 1.5);
         settingsHelp.draw(centerX - settingsHelp.getWidth() / 2,(height / 2) - settingsHelp.getHeight() / 2);
@@ -80,7 +80,7 @@ void GUI::console() {
 //--------------------------------------------------------------
 
 void GUI::about() {
-    string aboutOne = name + " " + version;
+    string aboutOne = appName + " " + version;
     string thisIP = "Local IP Address: " + IPAddress;
     string aboutTwo =  "\nMade by Ted Charles Brown";
     string aboutThree = "\nTedcharlesbrown.com";

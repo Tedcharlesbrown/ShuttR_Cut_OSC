@@ -26,10 +26,10 @@ void GUI::topBarUpdate() {
 //--------------------------------------------------------------
 
 void GUI::topBarDraw() {
-    settingsBar(0,0,width,settingsBarHeight,settingsBarStrokeWeight);
-    settingsButton(width - smallButtonWidth, 0, smallButtonWidth, settingsBarHeight, buttonStrokeWeight);
-    oscLight("TX", smallButtonWidth / 2, settingsBarHeight / 4, smallButtonWidth, settingsBarHeight / 2, buttonStrokeWeight);
-    oscLight("RX", smallButtonWidth / 2, settingsBarHeight - settingsBarHeight / 4, smallButtonWidth, settingsBarHeight / 2, buttonStrokeWeight);
+    settingsBar(0,notchHeight,width,settingsBarHeight,settingsBarStrokeWeight);
+    settingsButton(width - settingsBarHeight, notchHeight, settingsBarHeight, settingsBarHeight, buttonStrokeWeight);
+    oscLight("TX", smallButtonWidth / 2, (settingsBarHeight / 4) + notchHeight + settingsBarStrokeWeight, smallButtonWidth, settingsBarHeight / 2, buttonStrokeWeight);
+    oscLight("RX", smallButtonWidth / 2, (settingsBarHeight - settingsBarHeight / 4) + notchHeight, smallButtonWidth, settingsBarHeight / 2, buttonStrokeWeight);
 }
 
 //--------------------------------------------------------------
@@ -37,15 +37,18 @@ void GUI::topBarDraw() {
 void GUI::settingsBar(float _x, float _y, float _w, float _h, float _weight) {
     ofPushStyle();
     ofSetColor(EOSBarState);
-    ofDrawRectangle(_x, _y, _w, _h);
+    ofDrawRectangle(_x, _y, _w, _h); //Settings Bar Background
     ofSetColor(shutterOutsideStroke);
-    ofDrawRectangle(_x, _h, _w, _weight);
+    if (notchHeight > 0) {
+        ofDrawRectangle(_x, notchHeight, _w, _weight); //TOP BAR
+    }
+    ofDrawRectangle(_x, _h + notchHeight, _w, _weight); //BOTTOM BAR
     ofPopStyle();
   
-    shutterPage.show(centerX - plusMinusButtonWidth * 1.5, settingsBarHeight / 2, plusMinusButtonWidth, settingsBarHeight);
-    panTiltPage.show(centerX - plusMinusButtonWidth / 2, settingsBarHeight / 2, plusMinusButtonWidth, settingsBarHeight);
-    encoderPage.show(centerX + plusMinusButtonWidth / 2, settingsBarHeight / 2, plusMinusButtonWidth, settingsBarHeight);
-    directSelectPage.show(centerX + plusMinusButtonWidth * 1.5, settingsBarHeight / 2, plusMinusButtonWidth, settingsBarHeight);
+    shutterPage.show(centerX - plusMinusButtonWidth * 1.5, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
+    panTiltPage.show(centerX - plusMinusButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
+    encoderPage.show(centerX + plusMinusButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
+    directSelectPage.show(centerX + plusMinusButtonWidth * 1.5, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
 }
 
 //--------------------------------------------------------------
@@ -54,7 +57,7 @@ void GUI::settingsButton(float _x, float _y, float _w, float _h, float _weight) 
     this-> settingsX = _x;
     this-> settingsY = _y;
     this-> settingsWidth = _w;
-    this-> settingsHeight = _h;
+    this-> settingsHeight = _h + notchHeight;
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
     

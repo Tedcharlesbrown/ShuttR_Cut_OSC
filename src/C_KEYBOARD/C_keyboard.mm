@@ -2,6 +2,9 @@
 #include "A_ofApp.h"
 
 //--------------------------------------------------------------
+// MARK: ---------- UPDATE / DRAW ----------
+//--------------------------------------------------------------
+
 void KEYBOARD::update(){
     if (zeroButton.action) {
         input += "0";
@@ -60,6 +63,7 @@ void KEYBOARD::close() {
 }
 
 //--------------------------------------------------------------
+
 void KEYBOARD::draw(){
     float buttonWidth = plusMinusButtonWidth;
     float buttonPadding = buttonWidth * 1.25;
@@ -108,6 +112,9 @@ void KEYBOARD::draw(){
 }
 
 //--------------------------------------------------------------
+// MARK: ---------- TOUCH EVENTS ----------
+//--------------------------------------------------------------
+
 void KEYBOARD::touchDown(ofTouchEventArgs & touch){
     enterButton.touchDown(touch);
     

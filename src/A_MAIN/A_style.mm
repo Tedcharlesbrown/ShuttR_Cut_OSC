@@ -164,7 +164,6 @@ void ofApp::styleInit(){
     shutterOutsideStroke = ofColor(125,115,130);
     
     //---------- EOS DIRECT SELECT COLORS ----------
-//    ofColor c = ofColor::fromHex(0xFFFF00); // c is yellow.
 
     EOSChannel = ofColor::fromHex(0x275787);
     EOSGroup = ofColor::fromHex(0x517ba0);

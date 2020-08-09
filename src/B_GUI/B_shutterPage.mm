@@ -1,6 +1,8 @@
 #include "A_ofApp.h"
 
 //--------------------------------------------------------------
+// MARK: ---------- SHUTTER PAGE - SETUP / UPDATE / DRAW ----------
+//--------------------------------------------------------------
 
 void GUI::shutterPageSetup() {
     bgAssembly.load("IMG_bgAssembly.png");
@@ -69,6 +71,8 @@ void GUI::shutterPageDraw() {
 }
 
 //--------------------------------------------------------------
+// MARK: ---------- ASSEMBLY FOREGROUND / BACKGROUND ----------
+//--------------------------------------------------------------
 
 void GUI::assemblyColor() {
     ofPushStyle(); ofPushMatrix();
@@ -104,6 +108,8 @@ void GUI::assemblyBG() {
     ofPopStyle(); ofPopMatrix();
 }
 
+//--------------------------------------------------------------
+// MARK: ---------- TOUCH EVENTS ----------
 //--------------------------------------------------------------
 
 void GUI::shutterPageTouchDown(ofTouchEventArgs & touch) {

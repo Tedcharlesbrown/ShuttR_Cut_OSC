@@ -32,26 +32,6 @@ void ofApp::draw(){
     ofBackground(EOSBackground);
     
     gui.draw();
-
-    
-    string amPM = "AM";
-    if (ofGetHours() > 12) {
-        amPM = "PM";
-    }
-    
-    string time = ofToString(ofGetHours() % 12) + ":" + ofToString(ofGetMinutes()) + " " + amPM;
-    string time24 = ofToString(ofGetHours()) + ":" + ofToString(ofGetMinutes());
-    
-    fontSmall.drawString(time, width - fontSmall.stringWidth(time) * 1.25, notchHeight - fontSmall.stringHeight(time) / 2); //TIME
-    
-    ofSetColor(50,50,50);
-    ofDrawRectangle(centerX - plusMinusButtonWidth * 2, 0, plusMinusButtonWidth * 4, notchHeight); //OUTSIDE
-    ofSetColor(black);
-    ofDrawRectangle((centerX - plusMinusButtonWidth * 2) + buttonStrokeWeight / 2, buttonStrokeWeight / 2, (plusMinusButtonWidth * 4) - buttonStrokeWeight, notchHeight - buttonStrokeWeight); //INSIDE
-    
-    
-    ofSetColor(EOSState);
-    fontSmall.drawString(appNameV, centerX - plusMinusButtonWidth * 1.85, notchHeight - fontSmall.stringHeight(appNameV) / 2); //APP NAME
 }
 //--------------------------------------------------------------
 void ofApp::touchDown(ofTouchEventArgs & touch){
@@ -241,7 +221,7 @@ void ofApp::getNotchHeight() {
                 notchHeight = 44;
                 break;
             default:
-                notchHeight = 0;
+                notchHeight = 44;
         }
     }
 }

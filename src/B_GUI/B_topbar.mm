@@ -1,6 +1,8 @@
 #include "A_ofApp.h"
 
 //--------------------------------------------------------------
+// MARK: ---------- TOP BAR - UPDATE / DRAW ----------
+//--------------------------------------------------------------
 
 void GUI::topBarUpdate() {
     if (shutterPage.action && shutterPage.clicked) {
@@ -22,16 +24,18 @@ void GUI::topBarUpdate() {
     }
 }
 
-
 //--------------------------------------------------------------
 
 void GUI::topBarDraw() {
+    statusBarDraw();
     settingsBar(0,notchHeight,width,settingsBarHeight,settingsBarStrokeWeight);
     settingsButton(width - settingsBarHeight, notchHeight, settingsBarHeight, settingsBarHeight, buttonStrokeWeight);
     oscLight("TX", smallButtonWidth / 2, (settingsBarHeight / 4) + notchHeight + settingsBarStrokeWeight, smallButtonWidth, settingsBarHeight / 2, buttonStrokeWeight);
     oscLight("RX", smallButtonWidth / 2, (settingsBarHeight - settingsBarHeight / 4) + notchHeight, smallButtonWidth, settingsBarHeight / 2, buttonStrokeWeight);
 }
 
+//--------------------------------------------------------------
+// MARK: ---------- SETTINGS - BAR / BUTTON / LIGHT ----------
 //--------------------------------------------------------------
 
 void GUI::settingsBar(float _x, float _y, float _w, float _h, float _weight) {
@@ -104,5 +108,32 @@ void GUI::oscLight(string _ID,float _x,float _y,float _w,float _h, float _weight
         ofFill();
         ofDrawRectRounded(_x, _y, _w - _weight, _h - _weight, buttonCorner / 2);
     }
+    ofPopStyle();
+}
+
+//--------------------------------------------------------------
+// MARK: ---------- STATUS BAR DRAW ----------
+//--------------------------------------------------------------
+
+void GUI::statusBarDraw() {
+    ofPushStyle();
+    string amPM = "AM";
+    if (ofGetHours() > 12) {
+        amPM = "PM";
+    }
+    string hour = ofToString(ofGetHours() % 12);
+    string minutes = ofToString(ofGetMinutes());
+    if (ofGetMinutes() < 10) {
+        minutes = "0" + minutes;
+    }
+    string time = hour + ":" + minutes + " " + amPM;
+    string time24 = ofToString(ofGetHours()) + ":" + minutes;
+    
+    fontSmall.drawString(time, width - 150, notchHeight - fontSmall.stringHeight(time) / 2); //TIME
+    
+    fontSmall.drawString(appNameV, centerX - fontSmall.stringWidth(appNameV) / 2, notchHeight - fontSmall.stringHeight(appNameV) / 2); //APP NAME
+    
+    string WIFI = "BarbsWiFi 5G";
+    fontSmall.drawString(WIFI,10, notchHeight - fontSmall.stringHeight("WIFI") / 2); //APP NAME
     ofPopStyle();
 }

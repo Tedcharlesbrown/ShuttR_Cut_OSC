@@ -1,6 +1,9 @@
 #include "A_ofApp.h"
 
 //--------------------------------------------------------------
+// MARK: ---------- DIRECT SELECT - SETUP / UPDATE / DRAW ----------
+//--------------------------------------------------------------
+
 void GUI::DSPageSetup(){
     bankOne.setup(); bankTwo.setup();
 }
@@ -25,6 +28,9 @@ void GUI::DSPageDraw(){
 }
 
 //--------------------------------------------------------------
+// MARK: ---------- TOUCH EVENTS ----------
+//--------------------------------------------------------------
+
 void GUI::DSPageTouchDown(ofTouchEventArgs & touch){
     bankOne.touchDown(touch); bankTwo.touchDown(touch);
 }

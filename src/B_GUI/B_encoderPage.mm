@@ -1,6 +1,8 @@
 #include "A_ofApp.h"
 
 //--------------------------------------------------------------
+// MARK: ---------- ENCODER - SETUP / UPDATE / DRAW ----------
+//--------------------------------------------------------------
 
 void GUI::encoderPageSetup() {
     formEncoder.setup(assemblyDiameter / 1.25);
@@ -41,6 +43,8 @@ void GUI::encoderPageUpdate() {
     }
 }
 
+//--------------------------------------------------------------
+
 void GUI::encoderPageDraw() {
     irisButton.showBig("IRIS",irisPercent, guiLeftAlign, row3Padding, plusMinusButtonWidth, buttonHeight);
     edgeButton.showBig("EDGE",edgePercent, guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
@@ -53,6 +57,10 @@ void GUI::encoderPageDraw() {
     
     formEncoder.draw(centerX, centerY);
 }
+
+//--------------------------------------------------------------
+// MARK: ---------- TOUCH EVENTS ----------
+//--------------------------------------------------------------
 
 void GUI::encoderPageTouchDown(ofTouchEventArgs & touch) {
     minusButton.touchDown(touch);

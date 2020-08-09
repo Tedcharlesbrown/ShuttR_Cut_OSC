@@ -1,6 +1,9 @@
 #include "A_ofApp.h"
 
 //--------------------------------------------------------------
+// MARK: ---------- PAN TILT PAGE - SETUP / UPDATE / DRAW ----------
+//--------------------------------------------------------------
+
 void GUI::panTiltPageSetup(){
     focusEncoder.setup(assemblyDiameter / 1.25);
 }
@@ -45,6 +48,9 @@ void GUI::panTiltPageDraw(){
 }
 
 //--------------------------------------------------------------
+// MARK: ---------- TOUCH EVENTS ----------
+//--------------------------------------------------------------
+
 void GUI::panTiltPageTouchDown(ofTouchEventArgs & touch){
     minusButton.touchDown(touch);
     plusButton.touchDown(touch);

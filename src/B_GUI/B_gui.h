@@ -23,6 +23,12 @@ public:
     void update();
     void draw();
     
+    void channelButtonAction();
+    void pageButtonAction();
+    void oscLightUpdate();
+    
+    void buttonAction();
+    
     OSC osc;
     KEYBOARD keyboard;
     
@@ -35,6 +41,8 @@ public:
     void settingsBar(float x,float y,float width,float height,float strokeWeight);
     void settingsButton(float x, float y, float width, float height, float weight);
     void oscLight(string ID, float x, float y, float width, float height, float weight);
+    
+    void statusBarDraw();
     
     string oldChannel = "";
     
@@ -118,6 +126,7 @@ public:
     //--------------------------------------------------------------
     
     void settingsSetup();
+    void settingsUpdate();
     void settingsDraw();
     void console();
     void about();

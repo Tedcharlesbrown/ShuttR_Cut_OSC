@@ -4,6 +4,9 @@
 #include "ofxOsc.h" //OSC
 #include "ofxXmlSettings.h" //XML
 
+#include "ofxEosSyncOscMsg.h" //TCP OSC
+#include "ofxEosSync.h"
+
 #include <ifaddrs.h> //IP ADDRESS
 #include <arpa/inet.h> //IP ADDRESS
 
@@ -56,6 +59,8 @@ public:
     
     string multiChannelPrefix = "";
     string noParameter = "";
+    
+    ofxEosSync eosOsc;
     
     ofxOscReceiver receiver;
     string listenTargets[14];

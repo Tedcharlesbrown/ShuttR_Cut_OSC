@@ -50,6 +50,8 @@
 		AAACB8FDECB13FD0DE78318C /* EosLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B094CB7B81BD45A76287D678 /* EosLog.cpp */; };
 		B1263242F45888466B30F787 /* B_gui.mm in Sources */ = {isa = PBXBuildFile; fileRef = C42A1635D09BB879ECF843F4 /* B_gui.mm */; };
 		B490433952DD772FE0CAA5F2 /* D_bank.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6925EA105101873F4EA5D44B /* D_bank.mm */; };
+		B78BAE6324E1FB120096FB82 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78BAE6224E1FB120096FB82 /* MetalKit.framework */; };
+		B78BAE6524E1FB1A0096FB82 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78BAE6424E1FB1A0096FB82 /* Metal.framework */; };
 		BB16EBD20F2B2A9500518274 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD10F2B2A9500518274 /* OpenGLES.framework */; };
 		BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD80F2B2AB500518274 /* QuartzCore.framework */; };
 		BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */; };
@@ -164,6 +166,8 @@
 		B36A1A18A27DCC6152E84B0F /* ofxEosSyncOscMsg.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxEosSyncOscMsg.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/src/ofxEosSyncOscMsg.cpp; sourceTree = SOURCE_ROOT; };
 		B396E04A19DA2B315A6C0CD7 /* EosSyncLib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EosSyncLib.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/include/EosSyncLib.h; sourceTree = SOURCE_ROOT; };
 		B705C3964A5506AAC5858C03 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlSettings.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
+		B78BAE6224E1FB120096FB82 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		B78BAE6424E1FB1A0096FB82 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		BB16EBD10F2B2A9500518274 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BB16EBD80F2B2AB500518274 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BB24DDC910DA781C00E9C588 /* ofxiOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ofxiOS-Info.plist"; sourceTree = "<group>"; };
@@ -216,7 +220,9 @@
 				BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */,
 				BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */,
 				53F323EB10A20EDB00E0DAE4 /* OpenAL.framework in Frameworks */,
+				B78BAE6324E1FB120096FB82 /* MetalKit.framework in Frameworks */,
 				5326AEA810A23A0500278DE6 /* CoreLocation.framework in Frameworks */,
+				B78BAE6524E1FB1A0096FB82 /* Metal.framework in Frameworks */,
 				E41D400B13B39D2100A75A5D /* AVFoundation.framework in Frameworks */,
 				E41D400C13B39D2100A75A5D /* CoreMedia.framework in Frameworks */,
 				E41D400D13B39D2100A75A5D /* CoreVideo.framework in Frameworks */,
@@ -438,6 +444,8 @@
 		901808C02053638E004A7774 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B78BAE6424E1FB1A0096FB82 /* Metal.framework */,
+				B78BAE6224E1FB120096FB82 /* MetalKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -574,12 +582,12 @@
 			isa = PBXGroup;
 			children = (
 				E4D8936B11527B74007E1F53 /* main.mm */,
-				68E8BACF615FE6D56333FF76 /* E_SHUTTERS */,
 				FBDB6EC143282803010D0E8A /* A_MAIN */,
-				7C31A216066E8CEE3269BF15 /* D_BUTTON */,
-				DF395FC95283836DF9DEF853 /* O_OSC */,
-				A0E6FC22ECB433C6F40E4BEA /* C_KEYBOARD */,
 				4E9C6BFADA958C5203267AC2 /* B_GUI */,
+				A0E6FC22ECB433C6F40E4BEA /* C_KEYBOARD */,
+				7C31A216066E8CEE3269BF15 /* D_BUTTON */,
+				68E8BACF615FE6D56333FF76 /* E_SHUTTERS */,
+				DF395FC95283836DF9DEF853 /* O_OSC */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

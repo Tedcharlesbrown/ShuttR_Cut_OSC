@@ -1,13 +1,12 @@
 #include "A_ofApp.h"
 
-float notchHeight;
-
+//--------------------------------------------------------------
+// MARK: ---------- EOS SETTINGS ----------
+//--------------------------------------------------------------
 string appName = "ShuttR Cut OSC";
 string appNameV = appName + " v0.1.0";
 string version = "v0.1.0 (OpenFrameworks)";
 string IPAddress, inputIP, inputID, inputRX, inputTX, selectedChannel = "";
-
-vector<string> consoleLog;
 
 bool connectRequest = true;
 bool isConnected = false;
@@ -18,6 +17,19 @@ bool isLive = true;
 float oscSentTime, oscReceivedTime = 0;
 
 int selectedChannelInt, channelIntensity;
+
+
+float notchHeight;
+
+
+
+vector<string> consoleLog;
+
+
+
+
+
+
 
 ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
 

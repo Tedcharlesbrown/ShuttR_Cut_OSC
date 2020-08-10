@@ -3,53 +3,92 @@
 //--------------------------------------------------------------
 // MARK: ---------- EOS SETTINGS ----------
 //--------------------------------------------------------------
+
+// ----------------------- NAME / IP / ID / RX / TX / SELECTED CHANNEL -----------------------
 string appName = "ShuttR Cut OSC";
 string appNameV = appName + " v0.1.0";
 string version = "v0.1.0 (OpenFrameworks)";
 string IPAddress, inputIP, inputID, inputRX, inputTX, selectedChannel = "";
 
+// ----------------------- EOS BOOLEANS -----------------------
 bool connectRequest = true;
 bool isConnected = false;
 bool noneSelected = true;
 bool ignoreOSC = false;
 bool isLive = true;
 
+// ----------------------- RX / TX LIGHT TIME -----------------------
 float oscSentTime, oscReceivedTime = 0;
 
+// ----------------------- CHANNEL / INTENSITY -----------------------
 int selectedChannelInt, channelIntensity;
 
-
-float notchHeight;
-
-
-
-vector<string> consoleLog;
-
-
-
-
-
-
-
+//--------------------------------------------------------------
+// MARK: ---------- TEXT STYLES ----------
+//--------------------------------------------------------------
+float largeTextSize, mediumTextSize, smallTextSize, tinyTextSize;
 ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
 
-float width, height, centerX, centerY, assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
+//--------------------------------------------------------------
+// MARK: ---------- SIZE CONSTANTS ----------
+//--------------------------------------------------------------
+
+// ----------------------- PARENT CONSTANTS -----------------------
+float width, height, centerX, centerY;
+float notchHeight;
+
+// ----------------------- GUI HEIGHT -----------------------
+float settingsBarHeight;
+float row1Padding, row2Padding, row3Padding, row4Padding, row5Padding;
+
+// ----------------------- GUI ALIGN -----------------------
+float guiLeftAlign, guiCenterAlign, guiRightAlign;
+
+// ----------------------- BUTTON WIDTH / HEIGHT -----------------------
+float smallButtonWidth, activeChannelWidth, genericButtonWidth, plusMinusButtonWidth, parameterButtonWidth;
+float buttonHeight;
+float buttonCorner;
+
+// ----------------------- STROKE WEIGHT -----------------------
+float settingsBarStrokeWeight, buttonStrokeWeight, shutterStrokeWeight, outsideWeight, thrustWeight, angleWeight, crosshairWeight, assemblyButtonWeight, assemblyLineWeight;
+
+// ----------------------- CONSOLE LOG -----------------------
+float  consoleWidth, consoleHeight, consolePadding;
+vector<string> consoleLog;
+
+// ----------------------- SHUTTER PAGE CONSTANTS -----------------------
+float assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
 int assemblyDiameter;
 float rotation = 0;
 
-//----------------------------------------------------
-
-float settingsBarHeight, settingsBarStrokeWeight, smallButtonWidth, activeChannelWidth, row1Padding, genericButtonWidth, plusMinusButtonWidth, row2Padding, row3Padding, buttonCorner,
-row4Padding, guiLeftAlign, guiCenterAlign, guiRightAlign, buttonHeight, buttonStrokeWeight, largeTextSize, mediumTextSize, smallTextSize, tinyTextSize, parameterButtonWidth, row5Padding,
-consoleWidth, consoleHeight, consolePadding, shutterStrokeWeight, outsideWeight, thrustWeight, angleWeight, crosshairWeight, assemblyButtonWeight, assemblyLineWeight;
-
-//----------------------------------------------------
-
-ofColor white, black, buttonActive, EOSLightGrey, EOSDarkGrey, EOSBackground, shutterOutsideStroke, EOSBlue, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLive, EOSBlind, shutterBackground, shutterFrameFill, shutterFrameStroke, BGFill, EOSState, EOSBarState;
-ofColor EOSChannel, EOSGroup, EOSIntensity, EOSColor, EOSFocus, EOSSnap, EOSBeam, EOSPreset, EOSfx, EOSMacro, EOSMagic, EOSScene;
-
-ofColor shutterColor = ofColor(0);
 //--------------------------------------------------------------
+// MARK: ---------- COLOR ----------
+//--------------------------------------------------------------
+
+//---------- GENERIC COLOR ----------
+ofColor white, black;
+
+//---------- EOS GENERIC COLORS ----------
+ofColor EOSBlue, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLightGrey, EOSDarkGrey;
+
+//---------- EOS SPECIFIC COLORS ----------
+ofColor EOSBackground, EOSLive, EOSBlind, EOSState, EOSBarState;
+
+//---------- EOS SHUTTER COLORS ----------
+ofColor shutterBackground, shutterOutsideStroke, shutterFrameFill, shutterFrameStroke;
+
+//---------- EOS DIRECT SELECT COLORS ----------
+ofColor EOSChannel, EOSGroup, EOSIntensity, EOSColor, EOSFocus, EOSBeam, EOSPreset, EOSfx, EOSMacro, EOSSnap, EOSMagic, EOSScene;
+
+//---------- ASSIGNMENT COLORS ----------
+
+ofColor buttonActive, BGFill;
+ofColor shutterColor = ofColor(0);
+
+//--------------------------------------------------------------
+// MARK: ---------- INITIALIZERS ----------
+//--------------------------------------------------------------
+
 void ofApp::stateUpdate(){
     if (isLive){
         EOSState = EOSLive;

@@ -70,7 +70,7 @@ extern ofColor EOSBlue, EOSLightGreen, EOSGreen, EOSLightRed, EOSRed, EOSLightGr
 extern ofColor EOSBackground, EOSLive, EOSBlind, EOSState, EOSBarState;
 
 //---------- EOS SHUTTER COLORS ----------
-extern ofColor shutterColor, shutterBackground, shutterOutsideStroke, shutterFrameFill, shutterFrameStroke, shutterOutsideStroke;
+extern ofColor shutterColor, shutterBackground, shutterOutsideStroke, shutterFrameFill, shutterFrameStroke;
 
 //---------- EOS DIRECT SELECT COLORS ----------
 extern ofColor EOSChannel, EOSGroup, EOSIntensity, EOSColor, EOSFocus, EOSBeam, EOSPreset, EOSfx, EOSMacro, EOSSnap, EOSMagic, EOSScene;

@@ -1,2 +1,3 @@
+ofxEtcTcpOsc
 ofxOsc
 ofxXmlSettings

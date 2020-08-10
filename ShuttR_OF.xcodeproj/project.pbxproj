@@ -41,9 +41,9 @@
 		B7269CD224B38C5D00998745 /* B_topbar.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CD124B38C5D00998745 /* B_topbar.mm */; };
 		B7269CD424B38DE700998745 /* B_shutterPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CD324B38DE700998745 /* B_shutterPage.mm */; };
 		B7269CD624B38EA800998745 /* B_encoderPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7269CD524B38EA800998745 /* B_encoderPage.mm */; };
-		B790CE9524B62506008FD0BF /* E_shutterHandles.mm in Sources */ = {isa = PBXBuildFile; fileRef = B790CE9424B62506008FD0BF /* E_shutterHandles.mm */; };
+		B78BAE5924E1F4230096FB82 /* E_shutterHandles.mm in Sources */ = {isa = PBXBuildFile; fileRef = B78BAE5624E1F4230096FB82 /* E_shutterHandles.mm */; };
+		B78BAE5D24E1F4380096FB82 /* O_osc_out.mm in Sources */ = {isa = PBXBuildFile; fileRef = B78BAE5B24E1F4380096FB82 /* O_osc_out.mm */; };
 		B7D46B1B24B3E0F200FFBD60 /* A_osc_In.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7D46B1A24B3E0F200FFBD60 /* A_osc_In.mm */; };
-		B7D46B1F24B4F1FD00FFBD60 /* O_osc_out.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7D46B1D24B4F1FD00FFBD60 /* O_osc_out.mm */; };
 		B7EB4A9E24B2E20A00387041 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EB4A9C24B2E20A00387041 /* Metal.framework */; };
 		B7EB4A9F24B2E20A00387041 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EB4A9D24B2E20A00387041 /* MetalKit.framework */; };
 		BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD80F2B2AB500518274 /* QuartzCore.framework */; };
@@ -132,12 +132,12 @@
 		B7269CD124B38C5D00998745 /* B_topbar.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_topbar.mm; path = B_GUI/B_topbar.mm; sourceTree = "<group>"; };
 		B7269CD324B38DE700998745 /* B_shutterPage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_shutterPage.mm; path = B_GUI/B_shutterPage.mm; sourceTree = "<group>"; };
 		B7269CD524B38EA800998745 /* B_encoderPage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_encoderPage.mm; path = B_GUI/B_encoderPage.mm; sourceTree = "<group>"; };
-		B790CE9324B62506008FD0BF /* E_shutterHandles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E_shutterHandles.h; sourceTree = "<group>"; };
-		B790CE9424B62506008FD0BF /* E_shutterHandles.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = E_shutterHandles.mm; sourceTree = "<group>"; };
-		B790CE9624B6622B008FD0BF /* E_shutterButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E_shutterButtons.h; sourceTree = "<group>"; };
+		B78BAE5624E1F4230096FB82 /* E_shutterHandles.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = E_shutterHandles.mm; sourceTree = "<group>"; };
+		B78BAE5724E1F4230096FB82 /* E_shutterHandles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E_shutterHandles.h; sourceTree = "<group>"; };
+		B78BAE5824E1F4230096FB82 /* E_shutterButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = E_shutterButtons.h; sourceTree = "<group>"; };
+		B78BAE5B24E1F4380096FB82 /* O_osc_out.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = O_osc_out.mm; sourceTree = "<group>"; };
+		B78BAE5C24E1F4380096FB82 /* O_osc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = O_osc.h; sourceTree = "<group>"; };
 		B7D46B1A24B3E0F200FFBD60 /* A_osc_In.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = A_osc_In.mm; path = A_MAIN/A_osc_In.mm; sourceTree = "<group>"; };
-		B7D46B1D24B4F1FD00FFBD60 /* O_osc_out.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = O_osc_out.mm; sourceTree = "<group>"; };
-		B7D46B1E24B4F1FD00FFBD60 /* O_osc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = O_osc.h; sourceTree = "<group>"; };
 		B7EB4A9C24B2E20A00387041 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		B7EB4A9D24B2E20A00387041 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		BB16EBD10F2B2A9500518274 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -376,23 +376,23 @@
 			name = C_KEYBOARD;
 			sourceTree = "<group>";
 		};
-		B7D46B2024B4F21500FFBD60 /* O_OSC */ = {
+		B78BAE5524E1F4230096FB82 /* E_SHUTTERS */ = {
 			isa = PBXGroup;
 			children = (
-				B7D46B1E24B4F1FD00FFBD60 /* O_osc.h */,
-				B7D46B1D24B4F1FD00FFBD60 /* O_osc_out.mm */,
+				B78BAE5624E1F4230096FB82 /* E_shutterHandles.mm */,
+				B78BAE5724E1F4230096FB82 /* E_shutterHandles.h */,
+				B78BAE5824E1F4230096FB82 /* E_shutterButtons.h */,
 			);
-			name = O_OSC;
+			path = E_SHUTTERS;
 			sourceTree = "<group>";
 		};
-		B7F6E14524C3982D00D69B55 /* E_SHUTTERS */ = {
+		B78BAE5A24E1F4380096FB82 /* O_OSC */ = {
 			isa = PBXGroup;
 			children = (
-				B790CE9324B62506008FD0BF /* E_shutterHandles.h */,
-				B790CE9624B6622B008FD0BF /* E_shutterButtons.h */,
-				B790CE9424B62506008FD0BF /* E_shutterHandles.mm */,
+				B78BAE5B24E1F4380096FB82 /* O_osc_out.mm */,
+				B78BAE5C24E1F4380096FB82 /* O_osc.h */,
 			);
-			name = E_SHUTTERS;
+			path = O_OSC;
 			sourceTree = "<group>";
 		};
 		BB16E9930F2B1E5900518274 /* libs */ = {
@@ -476,9 +476,9 @@
 				FBDB6EC143282803010D0E8A /* A_MAIN */,
 				4E9C6BFADA958C5203267AC2 /* B_GUI */,
 				A0E6FC22ECB433C6F40E4BEA /* C_KEYBOARD */,
+				B78BAE5524E1F4230096FB82 /* E_SHUTTERS */,
 				7C31A216066E8CEE3269BF15 /* D_BUTTON */,
-				B7F6E14524C3982D00D69B55 /* E_SHUTTERS */,
-				B7D46B2024B4F21500FFBD60 /* O_OSC */,
+				B78BAE5A24E1F4380096FB82 /* O_OSC */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -628,7 +628,6 @@
 				B70E6D2224D86478008D2ED9 /* B_directSelectPage.mm in Sources */,
 				0DE958A88392734A4E08CC3C /* A_ofApp.mm in Sources */,
 				8F3564A366BEC7654169DFCB /* D_button.mm in Sources */,
-				B790CE9524B62506008FD0BF /* E_shutterHandles.mm in Sources */,
 				5AEF6D83B3D140B97B8C23F4 /* C_keyboard.mm in Sources */,
 				B1263242F45888466B30F787 /* B_gui.mm in Sources */,
 				B7269CD024B38B4C00998745 /* B_settings.mm in Sources */,
@@ -637,6 +636,8 @@
 				4552A108325494C86358E102 /* UdpSocket.cpp in Sources */,
 				6B3480382822F6805C9F6421 /* OscOutboundPacketStream.cpp in Sources */,
 				34F4466FE14098A264815F64 /* OscPrintReceivedElements.cpp in Sources */,
+				B78BAE5D24E1F4380096FB82 /* O_osc_out.mm in Sources */,
+				B78BAE5924E1F4230096FB82 /* E_shutterHandles.mm in Sources */,
 				712E795AD7744AED1A6E777F /* OscReceivedElements.cpp in Sources */,
 				B7D46B1B24B3E0F200FFBD60 /* A_osc_In.mm in Sources */,
 				B70E6D2524D8665C008D2ED9 /* D_bank.mm in Sources */,
@@ -650,7 +651,6 @@
 				758F42B79CFB7DF1EBD6A0EC /* tinyxml.cpp in Sources */,
 				B7269CD224B38C5D00998745 /* B_topbar.mm in Sources */,
 				B7269CD424B38DE700998745 /* B_shutterPage.mm in Sources */,
-				B7D46B1F24B4F1FD00FFBD60 /* O_osc_out.mm in Sources */,
 				B7269CD624B38EA800998745 /* B_encoderPage.mm in Sources */,
 				EC8921C6969C6E5E2DF78835 /* tinyxmlerror.cpp in Sources */,
 				0A66D4D0B483A5E52210F62A /* tinyxmlparser.cpp in Sources */,

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ofxiOS.h"
+#include "ofEvents.h"
+
 #include "A0_globals.h"
 #include "E_shutterButtons.h"
 
@@ -56,6 +58,11 @@ public:
     string ID;
     bool clicked = false;
     bool doubleClicked = false;
+    
+    ofEvent<float> oscOutputEvent;
+    void oscOutput() {
+        ofNotifyEvent(oscOutputEvent,anglePercent);
+    }
     
     OSC osc;
     

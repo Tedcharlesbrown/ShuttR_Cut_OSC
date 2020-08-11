@@ -381,6 +381,7 @@ void ANGLE_HANDLE::touchMoved(ofTouchEventArgs & touch, bool fine){
         if (ID == "a") {
             rotateAngle += (cos(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX()) + sin(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY())) / fineAdjust;
             osc.sendShutter("ANGLE", ID, anglePercent);
+            oscOutput();
         } else if (ID == "b") {
             rotateAngle += (cos(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY()) + sin(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX())) / fineAdjust;
             osc.sendShutter("ANGLE", ID, anglePercent);

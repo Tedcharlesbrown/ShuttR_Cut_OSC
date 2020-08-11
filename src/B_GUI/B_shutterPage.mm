@@ -11,6 +11,12 @@ void GUI::shutterPageSetup() {
     thrustA.setup("a"); thrustB.setup("b"); thrustC.setup("c"); thrustD.setup("d");
     angleA.setup("a"); angleB.setup("b"); angleC.setup("c"); angleD.setup("d");
     assembly.setup();
+    
+    ofAddListener(angleA.oscOutputEvent, this, &GUI::newOSC);
+}
+
+void GUI::newOSC(string & osc){
+    cout << osc << endl;
 }
 
 //--------------------------------------------------------------

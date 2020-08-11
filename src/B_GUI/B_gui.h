@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ofxiOS.h"
+#include "ofEvents.h"
+
 #include "A_ofApp.h"
 #include "C_keyboard.h"
 #include "D_button.h"
@@ -22,6 +24,8 @@ public:
     void setup();
     void update();
     void draw();
+    
+    void newOSC(string & osc);
     
     void channelButtonAction();
     void pageButtonAction();

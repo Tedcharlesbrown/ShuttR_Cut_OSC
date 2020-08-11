@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ofxiOS.h"
+#include "ofEvents.h"
+
 #include "O_osc.h"
 
 //--------------------------------------------------------------

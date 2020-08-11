@@ -344,13 +344,13 @@
 			isa = PBXGroup;
 			children = (
 				8AAADDC381C2D9CB7A7ECBC5 /* B_gui.h */,
-				48C037DF8EB01F169524B594 /* B_settings.mm */,
+				C42A1635D09BB879ECF843F4 /* B_gui.mm */,
 				A9F52505206AE3D7C7784917 /* B_shutterPage.mm */,
 				2F482A352B13D096C62BF6EE /* B_panTiltPage.mm */,
 				800D966D23EA9F0C7784791B /* B_encoderPage.mm */,
-				6BA9B32280F7667754A48C97 /* B_topbar.mm */,
-				C42A1635D09BB879ECF843F4 /* B_gui.mm */,
 				99C73447A868904A5D281326 /* B_directSelectPage.mm */,
+				6BA9B32280F7667754A48C97 /* B_topbar.mm */,
+				48C037DF8EB01F169524B594 /* B_settings.mm */,
 			);
 			name = B_GUI;
 			sourceTree = "<group>";
@@ -378,9 +378,9 @@
 		68E8BACF615FE6D56333FF76 /* E_SHUTTERS */ = {
 			isa = PBXGroup;
 			children = (
-				C252BED9124115F26C0C8B70 /* E_shutterHandles.mm */,
 				64A80C9BFB845462EA5FB047 /* E_shutterHandles.h */,
 				27B58CE3215416B8D237501A /* E_shutterButtons.h */,
+				C252BED9124115F26C0C8B70 /* E_shutterHandles.mm */,
 			);
 			name = E_SHUTTERS;
 			sourceTree = "<group>";

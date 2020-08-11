@@ -16,6 +16,7 @@ void ofApp::setup(){
     gui.setup();
     gui.shutterPage.clicked = true;
 }
+
 //--------------------------------------------------------------
 void ofApp::update(){
     stateUpdate();

@@ -8,7 +8,7 @@
 string appName = "ShuttR Cut OSC";
 string appNameV = appName + " v0.1.0";
 string version = "v0.1.0 (OpenFrameworks)";
-string IPAddress, inputIP, inputID, inputRX, inputTX, selectedChannel = "";
+string IPAddress, inputIP, inputID, selectedChannel = "";
 
 // ----------------------- EOS BOOLEANS -----------------------
 bool connectRequest = false;
@@ -145,7 +145,7 @@ void ofApp::styleInit(){
     
     buttonHeight = height / 19.7;
     settingsBarHeight = height / 20;
-    consoleHeight = height / 20;
+    consoleHeight = height / 10;
     
     //---------- GUI WIDTH ----------
     
@@ -183,6 +183,7 @@ void ofApp::styleInit(){
     
     consoleLog.push_back(appName);
     consoleLog.push_back(version);
+
     
     //---------- COLOR ----------
     //---------- GENERIC COLOR ----------

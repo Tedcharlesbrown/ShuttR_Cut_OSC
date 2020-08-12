@@ -2,12 +2,6 @@
 
 //--------------------------------------------------------------
 
-
-void ofApp::checkConnection() {
-}
-
-//--------------------------------------------------------------
-
 void ofApp::oscEvent() {
     while(eos.hasWaitingMessages()){
         oscReceivedTime = ofGetElapsedTimeMillis();

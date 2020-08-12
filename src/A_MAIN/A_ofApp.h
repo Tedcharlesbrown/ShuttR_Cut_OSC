@@ -2,7 +2,11 @@
 
 #include "ofxiOS.h"
 
+#include "ofxEosOscMsg.h" //TCP OSC
+#include "ofxEosSync.h"
+
 #include "ofxXmlSettings.h" //XML
+
 #include <ifaddrs.h> //IP ADDRESS
 #include <arpa/inet.h> //IP ADDRESS
 
@@ -12,8 +16,6 @@
 #include "D_encoder.h"
 
 #include "E_shutterHandles.h"
-
-#include "O_osc.h"
 
 extern bool settingsMenu;
 
@@ -171,8 +173,6 @@ public:
     float settingsX, settingsY, settingsWidth, settingsHeight;
     string userInputIP = "";
     string userInputID = "1";
-    string userInputTX = "8000";
-    string userInputRX = "9000";
     int keySwitch = 0;
     
     string getIPAddress();
@@ -203,6 +203,10 @@ public:
     //--------------------------------------------------------------
     // MARK: ----------OSC EVENTS----------
     //--------------------------------------------------------------
+    
+    ofxEosSync eos;
+    
+    void connect();
     
     // ----------------------- INCOMING OSC -----------------------
     void oscEvent();
@@ -243,15 +247,6 @@ public:
     void sendShutter(string parameter, string ID, int message);
     void sendShutterHome(string parameter);
     
-    
-    
-    // -----------------------  -----------------------
-    
-    ofxEosSync eos;
-    
-    void connect() {
-        eos.setup("192.168.0.35", 3032);
-    }
     
 private:
 };

@@ -6,12 +6,12 @@ void OSC::sendChannel(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
-        ofxOscMessage m;
+        ofxEosOscMsg m;
         for (int i = 1; i >= 0; i--) { //SEND NEXT OR LAST KEY
             m.clear();
             m.setAddress("eos/user/" + inputID + "/key/" + parameter);
             m.addStringArg(ofToString(i));
-            sender.sendMessage(m, false);
+            eos.sendMessage(m);
         }
     }
 }
@@ -20,9 +20,9 @@ void OSC::sendChannel(string parameter) {
 void OSC::sendChannelNumber(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
-    ofxOscMessage m;
+    ofxEosOscMsg m;
     m.setAddress("/eos/user" + inputID + "/cmd/" + parameter + "#");
-    sender.sendMessage(m, false);
+    eos.sendMessage(m);
 }
 
 //--------------------------------------------------------------
@@ -30,36 +30,36 @@ void OSC::sendChannelNumber(string parameter) {
 void OSC::sendHigh() {
     oscSentTime = ofGetElapsedTimeMillis();
     
-    ofxOscMessage m;
+    ofxEosOscMsg m;
     for (int i = 1; i >= 0; i--) {
         m.clear();
         m.setAddress("eos/user/" + inputID + "/key/enter");
         m.addStringArg(ofToString(i));
-        sender.sendMessage(m, false);
+        eos.sendMessage(m);
     }
     for (int i = 1; i >= 0; i--) {
         m.clear();
         m.setAddress("eos/user/" + inputID + "/key/highlight");
         m.addStringArg(ofToString(i));
-        sender.sendMessage(m, false);
+        eos.sendMessage(m);
     }
     for (int i = 1; i >= 0; i--) {
         m.clear();
         m.setAddress("eos/user/" + inputID + "/key/enter");
         m.addStringArg(ofToString(i));
-        sender.sendMessage(m, false);
+        eos.sendMessage(m);
     }
     for (int i = 1; i >= 0; i--) {
         m.clear();
         m.setAddress("/eos/user/" + inputID + "/key/select_last");
         m.addStringArg(ofToString(i));
-        sender.sendMessage(m, false);
+        eos.sendMessage(m);
     }
     for (int i = 1; i >= 0; i--) {
         m.clear();
         m.setAddress("eos/user/" + inputID + "/key/enter");
         m.addStringArg(ofToString(i));
-        sender.sendMessage(m, false);
+        eos.sendMessage(m);
     }
 }
 
@@ -68,7 +68,7 @@ void OSC::sendHigh() {
 void OSC::sendFlash(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
-    ofxOscMessage m;
+    ofxEosOscMsg m;
     bool released = false;
     string OSCPrefix = "";
     if (parameter == "FLASH_OFF") {
@@ -86,7 +86,7 @@ void OSC::sendFlash(string parameter) {
     } else {
         m.addStringArg("1");
     }
-    sender.sendMessage(m, false);
+    eos.sendMessage(m);
 }
 
 //--------------------------------------------------------------

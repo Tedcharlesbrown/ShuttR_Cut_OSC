@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofxiOS.h"
-#include "ofEvents.h"
+//#include "ofEvents.h"
 
 #include "A_ofApp.h"
 #include "C_keyboard.h"
@@ -11,7 +11,7 @@
 
 #include "E_shutterHandles.h"
 
-#include "O_osc.h"
+#include "O_osc_OLD.h"
 
 extern bool settingsMenu;
 
@@ -25,7 +25,7 @@ public:
     void update();
     void draw();
     
-    void newOSC(string & osc);
+    void newOSC(float & osc);
     
     void channelButtonAction();
     void pageButtonAction();
@@ -33,7 +33,7 @@ public:
     
     void buttonAction();
     
-    OSC osc;
+    OSC_OLD osc;
     KEYBOARD keyboard;
     
     //--------------------------------------------------------------

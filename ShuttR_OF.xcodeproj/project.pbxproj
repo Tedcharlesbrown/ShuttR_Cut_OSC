@@ -126,7 +126,7 @@
 		62A626C72DD8CE693DF7F849 /* NetworkingUtils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = NetworkingUtils.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/libs/oscpack/src/ip/NetworkingUtils.h; sourceTree = SOURCE_ROOT; };
 		64A80C9BFB845462EA5FB047 /* E_shutterHandles.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = E_shutterHandles.h; path = src/E_SHUTTERS/E_shutterHandles.h; sourceTree = SOURCE_ROOT; };
 		67DFA53419F92A5E003B3434 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		68D1256DC093D4FDC0D462E5 /* O_osc.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = O_osc.h; path = src/O_OSC/O_osc.h; sourceTree = SOURCE_ROOT; };
+		68D1256DC093D4FDC0D462E5 /* O_osc_OLD.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = O_osc_OLD.h; path = src/O_OSC/O_osc_OLD.h; sourceTree = SOURCE_ROOT; };
 		6925EA105101873F4EA5D44B /* D_bank.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = D_bank.mm; path = src/D_BUTTON/D_bank.mm; sourceTree = SOURCE_ROOT; };
 		6A32C1649CFA906B09CD0639 /* OscTypes.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = OscTypes.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/libs/oscpack/src/osc/OscTypes.cpp; sourceTree = SOURCE_ROOT; };
 		6AF4AA83F40490DA6C4E8AD1 /* ofxEosSyncOscMsg.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxEosSyncOscMsg.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/src/ofxEosSyncOscMsg.h; sourceTree = SOURCE_ROOT; };
@@ -415,8 +415,8 @@
 		7C31A216066E8CEE3269BF15 /* D_BUTTON */ = {
 			isa = PBXGroup;
 			children = (
-				6925EA105101873F4EA5D44B /* D_bank.mm */,
 				0484D6DFB619B21F34809E57 /* D_bank.h */,
+				6925EA105101873F4EA5D44B /* D_bank.mm */,
 				5F5596496ED691DD1A90EB1C /* D_encoder.h */,
 				010D69567EF2AD12D0092495 /* D_encoder.mm */,
 				C433A4A266B3CED27706AB90 /* D_button.h */,
@@ -565,7 +565,7 @@
 			isa = PBXGroup;
 			children = (
 				52C612B42C8E8E72B04326B9 /* O_osc_out.mm */,
-				68D1256DC093D4FDC0D462E5 /* O_osc.h */,
+				68D1256DC093D4FDC0D462E5 /* O_osc_OLD.h */,
 			);
 			name = O_OSC;
 			sourceTree = "<group>";

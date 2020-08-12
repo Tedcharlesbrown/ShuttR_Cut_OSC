@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofxiOS.h"
-#include "O_osc.h"
+#include "O_osc_OLD.h"
 
 class ENCODER{
     
@@ -22,7 +22,7 @@ public:
     float posX, posY;
     bool clicked = false;
     
-    OSC osc;
+    OSC_OLD osc;
     
 private:
 };

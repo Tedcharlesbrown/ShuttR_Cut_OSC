@@ -259,10 +259,6 @@ void ofApp::connect() {
     IPAddress = getIPAddress();
     gui.osc.connect();
     
-    gui.thrustA.buttonA.osc.connect(); gui.thrustB.buttonB.osc.connect(); gui.thrustC.buttonC.osc.connect(); gui.thrustD.buttonD.osc.connect();
-    gui.angleA.osc.connect(); gui.angleB.osc.connect(); gui.angleC.osc.connect(); gui.angleD.osc.connect();
-    gui.assembly.osc.connect();
-    
     gui.focusEncoder.osc.connect();
     gui.formEncoder.osc.connect();
     

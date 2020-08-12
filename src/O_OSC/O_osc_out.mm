@@ -1,7 +1,7 @@
-#include "O_osc.h"
+#include "O_osc_OLD.h"
 //--------------------------------------------------------------
 
-void OSC::sendChannel(string parameter) {
+void OSC_OLD::sendChannel(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
@@ -16,7 +16,7 @@ void OSC::sendChannel(string parameter) {
 }
 //--------------------------------------------------------------
 
-void OSC::sendChannelNumber(string parameter) {
+void OSC_OLD::sendChannelNumber(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     ofxOscMessage m;
@@ -26,7 +26,7 @@ void OSC::sendChannelNumber(string parameter) {
 
 //--------------------------------------------------------------
 
-void OSC::sendHigh() {
+void OSC_OLD::sendHigh() {
     oscSentTime = ofGetElapsedTimeMillis();
     
     ofxOscMessage m;
@@ -64,7 +64,7 @@ void OSC::sendHigh() {
 
 //--------------------------------------------------------------
 
-void OSC::sendFlash(string parameter) {
+void OSC_OLD::sendFlash(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     ofxOscMessage m;
@@ -90,7 +90,7 @@ void OSC::sendFlash(string parameter) {
 
 //--------------------------------------------------------------
 
-void OSC::sendShutter(string parameter, string ID, int message) {
+void OSC_OLD::sendShutter(string parameter, string ID, int message) {
     oscSentTime = ofGetElapsedTimeMillis();
     ignoreOSC = true;
     
@@ -108,7 +108,7 @@ void OSC::sendShutter(string parameter, string ID, int message) {
 
 //--------------------------------------------------------------
 
-void OSC::sendShutterHome(string parameter) {
+void OSC_OLD::sendShutterHome(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
@@ -136,7 +136,7 @@ void OSC::sendShutterHome(string parameter) {
 
 //--------------------------------------------------------------
 
-void OSC::fineEncoder(int message) { //ONLY USED TO RESET OSC TICKS, ONLY CALLED IN CONNECT();
+void OSC_OLD::fineEncoder(int message) { //ONLY USED TO RESET OSC TICKS, ONLY CALLED IN CONNECT();
     oscSentTime = ofGetElapsedTimeMillis();
     
     ofxOscMessage m;
@@ -146,7 +146,7 @@ void OSC::fineEncoder(int message) { //ONLY USED TO RESET OSC TICKS, ONLY CALLED
 }
 
 //--------------------------------------------------------------
-void OSC::sendEncoder(string parameter, int message){
+void OSC_OLD::sendEncoder(string parameter, int message){
     oscSentTime = ofGetElapsedTimeMillis();
     
     if (parameter != "form") {
@@ -159,7 +159,7 @@ void OSC::sendEncoder(string parameter, int message){
 
 //--------------------------------------------------------------
 
-void OSC::sendEncoderPercent(string parameter, int message) {
+void OSC_OLD::sendEncoderPercent(string parameter, int message) {
     oscSentTime = ofGetElapsedTimeMillis();
     
         ofxOscMessage m;
@@ -192,7 +192,7 @@ void OSC::sendEncoderPercent(string parameter, int message) {
 
 //--------------------------------------------------------------
 
-void OSC::sendPing() {
+void OSC_OLD::sendPing() {
     oscSentTime = ofGetElapsedTimeMillis();
     
     ofxOscMessage m;

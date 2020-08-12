@@ -1,9 +1,6 @@
 #pragma once
 
 #include "ofxiOS.h"
-#include "ofEvents.h"
-
-#include "O_osc.h"
 
 //--------------------------------------------------------------
 // MARK: ----------THRUST_BUTTON----------
@@ -19,9 +16,12 @@ public:
     float position = 1; // The position of the slider between 0 and 1
     string ID;
     float rotateAngle;
-    float output;
     
-    OSC osc;
+    float thrustPercent = 0;
+    ofEvent<float> oscOutputPercent;
+    void sendOSC() {
+        ofNotifyEvent(oscOutputPercent,thrustPercent);
+    }
     
 private:
 };

@@ -5,7 +5,7 @@
 
 #include "A0_globals.h"
 
-class OSC {
+class OSC_OLD {
     
 public:
     void sendPing();

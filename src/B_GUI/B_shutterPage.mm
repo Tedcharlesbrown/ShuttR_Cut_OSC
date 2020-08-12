@@ -12,10 +12,20 @@ void GUI::shutterPageSetup() {
     angleA.setup("a"); angleB.setup("b"); angleC.setup("c"); angleD.setup("d");
     assembly.setup();
     
-    ofAddListener(angleA.oscOutputEvent, this, &GUI::newOSC);
+    ofAddListener(thrustA.buttonA.oscOutputPercent, this, &GUI::newOSC);
+    ofAddListener(thrustB.buttonB.oscOutputPercent, this, &GUI::newOSC);
+    ofAddListener(thrustC.buttonC.oscOutputPercent, this, &GUI::newOSC);
+    ofAddListener(thrustD.buttonD.oscOutputPercent, this, &GUI::newOSC);
+    
+    ofAddListener(angleA.oscOutputPercent, this, &GUI::newOSC);
+    ofAddListener(angleB.oscOutputPercent, this, &GUI::newOSC);
+    ofAddListener(angleC.oscOutputPercent, this, &GUI::newOSC);
+    ofAddListener(angleD.oscOutputPercent, this, &GUI::newOSC);
+    
+    ofAddListener(assembly.oscOutputPercent, this, &GUI::newOSC);
 }
 
-void GUI::newOSC(string & osc){
+void GUI::newOSC(float & osc){
     cout << osc << endl;
 }
 

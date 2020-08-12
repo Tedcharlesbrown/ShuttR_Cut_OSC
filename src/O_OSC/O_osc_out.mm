@@ -95,7 +95,7 @@ void OSC::sendShutter(string parameter, string ID, int message) {
     oscSentTime = ofGetElapsedTimeMillis();
     ignoreOSC = true;
     
-    ofxEosSyncOscMsg m;
+    ofxEosOscMsg m;
     if (parameter == "THRUST") {
         m.setAddress("/eos/user/" + inputID + "/param/frame thrust " + ID);
     } else if (parameter == "ANGLE") {
@@ -113,25 +113,24 @@ void OSC::sendShutterHome(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
-        ofxOscMessage a,b,c,d;
+        ofxEosOscMsg a,b,c,d;
         if (parameter == "THRUST") {
             a.setAddress("/eos/user/" + inputID + "/param/frame thrust a/home");
             b.setAddress("/eos/user/" + inputID + "/param/frame thrust b/home");
             c.setAddress("/eos/user/" + inputID + "/param/frame thrust c/home");
             d.setAddress("/eos/user/" + inputID + "/param/frame thrust d/home");
-            sender.sendMessage(a, false); sender.sendMessage(b, false); sender.sendMessage(c, false); sender.sendMessage(d, false);
+            eos.sendMessage(a); eos.sendMessage(b); eos.sendMessage(c); eos.sendMessage(d);
         } else if (parameter == "ANGLE") {
             a.setAddress("/eos/user/" + inputID + "/param/frame angle a/home");
             b.setAddress("/eos/user/" + inputID + "/param/frame angle b/home");
             c.setAddress("/eos/user/" + inputID + "/param/frame angle c/home");
             d.setAddress("/eos/user/" + inputID + "/param/frame angle d/home");
-            sender.sendMessage(a, false); sender.sendMessage(b, false); sender.sendMessage(c, false); sender.sendMessage(d, false);
+            eos.sendMessage(a); eos.sendMessage(b); eos.sendMessage(c); eos.sendMessage(d);
         } else if (parameter == "SHUTTER") {
             a.setAddress("/eos/user/" + inputID + "/param/shutter/home");
-            sender.sendMessage(a, false);
+            eos.sendMessage(a);
         }
-        //a.addStringArg(""); b.addStringArg(""); c.addStringArg(""); d.addStringArg("");
-        sender.sendMessage(a, false); sender.sendMessage(b, false); sender.sendMessage(c, false); sender.sendMessage(d, false);
+//        eos.sendMessage(a); eos.sendMessage(b); eos.sendMessage(c); eos.sendMessage(d);
     }
 }
 

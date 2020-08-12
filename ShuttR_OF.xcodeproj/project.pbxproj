@@ -46,7 +46,7 @@
 		A4749E3C1C32FAAF210F283F /* EosTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27A141CEE1DD6CE535EF23C3 /* EosTimer.cpp */; };
 		A652B8C8B9A327D67401C847 /* E_shutterHandles.mm in Sources */ = {isa = PBXBuildFile; fileRef = C252BED9124115F26C0C8B70 /* E_shutterHandles.mm */; };
 		AA336672E80CBBFCAAD5CFC1 /* B_directSelectPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 99C73447A868904A5D281326 /* B_directSelectPage.mm */; };
-		AAA63591694B0F38833D5DED /* ofxEosSyncOscMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B36A1A18A27DCC6152E84B0F /* ofxEosSyncOscMsg.cpp */; };
+		AAA63591694B0F38833D5DED /* ofxEosOscMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B36A1A18A27DCC6152E84B0F /* ofxEosOscMsg.cpp */; };
 		AAACB8FDECB13FD0DE78318C /* EosLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B094CB7B81BD45A76287D678 /* EosLog.cpp */; };
 		B1263242F45888466B30F787 /* B_gui.mm in Sources */ = {isa = PBXBuildFile; fileRef = C42A1635D09BB879ECF843F4 /* B_gui.mm */; };
 		B490433952DD772FE0CAA5F2 /* D_bank.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6925EA105101873F4EA5D44B /* D_bank.mm */; };
@@ -129,7 +129,7 @@
 		68D1256DC093D4FDC0D462E5 /* O_osc_OLD.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = O_osc_OLD.h; path = src/O_OSC/O_osc_OLD.h; sourceTree = SOURCE_ROOT; };
 		6925EA105101873F4EA5D44B /* D_bank.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = D_bank.mm; path = src/D_BUTTON/D_bank.mm; sourceTree = SOURCE_ROOT; };
 		6A32C1649CFA906B09CD0639 /* OscTypes.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = OscTypes.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/libs/oscpack/src/osc/OscTypes.cpp; sourceTree = SOURCE_ROOT; };
-		6AF4AA83F40490DA6C4E8AD1 /* ofxEosSyncOscMsg.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxEosSyncOscMsg.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/src/ofxEosSyncOscMsg.h; sourceTree = SOURCE_ROOT; };
+		6AF4AA83F40490DA6C4E8AD1 /* ofxEosOscMsg.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxEosOscMsg.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/src/ofxEosOscMsg.h; sourceTree = SOURCE_ROOT; };
 		6BA9B32280F7667754A48C97 /* B_topbar.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = B_topbar.mm; path = src/B_GUI/B_topbar.mm; sourceTree = SOURCE_ROOT; };
 		6D58677C6D3D9D435375AB7A /* ofxOscBundle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxOscBundle.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/src/ofxOscBundle.h; sourceTree = SOURCE_ROOT; };
 		76F2C022F1E8BD79868417C4 /* tinyxml.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = tinyxml.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/libs/tinyxml.h; sourceTree = SOURCE_ROOT; };
@@ -163,7 +163,7 @@
 		AF8D11504B058C9DDB219A5D /* ofxOscParameterSync.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxOscParameterSync.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/src/ofxOscParameterSync.cpp; sourceTree = SOURCE_ROOT; };
 		B094CB7B81BD45A76287D678 /* EosLog.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = EosLog.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/src/EosLog.cpp; sourceTree = SOURCE_ROOT; };
 		B1BBA783A421D6C1B120CC06 /* A_osc_In.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = A_osc_In.mm; path = src/A_MAIN/A_osc_In.mm; sourceTree = SOURCE_ROOT; };
-		B36A1A18A27DCC6152E84B0F /* ofxEosSyncOscMsg.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxEosSyncOscMsg.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/src/ofxEosSyncOscMsg.cpp; sourceTree = SOURCE_ROOT; };
+		B36A1A18A27DCC6152E84B0F /* ofxEosOscMsg.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxEosOscMsg.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/src/ofxEosOscMsg.cpp; sourceTree = SOURCE_ROOT; };
 		B396E04A19DA2B315A6C0CD7 /* EosSyncLib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EosSyncLib.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/include/EosSyncLib.h; sourceTree = SOURCE_ROOT; };
 		B705C3964A5506AAC5858C03 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlSettings.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		B71E3D8424E3716A0051CD91 /* O_osc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = O_osc.h; path = O_OSC/O_osc.h; sourceTree = "<group>"; };
@@ -361,8 +361,8 @@
 			children = (
 				E646038EB5AF93C4D10CF096 /* ofxEosSync.cpp */,
 				DBD9AD9D5F224E22BA7403A8 /* ofxEosSync.h */,
-				B36A1A18A27DCC6152E84B0F /* ofxEosSyncOscMsg.cpp */,
-				6AF4AA83F40490DA6C4E8AD1 /* ofxEosSyncOscMsg.h */,
+				B36A1A18A27DCC6152E84B0F /* ofxEosOscMsg.cpp */,
+				6AF4AA83F40490DA6C4E8AD1 /* ofxEosOscMsg.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -759,7 +759,7 @@
 				8E57E2346BA4C4EC4CBB75C6 /* EosUdp_Mac.cpp in Sources */,
 				DB14E7C3518042C21F7A6A3F /* OSCParser.cpp in Sources */,
 				F27FCE2A2F815DBBBA3F1AE2 /* ofxEosSync.cpp in Sources */,
-				AAA63591694B0F38833D5DED /* ofxEosSyncOscMsg.cpp in Sources */,
+				AAA63591694B0F38833D5DED /* ofxEosOscMsg.cpp in Sources */,
 				D23F67F10DAD2FA5B4BB602D /* IpEndpointName.cpp in Sources */,
 				D65CCD8B4CFBAC30EC09A39D /* NetworkingUtils.cpp in Sources */,
 				4552A108325494C86358E102 /* UdpSocket.cpp in Sources */,

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofxiOS.h"
-#include "ofxEosSyncOscMsg.h" //TCP OSC
+#include "ofxEosOscMsg.h" //TCP OSC
 #include "ofxOsc.h" //OSC
 #include "ofxEosSync.h"
 

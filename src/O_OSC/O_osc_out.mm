@@ -95,7 +95,7 @@ void OSC::sendShutter(string parameter, string ID, int message) {
     oscSentTime = ofGetElapsedTimeMillis();
     ignoreOSC = true;
     
-    ofxOscMessage m;
+    ofxEosSyncOscMsg m;
     if (parameter == "THRUST") {
         m.setAddress("/eos/user/" + inputID + "/param/frame thrust " + ID);
     } else if (parameter == "ANGLE") {
@@ -104,7 +104,7 @@ void OSC::sendShutter(string parameter, string ID, int message) {
         m.setAddress("/eos/user/" + inputID + "/param/frame assembly");
     }
     m.addFloatArg(message);
-    sender.sendMessage(m, false);
+    eos.sendMessage(m);
 }
 
 //--------------------------------------------------------------

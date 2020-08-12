@@ -11,6 +11,7 @@
 
 #include "E_shutterHandles.h"
 
+#include "O_osc.h"
 #include "O_osc_OLD.h"
 
 extern bool settingsMenu;
@@ -33,7 +34,9 @@ public:
     
     void buttonAction();
     
-    OSC_OLD osc;
+    OSC osc;
+    
+    OSC_OLD osc_old;
     KEYBOARD keyboard;
     
     //--------------------------------------------------------------

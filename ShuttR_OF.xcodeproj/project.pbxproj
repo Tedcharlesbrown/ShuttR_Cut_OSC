@@ -50,6 +50,7 @@
 		AAACB8FDECB13FD0DE78318C /* EosLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B094CB7B81BD45A76287D678 /* EosLog.cpp */; };
 		B1263242F45888466B30F787 /* B_gui.mm in Sources */ = {isa = PBXBuildFile; fileRef = C42A1635D09BB879ECF843F4 /* B_gui.mm */; };
 		B490433952DD772FE0CAA5F2 /* D_bank.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6925EA105101873F4EA5D44B /* D_bank.mm */; };
+		B71E3D8824E452FF0051CD91 /* O_osc_In.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E3D8724E452FF0051CD91 /* O_osc_In.mm */; };
 		B78BAE6324E1FB120096FB82 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78BAE6224E1FB120096FB82 /* MetalKit.framework */; };
 		B78BAE6524E1FB1A0096FB82 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78BAE6424E1FB1A0096FB82 /* Metal.framework */; };
 		BB16EBD20F2B2A9500518274 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD10F2B2A9500518274 /* OpenGLES.framework */; };
@@ -126,7 +127,6 @@
 		62A626C72DD8CE693DF7F849 /* NetworkingUtils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = NetworkingUtils.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/libs/oscpack/src/ip/NetworkingUtils.h; sourceTree = SOURCE_ROOT; };
 		64A80C9BFB845462EA5FB047 /* E_shutterHandles.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = E_shutterHandles.h; path = src/E_SHUTTERS/E_shutterHandles.h; sourceTree = SOURCE_ROOT; };
 		67DFA53419F92A5E003B3434 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		68D1256DC093D4FDC0D462E5 /* O_osc_OLD.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = O_osc_OLD.h; path = src/O_OSC/O_osc_OLD.h; sourceTree = SOURCE_ROOT; };
 		6925EA105101873F4EA5D44B /* D_bank.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = D_bank.mm; path = src/D_BUTTON/D_bank.mm; sourceTree = SOURCE_ROOT; };
 		6A32C1649CFA906B09CD0639 /* OscTypes.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = OscTypes.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/libs/oscpack/src/osc/OscTypes.cpp; sourceTree = SOURCE_ROOT; };
 		6AF4AA83F40490DA6C4E8AD1 /* ofxEosOscMsg.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxEosOscMsg.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/src/ofxEosOscMsg.h; sourceTree = SOURCE_ROOT; };
@@ -167,6 +167,7 @@
 		B396E04A19DA2B315A6C0CD7 /* EosSyncLib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EosSyncLib.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/include/EosSyncLib.h; sourceTree = SOURCE_ROOT; };
 		B705C3964A5506AAC5858C03 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlSettings.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		B71E3D8424E3716A0051CD91 /* O_osc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = O_osc.h; path = O_OSC/O_osc.h; sourceTree = "<group>"; };
+		B71E3D8724E452FF0051CD91 /* O_osc_In.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = O_osc_In.mm; path = O_OSC/O_osc_In.mm; sourceTree = "<group>"; };
 		B78BAE6224E1FB120096FB82 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		B78BAE6424E1FB1A0096FB82 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		BB16EBD10F2B2A9500518274 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -566,8 +567,8 @@
 			isa = PBXGroup;
 			children = (
 				B71E3D8424E3716A0051CD91 /* O_osc.h */,
+				B71E3D8724E452FF0051CD91 /* O_osc_In.mm */,
 				52C612B42C8E8E72B04326B9 /* O_osc_out.mm */,
-				68D1256DC093D4FDC0D462E5 /* O_osc_OLD.h */,
 			);
 			name = O_OSC;
 			sourceTree = "<group>";
@@ -745,6 +746,7 @@
 				95290C29241825FBD1B9F23D /* B_settings.mm in Sources */,
 				0DB844C3B7A3251D02533E9D /* B_shutterPage.mm in Sources */,
 				CAD6015E57B0371A45A0396B /* B_panTiltPage.mm in Sources */,
+				B71E3D8824E452FF0051CD91 /* O_osc_In.mm in Sources */,
 				DFFBE626E2E29BC1925D3BF5 /* B_encoderPage.mm in Sources */,
 				9FED873046E1AB0EC48E077B /* B_topbar.mm in Sources */,
 				B1263242F45888466B30F787 /* B_gui.mm in Sources */,

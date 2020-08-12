@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofxiOS.h"
-//#include "ofEvents.h"
 
 #include "A_ofApp.h"
 #include "C_keyboard.h"

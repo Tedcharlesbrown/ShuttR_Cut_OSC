@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofxiOS.h"
-#include "ofEvents.h"
 
 #include "A0_globals.h"
 #include "E_shutterButtons.h"

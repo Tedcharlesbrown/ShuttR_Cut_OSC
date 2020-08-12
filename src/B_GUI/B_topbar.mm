@@ -4,7 +4,7 @@
 // MARK: ---------- TOP BAR - UPDATE / DRAW ----------
 //--------------------------------------------------------------
 
-void GUI::topBarUpdate() {
+void ofApp::topBarUpdate() {
     if (shutterPage.action && shutterPage.clicked) {
         shutterPage.clicked = true; panTiltPage.clicked = false; encoderPage.clicked = false; directSelectPage.clicked = false;
         shutterPage.action = false;
@@ -26,7 +26,7 @@ void GUI::topBarUpdate() {
 
 //--------------------------------------------------------------
 
-void GUI::topBarDraw() {
+void ofApp::topBarDraw() {
     statusBarDraw();
     settingsBar(0,notchHeight,width,settingsBarHeight,settingsBarStrokeWeight);
     settingsButton(width - settingsBarHeight, notchHeight, settingsBarHeight, settingsBarHeight, buttonStrokeWeight);
@@ -38,7 +38,7 @@ void GUI::topBarDraw() {
 // MARK: ---------- SETTINGS - BAR / BUTTON / LIGHT ----------
 //--------------------------------------------------------------
 
-void GUI::settingsBar(float _x, float _y, float _w, float _h, float _weight) {
+void ofApp::settingsBar(float _x, float _y, float _w, float _h, float _weight) {
     ofPushStyle();
     ofSetColor(EOSBarState);
     ofDrawRectangle(_x, _y, _w, _h); //Settings Bar Background
@@ -57,7 +57,7 @@ void GUI::settingsBar(float _x, float _y, float _w, float _h, float _weight) {
 
 //--------------------------------------------------------------
 
-void GUI::settingsButton(float _x, float _y, float _w, float _h, float _weight) {
+void ofApp::settingsButton(float _x, float _y, float _w, float _h, float _weight) {
     this-> settingsX = _x;
     this-> settingsY = _y;
     this-> settingsWidth = _w;
@@ -82,7 +82,7 @@ void GUI::settingsButton(float _x, float _y, float _w, float _h, float _weight) 
 
 //--------------------------------------------------------------
 
-void GUI::oscLight(string _ID,float _x,float _y,float _w,float _h, float _weight){
+void ofApp::oscLight(string _ID,float _x,float _y,float _w,float _h, float _weight){
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
     if (_ID == "TX") {
@@ -115,7 +115,7 @@ void GUI::oscLight(string _ID,float _x,float _y,float _w,float _h, float _weight
 // MARK: ---------- STATUS BAR DRAW ----------
 //--------------------------------------------------------------
 
-void GUI::statusBarDraw() {
+void ofApp::statusBarDraw() {
     ofPushStyle();
     string amPM = "AM";
     if (ofGetHours() > 12) {

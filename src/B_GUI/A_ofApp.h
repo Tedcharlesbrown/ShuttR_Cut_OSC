@@ -6,7 +6,6 @@
 #include <ifaddrs.h> //IP ADDRESS
 #include <arpa/inet.h> //IP ADDRESS
 
-#include "A_ofApp.h"
 #include "C_keyboard.h"
 #include "D_button.h"
 #include "D_bank.h"
@@ -18,7 +17,7 @@
 
 extern bool settingsMenu;
 
-class GUI {
+class ofApp : public ofxiOSApp {
     
 public:
     //--------------------------------------------------------------

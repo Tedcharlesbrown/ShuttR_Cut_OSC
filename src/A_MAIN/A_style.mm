@@ -89,7 +89,7 @@ ofColor shutterColor = ofColor(0);
 // MARK: ---------- INITIALIZERS ----------
 //--------------------------------------------------------------
 
-void GUI::stateUpdate(){
+void ofApp::stateUpdate(){
     if (isLive){
         EOSState = EOSLive;
         EOSBarState = EOSDarkGrey;
@@ -99,7 +99,7 @@ void GUI::stateUpdate(){
     }
 }
 //--------------------------------------------------------------
-void GUI::styleInit(){
+void ofApp::styleInit(){
     
     shutterColor.setHsb(163.056,103.167,255);
     

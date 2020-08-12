@@ -4,15 +4,15 @@
 // MARK: ---------- ENCODER - SETUP / UPDATE / DRAW ----------
 //--------------------------------------------------------------
 
-void GUI::encoderPageSetup() {
+void ofApp::encoderPageSetup() {
     formEncoder.setup(assemblyDiameter / 1.25);
     
-    ofAddListener(formEncoder.oscOutputPercent, this, &GUI::sendFormEncoder);
+    ofAddListener(formEncoder.oscOutputPercent, this, &ofApp::sendFormEncoder);
 }
 
 //--------------------------------------------------------------
 
-void GUI::encoderPageUpdate() {
+void ofApp::encoderPageUpdate() {
     if (irisButton.action && irisButton.clicked) {
         irisButton.clicked = true; edgeButton.clicked = false; zoomButton.clicked = false; frostButton.clicked = false;
         irisButton.action = false;
@@ -47,7 +47,7 @@ void GUI::encoderPageUpdate() {
 
 //--------------------------------------------------------------
 
-void GUI::encoderPageDraw() {
+void ofApp::encoderPageDraw() {
     
     irisButton.showBig("IRIS",irisPercent, guiLeftAlign, row3Padding, plusMinusButtonWidth, buttonHeight);
     edgeButton.showBig("EDGE",edgePercent, guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
@@ -65,7 +65,7 @@ void GUI::encoderPageDraw() {
 // MARK: ---------- TOUCH EVENTS ----------
 //--------------------------------------------------------------
 
-void GUI::encoderPageTouchDown(ofTouchEventArgs & touch) {
+void ofApp::encoderPageTouchDown(ofTouchEventArgs & touch) {
     minusButton.touchDown(touch);
     plusButton.touchDown(touch);
     fineButton.touchDown(touch, true);
@@ -84,12 +84,12 @@ void GUI::encoderPageTouchDown(ofTouchEventArgs & touch) {
     formEncoder.touchDown(touch);
 }
 
-void GUI::encoderPageTouchMoved(ofTouchEventArgs & touch) {
+void ofApp::encoderPageTouchMoved(ofTouchEventArgs & touch) {
     formEncoder.touchMoved(touch, fineButton.clicked);
 }
 
 
-void GUI::encoderPageTouchUp(ofTouchEventArgs & touch) {
+void ofApp::encoderPageTouchUp(ofTouchEventArgs & touch) {
     minusButton.touchUp(touch);
     plusButton.touchUp(touch);
     flashButton.touchUp(touch);
@@ -106,6 +106,6 @@ void GUI::encoderPageTouchUp(ofTouchEventArgs & touch) {
 // MARK: ---------- OSC LISTENERS / PARSING ----------
 //--------------------------------------------------------------
 
-void GUI::sendFormEncoder(float & oscOutputPercent){
+void ofApp::sendFormEncoder(float & oscOutputPercent){
     sendEncoder(formEncoder.parameter, oscOutputPercent);
 }

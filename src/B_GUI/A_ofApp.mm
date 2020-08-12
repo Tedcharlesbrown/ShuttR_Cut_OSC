@@ -6,7 +6,7 @@ bool settingsMenu = false;
 // MARK: ---------- GUI / SETUP AND DRAW ----------
 //--------------------------------------------------------------
 
-void GUI::setup() {
+void ofApp::setup() {
     getNotchHeight();
     
     ofEnableSmoothing();
@@ -25,8 +25,9 @@ void GUI::setup() {
 
 //--------------------------------------------------------------
 
-void GUI::update() {
+void ofApp::update() {
     oscEvent();
+    stateUpdate();
     
     keyboard.update();
     
@@ -43,7 +44,7 @@ void GUI::update() {
 // MARK: ---------- PAGE BUTTONS ----------
 //--------------------------------------------------------------
 
-void GUI::pageButtonAction() {
+void ofApp::pageButtonAction() {
     if (shutterPage.clicked && !settingsMenu) {
         shutterPageUpdate();
     } else if (panTiltPage.clicked && !settingsMenu) {
@@ -59,7 +60,7 @@ void GUI::pageButtonAction() {
 // MARK: ---------- GUI BUTTON ACTIONS ----------
 //--------------------------------------------------------------
 
-void GUI::buttonAction() {
+void ofApp::buttonAction() {
     if (minusButton.action) {
         sendChannel("last");
         minusButton.action = false;
@@ -91,7 +92,7 @@ void GUI::buttonAction() {
 // MARK: ---------- CHANNEL BUTTON ----------
 //--------------------------------------------------------------
 
-void GUI::channelButtonAction() {
+void ofApp::channelButtonAction() {
     if ((shutterPage.clicked || panTiltPage.clicked || encoderPage.clicked || directSelectPage.clicked) && !settingsMenu) {
         if (keyboard.clickedOff) {
             channelButton.clicked = false;
@@ -122,7 +123,7 @@ void GUI::channelButtonAction() {
 // MARK: ---------- OSC LIGHT ----------
 //--------------------------------------------------------------
 
-void GUI::oscLightUpdate() {
+void ofApp::oscLightUpdate() {
     if (ofGetElapsedTimeMillis() > oscSentTime + 200) {
         oscSendLight = false;
         ignoreOSC = false;
@@ -140,7 +141,9 @@ void GUI::oscLightUpdate() {
 // MARK: ---------- DRAW ----------
 //--------------------------------------------------------------
 
-void GUI::draw() {
+void ofApp::draw() {
+    ofBackground(EOSBackground);
+    
     if (shutterPage.clicked && !settingsMenu) {
         shutterPageDraw();
     }
@@ -182,7 +185,7 @@ void GUI::draw() {
 // MARK: ---------- TOUCH EVENTS ----------
 //--------------------------------------------------------------
 
-void GUI::touchDown(ofTouchEventArgs & touch){
+void ofApp::touchDown(ofTouchEventArgs & touch){
     if (touch.x > settingsX && touch.y < settingsHeight && touch.y > notchHeight) {
         settingsMenu = !settingsMenu;
         channelButton.clicked = false;
@@ -214,7 +217,7 @@ void GUI::touchDown(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 
-void GUI::touchMoved(ofTouchEventArgs & touch){
+void ofApp::touchMoved(ofTouchEventArgs & touch){
     if (shutterPage.clicked && !settingsMenu) {
         shutterPageTouchMoved(touch);
     }
@@ -228,7 +231,7 @@ void GUI::touchMoved(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 
-void GUI::touchUp(ofTouchEventArgs & touch){
+void ofApp::touchUp(ofTouchEventArgs & touch){
     if (shutterPage.clicked && !settingsMenu) {
         shutterPageTouchUp(touch);
     } else if (panTiltPage.clicked && !settingsMenu && !keyboard.show) {
@@ -244,7 +247,7 @@ void GUI::touchUp(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 
-void GUI::touchDoubleTap(ofTouchEventArgs & touch){
+void ofApp::touchDoubleTap(ofTouchEventArgs & touch){
     if (shutterPage.clicked && !settingsMenu) {
         shutterPageDoubleTap(touch);
     } else if (panTiltPage.clicked && !settingsMenu && !keyboard.show) {
@@ -258,24 +261,24 @@ void GUI::touchDoubleTap(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 
-void GUI::touchCancelled(ofTouchEventArgs & touch){
+void ofApp::touchCancelled(ofTouchEventArgs & touch){
     
 }
 
 //--------------------------------------------------------------
 
-void GUI::lostFocus(){
+void ofApp::lostFocus(){
     saveXML();
 }
 
 //--------------------------------------------------------------
-void GUI::gotFocus(){
+void ofApp::gotFocus(){
     getXML();
 }
 
 //--------------------------------------------------------------
 
-void GUI::saveXML() {
+void ofApp::saveXML() {
     XML.setValue("settings::ip", inputIP);
     XML.setValue("settings::id", inputID);
     XML.setValue("settings::rx", inputRX);
@@ -287,7 +290,7 @@ void GUI::saveXML() {
 
 //--------------------------------------------------------------
 
-void GUI::getXML() {
+void ofApp::getXML() {
     if( XML.loadFile(ofxiOSGetDocumentsDirectory() + "settings.xml") ){
         message = "settings.xml loaded from documents folder!";
     }else if( XML.loadFile("settings.xml") ){
@@ -306,7 +309,7 @@ void GUI::getXML() {
 
 //--------------------------------------------------------------
 
-string GUI::getIPAddress() {
+string ofApp::getIPAddress() {
     NSString *address = @"error";
     struct ifaddrs *interfaces = NULL;
     struct ifaddrs *temp_addr = NULL;
@@ -338,7 +341,7 @@ string GUI::getIPAddress() {
 
 //--------------------------------------------------------------
 
-void GUI::getNotchHeight() {
+void ofApp::getNotchHeight() {
     
     string deviceName = ofxiOSGetDeviceRevision();
     if (deviceName.find("iPhone") != std::string::npos) { //DEVICE IS IPHONE

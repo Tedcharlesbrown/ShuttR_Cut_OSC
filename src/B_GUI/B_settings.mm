@@ -4,7 +4,7 @@
 // MARK: ---------- SETTINGS - SETUP / UPDATE / DRAW -------
 //--------------------------------------------------------------
 
-void GUI::settingsSetup() {
+void ofApp::settingsSetup() {
     settingsHelp.load("settingsHelp.png");
     userInputIP = inputIP;
     userInputID = inputID;
@@ -15,7 +15,7 @@ void GUI::settingsSetup() {
 
 //--------------------------------------------------------------
 
-void GUI::settingsUpdate() {
+void ofApp::settingsUpdate() {
     if (settingsMenu) {
         if (keyboard.clickedOff) {
             ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false;
@@ -93,7 +93,7 @@ void GUI::settingsUpdate() {
 
 //--------------------------------------------------------------
 
-void GUI::settingsDraw() {
+void ofApp::settingsDraw() {
     string IP = "IP ADDRESS";
     string ID = "USER";
     string TX = "TX PORT";
@@ -138,7 +138,7 @@ void GUI::settingsDraw() {
 // MARK: ---------- CONSOLE LOG ----------
 //--------------------------------------------------------------
 
-void GUI::console() {
+void ofApp::console() {
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
     ofSetColor(255);
@@ -163,7 +163,7 @@ void GUI::console() {
 // MARK: ---------- ABOUT ----------
 //--------------------------------------------------------------
 
-void GUI::about() {
+void ofApp::about() {
     string aboutOne = appName + " " + version;
     string thisIP = "Local IP Address: " + IPAddress;
     string aboutTwo =  "\nMade by Ted Charles Brown";

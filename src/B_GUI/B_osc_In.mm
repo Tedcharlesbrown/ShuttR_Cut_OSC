@@ -3,12 +3,12 @@
 //--------------------------------------------------------------
 
 
-void GUI::checkConnection() {
+void ofApp::checkConnection() {
 }
 
 //--------------------------------------------------------------
 
-void GUI::oscEvent() {
+void ofApp::oscEvent() {
     while(eos.hasWaitingMessages()){
         oscReceivedTime = ofGetElapsedTimeMillis();
         
@@ -46,7 +46,7 @@ void GUI::oscEvent() {
 
 //--------------------------------------------------------------
 
-void GUI::getState(ofxEosOscMsg m){
+void ofApp::getState(ofxEosOscMsg m){
     switch(m.getArgAsInt(0)) {
         case 0: //BLIND
             isLive = false;
@@ -60,7 +60,7 @@ void GUI::getState(ofxEosOscMsg m){
 
 //--------------------------------------------------------------
 
-void GUI::getCommandLine(ofxEosOscMsg m){
+void ofApp::getCommandLine(ofxEosOscMsg m){
     string incomingOSC = m.getArgAsString(0);
     
     if (incomingOSC.find("LIVE") != string::npos) {
@@ -87,7 +87,7 @@ void GUI::getCommandLine(ofxEosOscMsg m){
 
 //--------------------------------------------------------------
 
-void GUI::getPanTilt(ofxEosOscMsg m) {
+void ofApp::getPanTilt(ofxEosOscMsg m) {
     if (m.getNumArgs() > 0) {
         hasPanTilt = true;
         int panPercentInt = m.getArgAsFloat(4);
@@ -103,7 +103,7 @@ void GUI::getPanTilt(ofxEosOscMsg m) {
 
 //--------------------------------------------------------------
 
-void GUI::getWheel(ofxEosOscMsg m){
+void ofApp::getWheel(ofxEosOscMsg m){
     for (int i = 0; i < 200; i++) {
         if (m.getAddress() == "/eos/out/active/wheel/" + ofToString(i) && m.argHasPercent(0) && !ignoreOSC) {
             string incomingOSC = m.getArgAsString(0);
@@ -165,7 +165,7 @@ void GUI::getWheel(ofxEosOscMsg m){
 
 //--------------------------------------------------------------
 
-void GUI::getChannel(ofxEosOscMsg m) {
+void ofApp::getChannel(ofxEosOscMsg m) {
     string incomingOSC = m.getArgAsString(0);
     if (incomingOSC.find("[") != string::npos){ //IF CHANNEL IS PATCHED AND SELECTED
         int oscLength = incomingOSC.length();
@@ -197,7 +197,7 @@ void GUI::getChannel(ofxEosOscMsg m) {
 
 //--------------------------------------------------------------
 
-void GUI::getColor(ofxEosOscMsg m){
+void ofApp::getColor(ofxEosOscMsg m){
     if (m.getNumArgs() > 0) {
         float hue = m.getArgAsFloat(0);
         float sat = m.getArgAsFloat(1);

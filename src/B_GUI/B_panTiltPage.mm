@@ -4,13 +4,13 @@
 // MARK: ---------- PAN TILT PAGE - SETUP / UPDATE / DRAW ----------
 //--------------------------------------------------------------
 
-void GUI::panTiltPageSetup(){
+void ofApp::panTiltPageSetup(){
     focusEncoder.setup(assemblyDiameter / 1.25);
     
-    ofAddListener(focusEncoder.oscOutputPercent, this, &GUI::sendFocusEncoder);
+    ofAddListener(focusEncoder.oscOutputPercent, this, &ofApp::sendFocusEncoder);
 }
 //--------------------------------------------------------------
-void GUI::panTiltPageUpdate(){
+void ofApp::panTiltPageUpdate(){
     string _parameter = "";
     if (panButton.action && panButton.clicked) {
         panButton.clicked = true; tiltButton.clicked = false;
@@ -37,7 +37,7 @@ void GUI::panTiltPageUpdate(){
 }
 
 //--------------------------------------------------------------
-void GUI::panTiltPageDraw(){
+void ofApp::panTiltPageDraw(){
     
     panButton.showBig("PAN",panPercent, guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
     tiltButton.showBig("TILT",tiltPercent, guiCenterAlign + genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
@@ -53,7 +53,7 @@ void GUI::panTiltPageDraw(){
 // MARK: ---------- TOUCH EVENTS ----------
 //--------------------------------------------------------------
 
-void GUI::panTiltPageTouchDown(ofTouchEventArgs & touch){
+void ofApp::panTiltPageTouchDown(ofTouchEventArgs & touch){
     minusButton.touchDown(touch);
     plusButton.touchDown(touch);
     fineButton.touchDown(touch, true);
@@ -72,12 +72,12 @@ void GUI::panTiltPageTouchDown(ofTouchEventArgs & touch){
 }
 
 //--------------------------------------------------------------
-void GUI::panTiltPageTouchMoved(ofTouchEventArgs & touch){
+void ofApp::panTiltPageTouchMoved(ofTouchEventArgs & touch){
     focusEncoder.touchMoved(touch, fineButton.clicked);
 }
 
 //--------------------------------------------------------------
-void GUI::panTiltPageTouchUp(ofTouchEventArgs & touch){
+void ofApp::panTiltPageTouchUp(ofTouchEventArgs & touch){
     minusButton.touchUp(touch);
     plusButton.touchUp(touch);
     flashButton.touchUp(touch);
@@ -94,7 +94,7 @@ void GUI::panTiltPageTouchUp(ofTouchEventArgs & touch){
 }
 
 //--------------------------------------------------------------
-void GUI::panTiltPageDoubleTap(ofTouchEventArgs & touch){
+void ofApp::panTiltPageDoubleTap(ofTouchEventArgs & touch){
 
 }
 
@@ -103,6 +103,6 @@ void GUI::panTiltPageDoubleTap(ofTouchEventArgs & touch){
 // MARK: ---------- OSC LISTENERS / PARSING ----------
 //--------------------------------------------------------------
 
-void GUI::sendFocusEncoder(float & oscOutputPercent){
+void ofApp::sendFocusEncoder(float & oscOutputPercent){
     sendEncoder(focusEncoder.parameter, oscOutputPercent);
 }

@@ -4,7 +4,7 @@
 // MARK: ---------- SHUTTER PAGE - SETUP / UPDATE / DRAW ----------
 //--------------------------------------------------------------
 
-void GUI::shutterPageSetup() {
+void ofApp::shutterPageSetup() {
     bgAssembly.load("IMG_bgAssembly.png");
     bgAssembly.resize(assemblyDiameter * 2, assemblyDiameter * 2);
 
@@ -17,7 +17,7 @@ void GUI::shutterPageSetup() {
 
 //--------------------------------------------------------------
 
-void GUI::shutterPageUpdate() {
+void ofApp::shutterPageUpdate() {
     if (thrustButton.action) {
         if (noneSelected) {
             thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
@@ -48,7 +48,7 @@ void GUI::shutterPageUpdate() {
 
 //--------------------------------------------------------------
 
-void GUI::shutterPageDraw() {
+void ofApp::shutterPageDraw() {
     assemblyColor();
     
     angleA.frameDisplay(thrustA.buttonA.position); angleC.frameDisplay(thrustC.buttonC.position); angleB.frameDisplay(thrustB.buttonB.position); angleD.frameDisplay(thrustD.buttonD.position);
@@ -76,7 +76,7 @@ void GUI::shutterPageDraw() {
 // MARK: ---------- ASSEMBLY FOREGROUND / BACKGROUND ----------
 //--------------------------------------------------------------
 
-void GUI::assemblyColor() {
+void ofApp::assemblyColor() {
     ofPushStyle(); ofPushMatrix();
     
     ofTranslate(centerX,centerY);
@@ -90,7 +90,7 @@ void GUI::assemblyColor() {
     ofPopStyle(); ofPopMatrix();
 }
 
-void GUI::assemblyBG() {
+void ofApp::assemblyBG() {
     ofPushStyle(); ofPushMatrix();
     
     ofSetColor(EOSBackground);
@@ -114,7 +114,7 @@ void GUI::assemblyBG() {
 // MARK: ---------- TOUCH EVENTS ----------
 //--------------------------------------------------------------
 
-void GUI::shutterPageTouchDown(ofTouchEventArgs & touch) {
+void ofApp::shutterPageTouchDown(ofTouchEventArgs & touch) {
     minusButton.touchDown(touch);
     plusButton.touchDown(touch);
     fineButton.touchDown(touch, true);
@@ -133,7 +133,7 @@ void GUI::shutterPageTouchDown(ofTouchEventArgs & touch) {
 
 //--------------------------------------------------------------
 
-void GUI::shutterPageTouchMoved(ofTouchEventArgs & touch) {
+void ofApp::shutterPageTouchMoved(ofTouchEventArgs & touch) {
     thrustA.touchMoved(touch,fineButton.clicked); thrustB.touchMoved(touch,fineButton.clicked); thrustC.touchMoved(touch,fineButton.clicked); thrustD.touchMoved(touch,fineButton.clicked);
     angleA.touchMoved(touch,fineButton.clicked); angleB.touchMoved(touch,fineButton.clicked); angleC.touchMoved(touch,fineButton.clicked); angleD.touchMoved(touch,fineButton.clicked);
     assembly.touchMoved(touch,fineButton.clicked);
@@ -141,7 +141,7 @@ void GUI::shutterPageTouchMoved(ofTouchEventArgs & touch) {
 
 //--------------------------------------------------------------
 
-void GUI::shutterPageTouchUp(ofTouchEventArgs & touch) {
+void ofApp::shutterPageTouchUp(ofTouchEventArgs & touch) {
     minusButton.touchUp(touch);
     plusButton.touchUp(touch);
     flashButton.touchUp(touch);
@@ -157,7 +157,7 @@ void GUI::shutterPageTouchUp(ofTouchEventArgs & touch) {
 
 //--------------------------------------------------------------
 
-void GUI::shutterPageDoubleTap(ofTouchEventArgs & touch) {
+void ofApp::shutterPageDoubleTap(ofTouchEventArgs & touch) {
     thrustA.touchDoubleTap(touch); thrustB.touchDoubleTap(touch); thrustC.touchDoubleTap(touch); thrustD.touchDoubleTap(touch);
     angleA.touchDoubleTap(touch); angleB.touchDoubleTap(touch); angleC.touchDoubleTap(touch); angleD.touchDoubleTap(touch);
     assembly.touchDoubleTap(touch);
@@ -169,46 +169,46 @@ void GUI::shutterPageDoubleTap(ofTouchEventArgs & touch) {
 //--------------------------------------------------------------
 
 
-void GUI::shutterPageAddListeners() {
-    ofAddListener(thrustA.buttonA.oscOutputPercent, this, &GUI::sendThrustA);
-    ofAddListener(thrustB.buttonB.oscOutputPercent, this, &GUI::sendThrustB);
-    ofAddListener(thrustC.buttonC.oscOutputPercent, this, &GUI::sendThrustC);
-    ofAddListener(thrustD.buttonD.oscOutputPercent, this, &GUI::sendThrustD);
+void ofApp::shutterPageAddListeners() {
+    ofAddListener(thrustA.buttonA.oscOutputPercent, this, &ofApp::sendThrustA);
+    ofAddListener(thrustB.buttonB.oscOutputPercent, this, &ofApp::sendThrustB);
+    ofAddListener(thrustC.buttonC.oscOutputPercent, this, &ofApp::sendThrustC);
+    ofAddListener(thrustD.buttonD.oscOutputPercent, this, &ofApp::sendThrustD);
 
-    ofAddListener(angleA.oscOutputPercent, this, &GUI::sendAngleA);
-    ofAddListener(angleB.oscOutputPercent, this, &GUI::sendAngleB);
-    ofAddListener(angleC.oscOutputPercent, this, &GUI::sendAngleC);
-    ofAddListener(angleD.oscOutputPercent, this, &GUI::sendAngleD);
+    ofAddListener(angleA.oscOutputPercent, this, &ofApp::sendAngleA);
+    ofAddListener(angleB.oscOutputPercent, this, &ofApp::sendAngleB);
+    ofAddListener(angleC.oscOutputPercent, this, &ofApp::sendAngleC);
+    ofAddListener(angleD.oscOutputPercent, this, &ofApp::sendAngleD);
 
-    ofAddListener(assembly.oscOutputPercent, this, &GUI::sendAssembly);
+    ofAddListener(assembly.oscOutputPercent, this, &ofApp::sendAssembly);
 }
 
-void GUI::sendThrustA(float & oscOutputPercent){
+void ofApp::sendThrustA(float & oscOutputPercent){
     sendShutter("THRUST","a",oscOutputPercent);
 }
-void GUI::sendThrustB(float & oscOutputPercent){
+void ofApp::sendThrustB(float & oscOutputPercent){
     sendShutter("THRUST","b",oscOutputPercent);
 }
-void GUI::sendThrustC(float & oscOutputPercent){
+void ofApp::sendThrustC(float & oscOutputPercent){
     sendShutter("THRUST","c",oscOutputPercent);
 }
-void GUI::sendThrustD(float & oscOutputPercent){
+void ofApp::sendThrustD(float & oscOutputPercent){
     sendShutter("THRUST","d",oscOutputPercent);
 }
 
-void GUI::sendAngleA(float & oscOutputPercent){
+void ofApp::sendAngleA(float & oscOutputPercent){
     sendShutter("ANGLE","a",oscOutputPercent);
 }
-void GUI::sendAngleB(float & oscOutputPercent){
+void ofApp::sendAngleB(float & oscOutputPercent){
     sendShutter("ANGLE","b",oscOutputPercent);
 }
-void GUI::sendAngleC(float & oscOutputPercent){
+void ofApp::sendAngleC(float & oscOutputPercent){
     sendShutter("ANGLE","c",oscOutputPercent);
 }
-void GUI::sendAngleD(float & oscOutputPercent){
+void ofApp::sendAngleD(float & oscOutputPercent){
     sendShutter("ANGLE","d",oscOutputPercent);
 }
 
-void GUI::sendAssembly(float & oscOutputPercent){
+void ofApp::sendAssembly(float & oscOutputPercent){
     sendShutter("ASSEMBLY","",oscOutputPercent);
 }

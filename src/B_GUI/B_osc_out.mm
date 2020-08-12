@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 
-void GUI::sendChannel(string parameter) {
+void ofApp::sendChannel(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
@@ -17,7 +17,7 @@ void GUI::sendChannel(string parameter) {
 }
 //--------------------------------------------------------------
 
-void GUI::sendChannelNumber(string parameter) {
+void ofApp::sendChannelNumber(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     ofxEosOscMsg m;
@@ -27,7 +27,7 @@ void GUI::sendChannelNumber(string parameter) {
 
 //--------------------------------------------------------------
 
-void GUI::sendHigh() {
+void ofApp::sendHigh() {
     oscSentTime = ofGetElapsedTimeMillis();
     
     ofxEosOscMsg m;
@@ -65,7 +65,7 @@ void GUI::sendHigh() {
 
 //--------------------------------------------------------------
 
-void GUI::sendFlash(string parameter) {
+void ofApp::sendFlash(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     ofxEosOscMsg m;
@@ -91,7 +91,7 @@ void GUI::sendFlash(string parameter) {
 
 //--------------------------------------------------------------
 
-void GUI::sendShutter(string parameter, string ID, int message) {
+void ofApp::sendShutter(string parameter, string ID, int message) {
     oscSentTime = ofGetElapsedTimeMillis();
     ignoreOSC = true;
     
@@ -109,7 +109,7 @@ void GUI::sendShutter(string parameter, string ID, int message) {
 
 //--------------------------------------------------------------
 
-void GUI::sendShutterHome(string parameter) {
+void ofApp::sendShutterHome(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
@@ -136,7 +136,7 @@ void GUI::sendShutterHome(string parameter) {
 
 //--------------------------------------------------------------
 
-void GUI::fineEncoder(int message) { //ONLY USED TO RESET OSC TICKS, ONLY CALLED IN CONNECT();
+void ofApp::fineEncoder(int message) { //ONLY USED TO RESET OSC TICKS, ONLY CALLED IN CONNECT();
     oscSentTime = ofGetElapsedTimeMillis();
     
     ofxEosOscMsg m;
@@ -146,7 +146,7 @@ void GUI::fineEncoder(int message) { //ONLY USED TO RESET OSC TICKS, ONLY CALLED
 }
 
 //--------------------------------------------------------------
-void GUI::sendEncoder(string parameter, float message){
+void ofApp::sendEncoder(string parameter, float message){
     oscSentTime = ofGetElapsedTimeMillis();
     
     ofxEosOscMsg m;
@@ -157,7 +157,7 @@ void GUI::sendEncoder(string parameter, float message){
 
 //--------------------------------------------------------------
 
-void GUI::sendEncoderPercent(string parameter, int message) {
+void ofApp::sendEncoderPercent(string parameter, int message) {
     oscSentTime = ofGetElapsedTimeMillis();
     
         ofxEosOscMsg m;
@@ -190,7 +190,7 @@ void GUI::sendEncoderPercent(string parameter, int message) {
 
 //--------------------------------------------------------------
 
-void GUI::sendPing() {
+void ofApp::sendPing() {
     oscSentTime = ofGetElapsedTimeMillis();
     
     ofxEosOscMsg m;

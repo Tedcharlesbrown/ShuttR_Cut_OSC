@@ -34,13 +34,13 @@ void GUI::encoderPageUpdate() {
     }
     
     if (minusPercentButton.action && formParameter != "form") { //if param is form, don't send.
-        osc.sendEncoderPercent(formParameter, -1);
+        sendEncoderPercent(formParameter, -1);
         minusPercentButton.action = false;
     } else if (homeButton.action) {
-        osc.sendEncoderPercent(formParameter, 0);
+        sendEncoderPercent(formParameter, 0);
         homeButton.action = false;
     } else if (plusPercentButton.action && formParameter != "form") { //if param is form, don't send.
-        osc.sendEncoderPercent(formParameter, 1);
+        sendEncoderPercent(formParameter, 1);
         plusPercentButton.action = false;
     }
 }
@@ -48,6 +48,7 @@ void GUI::encoderPageUpdate() {
 //--------------------------------------------------------------
 
 void GUI::encoderPageDraw() {
+    
     irisButton.showBig("IRIS",irisPercent, guiLeftAlign, row3Padding, plusMinusButtonWidth, buttonHeight);
     edgeButton.showBig("EDGE",edgePercent, guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
     zoomButton.showBig("ZOOM",zoomPercent, guiCenterAlign + genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
@@ -106,5 +107,5 @@ void GUI::encoderPageTouchUp(ofTouchEventArgs & touch) {
 //--------------------------------------------------------------
 
 void GUI::sendFormEncoder(float & oscOutputPercent){
-    osc.sendEncoder(formEncoder.parameter, oscOutputPercent);
+    sendEncoder(formEncoder.parameter, oscOutputPercent);
 }

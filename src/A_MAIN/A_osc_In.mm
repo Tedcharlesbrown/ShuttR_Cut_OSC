@@ -258,11 +258,11 @@ void ofApp::parseChannel(string incomingOSC) {
 void ofApp::connect() {
     IPAddress = getIPAddress();
     
-    gui.osc.connect();
+    gui.connect();
     
     receiver.setup(ofToInt(inputRX));
     connectRequest = false;
     
-    gui.osc.sendPing();
-    gui.osc.fineEncoder(0);
+//    gui.osc.sendPing();
+//    gui.osc.fineEncoder(0);
 }

@@ -51,6 +51,8 @@
 		B1263242F45888466B30F787 /* B_gui.mm in Sources */ = {isa = PBXBuildFile; fileRef = C42A1635D09BB879ECF843F4 /* B_gui.mm */; };
 		B490433952DD772FE0CAA5F2 /* D_bank.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6925EA105101873F4EA5D44B /* D_bank.mm */; };
 		B71E3D8824E452FF0051CD91 /* O_osc_In.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E3D8724E452FF0051CD91 /* O_osc_In.mm */; };
+		B71E3D8B24E456C00051CD91 /* B_osc_In.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E3D8924E456BF0051CD91 /* B_osc_In.mm */; };
+		B71E3D8C24E456C00051CD91 /* B_osc_out.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E3D8A24E456C00051CD91 /* B_osc_out.mm */; };
 		B78BAE6324E1FB120096FB82 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78BAE6224E1FB120096FB82 /* MetalKit.framework */; };
 		B78BAE6524E1FB1A0096FB82 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78BAE6424E1FB1A0096FB82 /* Metal.framework */; };
 		BB16EBD20F2B2A9500518274 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD10F2B2A9500518274 /* OpenGLES.framework */; };
@@ -168,6 +170,8 @@
 		B705C3964A5506AAC5858C03 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlSettings.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		B71E3D8424E3716A0051CD91 /* O_osc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = O_osc.h; path = O_OSC/O_osc.h; sourceTree = "<group>"; };
 		B71E3D8724E452FF0051CD91 /* O_osc_In.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = O_osc_In.mm; path = O_OSC/O_osc_In.mm; sourceTree = "<group>"; };
+		B71E3D8924E456BF0051CD91 /* B_osc_In.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_osc_In.mm; path = B_GUI/B_osc_In.mm; sourceTree = "<group>"; };
+		B71E3D8A24E456C00051CD91 /* B_osc_out.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_osc_out.mm; path = B_GUI/B_osc_out.mm; sourceTree = "<group>"; };
 		B78BAE6224E1FB120096FB82 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		B78BAE6424E1FB1A0096FB82 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		BB16EBD10F2B2A9500518274 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -353,6 +357,8 @@
 				99C73447A868904A5D281326 /* B_directSelectPage.mm */,
 				6BA9B32280F7667754A48C97 /* B_topbar.mm */,
 				48C037DF8EB01F169524B594 /* B_settings.mm */,
+				B71E3D8924E456BF0051CD91 /* B_osc_In.mm */,
+				B71E3D8A24E456C00051CD91 /* B_osc_out.mm */,
 			);
 			name = B_GUI;
 			sourceTree = "<group>";
@@ -758,12 +764,14 @@
 				2424D604A97746C5BA814CAF /* EosTcp_Mac.cpp in Sources */,
 				A4749E3C1C32FAAF210F283F /* EosTimer.cpp in Sources */,
 				0AD96B876FC4F69F392753CC /* EosUdp.cpp in Sources */,
+				B71E3D8C24E456C00051CD91 /* B_osc_out.mm in Sources */,
 				8E57E2346BA4C4EC4CBB75C6 /* EosUdp_Mac.cpp in Sources */,
 				DB14E7C3518042C21F7A6A3F /* OSCParser.cpp in Sources */,
 				F27FCE2A2F815DBBBA3F1AE2 /* ofxEosSync.cpp in Sources */,
 				AAA63591694B0F38833D5DED /* ofxEosOscMsg.cpp in Sources */,
 				D23F67F10DAD2FA5B4BB602D /* IpEndpointName.cpp in Sources */,
 				D65CCD8B4CFBAC30EC09A39D /* NetworkingUtils.cpp in Sources */,
+				B71E3D8B24E456C00051CD91 /* B_osc_In.mm in Sources */,
 				4552A108325494C86358E102 /* UdpSocket.cpp in Sources */,
 				6B3480382822F6805C9F6421 /* OscOutboundPacketStream.cpp in Sources */,
 				34F4466FE14098A264815F64 /* OscPrintReceivedElements.cpp in Sources */,

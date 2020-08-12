@@ -24,15 +24,13 @@ public:
     void update();
     void draw();
     
-    void newOSC(float & osc);
-    
     void channelButtonAction();
     void pageButtonAction();
     void oscLightUpdate();
     
     void buttonAction();
     
-    OSC osc;
+//    OSC osc;
     
     KEYBOARD keyboard;
     
@@ -178,6 +176,50 @@ public:
     bool oscReceiveLight = false;
     
     //----------------------------------------------------
+    
+    //--------------------------------------------------------------
+    // MARK: ----------OSC----------
+    //--------------------------------------------------------------
+    
+    // ----------------------- INCOMING OSC -----------------------
+    void parseChannel(string m);
+    
+    void parse(string m);
+    
+    void oscEvent();
+    void checkConnection();
+    
+    string multiChannelPrefix = "";
+    string noParameter = "";
+    
+    bool hasPanTilt = false;
+    
+    
+    // ----------------------- OUTGOING OSC -----------------------
+    void sendPing();
+    
+    void sendChannel(string parameter);
+    void sendChannelNumber(string parameter);
+    
+    void sendHigh();
+    void sendFlash(string parameter);
+    
+    void sendEncoder(string parameter, float message);
+    void fineEncoder(int message);
+    void sendEncoderPercent(string parameter, int message);
+    
+    void sendShutter(string parameter, string ID, int message);
+    void sendShutterHome(string parameter);
+    
+    
+    
+    // -----------------------  -----------------------
+    
+    ofxEosSync eos;
+    
+    void connect() {
+        eos.setup("192.168.0.35", 3032);
+    }
     
 private:
 };

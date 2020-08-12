@@ -17,6 +17,8 @@ void GUI::setup() {
 //--------------------------------------------------------------
 
 void GUI::update() {
+    oscEvent();
+    
     keyboard.update();
     
     topBarUpdate();
@@ -50,28 +52,28 @@ void GUI::pageButtonAction() {
 
 void GUI::buttonAction() {
     if (minusButton.action) {
-        osc.sendChannel("last");
+        sendChannel("last");
         minusButton.action = false;
     }
     if (plusButton.action) {
-        osc.sendChannel("next");
+        sendChannel("next");
         plusButton.action = false;
     }
     if (highButton.action) {
-        osc.sendHigh();
+        sendHigh();
         highButton.action = false;
     }
     if (flashButton.action) {
         if (channelIntensity >= 90) {
-            osc.sendFlash("FLASH_OFF");
+            sendFlash("FLASH_OFF");
         } else {
-            osc.sendFlash("FLASH_ON");
+            sendFlash("FLASH_ON");
         }
         flashButton.action = false;
         
     }
     if (flashButton.released) {
-        osc.sendFlash("OFF");
+        sendFlash("OFF");
         flashButton.released = false;
     }
 }
@@ -101,7 +103,7 @@ void GUI::channelButtonAction() {
                 selectedChannel = oldChannel;
             } else {
                 noneSelected = false;
-                osc.sendChannelNumber(selectedChannel);
+                sendChannelNumber(selectedChannel);
             }
         }
     }

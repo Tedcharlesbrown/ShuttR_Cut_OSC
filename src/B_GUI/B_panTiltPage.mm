@@ -25,13 +25,13 @@ void GUI::panTiltPageUpdate(){
     }
     
     if (minusPercentButton.action && focusParameter != "focus") { //if param is focus, don't send.
-        osc.sendEncoderPercent(focusParameter, -1);
+        sendEncoderPercent(focusParameter, -1);
         minusPercentButton.action = false;
     } else if (homeButton.action) {
-        osc.sendEncoderPercent(focusParameter, 0);
+        sendEncoderPercent(focusParameter, 0);
         homeButton.action = false;
     } else if (plusPercentButton.action && focusParameter != "focus") { //if param is focus, don't send.
-        osc.sendEncoderPercent(focusParameter, 1);
+        sendEncoderPercent(focusParameter, 1);
         plusPercentButton.action = false;
     }
 }
@@ -104,5 +104,5 @@ void GUI::panTiltPageDoubleTap(ofTouchEventArgs & touch){
 //--------------------------------------------------------------
 
 void GUI::sendFocusEncoder(float & oscOutputPercent){
-    osc.sendEncoder(focusEncoder.parameter, oscOutputPercent);
+    sendEncoder(focusEncoder.parameter, oscOutputPercent);
 }

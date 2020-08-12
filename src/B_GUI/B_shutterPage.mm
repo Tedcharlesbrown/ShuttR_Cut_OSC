@@ -22,7 +22,7 @@ void GUI::shutterPageUpdate() {
         if (noneSelected) {
             thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
         } else {
-            osc.sendShutterHome("THRUST");
+            sendShutterHome("THRUST");
         }
         thrustButton.action = false;
     }
@@ -30,7 +30,7 @@ void GUI::shutterPageUpdate() {
         if (noneSelected) {
             angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
         } else {
-            osc.sendShutterHome("ANGLE");
+            sendShutterHome("ANGLE");
         }
         angleButton.action = false;
     }
@@ -40,7 +40,7 @@ void GUI::shutterPageUpdate() {
             thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
             assembly.frameX = assembly.defaultX;
         } else {
-            osc.sendShutterHome("SHUTTER");
+            sendShutterHome("SHUTTER");
         }
         shutterButton.action = false;
     }
@@ -184,31 +184,31 @@ void GUI::shutterPageAddListeners() {
 }
 
 void GUI::sendThrustA(float & oscOutputPercent){
-    osc.sendShutter("THRUST","a",oscOutputPercent);
+    sendShutter("THRUST","a",oscOutputPercent);
 }
 void GUI::sendThrustB(float & oscOutputPercent){
-    osc.sendShutter("THRUST","b",oscOutputPercent);
+    sendShutter("THRUST","b",oscOutputPercent);
 }
 void GUI::sendThrustC(float & oscOutputPercent){
-    osc.sendShutter("THRUST","c",oscOutputPercent);
+    sendShutter("THRUST","c",oscOutputPercent);
 }
 void GUI::sendThrustD(float & oscOutputPercent){
-    osc.sendShutter("THRUST","d",oscOutputPercent);
+    sendShutter("THRUST","d",oscOutputPercent);
 }
 
 void GUI::sendAngleA(float & oscOutputPercent){
-    osc.sendShutter("ANGLE","a",oscOutputPercent);
+    sendShutter("ANGLE","a",oscOutputPercent);
 }
 void GUI::sendAngleB(float & oscOutputPercent){
-    osc.sendShutter("ANGLE","b",oscOutputPercent);
+    sendShutter("ANGLE","b",oscOutputPercent);
 }
 void GUI::sendAngleC(float & oscOutputPercent){
-    osc.sendShutter("ANGLE","c",oscOutputPercent);
+    sendShutter("ANGLE","c",oscOutputPercent);
 }
 void GUI::sendAngleD(float & oscOutputPercent){
-    osc.sendShutter("ANGLE","d",oscOutputPercent);
+    sendShutter("ANGLE","d",oscOutputPercent);
 }
 
 void GUI::sendAssembly(float & oscOutputPercent){
-    osc.sendShutter("ASSEMBLY","",oscOutputPercent);
+    sendShutter("ASSEMBLY","",oscOutputPercent);
 }

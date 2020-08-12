@@ -12,7 +12,6 @@
 #include "E_shutterHandles.h"
 
 #include "O_osc.h"
-#include "O_osc_OLD.h"
 
 extern bool settingsMenu;
 
@@ -36,7 +35,6 @@ public:
     
     OSC osc;
     
-    OSC_OLD osc_old;
     KEYBOARD keyboard;
     
     //--------------------------------------------------------------
@@ -103,6 +101,8 @@ public:
     void panTiltPageTouchUp(ofTouchEventArgs & touch);
     void panTiltPageDoubleTap(ofTouchEventArgs & touch);
     
+    void sendFocusEncoder(float & oscOutputPercent);
+    
     ENCODER focusEncoder;
     string panPercent, tiltPercent, focusParameter, panTiltShow = "";
     
@@ -120,6 +120,8 @@ public:
     void encoderPageTouchMoved(ofTouchEventArgs & touch);
     void encoderPageTouchUp(ofTouchEventArgs & touch);
     void encoderPageDoubleTap(ofTouchEventArgs & touch);
+    
+    void sendFormEncoder(float & oscOutputPercent);
     
     ENCODER formEncoder;
     string irisPercent, edgePercent, zoomPercent, frostPercent, formParameter, parameterShow = "";

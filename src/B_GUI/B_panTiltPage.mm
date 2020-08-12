@@ -6,6 +6,8 @@
 
 void GUI::panTiltPageSetup(){
     focusEncoder.setup(assemblyDiameter / 1.25);
+    
+    ofAddListener(focusEncoder.oscOutputPercent, this, &GUI::sendFocusEncoder);
 }
 //--------------------------------------------------------------
 void GUI::panTiltPageUpdate(){
@@ -94,4 +96,13 @@ void GUI::panTiltPageTouchUp(ofTouchEventArgs & touch){
 //--------------------------------------------------------------
 void GUI::panTiltPageDoubleTap(ofTouchEventArgs & touch){
 
+}
+
+
+//--------------------------------------------------------------
+// MARK: ---------- OSC LISTENERS / PARSING ----------
+//--------------------------------------------------------------
+
+void GUI::sendFocusEncoder(float & oscOutputPercent){
+    osc.sendEncoder(focusEncoder.parameter, oscOutputPercent);
 }

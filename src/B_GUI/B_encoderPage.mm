@@ -6,6 +6,8 @@
 
 void GUI::encoderPageSetup() {
     formEncoder.setup(assemblyDiameter / 1.25);
+    
+    ofAddListener(formEncoder.oscOutputPercent, this, &GUI::sendFormEncoder);
 }
 
 //--------------------------------------------------------------
@@ -96,4 +98,13 @@ void GUI::encoderPageTouchUp(ofTouchEventArgs & touch) {
     plusPercentButton.touchUp(touch);
     
     formEncoder.touchUp(touch);
+}
+
+
+//--------------------------------------------------------------
+// MARK: ---------- OSC LISTENERS / PARSING ----------
+//--------------------------------------------------------------
+
+void GUI::sendFormEncoder(float & oscOutputPercent){
+    osc.sendEncoder(formEncoder.parameter, oscOutputPercent);
 }

@@ -139,22 +139,20 @@ void OSC::sendShutterHome(string parameter) {
 void OSC::fineEncoder(int message) { //ONLY USED TO RESET OSC TICKS, ONLY CALLED IN CONNECT();
     oscSentTime = ofGetElapsedTimeMillis();
     
-    ofxOscMessage m;
+    ofxEosOscMsg m;
     m.setAddress("/eos/user/" + inputID + "/wheel");
     m.addIntArg(message);
-    sender.sendMessage(m, false);
+    eos.sendMessage(m);
 }
 
 //--------------------------------------------------------------
-void OSC::sendEncoder(string parameter, int message){
+void OSC::sendEncoder(string parameter, float message){
     oscSentTime = ofGetElapsedTimeMillis();
     
-    if (parameter != "form") {
-        ofxOscMessage m;
-        m.setAddress("/eos/user/" + inputID + "/wheel/" + parameter);
-        m.addFloatArg(message);
-        sender.sendMessage(m, false);
-    }
+    ofxEosOscMsg m;
+    m.setAddress("/eos/user/" + inputID + "/wheel/" + parameter);
+    m.addFloatArg(message);
+    eos.sendMessage(m);
 }
 
 //--------------------------------------------------------------
@@ -162,18 +160,18 @@ void OSC::sendEncoder(string parameter, int message){
 void OSC::sendEncoderPercent(string parameter, int message) {
     oscSentTime = ofGetElapsedTimeMillis();
     
-        ofxOscMessage m;
+        ofxEosOscMsg m;
         for (int i = 0; i >= 0; i--) { //SEND ENTER
             m.clear();
             m.setAddress("/eos/user/" + inputID + "/key/enter");
             m.addIntArg(i);
-            sender.sendMessage(m, false);
+            eos.sendMessage(m);
         }
         for (int i = 0; i >= 0; i--) { //SEND SELECT_LAST
             m.clear();
             m.setAddress("/eos/user/" + inputID + "/key/select_last");
             m.addIntArg(i);
-            sender.sendMessage(m, false);
+            eos.sendMessage(m);
         }
         m.clear();
         switch(message) {
@@ -187,7 +185,7 @@ void OSC::sendEncoderPercent(string parameter, int message) {
                 m.setAddress("/eos/user/" + inputID + "/param/" + parameter + "/+%");
                 break;
         }
-        sender.sendMessage(m, false);
+        eos.sendMessage(m);
 }
 
 //--------------------------------------------------------------

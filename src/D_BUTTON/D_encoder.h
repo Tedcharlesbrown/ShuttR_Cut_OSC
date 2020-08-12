@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofxiOS.h"
-#include "O_osc_OLD.h"
 
 class ENCODER{
     
@@ -17,12 +16,15 @@ public:
     
     ofImage encoder;
     string parameter;
-    int output = 0;
     float currentPos, lastPos = 0;
     float posX, posY;
     bool clicked = false;
     
-    OSC_OLD osc;
+    float encoderOutput = 0;
+    ofEvent<float> oscOutputPercent;
+    void sendOSC() {
+        ofNotifyEvent(oscOutputPercent,encoderOutput);
+    }
     
 private:
 };

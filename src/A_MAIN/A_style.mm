@@ -11,7 +11,7 @@ string version = "v0.1.0 (OpenFrameworks)";
 string IPAddress, inputIP, inputID, inputRX, inputTX, selectedChannel = "";
 
 // ----------------------- EOS BOOLEANS -----------------------
-bool connectRequest = true;
+bool connectRequest = false;
 bool isConnected = false;
 bool noneSelected = true;
 bool ignoreOSC = false;
@@ -89,7 +89,7 @@ ofColor shutterColor = ofColor(0);
 // MARK: ---------- INITIALIZERS ----------
 //--------------------------------------------------------------
 
-void ofApp::stateUpdate(){
+void GUI::stateUpdate(){
     if (isLive){
         EOSState = EOSLive;
         EOSBarState = EOSDarkGrey;
@@ -99,7 +99,7 @@ void ofApp::stateUpdate(){
     }
 }
 //--------------------------------------------------------------
-void ofApp::styleInit(){
+void GUI::styleInit(){
     
     shutterColor.setHsb(163.056,103.167,255);
     

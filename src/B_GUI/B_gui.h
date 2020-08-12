@@ -2,6 +2,10 @@
 
 #include "ofxiOS.h"
 
+#include "ofxXmlSettings.h" //XML
+#include <ifaddrs.h> //IP ADDRESS
+#include <arpa/inet.h> //IP ADDRESS
+
 #include "A_ofApp.h"
 #include "C_keyboard.h"
 #include "D_button.h"
@@ -21,7 +25,12 @@ public:
     // MARK: ----------GUI----------
     //--------------------------------------------------------------
     void setup();
+    void styleInit();
+    void getNotchHeight();
+    
     void update();
+    void stateUpdate();
+    
     void draw();
     
     void channelButtonAction();
@@ -30,10 +39,20 @@ public:
     
     void buttonAction();
     
-//    OSC osc;
-    
     KEYBOARD keyboard;
     
+    //--------------------------------------------------------------
+    // MARK: ----------XML----------
+    //--------------------------------------------------------------
+    
+    void saveXML();
+    void getXML();
+    
+    ofxXmlSettings XML;
+
+    string xmlStructure;
+    string message;
+
     //--------------------------------------------------------------
     // MARK: ----------TOP BAR----------
     //--------------------------------------------------------------
@@ -157,11 +176,13 @@ public:
     string userInputRX = "9000";
     int keySwitch = 0;
     
+    string getIPAddress();
+    
     BUTTON ipFieldButton, idFieldButton, incomingButton, outgoingButton, helpButton;
     ofImage settingsHelp;
     
     //--------------------------------------------------------------
-    // MARK: ----------EVENTS----------
+    // MARK: ----------TOUCH EVENTS----------
     //--------------------------------------------------------------
     
     void touchDown(ofTouchEventArgs & touch);
@@ -170,15 +191,18 @@ public:
     void touchDoubleTap(ofTouchEventArgs & touch);
     void touchCancelled(ofTouchEventArgs & touch);
     
+    
+    void lostFocus();
+    void gotFocus();
+    
     //----------------------------------------------------
     
     bool oscSendLight = false;
     bool oscReceiveLight = false;
-    
-    //----------------------------------------------------
+
     
     //--------------------------------------------------------------
-    // MARK: ----------OSC----------
+    // MARK: ----------OSC EVENTS----------
     //--------------------------------------------------------------
     
     // ----------------------- INCOMING OSC -----------------------
@@ -190,8 +214,6 @@ public:
     void getWheel(ofxEosOscMsg incomingOSC);
     void getChannel(ofxEosOscMsg incomingOSC);
     void getColor(ofxEosOscMsg incomingOSC);
-//    void parseChannel(string m);
-    
     
     void checkConnection();
     

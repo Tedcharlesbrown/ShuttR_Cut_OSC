@@ -58,7 +58,6 @@
 		BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */; };
 		C6CBE0E70E49C8A2DE62A09A /* D_encoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 010D69567EF2AD12D0092495 /* D_encoder.mm */; };
 		CAD6015E57B0371A45A0396B /* B_panTiltPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F482A352B13D096C62BF6EE /* B_panTiltPage.mm */; };
-		CAF59B74114991255F89245F /* A_osc_In.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1BBA783A421D6C1B120CC06 /* A_osc_In.mm */; };
 		D23F67F10DAD2FA5B4BB602D /* IpEndpointName.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C34D7BE4C1717315F064709 /* IpEndpointName.cpp */; };
 		D65CCD8B4CFBAC30EC09A39D /* NetworkingUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF2CD6568591181DA6D28044 /* NetworkingUtils.cpp */; };
 		DB14E7C3518042C21F7A6A3F /* OSCParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FE02720365B094027724A4A /* OSCParser.cpp */; };
@@ -161,7 +160,6 @@
 		AB8A44955139670BD49EF55D /* C_keyboard.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = C_keyboard.mm; path = src/C_KEYBOARD/C_keyboard.mm; sourceTree = SOURCE_ROOT; };
 		AF8D11504B058C9DDB219A5D /* ofxOscParameterSync.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxOscParameterSync.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/src/ofxOscParameterSync.cpp; sourceTree = SOURCE_ROOT; };
 		B094CB7B81BD45A76287D678 /* EosLog.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = EosLog.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/src/EosLog.cpp; sourceTree = SOURCE_ROOT; };
-		B1BBA783A421D6C1B120CC06 /* A_osc_In.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = A_osc_In.mm; path = src/A_MAIN/A_osc_In.mm; sourceTree = SOURCE_ROOT; };
 		B36A1A18A27DCC6152E84B0F /* ofxEosOscMsg.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxEosOscMsg.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/src/ofxEosOscMsg.cpp; sourceTree = SOURCE_ROOT; };
 		B396E04A19DA2B315A6C0CD7 /* EosSyncLib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EosSyncLib.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/include/EosSyncLib.h; sourceTree = SOURCE_ROOT; };
 		B705C3964A5506AAC5858C03 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlSettings.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
@@ -601,7 +599,6 @@
 				4654C437A0D3E4896867C879 /* A_style.mm */,
 				CCBAE1CED33117A7DC7D107C /* A_ofApp.h */,
 				5E353422425A9FFCD12CF74E /* A_ofApp.mm */,
-				B1BBA783A421D6C1B120CC06 /* A_osc_In.mm */,
 			);
 			name = A_MAIN;
 			sourceTree = "<group>";
@@ -727,7 +724,6 @@
 				A652B8C8B9A327D67401C847 /* E_shutterHandles.mm in Sources */,
 				177DEE307D75193AFA25A293 /* A_style.mm in Sources */,
 				0DE958A88392734A4E08CC3C /* A_ofApp.mm in Sources */,
-				CAF59B74114991255F89245F /* A_osc_In.mm in Sources */,
 				B490433952DD772FE0CAA5F2 /* D_bank.mm in Sources */,
 				C6CBE0E70E49C8A2DE62A09A /* D_encoder.mm in Sources */,
 				8F3564A366BEC7654169DFCB /* D_button.mm in Sources */,

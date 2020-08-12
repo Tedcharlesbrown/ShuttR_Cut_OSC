@@ -53,7 +53,7 @@ void GUI::settingsUpdate() {
                     ipFieldButton.clicked = false; keyboard.close();
                     inputIP = userInputIP;
                     consoleLog.push_back("CONNECTING TO: " + inputIP);
-                    connectRequest = true;
+//                    connectRequest = true;
                     keySwitch = 0;
                 }
                 break;
@@ -63,7 +63,7 @@ void GUI::settingsUpdate() {
                     idFieldButton.clicked = false; keyboard.close();
                     inputID = userInputID;
                     consoleLog.push_back("SWITCHING TO USER: " + inputID);
-                    connectRequest = true;
+//                    connectRequest = true;
                     keySwitch = 0;
                 }
                 break;
@@ -73,7 +73,7 @@ void GUI::settingsUpdate() {
                     outgoingButton.clicked = false; keyboard.close();
                     inputTX = userInputTX;
                     consoleLog.push_back("SENDING ON PORT: " + inputTX);
-                    connectRequest = true;
+//                    connectRequest = true;
                     keySwitch = 0;
                 }
                 break;
@@ -83,7 +83,7 @@ void GUI::settingsUpdate() {
                     incomingButton.clicked = false; keyboard.close();
                     inputRX = userInputRX;
                     consoleLog.push_back("LISTENING ON PORT: " + inputRX);
-                    connectRequest = true;
+//                    connectRequest = true;
                     keySwitch = 0;
                 }
                 break;

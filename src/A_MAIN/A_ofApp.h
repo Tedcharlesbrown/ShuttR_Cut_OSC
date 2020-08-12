@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofxiOS.h"
-#include "ofxOsc.h" //OSC
 #include "ofxXmlSettings.h" //XML
 
 #include <ifaddrs.h> //IP ADDRESS
@@ -21,16 +20,10 @@ public:
     void draw();
     
     void styleInit();
-    void stateUpdate();
     
     void getNotchHeight();
-    
-    void oscInit();
-    void parseChannel(string m);
-    void parseWheel(string m);
-    
+
     void connect();
-    void checkConnection();
     
     string getIPAddress();
     
@@ -39,34 +32,11 @@ public:
     void touchUp(ofTouchEventArgs & touch);
     void touchDoubleTap(ofTouchEventArgs & touch);
     void touchCancelled(ofTouchEventArgs & touch);
-
-    void oscEvent();
     
     void lostFocus();
     void gotFocus();
     
-    //----------------------------------------------------
-    void saveXML();
-    void getXML();
-    
-    ofxXmlSettings XML;
-
-    string xmlStructure;
-    string message;
-    //----------------------------------------------------
-    
-    string multiChannelPrefix = "";
-    string noParameter = "";
-    
-    ofxOscReceiver receiver;
-    string listenTargets[14];
-    bool hasTargets[14];
-    bool hasPanTilt = false;
-    
-    //----------------------------------------------------
-    
     GUI gui;
-    KEYBOARD keyboard;
     
     //----------------------------------------------------
     

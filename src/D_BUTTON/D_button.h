@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofxiOS.h"
-#include "O_osc.h"
 
 class BUTTON {
     
@@ -26,8 +25,6 @@ public:
     bool doubleClicked = false;
     bool action = false;
     bool released = false;
-
-    OSC osc;
     
 private:
 };

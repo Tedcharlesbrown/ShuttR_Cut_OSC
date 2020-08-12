@@ -12,17 +12,14 @@
 		0A66D4D0B483A5E52210F62A /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CE34E8BE57474F1434A9629 /* tinyxmlparser.cpp */; };
 		0AD96B876FC4F69F392753CC /* EosUdp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8C2536FEE8C93917EB42B5E /* EosUdp.cpp */; };
 		0DB844C3B7A3251D02533E9D /* B_shutterPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = A9F52505206AE3D7C7784917 /* B_shutterPage.mm */; };
-		0DE958A88392734A4E08CC3C /* A_ofApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E353422425A9FFCD12CF74E /* A_ofApp.mm */; };
 		131F1CB88600F8AE1A0C70C6 /* EosSyncLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A91185ACF7EEBC858CD2E7AF /* EosSyncLib.cpp */; };
 		147EDE2E2820F6F850A2CB0C /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF8D11504B058C9DDB219A5D /* ofxOscParameterSync.cpp */; };
-		177DEE307D75193AFA25A293 /* A_style.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4654C437A0D3E4896867C879 /* A_style.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		22808C0402EB4FFC719F8364 /* ofxOscMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6801A4B7CB2CE5DBC6CEBCE /* ofxOscMessage.cpp */; };
 		2424D604A97746C5BA814CAF /* EosTcp_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1101A6EC957CA6F1217D8C2 /* EosTcp_Mac.cpp */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		34F4466FE14098A264815F64 /* OscPrintReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E15942B8878F29C5877136B /* OscPrintReceivedElements.cpp */; };
-		375EC19CEDD8D5C3A7D6E153 /* O_osc_out.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52C612B42C8E8E72B04326B9 /* O_osc_out.mm */; };
 		4552A108325494C86358E102 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BEEF33D8DFF6C751DE3993A9 /* UdpSocket.cpp */; };
 		5326AEA810A23A0500278DE6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5326AEA710A23A0500278DE6 /* CoreLocation.framework */; };
 		53F323EB10A20EDB00E0DAE4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F323EA10A20EDB00E0DAE4 /* OpenAL.framework */; };
@@ -37,7 +34,7 @@
 		8E57E2346BA4C4EC4CBB75C6 /* EosUdp_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EF6768D8BCE94BC5F04813F /* EosUdp_Mac.cpp */; };
 		8F3564A366BEC7654169DFCB /* D_button.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85ED3E2745DDDE9E9142BCFD /* D_button.mm */; };
 		901808C12053638E004A7774 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901808BF2053636F004A7774 /* GLKit.framework */; };
-		95290C29241825FBD1B9F23D /* B_settings.mm in Sources */ = {isa = PBXBuildFile; fileRef = 48C037DF8EB01F169524B594 /* B_settings.mm */; };
+		95290C29241825FBD1B9F23D /* B_settingsPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 48C037DF8EB01F169524B594 /* B_settingsPage.mm */; };
 		9936F6101BFA4DEE00891288 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9936F60F1BFA4DEE00891288 /* Images.xcassets */; };
 		9936F6121BFA65F100891288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9936F6111BFA65F100891288 /* LaunchScreen.storyboard */; };
 		9969E7561C782C4500DEF0F6 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9969E7551C782C4500DEF0F6 /* CoreMotion.framework */; };
@@ -46,10 +43,15 @@
 		A4749E3C1C32FAAF210F283F /* EosTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27A141CEE1DD6CE535EF23C3 /* EosTimer.cpp */; };
 		A652B8C8B9A327D67401C847 /* E_shutterHandles.mm in Sources */ = {isa = PBXBuildFile; fileRef = C252BED9124115F26C0C8B70 /* E_shutterHandles.mm */; };
 		AA336672E80CBBFCAAD5CFC1 /* B_directSelectPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 99C73447A868904A5D281326 /* B_directSelectPage.mm */; };
-		AAA63591694B0F38833D5DED /* ofxEosSyncOscMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B36A1A18A27DCC6152E84B0F /* ofxEosSyncOscMsg.cpp */; };
+		AAA63591694B0F38833D5DED /* ofxEosOscMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B36A1A18A27DCC6152E84B0F /* ofxEosOscMsg.cpp */; };
 		AAACB8FDECB13FD0DE78318C /* EosLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B094CB7B81BD45A76287D678 /* EosLog.cpp */; };
-		B1263242F45888466B30F787 /* B_gui.mm in Sources */ = {isa = PBXBuildFile; fileRef = C42A1635D09BB879ECF843F4 /* B_gui.mm */; };
 		B490433952DD772FE0CAA5F2 /* D_bank.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6925EA105101873F4EA5D44B /* D_bank.mm */; };
+		B789584024E4814100CE6E6B /* A_ofApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = B789583E24E4814100CE6E6B /* A_ofApp.mm */; };
+		B789584424E4820300CE6E6B /* A_osc_In.mm in Sources */ = {isa = PBXBuildFile; fileRef = B789584224E4820300CE6E6B /* A_osc_In.mm */; };
+		B789584524E4820300CE6E6B /* A_osc_out.mm in Sources */ = {isa = PBXBuildFile; fileRef = B789584324E4820300CE6E6B /* A_osc_out.mm */; };
+		B789584924E4823600CE6E6B /* A_style.mm in Sources */ = {isa = PBXBuildFile; fileRef = B789584824E4823600CE6E6B /* A_style.mm */; };
+		B789584B24E4897D00CE6E6B /* A_utility.mm in Sources */ = {isa = PBXBuildFile; fileRef = B789584A24E4897D00CE6E6B /* A_utility.mm */; };
+		B789584D24E4922300CE6E6B /* A_osc_connection.mm in Sources */ = {isa = PBXBuildFile; fileRef = B789584C24E4922300CE6E6B /* A_osc_connection.mm */; };
 		B78BAE6324E1FB120096FB82 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78BAE6224E1FB120096FB82 /* MetalKit.framework */; };
 		B78BAE6524E1FB1A0096FB82 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78BAE6424E1FB1A0096FB82 /* Metal.framework */; };
 		BB16EBD20F2B2A9500518274 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD10F2B2A9500518274 /* OpenGLES.framework */; };
@@ -57,7 +59,6 @@
 		BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */; };
 		C6CBE0E70E49C8A2DE62A09A /* D_encoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 010D69567EF2AD12D0092495 /* D_encoder.mm */; };
 		CAD6015E57B0371A45A0396B /* B_panTiltPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F482A352B13D096C62BF6EE /* B_panTiltPage.mm */; };
-		CAF59B74114991255F89245F /* A_osc_In.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1BBA783A421D6C1B120CC06 /* A_osc_In.mm */; };
 		D23F67F10DAD2FA5B4BB602D /* IpEndpointName.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C34D7BE4C1717315F064709 /* IpEndpointName.cpp */; };
 		D65CCD8B4CFBAC30EC09A39D /* NetworkingUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF2CD6568591181DA6D28044 /* NetworkingUtils.cpp */; };
 		DB14E7C3518042C21F7A6A3F /* OSCParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FE02720365B094027724A4A /* OSCParser.cpp */; };
@@ -110,26 +111,22 @@
 		36A88C51CB424E8B77BA399F /* OscException.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = OscException.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/libs/oscpack/src/osc/OscException.h; sourceTree = SOURCE_ROOT; };
 		3C94A8DAFE8B9573E85CD877 /* OscPrintReceivedElements.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = OscPrintReceivedElements.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/libs/oscpack/src/osc/OscPrintReceivedElements.h; sourceTree = SOURCE_ROOT; };
 		3E15942B8878F29C5877136B /* OscPrintReceivedElements.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = OscPrintReceivedElements.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/libs/oscpack/src/osc/OscPrintReceivedElements.cpp; sourceTree = SOURCE_ROOT; };
-		4654C437A0D3E4896867C879 /* A_style.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = A_style.mm; path = src/A_MAIN/A_style.mm; sourceTree = SOURCE_ROOT; };
 		47FA675A4FB05205C509C7FA /* ofxOsc.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxOsc.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/src/ofxOsc.h; sourceTree = SOURCE_ROOT; };
-		48C037DF8EB01F169524B594 /* B_settings.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = B_settings.mm; path = src/B_GUI/B_settings.mm; sourceTree = SOURCE_ROOT; };
+		48C037DF8EB01F169524B594 /* B_settingsPage.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = B_settingsPage.mm; path = src/B_GUI/B_settingsPage.mm; sourceTree = SOURCE_ROOT; };
 		4C4A2F787ABB0964ABDB6C81 /* C_keyboard.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = C_keyboard.h; path = src/C_KEYBOARD/C_keyboard.h; sourceTree = SOURCE_ROOT; };
 		4D0CB5434ACEB5A3712E6ACA /* ofxOscReceiver.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxOscReceiver.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/src/ofxOscReceiver.cpp; sourceTree = SOURCE_ROOT; };
 		4DC25AF659AA424DD84AC077 /* tinyxml.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = tinyxml.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/libs/tinyxml.cpp; sourceTree = SOURCE_ROOT; };
-		52C612B42C8E8E72B04326B9 /* O_osc_out.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = O_osc_out.mm; path = src/O_OSC/O_osc_out.mm; sourceTree = SOURCE_ROOT; };
 		5326AEA710A23A0500278DE6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		53F323EA10A20EDB00E0DAE4 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
-		5E353422425A9FFCD12CF74E /* A_ofApp.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = A_ofApp.mm; path = src/A_MAIN/A_ofApp.mm; sourceTree = SOURCE_ROOT; };
 		5F4E5A79FBA6FFB2E32B459B /* OscTypes.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = OscTypes.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/libs/oscpack/src/osc/OscTypes.h; sourceTree = SOURCE_ROOT; };
 		5F5596496ED691DD1A90EB1C /* D_encoder.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = D_encoder.h; path = src/D_BUTTON/D_encoder.h; sourceTree = SOURCE_ROOT; };
 		6236E2FA909BF7D9C00D5A19 /* EosOsc.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = EosOsc.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/src/EosOsc.cpp; sourceTree = SOURCE_ROOT; };
 		62A626C72DD8CE693DF7F849 /* NetworkingUtils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = NetworkingUtils.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/libs/oscpack/src/ip/NetworkingUtils.h; sourceTree = SOURCE_ROOT; };
 		64A80C9BFB845462EA5FB047 /* E_shutterHandles.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = E_shutterHandles.h; path = src/E_SHUTTERS/E_shutterHandles.h; sourceTree = SOURCE_ROOT; };
 		67DFA53419F92A5E003B3434 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		68D1256DC093D4FDC0D462E5 /* O_osc.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = O_osc.h; path = src/O_OSC/O_osc.h; sourceTree = SOURCE_ROOT; };
 		6925EA105101873F4EA5D44B /* D_bank.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = D_bank.mm; path = src/D_BUTTON/D_bank.mm; sourceTree = SOURCE_ROOT; };
 		6A32C1649CFA906B09CD0639 /* OscTypes.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = OscTypes.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/libs/oscpack/src/osc/OscTypes.cpp; sourceTree = SOURCE_ROOT; };
-		6AF4AA83F40490DA6C4E8AD1 /* ofxEosSyncOscMsg.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxEosSyncOscMsg.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/src/ofxEosSyncOscMsg.h; sourceTree = SOURCE_ROOT; };
+		6AF4AA83F40490DA6C4E8AD1 /* ofxEosOscMsg.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxEosOscMsg.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/src/ofxEosOscMsg.h; sourceTree = SOURCE_ROOT; };
 		6BA9B32280F7667754A48C97 /* B_topbar.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = B_topbar.mm; path = src/B_GUI/B_topbar.mm; sourceTree = SOURCE_ROOT; };
 		6D58677C6D3D9D435375AB7A /* ofxOscBundle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxOscBundle.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/src/ofxOscBundle.h; sourceTree = SOURCE_ROOT; };
 		76F2C022F1E8BD79868417C4 /* tinyxml.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = tinyxml.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/libs/tinyxml.h; sourceTree = SOURCE_ROOT; };
@@ -139,8 +136,6 @@
 		8531692B5B7E10BB906076CF /* OSCParser.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = OSCParser.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/include/OSCParser.h; sourceTree = SOURCE_ROOT; };
 		85ECE9192AC1D54D2C409366 /* OscReceivedElements.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = OscReceivedElements.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/libs/oscpack/src/osc/OscReceivedElements.cpp; sourceTree = SOURCE_ROOT; };
 		85ED3E2745DDDE9E9142BCFD /* D_button.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = D_button.mm; path = src/D_BUTTON/D_button.mm; sourceTree = SOURCE_ROOT; };
-		87D707B84CC549AB4F682450 /* A0_globals.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = A0_globals.h; path = src/A_MAIN/A0_globals.h; sourceTree = SOURCE_ROOT; };
-		8AAADDC381C2D9CB7A7ECBC5 /* B_gui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = B_gui.h; path = src/B_GUI/B_gui.h; sourceTree = SOURCE_ROOT; };
 		8AB4E9AD514D1AC68DB38893 /* EosUdp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EosUdp.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/include/EosUdp.h; sourceTree = SOURCE_ROOT; };
 		8CF3479B88433B37C9197872 /* OscOutboundPacketStream.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = OscOutboundPacketStream.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/libs/oscpack/src/osc/OscOutboundPacketStream.h; sourceTree = SOURCE_ROOT; };
 		901808BF2053636F004A7774 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -162,10 +157,17 @@
 		AB8A44955139670BD49EF55D /* C_keyboard.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = C_keyboard.mm; path = src/C_KEYBOARD/C_keyboard.mm; sourceTree = SOURCE_ROOT; };
 		AF8D11504B058C9DDB219A5D /* ofxOscParameterSync.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxOscParameterSync.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/src/ofxOscParameterSync.cpp; sourceTree = SOURCE_ROOT; };
 		B094CB7B81BD45A76287D678 /* EosLog.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = EosLog.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/src/EosLog.cpp; sourceTree = SOURCE_ROOT; };
-		B1BBA783A421D6C1B120CC06 /* A_osc_In.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = A_osc_In.mm; path = src/A_MAIN/A_osc_In.mm; sourceTree = SOURCE_ROOT; };
-		B36A1A18A27DCC6152E84B0F /* ofxEosSyncOscMsg.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxEosSyncOscMsg.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/src/ofxEosSyncOscMsg.cpp; sourceTree = SOURCE_ROOT; };
+		B36A1A18A27DCC6152E84B0F /* ofxEosOscMsg.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxEosOscMsg.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/src/ofxEosOscMsg.cpp; sourceTree = SOURCE_ROOT; };
 		B396E04A19DA2B315A6C0CD7 /* EosSyncLib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EosSyncLib.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/include/EosSyncLib.h; sourceTree = SOURCE_ROOT; };
 		B705C3964A5506AAC5858C03 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlSettings.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
+		B789583E24E4814100CE6E6B /* A_ofApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = A_ofApp.mm; path = A_MAIN/A_ofApp.mm; sourceTree = "<group>"; };
+		B789583F24E4814100CE6E6B /* A_ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = A_ofApp.h; path = A_MAIN/A_ofApp.h; sourceTree = "<group>"; };
+		B789584224E4820300CE6E6B /* A_osc_In.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = A_osc_In.mm; sourceTree = "<group>"; };
+		B789584324E4820300CE6E6B /* A_osc_out.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = A_osc_out.mm; sourceTree = "<group>"; };
+		B789584724E4823600CE6E6B /* A0_globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0_globals.h; sourceTree = "<group>"; };
+		B789584824E4823600CE6E6B /* A_style.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = A_style.mm; sourceTree = "<group>"; };
+		B789584A24E4897D00CE6E6B /* A_utility.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = A_utility.mm; path = A_MAIN/A_utility.mm; sourceTree = "<group>"; };
+		B789584C24E4922300CE6E6B /* A_osc_connection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = A_osc_connection.mm; sourceTree = "<group>"; };
 		B78BAE6224E1FB120096FB82 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		B78BAE6424E1FB1A0096FB82 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		BB16EBD10F2B2A9500518274 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -177,12 +179,10 @@
 		C1101A6EC957CA6F1217D8C2 /* EosTcp_Mac.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = EosTcp_Mac.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/src/EosTcp_Mac.cpp; sourceTree = SOURCE_ROOT; };
 		C21C45054AF3E44A4946D42B /* ofxOscSender.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxOscSender.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/src/ofxOscSender.cpp; sourceTree = SOURCE_ROOT; };
 		C252BED9124115F26C0C8B70 /* E_shutterHandles.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = E_shutterHandles.mm; path = src/E_SHUTTERS/E_shutterHandles.mm; sourceTree = SOURCE_ROOT; };
-		C42A1635D09BB879ECF843F4 /* B_gui.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = B_gui.mm; path = src/B_GUI/B_gui.mm; sourceTree = SOURCE_ROOT; };
 		C433A4A266B3CED27706AB90 /* D_button.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = D_button.h; path = src/D_BUTTON/D_button.h; sourceTree = SOURCE_ROOT; };
 		C70D81551ADBAA2F6DBC1401 /* EosUdp_Mac.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EosUdp_Mac.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/include/EosUdp_Mac.h; sourceTree = SOURCE_ROOT; };
 		C8C2536FEE8C93917EB42B5E /* EosUdp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = EosUdp.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/src/EosUdp.cpp; sourceTree = SOURCE_ROOT; };
 		CC3D230AD14F00ACD7B695E5 /* tinyxmlerror.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = tinyxmlerror.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/libs/tinyxmlerror.cpp; sourceTree = SOURCE_ROOT; };
-		CCBAE1CED33117A7DC7D107C /* A_ofApp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = A_ofApp.h; path = src/A_MAIN/A_ofApp.h; sourceTree = SOURCE_ROOT; };
 		D6801A4B7CB2CE5DBC6CEBCE /* ofxOscMessage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxOscMessage.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxOsc/src/ofxOscMessage.cpp; sourceTree = SOURCE_ROOT; };
 		DB97082514C144FD2FC903C1 /* EosTcp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EosTcp.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/include/EosTcp.h; sourceTree = SOURCE_ROOT; };
 		DBD9AD9D5F224E22BA7403A8 /* ofxEosSync.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxEosSync.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/src/ofxEosSync.h; sourceTree = SOURCE_ROOT; };
@@ -340,19 +340,17 @@
 			name = libs;
 			sourceTree = "<group>";
 		};
-		4E9C6BFADA958C5203267AC2 /* B_GUI */ = {
+		4E9C6BFADA958C5203267AC2 /* B_PAGES */ = {
 			isa = PBXGroup;
 			children = (
-				8AAADDC381C2D9CB7A7ECBC5 /* B_gui.h */,
-				48C037DF8EB01F169524B594 /* B_settings.mm */,
+				6BA9B32280F7667754A48C97 /* B_topbar.mm */,
 				A9F52505206AE3D7C7784917 /* B_shutterPage.mm */,
 				2F482A352B13D096C62BF6EE /* B_panTiltPage.mm */,
 				800D966D23EA9F0C7784791B /* B_encoderPage.mm */,
-				6BA9B32280F7667754A48C97 /* B_topbar.mm */,
-				C42A1635D09BB879ECF843F4 /* B_gui.mm */,
 				99C73447A868904A5D281326 /* B_directSelectPage.mm */,
+				48C037DF8EB01F169524B594 /* B_settingsPage.mm */,
 			);
-			name = B_GUI;
+			name = B_PAGES;
 			sourceTree = "<group>";
 		};
 		5D395A94A979A22CAB68A7D6 /* src */ = {
@@ -360,8 +358,8 @@
 			children = (
 				E646038EB5AF93C4D10CF096 /* ofxEosSync.cpp */,
 				DBD9AD9D5F224E22BA7403A8 /* ofxEosSync.h */,
-				B36A1A18A27DCC6152E84B0F /* ofxEosSyncOscMsg.cpp */,
-				6AF4AA83F40490DA6C4E8AD1 /* ofxEosSyncOscMsg.h */,
+				B36A1A18A27DCC6152E84B0F /* ofxEosOscMsg.cpp */,
+				6AF4AA83F40490DA6C4E8AD1 /* ofxEosOscMsg.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -378,9 +376,9 @@
 		68E8BACF615FE6D56333FF76 /* E_SHUTTERS */ = {
 			isa = PBXGroup;
 			children = (
-				C252BED9124115F26C0C8B70 /* E_shutterHandles.mm */,
 				64A80C9BFB845462EA5FB047 /* E_shutterHandles.h */,
 				27B58CE3215416B8D237501A /* E_shutterButtons.h */,
+				C252BED9124115F26C0C8B70 /* E_shutterHandles.mm */,
 			);
 			name = E_SHUTTERS;
 			sourceTree = "<group>";
@@ -415,8 +413,8 @@
 		7C31A216066E8CEE3269BF15 /* D_BUTTON */ = {
 			isa = PBXGroup;
 			children = (
-				6925EA105101873F4EA5D44B /* D_bank.mm */,
 				0484D6DFB619B21F34809E57 /* D_bank.h */,
+				6925EA105101873F4EA5D44B /* D_bank.mm */,
 				5F5596496ED691DD1A90EB1C /* D_encoder.h */,
 				010D69567EF2AD12D0092495 /* D_encoder.mm */,
 				C433A4A266B3CED27706AB90 /* D_button.h */,
@@ -483,6 +481,25 @@
 				7972CD5872C491CD9CBA07C0 /* necessaryLib.h */,
 			);
 			name = include;
+			sourceTree = "<group>";
+		};
+		B789584124E4820300CE6E6B /* O_OSC */ = {
+			isa = PBXGroup;
+			children = (
+				B789584C24E4922300CE6E6B /* A_osc_connection.mm */,
+				B789584224E4820300CE6E6B /* A_osc_In.mm */,
+				B789584324E4820300CE6E6B /* A_osc_out.mm */,
+			);
+			path = O_OSC;
+			sourceTree = "<group>";
+		};
+		B789584624E4823600CE6E6B /* 0_Globals */ = {
+			isa = PBXGroup;
+			children = (
+				B789584724E4823600CE6E6B /* A0_globals.h */,
+				B789584824E4823600CE6E6B /* A_style.mm */,
+			);
+			path = 0_Globals;
 			sourceTree = "<group>";
 		};
 		BB16E9930F2B1E5900518274 /* libs */ = {
@@ -561,15 +578,6 @@
 			name = src;
 			sourceTree = "<group>";
 		};
-		DF395FC95283836DF9DEF853 /* O_OSC */ = {
-			isa = PBXGroup;
-			children = (
-				52C612B42C8E8E72B04326B9 /* O_osc_out.mm */,
-				68D1256DC093D4FDC0D462E5 /* O_osc.h */,
-			);
-			name = O_OSC;
-			sourceTree = "<group>";
-		};
 		E41D40FE13B3A0D800A75A5D /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -582,12 +590,13 @@
 			isa = PBXGroup;
 			children = (
 				E4D8936B11527B74007E1F53 /* main.mm */,
+				B789584624E4823600CE6E6B /* 0_Globals */,
 				FBDB6EC143282803010D0E8A /* A_MAIN */,
-				4E9C6BFADA958C5203267AC2 /* B_GUI */,
+				4E9C6BFADA958C5203267AC2 /* B_PAGES */,
 				A0E6FC22ECB433C6F40E4BEA /* C_KEYBOARD */,
 				7C31A216066E8CEE3269BF15 /* D_BUTTON */,
 				68E8BACF615FE6D56333FF76 /* E_SHUTTERS */,
-				DF395FC95283836DF9DEF853 /* O_OSC */,
+				B789584124E4820300CE6E6B /* O_OSC */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -604,11 +613,9 @@
 		FBDB6EC143282803010D0E8A /* A_MAIN */ = {
 			isa = PBXGroup;
 			children = (
-				87D707B84CC549AB4F682450 /* A0_globals.h */,
-				4654C437A0D3E4896867C879 /* A_style.mm */,
-				CCBAE1CED33117A7DC7D107C /* A_ofApp.h */,
-				5E353422425A9FFCD12CF74E /* A_ofApp.mm */,
-				B1BBA783A421D6C1B120CC06 /* A_osc_In.mm */,
+				B789583F24E4814100CE6E6B /* A_ofApp.h */,
+				B789583E24E4814100CE6E6B /* A_ofApp.mm */,
+				B789584A24E4897D00CE6E6B /* A_utility.mm */,
 			);
 			name = A_MAIN;
 			sourceTree = "<group>";
@@ -732,20 +739,16 @@
 			files = (
 				E4D8936E11527B74007E1F53 /* main.mm in Sources */,
 				A652B8C8B9A327D67401C847 /* E_shutterHandles.mm in Sources */,
-				177DEE307D75193AFA25A293 /* A_style.mm in Sources */,
-				0DE958A88392734A4E08CC3C /* A_ofApp.mm in Sources */,
-				CAF59B74114991255F89245F /* A_osc_In.mm in Sources */,
 				B490433952DD772FE0CAA5F2 /* D_bank.mm in Sources */,
 				C6CBE0E70E49C8A2DE62A09A /* D_encoder.mm in Sources */,
 				8F3564A366BEC7654169DFCB /* D_button.mm in Sources */,
-				375EC19CEDD8D5C3A7D6E153 /* O_osc_out.mm in Sources */,
 				5AEF6D83B3D140B97B8C23F4 /* C_keyboard.mm in Sources */,
-				95290C29241825FBD1B9F23D /* B_settings.mm in Sources */,
+				95290C29241825FBD1B9F23D /* B_settingsPage.mm in Sources */,
 				0DB844C3B7A3251D02533E9D /* B_shutterPage.mm in Sources */,
 				CAD6015E57B0371A45A0396B /* B_panTiltPage.mm in Sources */,
+				B789584524E4820300CE6E6B /* A_osc_out.mm in Sources */,
 				DFFBE626E2E29BC1925D3BF5 /* B_encoderPage.mm in Sources */,
 				9FED873046E1AB0EC48E077B /* B_topbar.mm in Sources */,
-				B1263242F45888466B30F787 /* B_gui.mm in Sources */,
 				AA336672E80CBBFCAAD5CFC1 /* B_directSelectPage.mm in Sources */,
 				AAACB8FDECB13FD0DE78318C /* EosLog.cpp in Sources */,
 				79F9887B3A10E1FA2015F2F8 /* EosOsc.cpp in Sources */,
@@ -754,12 +757,16 @@
 				2424D604A97746C5BA814CAF /* EosTcp_Mac.cpp in Sources */,
 				A4749E3C1C32FAAF210F283F /* EosTimer.cpp in Sources */,
 				0AD96B876FC4F69F392753CC /* EosUdp.cpp in Sources */,
+				B789584D24E4922300CE6E6B /* A_osc_connection.mm in Sources */,
 				8E57E2346BA4C4EC4CBB75C6 /* EosUdp_Mac.cpp in Sources */,
+				B789584024E4814100CE6E6B /* A_ofApp.mm in Sources */,
 				DB14E7C3518042C21F7A6A3F /* OSCParser.cpp in Sources */,
 				F27FCE2A2F815DBBBA3F1AE2 /* ofxEosSync.cpp in Sources */,
-				AAA63591694B0F38833D5DED /* ofxEosSyncOscMsg.cpp in Sources */,
+				B789584B24E4897D00CE6E6B /* A_utility.mm in Sources */,
+				AAA63591694B0F38833D5DED /* ofxEosOscMsg.cpp in Sources */,
 				D23F67F10DAD2FA5B4BB602D /* IpEndpointName.cpp in Sources */,
 				D65CCD8B4CFBAC30EC09A39D /* NetworkingUtils.cpp in Sources */,
+				B789584424E4820300CE6E6B /* A_osc_In.mm in Sources */,
 				4552A108325494C86358E102 /* UdpSocket.cpp in Sources */,
 				6B3480382822F6805C9F6421 /* OscOutboundPacketStream.cpp in Sources */,
 				34F4466FE14098A264815F64 /* OscPrintReceivedElements.cpp in Sources */,
@@ -771,6 +778,7 @@
 				0869EC3CEA4FDE5659A9D37C /* ofxOscReceiver.cpp in Sources */,
 				F99F042C599E1BD03A58CE58 /* ofxOscSender.cpp in Sources */,
 				758F42B79CFB7DF1EBD6A0EC /* tinyxml.cpp in Sources */,
+				B789584924E4823600CE6E6B /* A_style.mm in Sources */,
 				EC8921C6969C6E5E2DF78835 /* tinyxmlerror.cpp in Sources */,
 				0A66D4D0B483A5E52210F62A /* tinyxmlparser.cpp in Sources */,
 				55CFC13EC55E35345488CA2F /* ofxXmlSettings.cpp in Sources */,

@@ -88,20 +88,20 @@ void THRUST_HANDLE::touchDoubleTap(ofTouchEventArgs & touch){
         this-> doubleClicked = true;
         if (ID == "a") {
             buttonA.position = 1;
-            buttonA.output = 0;
-            buttonA.osc.sendShutter("THRUST", ID, 0);
+            buttonA.thrustPercent = 0;
+            buttonA.sendOSC();
         } else if (ID == "b") {
-            buttonB.output = 0;
+            buttonB.thrustPercent = 0;
             buttonB.position = 1;
-            buttonB.osc.sendShutter("THRUST", ID, 0);
+            buttonB.sendOSC();
         } else if (ID == "c") {
             buttonC.position = 1;
-            buttonC.output = 0;
-            buttonC.osc.sendShutter("THRUST", ID, 0);
+            buttonC.thrustPercent = 0;
+            buttonC.sendOSC();
         } else if (ID == "d") {
             buttonD.position = 1;
-            buttonD.output = 0;
-            buttonD.osc.sendShutter("THRUST", ID, 0);
+            buttonD.thrustPercent = 0;
+            buttonD.sendOSC();
         }
     }
 }
@@ -139,9 +139,9 @@ void THRUST_BUTTON::draw(string _ID, float _rotateAngle) {
 void THRUST_BUTTON::addOffset(float _diff) {
     float topLimit = clickDiameter / assemblyRadius;
     position = ofClamp(position + _diff, topLimit, 1);
-    output = ofMap(position,topLimit,1,100,0);
+    thrustPercent = ofMap(position,topLimit,1,100,0);
     
-    osc.sendShutter("THRUST", ID, output);
+    sendOSC();
 }
 
 void THRUST_BUTTON::angleLimit(float _angleRotateLimit){
@@ -380,17 +380,15 @@ void ANGLE_HANDLE::touchMoved(ofTouchEventArgs & touch, bool fine){
         
         if (ID == "a") {
             rotateAngle += (cos(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX()) + sin(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY())) / fineAdjust;
-            osc.sendShutter("ANGLE", ID, anglePercent);
         } else if (ID == "b") {
             rotateAngle += (cos(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY()) + sin(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX())) / fineAdjust;
-            osc.sendShutter("ANGLE", ID, anglePercent);
         } else if (ID == "c") {
             rotateAngle -= (cos(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX()) + sin(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY())) / fineAdjust;
-            osc.sendShutter("ANGLE", ID, anglePercent);
         } else if (ID == "d") {
             rotateAngle -= (cos(ofDegToRad(rotation)) * (touch.y - ofGetPreviousMouseY()) + sin(ofDegToRad(rotation)) * (touch.x - ofGetPreviousMouseX())) / fineAdjust;
-            osc.sendShutter("ANGLE", ID, anglePercent);
+            
         }
+        sendOSC();
     }
     calculateAngle();
 }
@@ -407,8 +405,7 @@ void ANGLE_HANDLE::touchDoubleTap(ofTouchEventArgs & touch){
     if (ofDist(touch.x, touch.y, x, y) < clickRadius) {
         this-> doubleClicked = true;
         rotateAngle = 0;
-        
-        osc.sendShutter("ANGLE", ID, anglePercent);
+        sendOSC();
     }
 }
 
@@ -542,8 +539,9 @@ void ASSEMBLY_HANDLE::touchMoved(ofTouchEventArgs & touch, bool fine){
         } else {
             frameX += (touch.x - ofGetPreviousMouseX());
         }
-        output = ofMap(frameX, botLimit, topLimit, -50, 50);
-        osc.sendShutter("ASSEMBLY", "", output);
+        assemblyAngle = ofMap(frameX, botLimit, topLimit, -50, 50);
+        
+        sendOSC();
     }
 }
 
@@ -561,8 +559,9 @@ void ASSEMBLY_HANDLE::touchDoubleTap(ofTouchEventArgs & touch){
         this-> doubleClicked = true;
         rotation = 0;
         frameX = defaultX;
-        output = 0;
-        osc.sendShutter("ASSEMBLY", "", output);
+        assemblyAngle = 0;
+        
+        sendOSC();
     }
 }
 

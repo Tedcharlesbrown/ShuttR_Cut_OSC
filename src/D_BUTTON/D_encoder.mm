@@ -59,23 +59,23 @@ void ENCODER::touchMoved(ofTouchEventArgs & touch, bool fine){
         }
         
         if (diff > 0) { //CLOCKWISE
-            output = 1;
+            encoderOutput = 1;
         } else if (diff < 0) { //COUNTER-CLOCKWISE
-            output = -1;
+            encoderOutput = -1;
         } else {
-            output = 0;
+            encoderOutput = 0;
         }
 
         if (parameter != "form" && parameter != "focus") {
             if (fine) {
                 if (parameter == "edge" || parameter == "pan" || parameter == "tilt") {
-                    output *= 100;
+                    encoderOutput *= 100;
                 } else if (parameter == "zoom") {
-                    output *= 500;
+                    encoderOutput *= 500;
                 }
-                osc.sendEncoder("fine/" + parameter, output);
+                sendOSC();
             } else {
-                osc.sendEncoder(parameter, output);
+                sendOSC();
             }
         }
     }

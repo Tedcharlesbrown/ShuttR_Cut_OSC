@@ -1,10 +1,9 @@
 #pragma once
 
 #include "ofxiOS.h"
+
 #include "A0_globals.h"
 #include "E_shutterButtons.h"
-
-#include "O_osc.h"
 
 //--------------------------------------------------------------
 // MARK: ----------THRUST_HANDLE----------
@@ -51,13 +50,17 @@ public:
     
     ANGLE_BUTTON buttonA, buttonB, buttonC, buttonD;
     
-    float offset, rotateOffset, rotateAngle, x, y, diff, anglePercent;
+    float offset, rotateOffset, rotateAngle, x, y, diff;
     float magicNumber; //THIS MAGIC NUMBER MUST BE FOUND
     string ID;
     bool clicked = false;
     bool doubleClicked = false;
     
-    OSC osc;
+    float anglePercent = 0;
+    ofEvent<float> oscOutputPercent;
+    void sendOSC() {
+        ofNotifyEvent(oscOutputPercent,anglePercent);
+    }
     
 private:
 };
@@ -79,11 +82,15 @@ public:
     void touchUp(ofTouchEventArgs & touch);
     void touchDoubleTap(ofTouchEventArgs & touch);
     
-    float frameX, frameY, defaultX, botLimit, topLimit, output;
+    float frameX, frameY, defaultX, botLimit, topLimit;
     bool clicked = false;
     bool doubleClicked = false;
     
-    OSC osc;
+    float assemblyAngle = 0;
+    ofEvent<float> oscOutputPercent;
+    void sendOSC() {
+        ofNotifyEvent(oscOutputPercent,assemblyAngle);
+    }
     
 private:
 };

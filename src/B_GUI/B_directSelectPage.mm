@@ -4,16 +4,16 @@
 // MARK: ---------- DIRECT SELECT - SETUP / UPDATE / DRAW ----------
 //--------------------------------------------------------------
 
-void GUI::DSPageSetup(){
+void ofApp::DSPageSetup(){
     bankOne.setup(); bankTwo.setup();
 }
 //--------------------------------------------------------------
-void GUI::DSPageUpdate(){
+void ofApp::DSPageUpdate(){
     bankOne.update(); bankTwo.update();
 }
 
 //--------------------------------------------------------------
-void GUI::DSPageDraw(){
+void ofApp::DSPageDraw(){
     bankOne.draw("1", row1Padding);
 //    bankTwo.draw("21",height - bankTwo.bankHeight + buttonHeight);
 //    bankTwo.draw("21", row1Padding + buttonHeight / 4 + bankTwo.bankHeight);
@@ -31,21 +31,21 @@ void GUI::DSPageDraw(){
 // MARK: ---------- TOUCH EVENTS ----------
 //--------------------------------------------------------------
 
-void GUI::DSPageTouchDown(ofTouchEventArgs & touch){
+void ofApp::DSPageTouchDown(ofTouchEventArgs & touch){
     bankOne.touchDown(touch); bankTwo.touchDown(touch);
 }
 
 //--------------------------------------------------------------
-void GUI::DSPageTouchMoved(ofTouchEventArgs & touch){
+void ofApp::DSPageTouchMoved(ofTouchEventArgs & touch){
 
 }
 
 //--------------------------------------------------------------
-void GUI::DSPageTouchUp(ofTouchEventArgs & touch){
+void ofApp::DSPageTouchUp(ofTouchEventArgs & touch){
     bankOne.touchUp(touch); bankTwo.touchUp(touch);
 }
 
 //--------------------------------------------------------------
-void GUI::DSPageDoubleTap(ofTouchEventArgs & touch){
+void ofApp::DSPageDoubleTap(ofTouchEventArgs & touch){
 
 }

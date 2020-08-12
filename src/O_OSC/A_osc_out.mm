@@ -1,73 +1,74 @@
-#include "O_osc.h"
+#include "A_ofApp.h"
+
 //--------------------------------------------------------------
 
-void OSC::sendChannel(string parameter) {
+void ofApp::sendChannel(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
-        ofxOscMessage m;
+        ofxEosOscMsg m;
         for (int i = 1; i >= 0; i--) { //SEND NEXT OR LAST KEY
             m.clear();
             m.setAddress("eos/user/" + inputID + "/key/" + parameter);
             m.addStringArg(ofToString(i));
-            sender.sendMessage(m, false);
+            eos.sendMessage(m);
         }
     }
 }
 //--------------------------------------------------------------
 
-void OSC::sendChannelNumber(string parameter) {
+void ofApp::sendChannelNumber(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
-    ofxOscMessage m;
+    ofxEosOscMsg m;
     m.setAddress("/eos/user" + inputID + "/cmd/" + parameter + "#");
-    sender.sendMessage(m, false);
+    eos.sendMessage(m);
 }
 
 //--------------------------------------------------------------
 
-void OSC::sendHigh() {
+void ofApp::sendHigh() {
     oscSentTime = ofGetElapsedTimeMillis();
     
-    ofxOscMessage m;
+    ofxEosOscMsg m;
     for (int i = 1; i >= 0; i--) {
         m.clear();
         m.setAddress("eos/user/" + inputID + "/key/enter");
         m.addStringArg(ofToString(i));
-        sender.sendMessage(m, false);
+        eos.sendMessage(m);
     }
     for (int i = 1; i >= 0; i--) {
         m.clear();
         m.setAddress("eos/user/" + inputID + "/key/highlight");
         m.addStringArg(ofToString(i));
-        sender.sendMessage(m, false);
+        eos.sendMessage(m);
     }
     for (int i = 1; i >= 0; i--) {
         m.clear();
         m.setAddress("eos/user/" + inputID + "/key/enter");
         m.addStringArg(ofToString(i));
-        sender.sendMessage(m, false);
+        eos.sendMessage(m);
     }
     for (int i = 1; i >= 0; i--) {
         m.clear();
         m.setAddress("/eos/user/" + inputID + "/key/select_last");
         m.addStringArg(ofToString(i));
-        sender.sendMessage(m, false);
+        eos.sendMessage(m);
     }
     for (int i = 1; i >= 0; i--) {
         m.clear();
         m.setAddress("eos/user/" + inputID + "/key/enter");
         m.addStringArg(ofToString(i));
-        sender.sendMessage(m, false);
+        eos.sendMessage(m);
     }
 }
 
 //--------------------------------------------------------------
 
-void OSC::sendFlash(string parameter) {
+void ofApp::sendFlash(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
-    ofxOscMessage m;
+    ofxEosOscMsg m;
     bool released = false;
     string OSCPrefix = "";
     if (parameter == "FLASH_OFF") {
@@ -85,16 +86,16 @@ void OSC::sendFlash(string parameter) {
     } else {
         m.addStringArg("1");
     }
-    sender.sendMessage(m, false);
+    eos.sendMessage(m);
 }
 
 //--------------------------------------------------------------
 
-void OSC::sendShutter(string parameter, string ID, int message) {
+void ofApp::sendShutter(string parameter, string ID, int message) {
     oscSentTime = ofGetElapsedTimeMillis();
     ignoreOSC = true;
     
-    ofxOscMessage m;
+    ofxEosOscMsg m;
     if (parameter == "THRUST") {
         m.setAddress("/eos/user/" + inputID + "/param/frame thrust " + ID);
     } else if (parameter == "ANGLE") {
@@ -103,77 +104,74 @@ void OSC::sendShutter(string parameter, string ID, int message) {
         m.setAddress("/eos/user/" + inputID + "/param/frame assembly");
     }
     m.addFloatArg(message);
-    sender.sendMessage(m, false);
+    eos.sendMessage(m);
 }
 
 //--------------------------------------------------------------
 
-void OSC::sendShutterHome(string parameter) {
+void ofApp::sendShutterHome(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
-        ofxOscMessage a,b,c,d;
+        ofxEosOscMsg a,b,c,d;
         if (parameter == "THRUST") {
             a.setAddress("/eos/user/" + inputID + "/param/frame thrust a/home");
             b.setAddress("/eos/user/" + inputID + "/param/frame thrust b/home");
             c.setAddress("/eos/user/" + inputID + "/param/frame thrust c/home");
             d.setAddress("/eos/user/" + inputID + "/param/frame thrust d/home");
-            sender.sendMessage(a, false); sender.sendMessage(b, false); sender.sendMessage(c, false); sender.sendMessage(d, false);
+            eos.sendMessage(a); eos.sendMessage(b); eos.sendMessage(c); eos.sendMessage(d);
         } else if (parameter == "ANGLE") {
             a.setAddress("/eos/user/" + inputID + "/param/frame angle a/home");
             b.setAddress("/eos/user/" + inputID + "/param/frame angle b/home");
             c.setAddress("/eos/user/" + inputID + "/param/frame angle c/home");
             d.setAddress("/eos/user/" + inputID + "/param/frame angle d/home");
-            sender.sendMessage(a, false); sender.sendMessage(b, false); sender.sendMessage(c, false); sender.sendMessage(d, false);
+            eos.sendMessage(a); eos.sendMessage(b); eos.sendMessage(c); eos.sendMessage(d);
         } else if (parameter == "SHUTTER") {
             a.setAddress("/eos/user/" + inputID + "/param/shutter/home");
-            sender.sendMessage(a, false);
+            eos.sendMessage(a);
         }
-        //a.addStringArg(""); b.addStringArg(""); c.addStringArg(""); d.addStringArg("");
-        sender.sendMessage(a, false); sender.sendMessage(b, false); sender.sendMessage(c, false); sender.sendMessage(d, false);
+//        eos.sendMessage(a); eos.sendMessage(b); eos.sendMessage(c); eos.sendMessage(d);
     }
 }
 
 //--------------------------------------------------------------
 
-void OSC::fineEncoder(int message) { //ONLY USED TO RESET OSC TICKS, ONLY CALLED IN CONNECT();
+void ofApp::fineEncoder(int message) { //ONLY USED TO RESET OSC TICKS, ONLY CALLED IN CONNECT();
     oscSentTime = ofGetElapsedTimeMillis();
     
-    ofxOscMessage m;
+    ofxEosOscMsg m;
     m.setAddress("/eos/user/" + inputID + "/wheel");
     m.addIntArg(message);
-    sender.sendMessage(m, false);
+    eos.sendMessage(m);
 }
 
 //--------------------------------------------------------------
-void OSC::sendEncoder(string parameter, int message){
+void ofApp::sendEncoder(string parameter, float message){
     oscSentTime = ofGetElapsedTimeMillis();
     
-    if (parameter != "form") {
-        ofxOscMessage m;
-        m.setAddress("/eos/user/" + inputID + "/wheel/" + parameter);
-        m.addFloatArg(message);
-        sender.sendMessage(m, false);
-    }
+    ofxEosOscMsg m;
+    m.setAddress("/eos/user/" + inputID + "/wheel/" + parameter);
+    m.addFloatArg(message);
+    eos.sendMessage(m);
 }
 
 //--------------------------------------------------------------
 
-void OSC::sendEncoderPercent(string parameter, int message) {
+void ofApp::sendEncoderPercent(string parameter, int message) {
     oscSentTime = ofGetElapsedTimeMillis();
     
-        ofxOscMessage m;
+        ofxEosOscMsg m;
         for (int i = 0; i >= 0; i--) { //SEND ENTER
             m.clear();
             m.setAddress("/eos/user/" + inputID + "/key/enter");
             m.addIntArg(i);
-            sender.sendMessage(m, false);
+            eos.sendMessage(m);
         }
         for (int i = 0; i >= 0; i--) { //SEND SELECT_LAST
             m.clear();
             m.setAddress("/eos/user/" + inputID + "/key/select_last");
             m.addIntArg(i);
-            sender.sendMessage(m, false);
+            eos.sendMessage(m);
         }
         m.clear();
         switch(message) {
@@ -187,18 +185,18 @@ void OSC::sendEncoderPercent(string parameter, int message) {
                 m.setAddress("/eos/user/" + inputID + "/param/" + parameter + "/+%");
                 break;
         }
-        sender.sendMessage(m, false);
+        eos.sendMessage(m);
 }
 
 //--------------------------------------------------------------
 
-void OSC::sendPing() {
+void ofApp::sendPing() {
     oscSentTime = ofGetElapsedTimeMillis();
     
-    ofxOscMessage m;
+    ofxEosOscMsg m;
     
     m.setAddress("/eos/ping");
-    sender.sendMessage(m, false);
+    eos.sendMessage(m);
 }
 
 //--------------------------------------------------------------

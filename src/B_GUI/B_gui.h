@@ -182,16 +182,27 @@ public:
     //--------------------------------------------------------------
     
     // ----------------------- INCOMING OSC -----------------------
-    void parseChannel(string m);
-    
-    void parse(string m);
-    
     void oscEvent();
+    
+    void getState(ofxEosOscMsg incomingOSC);
+    void getCommandLine(ofxEosOscMsg incomingOSC);
+    void getPanTilt(ofxEosOscMsg incomingOSC);
+    void getWheel(ofxEosOscMsg incomingOSC);
+    void getChannel(ofxEosOscMsg incomingOSC);
+    void getColor(ofxEosOscMsg incomingOSC);
+//    void parseChannel(string m);
+    
+    
     void checkConnection();
     
     string multiChannelPrefix = "";
     string noParameter = "";
     
+    bool hasShutters = false;
+    bool hasIris = false;
+    bool hasEdge = false;
+    bool hasZoom = false;
+    bool hasFrost = false;
     bool hasPanTilt = false;
     
     

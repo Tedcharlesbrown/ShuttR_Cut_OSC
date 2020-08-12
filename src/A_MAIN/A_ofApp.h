@@ -58,8 +58,6 @@ public:
     string multiChannelPrefix = "";
     string noParameter = "";
     
-//    OSC osc;
-    
     ofxOscReceiver receiver;
     string listenTargets[14];
     bool hasTargets[14];

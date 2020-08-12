@@ -67,6 +67,19 @@ public:
     void shutterPageTouchUp(ofTouchEventArgs & touch);
     void shutterPageDoubleTap(ofTouchEventArgs & touch);
     
+    void shutterPageAddListeners();
+    void sendThrustA(float & oscOutputPercent);
+    void sendThrustB(float & oscOutputPercent);
+    void sendThrustC(float & oscOutputPercent);
+    void sendThrustD(float & oscOutputPercent);
+    
+    void sendAngleA(float & oscOutputPercent);
+    void sendAngleB(float & oscOutputPercent);
+    void sendAngleC(float & oscOutputPercent);
+    void sendAngleD(float & oscOutputPercent);
+    
+    void sendAssembly(float & oscOutputPercent);
+    
     ofImage bgAssembly;
     THRUST_HANDLE thrustA, thrustB, thrustC, thrustD;
     ANGLE_HANDLE angleA, angleB, angleC, angleD;

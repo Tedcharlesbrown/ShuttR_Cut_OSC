@@ -11,22 +11,7 @@ void GUI::shutterPageSetup() {
     thrustA.setup("a"); thrustB.setup("b"); thrustC.setup("c"); thrustD.setup("d");
     angleA.setup("a"); angleB.setup("b"); angleC.setup("c"); angleD.setup("d");
     assembly.setup();
-    
-    ofAddListener(thrustA.buttonA.oscOutputPercent, this, &GUI::newOSC);
-    ofAddListener(thrustB.buttonB.oscOutputPercent, this, &GUI::newOSC);
-    ofAddListener(thrustC.buttonC.oscOutputPercent, this, &GUI::newOSC);
-    ofAddListener(thrustD.buttonD.oscOutputPercent, this, &GUI::newOSC);
-    
-    ofAddListener(angleA.oscOutputPercent, this, &GUI::newOSC);
-    ofAddListener(angleB.oscOutputPercent, this, &GUI::newOSC);
-    ofAddListener(angleC.oscOutputPercent, this, &GUI::newOSC);
-    ofAddListener(angleD.oscOutputPercent, this, &GUI::newOSC);
-    
-    ofAddListener(assembly.oscOutputPercent, this, &GUI::newOSC);
-}
-
-void GUI::newOSC(float & osc){
-    cout << osc << endl;
+    shutterPageAddListeners();
 }
 
 //--------------------------------------------------------------
@@ -179,3 +164,50 @@ void GUI::shutterPageDoubleTap(ofTouchEventArgs & touch) {
 
 
 //--------------------------------------------------------------
+// MARK: ---------- OSC LISTENERS / PARSING ----------
+//--------------------------------------------------------------
+
+
+void GUI::shutterPageAddListeners() {
+    ofAddListener(thrustA.buttonA.oscOutputPercent, this, &GUI::sendThrustA);
+    ofAddListener(thrustB.buttonB.oscOutputPercent, this, &GUI::sendThrustB);
+    ofAddListener(thrustC.buttonC.oscOutputPercent, this, &GUI::sendThrustC);
+    ofAddListener(thrustD.buttonD.oscOutputPercent, this, &GUI::sendThrustD);
+
+    ofAddListener(angleA.oscOutputPercent, this, &GUI::sendAngleA);
+    ofAddListener(angleB.oscOutputPercent, this, &GUI::sendAngleB);
+    ofAddListener(angleC.oscOutputPercent, this, &GUI::sendAngleC);
+    ofAddListener(angleD.oscOutputPercent, this, &GUI::sendAngleD);
+
+    ofAddListener(assembly.oscOutputPercent, this, &GUI::sendAssembly);
+}
+
+void GUI::sendThrustA(float & oscOutputPercent){
+    osc.sendShutter("THRUST","a",oscOutputPercent);
+}
+void GUI::sendThrustB(float & oscOutputPercent){
+//    osc.sendShutter("THRUST","b",oscOutputPercent);
+}
+void GUI::sendThrustC(float & oscOutputPercent){
+//    osc.sendShutter("THRUST","c",oscOutputPercent);
+}
+void GUI::sendThrustD(float & oscOutputPercent){
+//    osc.sendShutter("THRUST","d",oscOutputPercent);
+}
+
+void GUI::sendAngleA(float & oscOutputPercent){
+//    osc.sendShutter("ANGLE","a",oscOutputPercent);
+}
+void GUI::sendAngleB(float & oscOutputPercent){
+//    osc.sendShutter("ANGLE","b",oscOutputPercent);
+}
+void GUI::sendAngleC(float & oscOutputPercent){
+//    osc.sendShutter("ANGLE","c",oscOutputPercent);
+}
+void GUI::sendAngleD(float & oscOutputPercent){
+//    osc.sendShutter("ANGLE","d",oscOutputPercent);
+}
+
+void GUI::sendAssembly(float & oscOutputPercent){
+//    osc.sendShutter("ASSEMBLY","a",oscOutputPercent);
+}

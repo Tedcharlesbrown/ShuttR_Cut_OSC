@@ -11,8 +11,6 @@ void ofApp::setup(){
     oscInit();
     getXML();
     
-    //ofSleepMillis(5000);
-    
     gui.setup();
     gui.shutterPage.clicked = true;
 }

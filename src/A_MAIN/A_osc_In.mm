@@ -257,6 +257,12 @@ void ofApp::parseChannel(string incomingOSC) {
 
 void ofApp::connect() {
     IPAddress = getIPAddress();
+    
+//    osc.connect();
+    
+    
+    
+    
     gui.osc.connect();
     
     gui.focusEncoder.osc.connect();

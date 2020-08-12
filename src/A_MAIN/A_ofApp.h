@@ -4,9 +4,6 @@
 #include "ofxOsc.h" //OSC
 #include "ofxXmlSettings.h" //XML
 
-#include "ofxEosSyncOscMsg.h" //TCP OSC
-#include "ofxEosSync.h"
-
 #include <ifaddrs.h> //IP ADDRESS
 #include <arpa/inet.h> //IP ADDRESS
 
@@ -14,6 +11,7 @@
 #include "B_gui.h"
 #include "C_keyboard.h"
 #include "D_button.h"
+#include "O_osc.h"
 
 class ofApp : public ofxiOSApp {
     
@@ -60,7 +58,7 @@ public:
     string multiChannelPrefix = "";
     string noParameter = "";
     
-    ofxEosSync eosOsc;
+//    OSC osc;
     
     ofxOscReceiver receiver;
     string listenTargets[14];
@@ -73,15 +71,6 @@ public:
     KEYBOARD keyboard;
     
     //----------------------------------------------------
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 private:
 };

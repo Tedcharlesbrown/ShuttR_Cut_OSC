@@ -166,6 +166,7 @@
 		B36A1A18A27DCC6152E84B0F /* ofxEosSyncOscMsg.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxEosSyncOscMsg.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/src/ofxEosSyncOscMsg.cpp; sourceTree = SOURCE_ROOT; };
 		B396E04A19DA2B315A6C0CD7 /* EosSyncLib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EosSyncLib.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/include/EosSyncLib.h; sourceTree = SOURCE_ROOT; };
 		B705C3964A5506AAC5858C03 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlSettings.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
+		B71E3D8424E3716A0051CD91 /* O_osc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = O_osc.h; path = O_OSC/O_osc.h; sourceTree = "<group>"; };
 		B78BAE6224E1FB120096FB82 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		B78BAE6424E1FB1A0096FB82 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		BB16EBD10F2B2A9500518274 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -564,6 +565,7 @@
 		DF395FC95283836DF9DEF853 /* O_OSC */ = {
 			isa = PBXGroup;
 			children = (
+				B71E3D8424E3716A0051CD91 /* O_osc.h */,
 				52C612B42C8E8E72B04326B9 /* O_osc_out.mm */,
 				68D1256DC093D4FDC0D462E5 /* O_osc_OLD.h */,
 			);

@@ -31,6 +31,7 @@ void ofApp::update() {
     stateUpdate();
     
     if (connectRequest) {
+        IPAddress = getIPAddress();
         connect();
         saveXML();
     }
@@ -43,7 +44,6 @@ void ofApp::update() {
     buttonAction();
     settingsUpdate();
     channelButtonAction();
-    
 }
 
 //--------------------------------------------------------------

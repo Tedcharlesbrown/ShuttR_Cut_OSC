@@ -6,22 +6,27 @@
 
 // ----------------------- NAME / IP / ID / RX / TX / SELECTED CHANNEL -----------------------
 string appName = "ShuttR Cut OSC";
-string appNameV = appName + " v0.1.0";
-string version = "v0.1.0 (OpenFrameworks)";
+string defaultName = appName + version;
+string headerName = defaultName;
+string version = "v0.1.0";
 string IPAddress, inputIP, inputID, selectedChannel = "";
 
 // ----------------------- EOS BOOLEANS -----------------------
-bool connectRequest = false;
-bool isConnected = false;
 bool noneSelected = true;
 bool ignoreOSC = false;
 bool isLive = true;
+
+// ----------------------- NETWORK BOOLEANS -----------------------
+bool connectRequest = false;
+bool isConnected = false;
+bool hasWifi = false;
+bool hasOSC = false;
 
 // ----------------------- RX / TX LIGHT TIME -----------------------
 float oscSentTime, oscReceivedTime = 0;
 
 // ----------------------- CHANNEL / INTENSITY -----------------------
-int selectedChannelInt, channelIntensity;
+int channelIntensity;
 
 //--------------------------------------------------------------
 // MARK: ---------- TEXT STYLES ----------
@@ -54,7 +59,7 @@ float settingsBarStrokeWeight, buttonStrokeWeight, shutterStrokeWeight, outsideW
 
 // ----------------------- CONSOLE LOG -----------------------
 float  consoleWidth, consoleHeight, consolePadding;
-vector<string> consoleLog;
+vector<string> console_log;
 
 // ----------------------- SHUTTER PAGE CONSTANTS -----------------------
 float assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
@@ -90,12 +95,17 @@ ofColor shutterColor = ofColor(0);
 //--------------------------------------------------------------
 
 void ofApp::stateUpdate(){
-    if (isLive){
-        EOSState = EOSLive;
-        EOSBarState = EOSDarkGrey;
+    if (isConnected) {
+        if (isLive){
+            EOSState = EOSLive;
+            EOSBarState = EOSDarkGrey;
+        } else {
+            EOSState = EOSBlind;
+            EOSBarState = EOSBlue;
+        }
     } else {
-        EOSState = EOSBlind;
-        EOSBarState = EOSBlue;
+        EOSState = EOSLightGrey;
+        EOSBarState = EOSDarkGrey;
     }
 }
 //--------------------------------------------------------------
@@ -181,8 +191,10 @@ void ofApp::styleInit(){
     fontTiny.load("LondonBetween.ttf", tinyTextSize);
     fontTiny.setLetterSpacing(1.5);
     
-    consoleLog.push_back(appName);
-    consoleLog.push_back(version);
+    console_log.push_back(appName + " " + version);
+    console_log.push_back("");
+    console_log.push_back("");
+    console_log.push_back("");
 
     
     //---------- COLOR ----------

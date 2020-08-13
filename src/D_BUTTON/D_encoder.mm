@@ -5,10 +5,6 @@ void ENCODER::setup(float _size){
     encoder.load("Encoder.png");
     encoder.resize(_size, _size);
 }
-//--------------------------------------------------------------
-void ENCODER::update(string _parameter){
-    this-> parameter = _parameter;
-}
 
 //--------------------------------------------------------------
 void ENCODER::draw(float _x, float _y){
@@ -29,7 +25,7 @@ void ENCODER::touchDown(ofTouchEventArgs & touch){
 }
 
 //--------------------------------------------------------------
-void ENCODER::touchMoved(ofTouchEventArgs & touch, bool fine){
+void ENCODER::touchMoved(ofTouchEventArgs & touch){
     if (this-> clicked) {
         ofVec2f center;
         ofVec2f prevTouch;
@@ -65,19 +61,8 @@ void ENCODER::touchMoved(ofTouchEventArgs & touch, bool fine){
         } else {
             encoderOutput = 0;
         }
-
-        if (parameter != "form" && parameter != "focus") {
-            if (fine) {
-                if (parameter == "edge" || parameter == "pan" || parameter == "tilt") {
-                    encoderOutput *= 100;
-                } else if (parameter == "zoom") {
-                    encoderOutput *= 500;
-                }
-                sendOSC();
-            } else {
-                sendOSC();
-            }
-        }
+    
+        sendOSC();
     }
 }
 

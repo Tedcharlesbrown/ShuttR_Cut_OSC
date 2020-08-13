@@ -175,6 +175,12 @@ public:
     string userInputID = "1";
     int keySwitch = 0;
     
+    int connectTime = 0;
+    int deltaTime = 0;
+    int lastPing = 0;
+    
+    void heartBeat();
+
     string getIPAddress();
     
     BUTTON ipFieldButton, idFieldButton, incomingButton, outgoingButton, helpButton;
@@ -217,8 +223,6 @@ public:
     void getWheel(ofxEosOscMsg incomingOSC);
     void getChannel(ofxEosOscMsg incomingOSC);
     void getColor(ofxEosOscMsg incomingOSC);
-    
-    void checkConnection();
     
     string multiChannelPrefix = "";
     string noParameter = "";

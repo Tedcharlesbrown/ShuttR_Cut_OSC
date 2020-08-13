@@ -5,11 +5,17 @@
 void ofApp::oscEvent() {
     while(eos.hasWaitingMessages()){
         oscReceivedTime = ofGetElapsedTimeMillis();
-        
+        isConnected = true;
+        hasOSC = true;
         ofxEosOscMsg m = eos.getNextMessage();
         
+        // ----------------------- GET SHOW NAME -----------------------
+        if (m.getAddress() == "/eos/out/show/name") {
+            headerName = m.getArgAsString(0).substr(0,45);
+        }
+        // ----------------------- GET CONNECTION STATUS -----------------------
         if (m.getAddress() == "/eos/out/ping") {
-            //SOMEHOW CHECK THE FUCKING CONNECTION
+            lastPing = ofGetElapsedTimeMillis();
         }
         // ----------------------- GET ALL LIVE / BLIND STATUS -----------------------
         if (m.getAddress() == "/eos/out/event/state") {
@@ -61,7 +67,9 @@ void ofApp::getCommandLine(ofxEosOscMsg m){
         int indexValueStart = incomingOSC.find(" ");
         incomingOSC = incomingOSC.substr(indexValueStart + 1);
     }  else if (incomingOSC.find("BLIND") != string::npos) { //TODO: MAKE WORK IN BLIND
-        
+        incomingOSC = incomingOSC.substr(13);
+        int indexValueStart = incomingOSC.find(":");
+        incomingOSC = incomingOSC.substr(indexValueStart + 1);
     }
     
     if (incomingOSC.find(":") != string::npos) {
@@ -161,19 +169,18 @@ void ofApp::getWheel(ofxEosOscMsg m){
 
 void ofApp::getChannel(ofxEosOscMsg m) {
     string incomingOSC = m.getArgAsString(0);
-    if (incomingOSC.find("[") != string::npos){ //IF CHANNEL IS PATCHED AND SELECTED
+    
+    if (incomingOSC.length() > 0) {
+        noneSelected = false;
         int oscLength = incomingOSC.length();
-        int indexValueEnd = incomingOSC.find(" [");
-        incomingOSC = incomingOSC.substr(0,indexValueEnd - 1);
+        int indexValueEnd = incomingOSC.find(" ");
+        incomingOSC = incomingOSC.substr(0,indexValueEnd);
         if (oscLength == 5 + incomingOSC.length()) { //IF NO CHANNEL IS PATCHED (OFFSET BY LENGTH OF CHANNEL NUMBER)
-            noneSelected = true;
             selectedChannel = "(" + incomingOSC + ")";
             irisPercent = noParameter; edgePercent = noParameter; zoomPercent = noParameter; frostPercent = noParameter;
             panPercent = noParameter; tiltPercent = noParameter;
         } else {
             selectedChannel = multiChannelPrefix + incomingOSC;
-            selectedChannelInt = ofToInt(incomingOSC);
-            noneSelected = false;
         }
     } else { // IF NO CHANNEL IS SELECTED
         noneSelected = true;

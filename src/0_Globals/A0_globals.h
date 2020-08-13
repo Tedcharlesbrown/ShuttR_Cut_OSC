@@ -7,16 +7,19 @@
 //--------------------------------------------------------------
 
 // ----------------------- NAME / IP / ID / RX / TX / SELECTED CHANNEL -----------------------
-extern string appName, version, appNameV, IPAddress, inputIP, inputID, inputRX, inputTX, selectedChannel;
+extern string appName, version, headerName, IPAddress, inputIP, inputID, inputRX, inputTX, selectedChannel;
 
 // ----------------------- EOS BOOLEANS -----------------------
-extern bool connectRequest, isConnected, noneSelected, ignoreOSC, isLive;
+extern bool noneSelected, ignoreOSC, isLive;
+
+// ----------------------- NETWORK BOOLEANS -----------------------
+extern bool connectRequest, isConnected, hasWifi, hasOSC;
 
 // ----------------------- RX / TX LIGHT TIME -----------------------
 extern float oscSentTime, oscReceivedTime;
 
 // ----------------------- CHANNEL / INTENSITY -----------------------
-extern int selectedChannelInt, channelIntensity;
+extern int channelIntensity;
 
 //--------------------------------------------------------------
 // MARK: ---------- TEXT STYLES ----------
@@ -49,7 +52,7 @@ extern float settingsBarStrokeWeight, buttonStrokeWeight, shutterStrokeWeight, o
 
 // ----------------------- CONSOLE LOG -----------------------
 extern float  consoleWidth, consoleHeight, consolePadding;
-extern vector<string> consoleLog;
+extern vector<string> console_log;
 
 // ----------------------- SHUTTER PAGE CONSTANTS -----------------------
 extern float assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;

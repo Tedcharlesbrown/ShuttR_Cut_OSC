@@ -14,6 +14,10 @@ void ofApp::setup() {
     IPAddress = getIPAddress();
     styleInit();
     getXML();
+    
+    if (inputIP.length() > 0) {
+        connect();
+    }
 
     shutterPage.clicked = true;
     
@@ -22,6 +26,7 @@ void ofApp::setup() {
     encoderPageSetup();
     DSPageSetup();
     settingsSetup();
+
 }
 
 //--------------------------------------------------------------
@@ -35,6 +40,7 @@ void ofApp::update() {
         connect();
         saveXML();
     }
+    heartBeat();
     
     keyboard.update();
     
@@ -280,6 +286,7 @@ void ofApp::lostFocus(){
 //--------------------------------------------------------------
 void ofApp::gotFocus(){
     getXML();
+    IPAddress = getIPAddress();
 }
 
 //--------------------------------------------------------------

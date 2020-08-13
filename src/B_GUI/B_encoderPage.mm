@@ -16,21 +16,21 @@ void ofApp::encoderPageUpdate() {
     if (irisButton.action && irisButton.clicked) {
         irisButton.clicked = true; edgeButton.clicked = false; zoomButton.clicked = false; frostButton.clicked = false;
         irisButton.action = false;
-        parameterShow = "IRIS"; formEncoder.update("iris"); formParameter = "iris";
+        parameterShow = "IRIS"; formParameter = "iris";
     } else if (edgeButton.action && edgeButton.clicked) {
         irisButton.clicked = false; edgeButton.clicked = true; zoomButton.clicked = false; frostButton.clicked = false;
         edgeButton.action = false;
-        parameterShow = "EDGE"; formEncoder.update("edge"); formParameter = "edge";
+        parameterShow = "EDGE"; formParameter = "edge";
     } else if (zoomButton.action && zoomButton.clicked) {
         irisButton.clicked = false; edgeButton.clicked = false; zoomButton.clicked = true; frostButton.clicked = false;
         zoomButton.action = false;
-        parameterShow = "ZOOM"; formEncoder.update("zoom"); formParameter = "zoom";
+        parameterShow = "ZOOM"; formParameter = "zoom";
     } else if (frostButton.action && frostButton.clicked) {
         irisButton.clicked = false; edgeButton.clicked = false; zoomButton.clicked = false; frostButton.clicked = true;
         frostButton.action = false;
-        parameterShow = "FROST"; formEncoder.update("diffusion"); formParameter = "diffusion";
+        parameterShow = "FROST"; formParameter = "diffusion";
     } else if (!irisButton.clicked && !edgeButton.clicked && !zoomButton.clicked && !frostButton.clicked) {
-        parameterShow = "FORM"; formEncoder.update("form"); formParameter = "form";
+        parameterShow = "FORM"; formParameter = "form";
     }
     
     if (minusPercentButton.action && formParameter != "form") { //if param is form, don't send.
@@ -85,7 +85,7 @@ void ofApp::encoderPageTouchDown(ofTouchEventArgs & touch) {
 }
 
 void ofApp::encoderPageTouchMoved(ofTouchEventArgs & touch) {
-    formEncoder.touchMoved(touch, fineButton.clicked);
+    formEncoder.touchMoved(touch);
 }
 
 
@@ -107,5 +107,11 @@ void ofApp::encoderPageTouchUp(ofTouchEventArgs & touch) {
 //--------------------------------------------------------------
 
 void ofApp::sendFormEncoder(float & oscOutputPercent){
-    sendEncoder(formEncoder.parameter, oscOutputPercent);
+    if (formParameter != "form") {
+        if (fineButton.clicked) {
+            sendEncoder(formParameter, oscOutputPercent / 1000);
+        } else {
+            sendEncoder(formParameter, oscOutputPercent * 1);
+        }
+    }
 }

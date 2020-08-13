@@ -15,13 +15,13 @@ void ofApp::panTiltPageUpdate(){
     if (panButton.action && panButton.clicked) {
         panButton.clicked = true; tiltButton.clicked = false;
         panButton.action = false;
-        panTiltShow = "PAN"; focusEncoder.update("pan"); focusParameter = "pan";
+        panTiltShow = "PAN"; focusParameter = "pan";
     } else if (tiltButton.action && tiltButton.clicked) {
         panButton.clicked = false; tiltButton.clicked = true;
         tiltButton.action = false;
-        panTiltShow = "TILT"; focusEncoder.update("tilt"); focusParameter = "tilt";
+        panTiltShow = "TILT"; focusParameter = "tilt";
     } else if (!panButton.clicked && !tiltButton.clicked) {
-        panTiltShow = "FOCUS"; focusEncoder.update("focus"); focusParameter = "focus";
+        panTiltShow = "FOCUS"; focusParameter = "focus";
     }
     
     if (minusPercentButton.action && focusParameter != "focus") { //if param is focus, don't send.
@@ -73,7 +73,7 @@ void ofApp::panTiltPageTouchDown(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 void ofApp::panTiltPageTouchMoved(ofTouchEventArgs & touch){
-    focusEncoder.touchMoved(touch, fineButton.clicked);
+    focusEncoder.touchMoved(touch);
 }
 
 //--------------------------------------------------------------
@@ -104,5 +104,11 @@ void ofApp::panTiltPageDoubleTap(ofTouchEventArgs & touch){
 //--------------------------------------------------------------
 
 void ofApp::sendFocusEncoder(float & oscOutputPercent){
-    sendEncoder(focusEncoder.parameter, oscOutputPercent);
+    if (focusParameter != "focus") {
+        if (fineButton.clicked) {
+            sendEncoder(focusParameter, oscOutputPercent / 100);
+        } else {
+            sendEncoder(focusParameter, oscOutputPercent * 2);
+        }
+    }
 }

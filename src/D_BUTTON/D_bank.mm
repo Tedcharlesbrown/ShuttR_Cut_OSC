@@ -3,7 +3,8 @@
 //--------------------------------------------------------------
 void BANK::setup(){
     buttonSize = plusMinusButtonWidth / 1.1;
-    bankHeight = buttonSize * 5.1;
+    directSelectSize = buttonSize / 1.05;
+    bankHeight = buttonSize * 1.1 + directSelectSize * 4;
     oneAlign = guiCenterAlign - buttonSize * 2.2;
     twoAlign = guiCenterAlign - buttonSize * 1.1;
     middleAlign = guiCenterAlign;
@@ -53,7 +54,7 @@ void BANK::draw(string ID, float _padding){
         case 3: align = fourAlign; break;
         case 4: align = fiveAlign; break;
         }
-        directSelect.at(i).show("", "", align, padding + buttonSize * (y + y * 0.1), buttonSize, buttonSize, "SMALL", colorSelect);
+        directSelect.at(i).show("", "", align, padding + directSelectSize * (y + y * 0.1), buttonSize, directSelectSize, "SMALL", colorSelect);
         if (x == 4) {
             y++;
         }
@@ -142,6 +143,10 @@ void BANK::touchDown(ofTouchEventArgs & touch){
         for (int i = 0; i <= totalPalettes; i++) {
             palette.at(i).touchDown(touch, false);
         }
+    } else {
+        for (int i = 0; i <= totalSelects; i++) {
+            directSelect.at(i).touchDown(touch);
+        }
     }
 }
 
@@ -153,6 +158,11 @@ void BANK::touchMoved(ofTouchEventArgs & touch){
 //--------------------------------------------------------------
 void BANK::touchUp(ofTouchEventArgs & touch){
     leftButton.touchUp(touch); rightButton.touchUp(touch);
+    if (!quickButton.clicked) {
+        for (int i = 0; i <= totalSelects; i++) {
+            directSelect.at(i).touchUp(touch);
+        }
+    }
 }
 
 //--------------------------------------------------------------

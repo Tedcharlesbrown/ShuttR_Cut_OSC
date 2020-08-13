@@ -14,6 +14,36 @@ void ofApp::sendChannel(string parameter) {
             eos.sendMessage(m);
         }
     }
+    
+//    ofxEosOscMsg m;
+//
+//    for (int i = 1; i >= 0; i--) { //CLEAR COMMAND LINE
+//        m.clear();
+//        m.setAddress("eos/user/" + inputID + "/key/clear_cmdline");
+//        m.addStringArg(ofToString(i));
+//        eos.sendMessage(m);
+//    }
+//
+//    for (int i = 1; i >= 0; i--) { //SELECT LAST
+//        m.clear();
+//        m.setAddress("eos/user/" + inputID + "/key/select_last");
+//        m.addStringArg(ofToString(i));
+//        eos.sendMessage(m);
+//    }
+//
+//    for (int i = 1; i >= 0; i--) { //SEND NEXT OR LAST KEY
+//        m.clear();
+//        m.setAddress("eos/user/" + inputID + "/key/" + parameter);
+//        m.addStringArg(ofToString(i));
+//        eos.sendMessage(m);
+//    }
+//
+//    for (int i = 1; i >= 0; i--) { //SEND ENTER
+//        m.clear();
+//        m.setAddress("eos/user/" + inputID + "/key/enter");
+//        m.addStringArg(ofToString(i));
+//        eos.sendMessage(m);
+//    }
 }
 //--------------------------------------------------------------
 

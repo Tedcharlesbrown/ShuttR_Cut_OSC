@@ -6,11 +6,10 @@ class ENCODER{
     
 public:
     void setup(float size);
-    void update(string parameter);
     void draw(float x, float y);
     
     void touchDown(ofTouchEventArgs & touch);
-    void touchMoved(ofTouchEventArgs & touch, bool fine);
+    void touchMoved(ofTouchEventArgs & touch);
     void touchUp(ofTouchEventArgs & touch);
     void touchDoubleTap(ofTouchEventArgs & touch);
     

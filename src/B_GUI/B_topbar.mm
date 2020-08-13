@@ -118,10 +118,13 @@ void ofApp::oscLight(string _ID,float _x,float _y,float _w,float _h, float _weig
 void ofApp::statusBarDraw() {
     ofPushStyle();
     string amPM = "AM";
-    if (ofGetHours() > 12) {
+    if (ofGetHours() > 11) {
         amPM = "PM";
     }
     string hour = ofToString(ofGetHours() % 12);
+    if (hour == "0") {
+        hour = "12";
+    }
     string minutes = ofToString(ofGetMinutes());
     if (ofGetMinutes() < 10) {
         minutes = "0" + minutes;
@@ -131,9 +134,10 @@ void ofApp::statusBarDraw() {
     
     fontSmall.drawString(time, width - 150, notchHeight - fontSmall.stringHeight(time) / 2); //TIME
     
-    fontSmall.drawString(appNameV, centerX - fontSmall.stringWidth(appNameV) / 2, notchHeight - fontSmall.stringHeight(appNameV) / 2); //APP NAME
+    fontSmall.drawString(headerName, centerX - fontSmall.stringWidth(headerName) / 2, notchHeight - fontSmall.stringHeight(headerName) / 2); //APP NAME
     
-    string WIFI = "BarbsWiFi 5G";
-    fontSmall.drawString(WIFI,10, notchHeight - fontSmall.stringHeight("WIFI") / 2); //APP NAME
+//    string WIFI = "ShuttR" + version;
+//    fontSmall.drawString(WIFI,10, notchHeight - fontSmall.stringHeight("WIFI") / 2); //APP NAME
+    
     ofPopStyle();
 }

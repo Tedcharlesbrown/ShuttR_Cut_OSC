@@ -28,10 +28,6 @@ void ofApp::getXML() {
     inputIP = XML.getValue("settings::ip", "");
     inputID = XML.getValue("settings::id", "1");
     
-    if (inputIP.length() > 0) {
-        connect();
-    }
-    
 //    cout << message << endl;
 }
 
@@ -65,6 +61,9 @@ string ofApp::getIPAddress() {
     string ip = ofxNSStringToString(address);
     if (ip == "error") {
         ip = "CHECK WIFI";
+        hasWifi = false;
+    } else {
+        hasWifi = true;
     }
     return ip;
 }

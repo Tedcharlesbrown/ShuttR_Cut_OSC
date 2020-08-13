@@ -22,6 +22,7 @@ public:
     
     int totalSelects;
     float buttonSize, padding, align, oneAlign, twoAlign, middleAlign, threeAlign, fourAlign, fiveAlign;
+    float directSelectSize;
     string selected;
     ofColor colorSelect;
     

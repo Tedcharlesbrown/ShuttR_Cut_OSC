@@ -40,7 +40,7 @@ void ofApp::settingsUpdate() {
                 if (keyboard.enter) {
                     ipFieldButton.clicked = false; keyboard.close();
                     inputIP = userInputIP;
-                    consoleLog.push_back("CONNECTING TO: " + inputIP);
+                    console_log.push_back("CONNECTING TO: " + inputIP);
                     connectRequest = true;
                     keySwitch = 0;
                 }
@@ -50,7 +50,7 @@ void ofApp::settingsUpdate() {
                 if (keyboard.enter) {
                     idFieldButton.clicked = false; keyboard.close();
                     inputID = userInputID;
-                    consoleLog.push_back("SWITCHING TO USER: " + inputID);
+                    console_log.push_back("SWITCHING TO USER: " + inputID);
                     connectRequest = true;
                     keySwitch = 0;
                 }
@@ -93,12 +93,12 @@ void ofApp::console() {
     ofPushMatrix();
     ofTranslate(- consoleWidth / 2.1, consolePadding + fontMedium.stringHeight("+") / 2);
     ofSetColor(255);
-    fontSmall.drawString(consoleLog[consoleLog.size() - 4], guiCenterAlign, - consoleHeight / 3);
-    fontSmall.drawString(consoleLog[consoleLog.size() - 3], guiCenterAlign, - consoleHeight / 9);
-    fontSmall.drawString(consoleLog[consoleLog.size() - 2], guiCenterAlign, consoleHeight / 9);
-    fontSmall.drawString(consoleLog[consoleLog.size() - 1], guiCenterAlign, consoleHeight / 3);
-    if (consoleLog.size() > 4) {
-        consoleLog.erase(consoleLog.begin());
+    fontSmall.drawString(console_log[console_log.size() - 4], guiCenterAlign, - consoleHeight / 3);
+    fontSmall.drawString(console_log[console_log.size() - 3], guiCenterAlign, - consoleHeight / 9);
+    fontSmall.drawString(console_log[console_log.size() - 2], guiCenterAlign, consoleHeight / 9);
+    fontSmall.drawString(console_log[console_log.size() - 1], guiCenterAlign, consoleHeight / 3);
+    if (console_log.size() > 4) {
+        console_log.erase(console_log.begin());
     }
     ofPopMatrix(); ofPopStyle();
 }

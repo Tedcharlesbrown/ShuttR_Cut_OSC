@@ -8,6 +8,7 @@ void ofApp::DSPageSetup(){
     bankOne.setup(1); bankTwo.setup(2);
     
     ofAddListener(bankOne.oscOutputDS, this, &ofApp::parseDirectSelectSend);
+    ofAddListener(bankTwo.oscOutputDS, this, &ofApp::parseDirectSelectSend);
 }
 //--------------------------------------------------------------
 void ofApp::DSPageUpdate(){
@@ -17,8 +18,6 @@ void ofApp::DSPageUpdate(){
 //--------------------------------------------------------------
 void ofApp::DSPageDraw(){
     bankOne.draw(row1Padding);
-//    bankTwo.draw("21",height - bankTwo.bankHeight + buttonHeight);
-//    bankTwo.draw("21", row1Padding + buttonHeight / 4 + bankTwo.bankHeight);
     bankTwo.draw(row1Padding + notchHeight / 2 + bankTwo.bankHeight);
     
     if (bankOne.quickButton.clicked) {
@@ -56,7 +55,7 @@ void ofApp::DSPageDoubleTap(ofTouchEventArgs & touch){
 
 void ofApp::parseDirectSelectSend(ofVec3f & dSelect) {
     string directParameter;
-    
+    bool flexi;
     
     if (dSelect.y != 0 && dSelect.z == 0) { //QUICK SELECT
         int switchCase = dSelect.y;
@@ -86,12 +85,11 @@ void ofApp::parseDirectSelectSend(ofVec3f & dSelect) {
             case 12:
                 directParameter = "scene"; break;
             case 13:
-                
                 break;
         }
         
-        sendDSRequest(ofToString(dSelect.x), directParameter, "20");
-            
+        sendDSRequest(ofToString(dSelect.x), directParameter);
+        
     } else if (dSelect.y == 0 && dSelect.z != 0) {//DIRECT SELECT BUTTON
         
         sendDS(ofToString(dSelect.x), ofToString(dSelect.z));

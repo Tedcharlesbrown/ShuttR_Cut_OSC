@@ -56,6 +56,8 @@ public:
     bool clicked = false;
     bool doubleClicked = false;
     
+    ofVec3f angleVec;
+    
     float anglePercent = 0;
     ofEvent<float> oscOutputPercent;
     void sendOSC() {

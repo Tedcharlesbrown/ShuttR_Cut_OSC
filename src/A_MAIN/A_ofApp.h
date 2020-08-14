@@ -226,6 +226,8 @@ public:
     void getChannel(ofxEosOscMsg incomingOSC);
     void getColor(ofxEosOscMsg incomingOSC);
     
+    void getDirectSelect(int bank, int buttonID, ofxEosOscMsg m);
+    
     string multiChannelPrefix = "";
     string noParameter = "";
     
@@ -254,7 +256,7 @@ public:
     void sendShutterHome(string parameter);
     
     void sendDSPage(string bank, string direction);
-    void sendDSRequest(string bank, string parameter, string buttonID);
+    void sendDSRequest(string bank, string parameter);
     void sendDS(string bank, string buttonID);
     
 private:

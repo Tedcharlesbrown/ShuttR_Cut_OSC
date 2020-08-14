@@ -37,6 +37,17 @@ void ofApp::oscEvent() {
         if (m.getAsString().find("/eos/out/active/wheel/") != string::npos) {
             getWheel(m);
         }
+        // ----------------------- GET DIRECT SELECTS -----------------------
+        if (m.getAsString().find("/eos/out/ds/") != string::npos) {
+            for (int i = 1; i <= 2; i++) {
+                for (int j = 1; j <= 20; j++) {
+                    if (m.getAddress() == "/eos/out/ds/" + ofToString(i) + "/" + ofToString(j)) {
+                        getDirectSelect(i,j,m);
+                    }
+                }
+            }
+            
+        }
         // ----------------------- GET COMMAND LINE -----------------------
         if (m.getAddress() == "/eos/out/user/" + inputID + "/cmd") {
             getCommandLine(m);
@@ -206,4 +217,11 @@ void ofApp::getColor(ofxEosOscMsg m){
         sat = ofMap(sat,0,100,0,255);
         shutterColor.setHsb(hue,sat,255);
     }
+}
+
+//--------------------------------------------------------------
+
+void ofApp::getDirectSelect(int bank, int buttonID, ofxEosOscMsg m){
+    
+    cout << bank << "," << buttonID << "," << m.getArgAsString(0) << endl;
 }

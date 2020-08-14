@@ -196,10 +196,10 @@ void ofApp::sendDSPage(string bank, string direction){
     m.setAddress("eos/user/" + inputID + "/ds/" + bank + "/page/" + direction);
     eos.sendMessage(m);
 }
-void ofApp::sendDSRequest(string bank, string parameter, string buttonID){
+void ofApp::sendDSRequest(string bank, string parameter){
     oscSentTime = ofGetElapsedTimeMillis();
     ofxEosOscMsg m;
-    m.setAddress("eos/user/" + inputID + "/ds/" + bank + "/" + parameter + "/1/" + buttonID); //BUTTON ID ONLY NEEDED FOR TRYING TO GET CUSTOM SELECTS
+    m.setAddress("eos/user/" + inputID + "/ds/" + bank + "/" + parameter + "/1/20"); 
     eos.sendMessage(m);
 }
 void ofApp::sendDS(string bank, string buttonID){

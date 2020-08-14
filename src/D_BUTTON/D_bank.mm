@@ -35,7 +35,12 @@ void BANK::update(){
     } else if (rightButton.action) {
         rightButton.action = false; quickButton.clicked = false;
     }
-    quickSelectAction();
+    
+    if (palette.at(12).action) { //FLEXI
+        directSelectVec.set(ID,13,0);
+        sendOSC();
+        palette.at(12).action = false;
+    }
     
     for (int i = 0; i <= totalSelects; i++) {
         if (directSelect.at(i).action) {
@@ -45,6 +50,7 @@ void BANK::update(){
         }
     }
     
+    quickSelectAction();
 }
 
 //--------------------------------------------------------------
@@ -67,7 +73,7 @@ void BANK::draw(float _padding){
         case 3: align = fourAlign; break;
         case 4: align = fiveAlign; break;
         }
-        directSelect.at(i).show("", "", align, padding + directSelectSize * (y + y * 0.1), buttonSize, directSelectSize, "SMALL", colorSelect);
+        directSelect.at(i).show("", align, padding + directSelectSize * (y + y * 0.1), buttonSize, directSelectSize, "SMALL", colorSelect);
         if (x == 4) {
             y++;
         }
@@ -166,9 +172,10 @@ void BANK::quickSelectAction() {
 void BANK::touchDown(ofTouchEventArgs & touch){
     leftButton.touchDown(touch); quickButton.touchDown(touch, true); rightButton.touchDown(touch);
     if (quickButton.clicked) {
-        for (int i = 0; i <= totalPalettes; i++) {
+        for (int i = 0; i <= totalPalettes - 1; i++) {
             palette.at(i).touchDown(touch, false);
         }
+        palette.at(12).touchDown(touch, true); //FLEXI
     } else {
         for (int i = 0; i <= totalSelects; i++) {
             directSelect.at(i).touchDown(touch);

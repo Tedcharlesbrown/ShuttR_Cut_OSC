@@ -7,9 +7,9 @@
 class BANK {
     
 public:
-    void setup();
+    void setup(int ID);
     void update();
-    void draw(string ID, float padding);
+    void draw(float padding);
     
     void quickSelectsShow();
     
@@ -20,16 +20,22 @@ public:
     void touchUp(ofTouchEventArgs & touch);
     void touchDoubleTap(ofTouchEventArgs & touch);
     
+    int ID;
     int totalSelects;
     float buttonSize, padding, align, oneAlign, twoAlign, middleAlign, threeAlign, fourAlign, fiveAlign;
     float directSelectSize;
-    string selected;
     ofColor colorSelect;
+    string selected;
+    float bankHeight;
+    
+    ofVec3f directSelectVec;
+    ofEvent<ofVec3f> oscOutputDS;
+    void sendOSC() {
+        ofNotifyEvent(oscOutputDS,directSelectVec);
+    }
     
     float totalPalettes;
     vector<BUTTON> palette, directSelect;
-    
-    float bankHeight;
     
     BUTTON button;
     

@@ -153,6 +153,8 @@ public:
     void DSPageUpdate();
     void DSPageDraw();
     
+    void parseDirectSelectSend(ofVec3f & directSelectVec);
+    
     void DSPageTouchDown(ofTouchEventArgs & touch);
     void DSPageTouchMoved(ofTouchEventArgs & touch);
     void DSPageTouchUp(ofTouchEventArgs & touch);
@@ -251,6 +253,9 @@ public:
     void sendShutter(string parameter, string ID, int message);
     void sendShutterHome(string parameter);
     
+    void sendDSPage(string bank, string direction);
+    void sendDSRequest(string bank, string parameter, string buttonID);
+    void sendDS(string bank, string buttonID);
     
 private:
 };

@@ -1,10 +1,15 @@
 #include "A_ofApp.h"
 
 //--------------------------------------------------------------
-void BANK::setup(){
+void BANK::setup(int _ID){
+    this-> ID = _ID;
     buttonSize = plusMinusButtonWidth / 1.1;
-    directSelectSize = buttonSize / 1.05;
+    directSelectSize = (((height - notchHeight) / 2) / 4) - ((buttonSize * 2) / 5);
+    if (directSelectSize > buttonSize) {
+        directSelectSize = buttonSize;
+    }
     bankHeight = buttonSize * 1.1 + directSelectSize * 4;
+    
     oneAlign = guiCenterAlign - buttonSize * 2.2;
     twoAlign = guiCenterAlign - buttonSize * 1.1;
     middleAlign = guiCenterAlign;
@@ -31,12 +36,20 @@ void BANK::update(){
         rightButton.action = false; quickButton.clicked = false;
     }
     quickSelectAction();
+    
+    for (int i = 0; i <= totalSelects; i++) {
+        if (directSelect.at(i).action) {
+            directSelectVec.set(ID,0,i+1);
+            sendOSC();
+            directSelect.at(i).action = false;
+        }
+    }
+    
 }
 
 //--------------------------------------------------------------
-void BANK::draw(string ID, float _padding){
+void BANK::draw(float _padding){
     this-> padding = _padding;
-    
     leftButton.show("<", oneAlign, padding, buttonSize, buttonHeight, "MEDIUM");
     
     quickButton.show(selected, "SELECTS", middleAlign, padding, genericButtonWidth * 2, buttonHeight, "MEDIUM", colorSelect);
@@ -107,30 +120,43 @@ void BANK::quickSelectAction() {
             }
             switch(i) {
                 case 0:
+                    directSelectVec.set(ID,1,0);
                     selected = "CHANNEL"; colorSelect = EOSChannel; break;
                 case 1:
+                    directSelectVec.set(ID,2,0);
                     selected = "GROUP"; colorSelect = EOSGroup; break;
                 case 2:
+                    directSelectVec.set(ID,3,0);
                     selected = "INTENSITY"; colorSelect = EOSIntensity; break;
                 case 3:
+                    directSelectVec.set(ID,4,0);
                     selected = "FOCUS"; colorSelect = EOSFocus; break;
                 case 4:
+                    directSelectVec.set(ID,5,0);
                     selected = "COLOR"; colorSelect = EOSColor; break;
                 case 5:
+                    directSelectVec.set(ID,6,0);
                     selected = "BEAM"; colorSelect = EOSBeam; break;
                 case 6:
+                    directSelectVec.set(ID,7,0);
                     selected = "PRESET"; colorSelect = EOSPreset; break;
                 case 7:
+                    directSelectVec.set(ID,8,0);
                     selected = "MACRO"; colorSelect = EOSMacro;  break;
                 case 8:
+                    directSelectVec.set(ID,9,0);
                     selected = "EFFECT"; colorSelect = EOSfx;  break;
                 case 9:
+                    directSelectVec.set(ID,10,0);
                     selected = "SNAP"; colorSelect = EOSSnap; break;
                 case 10:
+                    directSelectVec.set(ID,11,0);
                     selected = "MAGIC SHEET"; colorSelect = EOSMagic; break;
                 case 11:
+                    directSelectVec.set(ID,12,0);
                     selected = "SCENE"; colorSelect = EOSScene; break;
             }
+            sendOSC();
         }
     }
     

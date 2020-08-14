@@ -14,36 +14,6 @@ void ofApp::sendChannel(string parameter) {
             eos.sendMessage(m);
         }
     }
-    
-//    ofxEosOscMsg m;
-//
-//    for (int i = 1; i >= 0; i--) { //CLEAR COMMAND LINE
-//        m.clear();
-//        m.setAddress("eos/user/" + inputID + "/key/clear_cmdline");
-//        m.addStringArg(ofToString(i));
-//        eos.sendMessage(m);
-//    }
-//
-//    for (int i = 1; i >= 0; i--) { //SELECT LAST
-//        m.clear();
-//        m.setAddress("eos/user/" + inputID + "/key/select_last");
-//        m.addStringArg(ofToString(i));
-//        eos.sendMessage(m);
-//    }
-//
-//    for (int i = 1; i >= 0; i--) { //SEND NEXT OR LAST KEY
-//        m.clear();
-//        m.setAddress("eos/user/" + inputID + "/key/" + parameter);
-//        m.addStringArg(ofToString(i));
-//        eos.sendMessage(m);
-//    }
-//
-//    for (int i = 1; i >= 0; i--) { //SEND ENTER
-//        m.clear();
-//        m.setAddress("eos/user/" + inputID + "/key/enter");
-//        m.addStringArg(ofToString(i));
-//        eos.sendMessage(m);
-//    }
 }
 //--------------------------------------------------------------
 
@@ -190,33 +160,55 @@ void ofApp::sendEncoder(string parameter, float message){
 void ofApp::sendEncoderPercent(string parameter, int message) {
     oscSentTime = ofGetElapsedTimeMillis();
     
-        ofxEosOscMsg m;
-        for (int i = 0; i >= 0; i--) { //SEND ENTER
-            m.clear();
-            m.setAddress("/eos/user/" + inputID + "/key/enter");
-            m.addIntArg(i);
-            eos.sendMessage(m);
-        }
-        for (int i = 0; i >= 0; i--) { //SEND SELECT_LAST
-            m.clear();
-            m.setAddress("/eos/user/" + inputID + "/key/select_last");
-            m.addIntArg(i);
-            eos.sendMessage(m);
-        }
+    ofxEosOscMsg m;
+    for (int i = 0; i >= 0; i--) { //SEND ENTER
         m.clear();
-        switch(message) {
-            case -1:
-                m.setAddress("/eos/user/" + inputID + "/param/" + parameter + "/-%");
-                break;
-            case 0:
-                m.setAddress("/eos/user/" + inputID + "/param/" + parameter + "/home");
-                break;
-            case 1:
-                m.setAddress("/eos/user/" + inputID + "/param/" + parameter + "/+%");
-                break;
-        }
+        m.setAddress("/eos/user/" + inputID + "/key/enter");
+        m.addIntArg(i);
         eos.sendMessage(m);
+    }
+    for (int i = 0; i >= 0; i--) { //SEND SELECT_LAST
+        m.clear();
+        m.setAddress("/eos/user/" + inputID + "/key/select_last");
+        m.addIntArg(i);
+        eos.sendMessage(m);
+    }
+    m.clear();
+    switch(message) {
+        case -1:
+            m.setAddress("/eos/user/" + inputID + "/param/" + parameter + "/-%");
+            break;
+        case 0:
+            m.setAddress("/eos/user/" + inputID + "/param/" + parameter + "/home");
+            break;
+        case 1:
+            m.setAddress("/eos/user/" + inputID + "/param/" + parameter + "/+%");
+            break;
+    }
+    eos.sendMessage(m);
 }
+
+//--------------------------------------------------------------
+
+void ofApp::sendDSPage(string bank, string direction){
+    oscSentTime = ofGetElapsedTimeMillis();
+    ofxEosOscMsg m;
+    m.setAddress("eos/user/" + inputID + "/ds/" + bank + "/page/" + direction);
+    eos.sendMessage(m);
+}
+void ofApp::sendDSRequest(string bank, string parameter, string buttonID){
+    oscSentTime = ofGetElapsedTimeMillis();
+    ofxEosOscMsg m;
+    m.setAddress("eos/user/" + inputID + "/ds/" + bank + "/" + parameter + "/1/" + buttonID); //BUTTON ID ONLY NEEDED FOR TRYING TO GET CUSTOM SELECTS
+    eos.sendMessage(m);
+}
+void ofApp::sendDS(string bank, string buttonID){
+    oscSentTime = ofGetElapsedTimeMillis();
+    ofxEosOscMsg m;
+    m.setAddress("eos/user/" + inputID + "/ds/" + bank + "/" + buttonID);
+    eos.sendMessage(m);
+}
+
 
 //--------------------------------------------------------------
 

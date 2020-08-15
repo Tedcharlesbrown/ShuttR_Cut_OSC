@@ -11,7 +11,13 @@ void ofApp::oscEvent() {
         
         // ----------------------- GET SHOW NAME -----------------------
         if (m.getAddress() == "/eos/out/show/name") {
-            headerName = m.getArgAsString(0).substr(0,45);
+            headerName = m.getArgAsString(0);
+            int length = headerName.length();
+            int maxLength = plusMinusButtonWidth * 4;
+            while (fontSmall.stringWidth(headerName) > maxLength) {
+                headerName = headerName.substr(0,length);
+                length--;
+            }
         }
         // ----------------------- GET CONNECTION STATUS -----------------------
         if (m.getAddress() == "/eos/out/ping") {

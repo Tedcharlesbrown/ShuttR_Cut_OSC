@@ -234,31 +234,37 @@ void BUTTON::showDS(string _ID, string _ID2, float _x, float _y, float _w, float
     
     
     
-    int maxLineLength = 7;
+    int maxLineLength = 8;
     string dName = _ID;
+    vector<string> dNames;
     if (dName.find(" ") != string::npos) { //IF NAME HAS A SPACE
         
         
-    } else if (dName.length() > maxLineLength) { //IF NAME DOES NOT HAVE SPACE IN IT
-        vector<string> dNames;
-        for (int i = 0; i < dName.length(); i += maxLineLength) {
-            dNames.push_back(dName.substr(i,i + maxLineLength));
-        }
+        fontSmall.drawString(dName, _x - fontSmall.stringWidth(_ID) / 2, _y + fontSmall.stringHeight(_ID) / 2);//INPUT
         
-        fontSmall.drawString(dNames.at(0), _x - fontSmall.stringWidth(dNames.at(0)) / 2, _y);//NAME
-        fontSmall.drawString(dNames.at(1), _x - fontSmall.stringWidth(dNames.at(1)) / 2, _y + fontSmall.stringHeight(dNames.at(1)) * 1.25);//NAME
+        
+    } else if (dName.length() > maxLineLength) { //IF NAME DOES NOT HAVE SPACE IN IT
+        for (int i = 0; i < dName.length(); i += maxLineLength) {
+            dNames.push_back(dName.substr(i,maxLineLength));
+        }
+        if (dNames.size() == 2) {
+            fontSmall.drawString(dNames.at(0), _x - fontSmall.stringWidth(dNames.at(0)) / 2, _y);//NAME
+            fontSmall.drawString(dNames.at(1), _x - fontSmall.stringWidth(dNames.at(1)) / 2, _y + fontSmall.stringHeight(dNames.at(1)));//NAME
+        } else if (dNames.size() == 3) {
+            fontSmall.drawString(dNames.at(0), _x - fontSmall.stringWidth(dNames.at(0)) / 2, _y - fontSmall.stringHeight(dNames.at(0)) / 2);//NAME
+            fontSmall.drawString(dNames.at(1), _x - fontSmall.stringWidth(dNames.at(1)) / 2, _y + fontSmall.stringHeight(dNames.at(1)) / 2);//NAME
+            fontSmall.drawString(dNames.at(2), _x - fontSmall.stringWidth(dNames.at(2)) / 2, _y + fontSmall.stringHeight(dNames.at(2)) * 2);//NAME
+        } else if (dNames.size() > 3) {
+            ofPushMatrix();
+            ofTranslate(0,-fontSmall.stringHeight("+") / 2);
+            fontSmall.drawString(dNames.at(0), _x - fontSmall.stringWidth(dNames.at(0)) / 2, _y - fontSmall.stringHeight(dNames.at(0)));//NAME
+            fontSmall.drawString(dNames.at(1), _x - fontSmall.stringWidth(dNames.at(1)) / 2, _y);//NAME
+            fontSmall.drawString(dNames.at(2), _x - fontSmall.stringWidth(dNames.at(2)) / 2, _y + fontSmall.stringHeight(dNames.at(2)));//NAME
+            fontSmall.drawString(dNames.at(3), _x - fontSmall.stringWidth(dNames.at(3)) / 2, _y + fontSmall.stringHeight(dNames.at(3)) * 2);//NAME
+            ofPopMatrix();
+
+        }
     }
-    
-//       fontSmall.drawString(_ID, _x - fontSmall.stringWidth(_ID) / 2, _y);
-//    }
-//    fontSmall.drawString(_ID2, _x - fontSmall.stringWidth(_ID2) / 2, _y + fontMedium.stringHeight("+") * 1.25);//INPUT
-    
-    
-    
-//    fontSmall.drawString(dName, _x - fontSmall.stringWidth(dName) / 2, _y + fontSmall.stringHeight(dName) / 2);//NAME
-    
-    
-    
     ofPopStyle();
 }
 

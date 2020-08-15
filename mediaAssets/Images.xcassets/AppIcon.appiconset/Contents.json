@@ -61,7 +61,6 @@
       "size" : "20x20"
     },
     {
-      "filename" : "Iphone-1.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
@@ -97,7 +96,6 @@
       "size" : "76x76"
     },
     {
-      "filename" : "Ipad Pro@2x-1.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"

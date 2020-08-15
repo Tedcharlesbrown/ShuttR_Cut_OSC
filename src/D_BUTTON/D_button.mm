@@ -5,7 +5,7 @@
 // MARK: ----------NO TEXT----------
 //--------------------------------------------------------------
 
-void BUTTON::show(float _x, float _y, float _w, float _h) { //NO TEXT
+void BUTTON::showPage(string _ID, float _x, float _y, float _w, float _h) { //ONE TEXT
     this-> x = _x;
     this-> y = _y;
     this-> w = _w;
@@ -16,14 +16,33 @@ void BUTTON::show(float _x, float _y, float _w, float _h) { //NO TEXT
     
     ofSetColor(shutterOutsideStroke);
     ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
+    //    ofDrawRectangle(_x, _y, _w, _h);
+    
+    ofColor clickColor = white;
     
     if (this-> clicked && !settingsMenu) {
         ofSetColor(buttonActive);
     } else {
         ofSetColor(black);
+        clickColor = ofColor(175,175,175);
     }
-    ofDrawRectRounded(_x, _y, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
     
+    ofDrawRectRounded(_x, _y, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
+    //    ofDrawRectangle(_x, _y, _w - buttonStrokeWeight, _h - buttonStrokeWeight);
+    
+    if (_ID != "DS") {
+        ofSetColor(EOSBackground);
+        fontSmall.drawString(_ID, _x - fontSmall.stringWidth(_ID) / 2.2, _y + fontSmall.stringHeight(_ID) / 1.75);//SHADOW
+        ofSetColor(clickColor);
+        fontSmall.drawString(_ID, _x - fontSmall.stringWidth(_ID) / 2, _y + fontSmall.stringHeight(_ID) / 2);//INPUT
+    } else {
+        ofSetColor(EOSBackground);
+        fontSmall.drawString("DIRECT", _x - fontSmall.stringWidth("DIRECT") / 2.1, _y + fontSmall.stringHeight("DIRECT") * 0.2);//SHADOW
+        fontSmall.drawString("SELECTS", _x - fontSmall.stringWidth("SELECTS") / 2.1, _y + fontSmall.stringHeight("SELECTS") * 1.45);//SHADOW
+        ofSetColor(clickColor);
+        fontSmall.drawString("DIRECT", _x - fontSmall.stringWidth("DIRECT") / 2, _y );//INPUT
+        fontSmall.drawString("SELECTS", _x - fontSmall.stringWidth("SELECTS") / 2, _y + fontSmall.stringHeight("SELECTS") * 1.25);//INPUT
+    }
     ofPopStyle();
 }
 
@@ -234,36 +253,48 @@ void BUTTON::showDS(string _ID, string _ID2, float _x, float _y, float _w, float
     
     
     
-    int maxLineLength = 8;
+    int maxLineLength = 7;
     string dName = _ID;
     vector<string> dNames;
     if (dName.find(" ") != string::npos) { //IF NAME HAS A SPACE
+        int numSpaces = std::count(dName.begin(),dName.end(), ' ');
         
+        int indexValueEnd = dName.find(" ");
+                
+        while (numSpaces != -1) {
+            
+            dNames.push_back(dName.substr(0,indexValueEnd));
+            
+            dName = dName.substr(indexValueEnd + 1);
+            
+            indexValueEnd = dName.find(" ");
+                    
+            numSpaces--;
+        }
         
-        fontSmall.drawString(dName, _x - fontSmall.stringWidth(_ID) / 2, _y + fontSmall.stringHeight(_ID) / 2);//INPUT
-        
-        
-    } else if (dName.length() > maxLineLength) { //IF NAME DOES NOT HAVE SPACE IN IT
+    } else { //IF NAME DOES NOT HAVE SPACE IN IT
+
         for (int i = 0; i < dName.length(); i += maxLineLength) {
             dNames.push_back(dName.substr(i,maxLineLength));
         }
-        if (dNames.size() == 2) {
-            fontSmall.drawString(dNames.at(0), _x - fontSmall.stringWidth(dNames.at(0)) / 2, _y);//NAME
-            fontSmall.drawString(dNames.at(1), _x - fontSmall.stringWidth(dNames.at(1)) / 2, _y + fontSmall.stringHeight(dNames.at(1)));//NAME
-        } else if (dNames.size() == 3) {
-            fontSmall.drawString(dNames.at(0), _x - fontSmall.stringWidth(dNames.at(0)) / 2, _y - fontSmall.stringHeight(dNames.at(0)) / 2);//NAME
-            fontSmall.drawString(dNames.at(1), _x - fontSmall.stringWidth(dNames.at(1)) / 2, _y + fontSmall.stringHeight(dNames.at(1)) / 2);//NAME
-            fontSmall.drawString(dNames.at(2), _x - fontSmall.stringWidth(dNames.at(2)) / 2, _y + fontSmall.stringHeight(dNames.at(2)) * 2);//NAME
-        } else if (dNames.size() > 3) {
-            ofPushMatrix();
-            ofTranslate(0,-fontSmall.stringHeight("+") / 2);
-            fontSmall.drawString(dNames.at(0), _x - fontSmall.stringWidth(dNames.at(0)) / 2, _y - fontSmall.stringHeight(dNames.at(0)));//NAME
-            fontSmall.drawString(dNames.at(1), _x - fontSmall.stringWidth(dNames.at(1)) / 2, _y);//NAME
-            fontSmall.drawString(dNames.at(2), _x - fontSmall.stringWidth(dNames.at(2)) / 2, _y + fontSmall.stringHeight(dNames.at(2)));//NAME
-            fontSmall.drawString(dNames.at(3), _x - fontSmall.stringWidth(dNames.at(3)) / 2, _y + fontSmall.stringHeight(dNames.at(3)) * 2);//NAME
-            ofPopMatrix();
-
-        }
+    }
+    if (dNames.size() == 1) {
+        fontSmall.drawString(dNames.at(0), _x - fontSmall.stringWidth(dNames.at(0)) / 2, _y + fontSmall.stringHeight(dNames.at(0)) / 2);//INPUT
+    } else if (dNames.size() == 2) {
+        fontSmall.drawString(dNames.at(0), _x - fontSmall.stringWidth(dNames.at(0)) / 2, _y);//NAME
+        fontSmall.drawString(dNames.at(1), _x - fontSmall.stringWidth(dNames.at(1)) / 2, _y + fontSmall.stringHeight(dNames.at(1)) * 1.25);//NAME
+    } else if (dNames.size() == 3) {
+        fontSmall.drawString(dNames.at(0), _x - fontSmall.stringWidth(dNames.at(0)) / 2, _y - fontSmall.stringHeight(dNames.at(0)) / 2);//NAME
+        fontSmall.drawString(dNames.at(1), _x - fontSmall.stringWidth(dNames.at(1)) / 2, _y + fontSmall.stringHeight(dNames.at(1)) / 2);//NAME
+        fontSmall.drawString(dNames.at(2), _x - fontSmall.stringWidth(dNames.at(2)) / 2, _y + fontSmall.stringHeight(dNames.at(2)) * 1.5);//NAME
+    } else if (dNames.size() > 3) {
+        ofPushMatrix();
+        ofTranslate(0,-fontSmall.stringHeight("+") / 2);
+        fontSmall.drawString(dNames.at(0), _x - fontSmall.stringWidth(dNames.at(0)) / 2, _y - fontSmall.stringHeight(dNames.at(0)));//NAME
+        fontSmall.drawString(dNames.at(1), _x - fontSmall.stringWidth(dNames.at(1)) / 2, _y);//NAME
+        fontSmall.drawString(dNames.at(2), _x - fontSmall.stringWidth(dNames.at(2)) / 2, _y + fontSmall.stringHeight(dNames.at(2)));//NAME
+        fontSmall.drawString(dNames.at(3), _x - fontSmall.stringWidth(dNames.at(3)) / 2, _y + fontSmall.stringHeight(dNames.at(3)) * 2);//NAME
+        ofPopMatrix();
     }
     ofPopStyle();
 }

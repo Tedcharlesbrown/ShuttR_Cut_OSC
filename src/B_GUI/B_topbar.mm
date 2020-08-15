@@ -49,10 +49,10 @@ void ofApp::settingsBar(float _x, float _y, float _w, float _h, float _weight) {
     ofDrawRectangle(_x, _h + notchHeight, _w, _weight); //BOTTOM BAR
     ofPopStyle();
   
-    shutterPage.show(centerX - plusMinusButtonWidth * 1.5, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
-    panTiltPage.show(centerX - plusMinusButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
-    encoderPage.show(centerX + plusMinusButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
-    directSelectPage.show(centerX + plusMinusButtonWidth * 1.5, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
+    shutterPage.showPage("SHUTTER", centerX - plusMinusButtonWidth * 1.5, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
+    panTiltPage.showPage("FOCUS", centerX - plusMinusButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
+    encoderPage.showPage("FORM", centerX + plusMinusButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
+    directSelectPage.showPage("DS", centerX + plusMinusButtonWidth * 1.5, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
 }
 
 //--------------------------------------------------------------
@@ -132,7 +132,7 @@ void ofApp::statusBarDraw() {
     string time = hour + ":" + minutes + " " + amPM;
     string time24 = ofToString(ofGetHours()) + ":" + minutes;
     
-    fontSmall.drawString(time, width - 150, notchHeight - fontSmall.stringHeight(time) / 2); //TIME
+    fontSmall.drawString(time, width - fontSmall.stringWidth(time) * 1.1, notchHeight - fontSmall.stringHeight(time) / 2); //TIME
     
     fontSmall.drawString(headerName, centerX - fontSmall.stringWidth(headerName) / 2, notchHeight - fontSmall.stringHeight(headerName) / 2); //APP NAME
     

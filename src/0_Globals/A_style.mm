@@ -8,7 +8,7 @@
 string appName = "ShuttR Cut OSC";
 string defaultName = appName + version;
 string headerName = defaultName;
-string version = "v0.1.0";
+string version = "v0.2.0";
 string IPAddress, inputIP, inputID, selectedChannel = "";
 
 // ----------------------- EOS BOOLEANS -----------------------

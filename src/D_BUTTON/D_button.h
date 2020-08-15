@@ -5,7 +5,8 @@
 class BUTTON {
     
 public:
-    void show(float x, float y, float width, float height); //NO TEXT
+    void showPage(string ID, float x, float y, float width, float height); //NO TEXT
+//    void show(float x, float y, float width, float height); //NO TEXT
     void show(string ID, float x, float y, float width, float height, string textSize); //ONE TEXT
     void show(string ID, float x, float y, float width, float height, string textSize, ofColor color); //ONE TEXT WITH COLOR
     void show(string ID, string ID2, float x, float y, float width, float height); //TWO TEXT

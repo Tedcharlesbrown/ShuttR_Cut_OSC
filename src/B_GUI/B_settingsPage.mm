@@ -110,15 +110,18 @@ void ofApp::console() {
 void ofApp::about() {
     string aboutOne = appName + " " + version;
     string thisIP = "Local IP Address: " + IPAddress;
-    string aboutTwo =  "\nMade by Ted Charles Brown";
-    string aboutThree = "\nTedcharlesbrown.com";
-    string aboutFour = "\nPlease email all questions / bugs / requests";
-    string aboutFive = "\n to Tedcharlesbrown@gmail.com";
+    string aboutTwo =  "Made by Ted Charles Brown | TedCharlesBrown.com";
+    string aboutThree = "Please email all questions / bugs / requests";
+    string aboutFour = "to Tedcharlesbrown@gmail.com";
     
-    fontMedium.drawString(aboutOne, centerX - fontMedium.stringWidth(aboutOne) / 2, height - fontSmall.stringHeight(aboutOne) * 5.75);
-    fontMedium.drawString(thisIP, centerX - fontMedium.stringWidth(thisIP) / 2, height - fontSmall.stringHeight(aboutOne) * 4.25);
-    fontSmall.drawString(aboutTwo, centerX - fontSmall.stringWidth(aboutTwo) / 2, height - fontSmall.stringHeight(aboutOne) * 4);
-    fontSmall.drawString(aboutThree, centerX - fontSmall.stringWidth(aboutThree) / 2, height - fontSmall.stringHeight(aboutOne) * 3);
-    fontSmall.drawString(aboutFour, centerX - fontSmall.stringWidth(aboutFour) / 2, height - fontSmall.stringHeight(aboutOne) * 2);
-    fontSmall.drawString(aboutFive, centerX - fontSmall.stringWidth(aboutFive) / 2, height - fontSmall.stringHeight(aboutOne) * 1);
+    ofPushMatrix();
+    ofTranslate(0,fontMedium.stringHeight(aboutOne));
+    
+    fontMedium.drawString(aboutOne, centerX - fontMedium.stringWidth(aboutOne) / 2, height - fontSmall.stringHeight(aboutOne) * 6.25); //5.75
+    fontMedium.drawString(thisIP, centerX - fontMedium.stringWidth(thisIP) / 2, height - fontSmall.stringHeight(aboutOne) * 4.5); //4.25
+    fontSmall.drawString(aboutTwo, centerX - fontSmall.stringWidth(aboutTwo) / 2, height - fontSmall.stringHeight(aboutOne) * 2.75);
+    fontSmall.drawString(aboutThree, centerX - fontSmall.stringWidth(aboutThree) / 2, height - fontSmall.stringHeight(aboutOne) * 1.5);
+    fontSmall.drawString(aboutFour, centerX - fontSmall.stringWidth(aboutFour) / 2, height - fontSmall.stringHeight(aboutOne) * 0.25);
+    
+    ofPopMatrix();
 }

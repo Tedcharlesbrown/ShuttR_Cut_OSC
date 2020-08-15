@@ -22,6 +22,8 @@ void BANK::setup(int _ID){
     totalSelects = 20;
     for (int i = 0; i <= totalSelects; i++) {
         directSelect.push_back(button);
+        bankText.push_back("");
+        bankNumber.push_back("");
     }
     totalPalettes = 12;
     for (int i = 0; i <= totalPalettes; i++) {
@@ -73,7 +75,7 @@ void BANK::draw(float _padding){
         case 3: align = fourAlign; break;
         case 4: align = fiveAlign; break;
         }
-        directSelect.at(i).show("", align, padding + directSelectSize * (y + y * 0.1), buttonSize, directSelectSize, "SMALL", colorSelect);
+        directSelect.at(i).showDS(bankText.at(i), bankNumber.at(i), align, padding + directSelectSize * (y + y * 0.1), buttonSize, directSelectSize, colorSelect);
         if (x == 4) {
             y++;
         }

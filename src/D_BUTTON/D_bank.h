@@ -28,6 +28,8 @@ public:
     string selected;
     float bankHeight;
     
+    vector<string> bankText, bankNumber;
+    
     ofVec3f directSelectVec;
     ofEvent<ofVec3f> oscOutputDS;
     void sendOSC() {

@@ -222,6 +222,21 @@ void ofApp::getColor(ofxEosOscMsg m){
 //--------------------------------------------------------------
 
 void ofApp::getDirectSelect(int bank, int buttonID, ofxEosOscMsg m){
+    string dNumber = "";
+    if (m.argHasPercent(0)) {
+        dNumber = "(" + m.getArgPercent(0) + ")";
+    }
     
-    cout << bank << "," << buttonID << "," << m.getArgAsString(0) << endl;
+    string dName = m.getArgAsString(0);
+    int indexValueEnd = dName.find(" [");
+    
+    dName = dName.substr(0, indexValueEnd);
+    
+    if (bank == 1) {
+        bankOne.bankText.at(buttonID - 1) = dName;
+        bankOne.bankNumber.at(buttonID - 1) = dNumber;
+    } else if (bank == 2) {
+        bankTwo.bankText.at(buttonID - 1) = dName;
+        bankTwo.bankNumber.at(buttonID - 1) = dNumber;
+    }
 }

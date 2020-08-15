@@ -97,6 +97,7 @@ void BUTTON::show(string _ID, float _x, float _y, float _w, float _h, string _si
     ofPopStyle();
 }
 
+
 //--------------------------------------------------------------
 // MARK: ----------TWO LINE----------
 //--------------------------------------------------------------
@@ -200,6 +201,63 @@ void BUTTON::showBig(string _ID, string _ID2, float _x, float _y, float _w, floa
     ofSetColor(white);
     fontMedium.drawString(_ID, _x - fontMedium.stringWidth(_ID) / 2, _y + fontMedium.stringHeight(_ID) / 2);//INPUT
     fontMedium.drawString(_ID2, _x - fontMedium.stringWidth(_ID2) / 2, _y + _h / 1.25 + fontMedium.stringHeight(_ID2) / 2);//INPUT
+    
+    ofPopStyle();
+}
+
+//--------------------------------------------------------------
+// MARK: ----------DIRECT SELECT----------
+//--------------------------------------------------------------
+
+void BUTTON::showDS(string _ID, string _ID2, float _x, float _y, float _w, float _h, ofColor color) { //DIRECT SELECT
+    this-> x = _x;
+    this-> y = _y;
+    this-> w = _w;
+    this-> h = _h;
+    
+    ofPushStyle();
+    ofSetRectMode(OF_RECTMODE_CENTER);
+    
+    ofSetColor(color);
+    ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
+    
+    if (this-> clicked) {
+        ofSetColor(buttonActive);
+    } else {
+        ofSetColor(black);
+    }
+    ofDrawRectRounded(_x, _y, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
+    
+    ofSetColor(white);
+    
+    fontTiny.drawString(_ID2, _x + (_w / 4) - fontTiny.stringWidth(_ID2) / 2, _y + (_h / 3) + fontTiny.stringHeight(_ID2) / 2);//NUMBER
+    
+    
+    
+    int maxLineLength = 7;
+    string dName = _ID;
+    if (dName.find(" ") != string::npos) { //IF NAME HAS A SPACE
+        
+        
+    } else if (dName.length() > maxLineLength) { //IF NAME DOES NOT HAVE SPACE IN IT
+        vector<string> dNames;
+        for (int i = 0; i < dName.length(); i += maxLineLength) {
+            dNames.push_back(dName.substr(i,i + maxLineLength));
+        }
+        
+        fontSmall.drawString(dNames.at(0), _x - fontSmall.stringWidth(dNames.at(0)) / 2, _y);//NAME
+        fontSmall.drawString(dNames.at(1), _x - fontSmall.stringWidth(dNames.at(1)) / 2, _y + fontSmall.stringHeight(dNames.at(1)) * 1.25);//NAME
+    }
+    
+//       fontSmall.drawString(_ID, _x - fontSmall.stringWidth(_ID) / 2, _y);
+//    }
+//    fontSmall.drawString(_ID2, _x - fontSmall.stringWidth(_ID2) / 2, _y + fontMedium.stringHeight("+") * 1.25);//INPUT
+    
+    
+    
+//    fontSmall.drawString(dName, _x - fontSmall.stringWidth(dName) / 2, _y + fontSmall.stringHeight(dName) / 2);//NAME
+    
+    
     
     ofPopStyle();
 }

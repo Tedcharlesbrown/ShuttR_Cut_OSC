@@ -12,6 +12,8 @@ public:
     void show(string ID, string ID2, float x, float y, float width, float height, string textSize, ofColor color); //TWO TEXT
     void showBig(string ID, string ID2, float x, float y, float width, float height); //TWO TEXT WITH BOTTOM
     
+    void showDS(string _ID, string _ID2, float _x, float _y, float _w, float _h, ofColor color); //DIRECT SELECT
+    
     void touchDown(ofTouchEventArgs & touch);
     void touchDown(ofTouchEventArgs & touch, bool toggle);
     void touchUp(ofTouchEventArgs & touch);

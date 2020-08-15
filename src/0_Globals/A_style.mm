@@ -8,7 +8,7 @@
 string appName = "ShuttR Cut OSC";
 string defaultName = appName + version;
 string headerName = defaultName;
-string version = "v0.2.0";
+string version = "v0.3.1";
 string IPAddress, inputIP, inputID, selectedChannel = "";
 
 // ----------------------- EOS BOOLEANS -----------------------
@@ -32,7 +32,7 @@ int channelIntensity;
 // MARK: ---------- TEXT STYLES ----------
 //--------------------------------------------------------------
 float largeTextSize, mediumTextSize, smallTextSize, tinyTextSize;
-ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
+ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny, fontDS;
 
 //--------------------------------------------------------------
 // MARK: ---------- SIZE CONSTANTS ----------
@@ -188,6 +188,7 @@ void ofApp::styleInit(){
     fontMedium.load("LondonBetween.ttf", mediumTextSize);
     fontMedium.setLetterSpacing(1);
     fontSmall.load("LondonBetween.ttf", smallTextSize);
+    fontDS.load("LondonBetween.ttf", smallTextSize / 1.1);
     fontTiny.load("LondonBetween.ttf", tinyTextSize);
     fontTiny.setLetterSpacing(1.5);
     

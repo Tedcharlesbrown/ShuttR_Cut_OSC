@@ -14,7 +14,7 @@ void ofApp::setup() {
     IPAddress = getIPAddress();
     styleInit();
     getXML();
-    
+        
     if (inputIP.length() > 0) {
         connect();
     }

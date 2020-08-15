@@ -84,10 +84,15 @@ void ofApp::getState(ofxEosOscMsg m){
 
 void ofApp::getCommandLine(ofxEosOscMsg m){
     string incomingOSC = m.getArgAsString(0);
-    
+        
     if (incomingOSC.find("LIVE") != string::npos) {
-        int indexValueStart = incomingOSC.find(" ");
-        incomingOSC = incomingOSC.substr(indexValueStart + 1);
+        if (incomingOSC.find("Cue") != string::npos) {
+            int indexValueStart = incomingOSC.find("Chan");
+            incomingOSC = incomingOSC.substr(indexValueStart + 5);
+        } else {
+            int indexValueStart = incomingOSC.find(" ");
+            incomingOSC = incomingOSC.substr(indexValueStart + 1);
+        }
     }  else if (incomingOSC.find("BLIND") != string::npos) { //TODO: MAKE WORK IN BLIND
         incomingOSC = incomingOSC.substr(13);
         int indexValueStart = incomingOSC.find(":");
@@ -141,20 +146,28 @@ void ofApp::getWheel(ofxEosOscMsg m){
                 hasShutters = true;
             } else if (incomingOSC.find("Angle A") != string::npos) { //Angle A
                 angleA.rotateAngle = -outputInt;
+                hasShutters = true;
             } else if (incomingOSC.find("Thrust B") != string::npos) { //Thrust B
                 thrustB.buttonB.position = outputBinary;
+                hasShutters = true;
             } else if (incomingOSC.find("Angle B") != string::npos) { //Angle B
                 angleB.rotateAngle = -outputInt;
+                hasShutters = true;
             } else if (incomingOSC.find("Thrust C") != string::npos) { //Thrust C
                 thrustC.buttonC.position = outputBinary;
+                hasShutters = true;
             } else if (incomingOSC.find("Angle C") != string::npos) { //Angle C
                 angleC.rotateAngle = -outputInt;
+                hasShutters = true;
             } else if (incomingOSC.find("Thrust D") != string::npos) { //Thrust D
                 thrustD.buttonD.position = outputBinary;
+                hasShutters = true;
             } else if (incomingOSC.find("Angle D") != string::npos) { //Angle D
                 angleD.rotateAngle = -outputInt;
+                hasShutters = true;
             } else if (incomingOSC.find("Frame Assembly") != string::npos) { //Frame Assembly
                 assembly.incomingOSC(outputInt);
+                hasShutters = true;
             } else if (incomingOSC.find("Iris") != string::npos) { //IRIS
                 irisPercent = m.getArgPercent(0) + " %";
                 hasIris = true;

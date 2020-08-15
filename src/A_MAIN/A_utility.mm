@@ -81,8 +81,8 @@ void ofApp::getNotchHeight() {
         int iPhoneVersion = ofToInt(deviceName.substr(indexValueEnd + 1)); //GET DEVICE VERSION
         int iPhoneID = iPhoneGeneration * 10 + iPhoneVersion; //SET ID TO GENERATION.VERSION NUMBER
         
-        iPhoneID = 101; //IPHONE 8
-//        iPhoneID = 102; //IPHONE 8+
+//        iPhoneID = 101; //IPHONE 8
+        iPhoneID = 102; //IPHONE 8+
 //        iPhoneID = 123; //IPHONE PRO + PRO MAX
         
         switch(iPhoneID) {

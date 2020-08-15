@@ -25,7 +25,7 @@ extern int channelIntensity;
 // MARK: ---------- TEXT STYLES ----------
 //--------------------------------------------------------------
 extern float largeTextSize, mediumTextSize, smallTextSize, tinyTextSize;
-extern ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny;
+extern ofTrueTypeFont fontLarge, fontMedium, fontSmall, fontTiny, fontDS;
 
 //--------------------------------------------------------------
 // MARK: ---------- SIZE CONSTANTS ----------

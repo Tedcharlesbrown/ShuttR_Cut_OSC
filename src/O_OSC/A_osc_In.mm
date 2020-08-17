@@ -36,6 +36,10 @@ void ofApp::oscEvent() {
         if (m.getAddress() == "/eos/out/color/hs" && m.getNumArgs() > 0) {
             getColor(m);
         }
+        // ----------------------- GET COMMAND LINE -----------------------
+        if (m.getAddress() == "/eos/out/user/" + inputID + "/cmd") {
+            getCommandLine(m);
+        }
         // ----------------------- GET ALL CHANNEL DATA -----------------------
         if (m.getAddress() == "/eos/out/active/chan") {
             getChannel(m);
@@ -59,10 +63,6 @@ void ofApp::oscEvent() {
             }
             
         }
-        // ----------------------- GET COMMAND LINE -----------------------
-        if (m.getAddress() == "/eos/out/user/" + inputID + "/cmd") {
-            getCommandLine(m);
-        }
     }
 }
 
@@ -84,34 +84,48 @@ void ofApp::getState(ofxEosOscMsg m){
 
 void ofApp::getCommandLine(ofxEosOscMsg m){
     string incomingOSC = m.getArgAsString(0);
-        
-    if (incomingOSC.find("LIVE") != string::npos) {
-        if (incomingOSC.find("Cue") != string::npos) {
-            int indexValueStart = incomingOSC.find("Chan");
-            incomingOSC = incomingOSC.substr(indexValueStart + 5);
-        } else {
-            int indexValueStart = incomingOSC.find(" ");
-            incomingOSC = incomingOSC.substr(indexValueStart + 1);
-        }
-    }  else if (incomingOSC.find("BLIND") != string::npos) { //TODO: MAKE WORK IN BLIND
-        incomingOSC = incomingOSC.substr(13);
-        int indexValueStart = incomingOSC.find(":");
-        incomingOSC = incomingOSC.substr(indexValueStart + 1);
+    
+    if (incomingOSC.find("Highlight :") != string::npos) {
+        highButton.clicked = true;
+    } else {
+        highButton.clicked = false;
     }
     
-    if (incomingOSC.find(":") != string::npos) {
-        int indexValueStart = incomingOSC.find(" ");
+    if (incomingOSC.find("Thru") != string::npos && incomingOSC.find("#") != string::npos) {
+        int indexValueStart = incomingOSC.find("Chan") + 5;
+        incomingOSC = incomingOSC.substr(indexValueStart);
+        
         int indexValueEnd = incomingOSC.find(" Thru");
-        string firstNumber = incomingOSC.substr(indexValueStart + 1, indexValueEnd - indexValueStart - 1);
+        string firstNumber = incomingOSC.substr(0, indexValueEnd);
         
         indexValueStart = incomingOSC.find("Thru") + 5;
-        indexValueEnd = incomingOSC.find(":");
-        string secondNumber = incomingOSC.substr(indexValueStart, indexValueEnd - indexValueStart - 1);
         
-        multiChannelPrefix = firstNumber + "-" + secondNumber + " : ";
-    } else {
+        if (incomingOSC.find("#") < incomingOSC.find(":")) {
+            indexValueEnd = incomingOSC.find("#");
+        } else {
+            indexValueEnd = incomingOSC.find(":");
+        }
+        
+        string secondNumber = incomingOSC.substr(indexValueStart, indexValueEnd - indexValueStart - 1);
+        multiChannelPrefix = firstNumber + "-" + secondNumber;
+    } else if (incomingOSC.find("Group") != string::npos && incomingOSC.find("#") != string::npos) {
+        int indexValueStart = incomingOSC.find("Group") + 6;
+        incomingOSC = incomingOSC.substr(indexValueStart);
+        
+        int indexValueEnd = 0;
+        if (incomingOSC.find("#") < incomingOSC.find(":")) {
+            indexValueEnd = incomingOSC.find("#") - 1;
+        } else {
+            indexValueEnd = incomingOSC.find(":") - 1;
+        }
+        
+        incomingOSC = incomingOSC.substr(0,indexValueEnd);
+        multiChannelPrefix = "Gr " + incomingOSC;
+        
+    } else if (incomingOSC.find("#") != string::npos){
         multiChannelPrefix = "";
     }
+    
 }
 
 //--------------------------------------------------------------
@@ -140,7 +154,9 @@ void ofApp::getWheel(ofxEosOscMsg m){
             float outputInt = ofToFloat(m.getArgPercent(0));
             float outputBinary = ofMap(outputInt, 0, 100, 1, clickDiameter / assemblyRadius);
             if (incomingOSC.find("Intens") != string::npos) { //INTENSITY
-                channelIntensity = ofToInt(m.getArgPercent(0));
+                channelInt = ofToInt(m.getArgPercent(0));
+                channelInt255 = ofMap(channelInt,0,100,50,255);
+                shutterColor.setHsb(channelHue,channelSat,channelInt255);
             } else if (incomingOSC.find("Thrust A") != string::npos) { //Thrust A
                 thrustA.buttonA.position = outputBinary;
                 hasShutters = true;
@@ -215,31 +231,37 @@ void ofApp::getChannel(ofxEosOscMsg m) {
             irisPercent = noParameter; edgePercent = noParameter; zoomPercent = noParameter; frostPercent = noParameter;
             panPercent = noParameter; tiltPercent = noParameter;
         } else {
-            selectedChannel = multiChannelPrefix + incomingOSC;
+            if (incomingOSC.find("-") != string::npos || incomingOSC.find(",") != string::npos) {
+                selectedChannel = multiChannelPrefix;
+            } else if (multiChannelPrefix.length() > 0) {
+                selectedChannel = multiChannelPrefix + " : " + incomingOSC;
+            } else {
+                selectedChannel = incomingOSC;
+            }
         }
     } else { // IF NO CHANNEL IS SELECTED
         noneSelected = true;
         selectedChannel = "---";
+        
+        hasShutters = false;
+        hasIris = false;
+        hasEdge = false;
+        hasZoom = false;
+        hasFrost = false;
+        hasPanTilt = false;
     }
     
-    //RESET WHEELS, ONLY WORKS IF NO CHANNEL IS SELECTED
-    hasShutters = false;
-    hasIris = false;
-    hasEdge = false;
-    hasZoom = false;
-    hasFrost = false;
-    hasPanTilt = false;
 }
 
 //--------------------------------------------------------------
 
 void ofApp::getColor(ofxEosOscMsg m){
     if (m.getNumArgs() > 0) {
-        float hue = m.getArgAsFloat(0);
-        float sat = m.getArgAsFloat(1);
-        hue = ofMap(hue,0,360,0,255);
-        sat = ofMap(sat,0,100,0,255);
-        shutterColor.setHsb(hue,sat,255);
+        channelHue = m.getArgAsFloat(0);
+        channelSat = m.getArgAsFloat(1);
+        channelHue = ofMap(channelHue,0,360,0,255);
+        channelSat = ofMap(channelSat,0,100,0,255);
+        shutterColor.setHsb(channelHue,channelSat,channelInt255);
     }
 }
 

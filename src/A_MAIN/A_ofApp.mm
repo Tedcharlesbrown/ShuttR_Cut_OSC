@@ -86,7 +86,7 @@ void ofApp::buttonAction() {
         highButton.action = false;
     }
     if (flashButton.action) {
-        if (channelIntensity >= 90) {
+        if (channelInt >= 90) {
             sendFlash("FLASH_OFF");
         } else {
             sendFlash("FLASH_ON");

@@ -271,6 +271,14 @@ void BUTTON::showDS(string _ID, string _ID2, float _x, float _y, float _w, float
         }
     }
     
+//    for (int i = 0; i < dNames.size(); i++) {
+//        if (i + 1 < dNames.size()) {
+//            if (fontDS.stringWidth(dNames.at(i)) + fontDS.stringWidth(" ") + fontDS.stringWidth(dNames.at(i+1)) < w) {
+//                dNames.at(i) += "" + dNames.at(i+1);
+//            }
+//        }
+//    }
+    
     if (dNames.size() == 1) {
         fontDS.drawString(dNames.at(0), _x - fontDS.stringWidth(dNames.at(0)) / 2, _y + fontDS.stringHeight(dNames.at(0)) / 2);//INPUT
     } else if (dNames.size() == 2) {

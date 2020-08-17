@@ -26,8 +26,8 @@ bool hasOSC = false;
 float oscSentTime, oscReceivedTime = 0;
 
 // ----------------------- CHANNEL / INTENSITY -----------------------
-int channelIntensity;
-
+int channelInt, channelInt255;
+float channelHue, channelSat;
 //--------------------------------------------------------------
 // MARK: ---------- TEXT STYLES ----------
 //--------------------------------------------------------------

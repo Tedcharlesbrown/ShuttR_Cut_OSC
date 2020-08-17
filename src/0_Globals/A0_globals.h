@@ -19,7 +19,8 @@ extern bool connectRequest, isConnected, hasWifi, hasOSC;
 extern float oscSentTime, oscReceivedTime;
 
 // ----------------------- CHANNEL / INTENSITY -----------------------
-extern int channelIntensity;
+extern int channelInt, channelInt255;
+extern float channelHue, channelSat;
 
 //--------------------------------------------------------------
 // MARK: ---------- TEXT STYLES ----------

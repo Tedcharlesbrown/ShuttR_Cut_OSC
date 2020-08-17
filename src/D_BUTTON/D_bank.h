@@ -30,8 +30,8 @@ public:
     
     vector<string> bankText, bankNumber;
     
-    ofVec3f dSelectVector;
-    ofEvent<ofVec3f> dSelectVectorEvent;
+    ofVec4f dSelectVector;
+    ofEvent<ofVec4f> dSelectVectorEvent;
     void sendOSC() {
         ofNotifyEvent(dSelectVectorEvent,dSelectVector);
     }

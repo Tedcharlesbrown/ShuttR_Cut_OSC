@@ -29,6 +29,8 @@ void BANK::setup(int _ID){
     for (int i = 0; i <= totalPalettes; i++) {
         palette.push_back(button);
     }
+    
+    dSelectVector.x = ID; //SET BANK ID FOR EVENT LISTENER
 }
 //--------------------------------------------------------------
 void BANK::update(){
@@ -43,14 +45,19 @@ void BANK::update(){
     }
     
     if (palette.at(12).action) { //FLEXI
-//        dSelectVector.set(ID,13,0);
+        if (palette.at(12).clicked) {
+            dSelectVector.w = 1;
+        } else {
+            dSelectVector.w = 0;
+        }
         sendOSC();
         palette.at(12).action = false;
     }
     
     for (int i = 0; i <= totalSelects; i++) {
         if (directSelect.at(i).action) {
-            dSelectVector.set(ID,0,i+1);
+            dSelectVector.y = 0; //RESET PARAMETER
+            dSelectVector.z = i+1;
             sendOSC();
             directSelect.at(i).action = false;
         }
@@ -130,42 +137,43 @@ void BANK::quickSelectAction() {
             for (int j = i - 1; j >= 0; j--) { //ITERATE BACKWARDS AND CLICK OFF
                 palette.at(j).clicked = false;
             }
+            dSelectVector.z = 0; //RESET BUTTON ID
             switch(i) {
                 case 0:
-                    dSelectVector.set(ID,1,0);
+                    dSelectVector.y = 1;
                     selected = "CHANNEL"; colorSelect = EOSChannel; break;
                 case 1:
-                    dSelectVector.set(ID,2,0);
+                    dSelectVector.y = 2;
                     selected = "GROUP"; colorSelect = EOSGroup; break;
                 case 2:
-                    dSelectVector.set(ID,3,0);
+                    dSelectVector.y = 3;
                     selected = "INTENSITY"; colorSelect = EOSIntensity; break;
                 case 3:
-                    dSelectVector.set(ID,4,0);
+                    dSelectVector.y = 4;
                     selected = "FOCUS"; colorSelect = EOSFocus; break;
                 case 4:
-                    dSelectVector.set(ID,5,0);
+                    dSelectVector.y = 5;
                     selected = "COLOR"; colorSelect = EOSColor; break;
                 case 5:
-                    dSelectVector.set(ID,6,0);
+                    dSelectVector.y = 6;
                     selected = "BEAM"; colorSelect = EOSBeam; break;
                 case 6:
-                    dSelectVector.set(ID,7,0);
+                    dSelectVector.y = 7;
                     selected = "PRESET"; colorSelect = EOSPreset; break;
                 case 7:
-                    dSelectVector.set(ID,8,0);
+                    dSelectVector.y = 8;
                     selected = "MACRO"; colorSelect = EOSMacro;  break;
                 case 8:
-                    dSelectVector.set(ID,9,0);
+                    dSelectVector.y = 9;
                     selected = "EFFECT"; colorSelect = EOSfx;  break;
                 case 9:
-                    dSelectVector.set(ID,10,0);
+                    dSelectVector.y = 10;
                     selected = "SNAP"; colorSelect = EOSSnap; break;
                 case 10:
-                    dSelectVector.set(ID,11,0);
+                    dSelectVector.y = 11;
                     selected = "MAGIC SHEET"; colorSelect = EOSMagic; break;
                 case 11:
-                    dSelectVector.set(ID,12,0);
+                    dSelectVector.y = 12;
                     selected = "SCENE"; colorSelect = EOSScene; break;
             }
             sendOSC();

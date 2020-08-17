@@ -56,10 +56,11 @@ void ofApp::DSPageDoubleTap(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 
-void ofApp::parseDirectSelectSend(ofVec3f & dSelect) {
+void ofApp::parseDirectSelectSend(ofVec4f & dSelect) {
     //X = BANK
     //Y = PARAMETER
     //Z = BUTTON
+    //W = FLEXI
     string directParameter;
     
     if (dSelect.y != 0 && dSelect.z == 0) { //QUICK SELECT
@@ -91,6 +92,10 @@ void ofApp::parseDirectSelectSend(ofVec3f & dSelect) {
                 directParameter = "scene"; break;
             case 13:
                 break;
+        }
+        
+        if (dSelect.w == 1) {
+            directParameter += "/flexi";
         }
         
         sendDSRequest(ofToString(dSelect.x), directParameter);

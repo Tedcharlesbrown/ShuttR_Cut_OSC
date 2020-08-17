@@ -30,10 +30,16 @@ public:
     
     vector<string> bankText, bankNumber;
     
-    ofVec3f directSelectVec;
-    ofEvent<ofVec3f> oscOutputDS;
+    ofVec3f dSelectVector;
+    ofEvent<ofVec3f> dSelectVectorEvent;
     void sendOSC() {
-        ofNotifyEvent(oscOutputDS,directSelectVec);
+        ofNotifyEvent(dSelectVectorEvent,dSelectVector);
+    }
+    
+    ofVec2f dSelectPage;
+    ofEvent<ofVec2f> dSelectPageEvent;
+    void sendPage() {
+        ofNotifyEvent(dSelectPageEvent,dSelectPage);
     }
     
     float totalPalettes;

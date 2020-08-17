@@ -153,7 +153,8 @@ public:
     void DSPageUpdate();
     void DSPageDraw();
     
-    void parseDirectSelectSend(ofVec3f & directSelectVec);
+    void parseDirectSelectSend(ofVec3f & dSelectMainInfo);
+    void parseDirectSelectPage(ofVec2f & dSelectPageInfo);
     
     void DSPageTouchDown(ofTouchEventArgs & touch);
     void DSPageTouchMoved(ofTouchEventArgs & touch);

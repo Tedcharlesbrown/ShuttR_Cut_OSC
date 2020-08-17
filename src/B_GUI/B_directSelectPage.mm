@@ -7,8 +7,11 @@
 void ofApp::DSPageSetup(){
     bankOne.setup(1); bankTwo.setup(2);
     
-    ofAddListener(bankOne.oscOutputDS, this, &ofApp::parseDirectSelectSend);
-    ofAddListener(bankTwo.oscOutputDS, this, &ofApp::parseDirectSelectSend);
+    ofAddListener(bankOne.dSelectPageEvent, this, &ofApp::parseDirectSelectPage);
+    ofAddListener(bankTwo.dSelectPageEvent, this, &ofApp::parseDirectSelectPage);
+    
+    ofAddListener(bankOne.dSelectVectorEvent, this, &ofApp::parseDirectSelectSend);
+    ofAddListener(bankTwo.dSelectVectorEvent, this, &ofApp::parseDirectSelectSend);
 }
 //--------------------------------------------------------------
 void ofApp::DSPageUpdate(){
@@ -54,8 +57,10 @@ void ofApp::DSPageDoubleTap(ofTouchEventArgs & touch){
 //--------------------------------------------------------------
 
 void ofApp::parseDirectSelectSend(ofVec3f & dSelect) {
+    //X = BANK
+    //Y = PARAMETER
+    //Z = BUTTON
     string directParameter;
-    bool flexi;
     
     if (dSelect.y != 0 && dSelect.z == 0) { //QUICK SELECT
         int switchCase = dSelect.y;
@@ -95,4 +100,10 @@ void ofApp::parseDirectSelectSend(ofVec3f & dSelect) {
         sendDS(ofToString(dSelect.x), ofToString(dSelect.z));
         
     }
+}
+
+//--------------------------------------------------------------
+
+void ofApp::parseDirectSelectPage(ofVec2f & dSelect) {
+    sendDSPage(ofToString(dSelect.x), ofToString(dSelect.y));
 }

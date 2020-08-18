@@ -36,11 +36,11 @@ void ENCODER::touchMoved(ofTouchEventArgs & touch){
         
         ofVec2f oldVector;
         oldVector = prevTouch - center;
-        float angleOld = oldVector.angle(prevTouch);
+        float angleOld = oldVector.angle(prevTouch); //HEADING
         
         ofVec2f newVector;
         newVector = currentTouch - center;
-        float angleNew = newVector.angle(currentTouch);
+        float angleNew = newVector.angle(currentTouch); //HEADING
         
         currentPos = -angleNew; //ROTATE ENCODER
         
@@ -61,10 +61,21 @@ void ENCODER::touchMoved(ofTouchEventArgs & touch){
         } else {
             encoderOutput = 0;
         }
-    
-        sendOSC();
+        
+        newTick += ofRadToDeg(diff);
+
+        int tickGate = 3;
+        if (newTick > oldTick + tickGate || newTick < oldTick - tickGate) {
+            oldTick = newTick;
+            sendOSC();
+        }
     }
 }
+
+void ENCODER::ticker(float start, float step){
+    
+}
+
 
 //--------------------------------------------------------------
 void ENCODER::touchUp(ofTouchEventArgs & touch){

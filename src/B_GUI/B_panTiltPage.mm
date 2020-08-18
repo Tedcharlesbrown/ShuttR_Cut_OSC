@@ -106,7 +106,7 @@ void ofApp::panTiltPageDoubleTap(ofTouchEventArgs & touch){
 void ofApp::sendFocusEncoder(float & oscOutputPercent){
     if (focusParameter != "focus") {
         if (fineButton.clicked) {
-            sendEncoder(focusParameter, oscOutputPercent / 100);
+            sendEncoder(focusParameter, oscOutputPercent / 1000);
         } else {
             sendEncoder(focusParameter, oscOutputPercent * 2);
         }

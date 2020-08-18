@@ -111,7 +111,7 @@ void ofApp::sendFormEncoder(float & oscOutputPercent){
         if (fineButton.clicked) {
             sendEncoder(formParameter, oscOutputPercent / 1000);
         } else {
-            sendEncoder(formParameter, oscOutputPercent * 1);
+            sendEncoder(formParameter, oscOutputPercent * 2);
         }
     }
 }

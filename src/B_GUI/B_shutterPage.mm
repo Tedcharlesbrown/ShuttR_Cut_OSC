@@ -49,11 +49,11 @@ void ofApp::shutterPageUpdate() {
 //--------------------------------------------------------------
 
 void ofApp::shutterPageDraw() {
-    assemblyColor();
+    assemblyBackground();
     
     angleA.frameDisplay(thrustA.buttonA.position); angleC.frameDisplay(thrustC.buttonC.position); angleB.frameDisplay(thrustB.buttonB.position); angleD.frameDisplay(thrustD.buttonD.position);
     
-    assemblyBG();
+    assemblyFront();
     
     thrustButton.show("THRUST", "HOME", guiLeftAlign, row3Padding, genericButtonWidth, buttonHeight);
     angleButton.show("ANGLE", "HOME", guiCenterAlign, row3Padding, genericButtonWidth, buttonHeight);
@@ -76,13 +76,10 @@ void ofApp::shutterPageDraw() {
 // MARK: ---------- ASSEMBLY FOREGROUND / BACKGROUND ----------
 //--------------------------------------------------------------
 
-void ofApp::assemblyColor() {
+void ofApp::assemblyBackground() {
     ofPushStyle(); ofPushMatrix();
     
     ofTranslate(centerX,centerY);
-
-    ofSetColor(shutterOutsideStroke); //OUTER STROKE
-    ofDrawCircle(0, 0, assemblyRadius); //OUTER STROKE
 
     ofSetColor(shutterColor);
     ofDrawCircle(0, 0, assemblyRadius - outsideWeight); //INSIDE FILL
@@ -90,7 +87,7 @@ void ofApp::assemblyColor() {
     ofPopStyle(); ofPopMatrix();
 }
 
-void ofApp::assemblyBG() {
+void ofApp::assemblyFront() {
     ofPushStyle(); ofPushMatrix();
     
     ofSetColor(EOSBackground);
@@ -100,6 +97,19 @@ void ofApp::assemblyBG() {
     
     ofSetColor(EOSBackground);
     bgAssembly.draw(- bgAssembly.getWidth() / 2,- bgAssembly.getHeight() / 2); //BACKGROUND ASSEMBLY PNG
+    
+    ofPath path;
+    path.hasOutline();
+    path.setStrokeColor(shutterOutsideStroke);
+    path.setFilled(false);
+    path.setCircleResolution(128);
+    path.setCurveResolution(128);
+    path.setStrokeWidth(10);
+    
+    for (float i = 0; i < outsideWeight; i += 0.85) {
+        path.circle(0, 0, assemblyRadius - i);
+    }
+    path.draw();
 
     ofRotateDeg(rotation);
     

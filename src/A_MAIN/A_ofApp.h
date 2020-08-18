@@ -77,8 +77,8 @@ public:
     void shutterPageSetup();
     void shutterPageUpdate();
     void shutterPageDraw();
-    void assemblyColor();
-    void assemblyBG();
+    void assemblyBackground();
+    void assemblyFront();
     
     void shutterPageTouchDown(ofTouchEventArgs & touch);
     void shutterPageTouchMoved(ofTouchEventArgs & touch);

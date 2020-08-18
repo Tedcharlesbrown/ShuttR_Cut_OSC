@@ -103,10 +103,9 @@ void ofApp::assemblyFront() {
     path.setStrokeColor(shutterOutsideStroke);
     path.setFilled(false);
     path.setCircleResolution(128);
-    path.setCurveResolution(128);
     path.setStrokeWidth(10);
     
-    for (float i = 0; i < outsideWeight; i += 0.85) {
+    for (float i = 0; i < outsideWeight; i += 0.5) {
         path.circle(0, 0, assemblyRadius - i);
     }
     path.draw();

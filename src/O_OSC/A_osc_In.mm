@@ -243,14 +243,8 @@ void ofApp::getChannel(ofxEosOscMsg m) {
         noneSelected = true;
         selectedChannel = "---";
         
-        hasShutters = false;
-        hasIris = false;
-        hasEdge = false;
-        hasZoom = false;
-        hasFrost = false;
-        hasPanTilt = false;
+        clearParams();
     }
-    
 }
 
 //--------------------------------------------------------------
@@ -285,4 +279,15 @@ void ofApp::getDirectSelect(int bank, int buttonID, ofxEosOscMsg m){
         bankTwo.bankText.at(buttonID - 1) = dName;
         bankTwo.bankNumber.at(buttonID - 1) = dNumber;
     }
+}
+
+//--------------------------------------------------------------
+
+void ofApp::clearParams(){
+    hasShutters = false;
+    hasIris = false;
+    hasEdge = false;
+    hasZoom = false;
+    hasFrost = false;
+    hasPanTilt = false;
 }

@@ -227,6 +227,8 @@ public:
     void getChannel(ofxEosOscMsg incomingOSC);
     void getColor(ofxEosOscMsg incomingOSC);
     
+    void clearParams();
+    
     void getDirectSelect(int bank, int buttonID, ofxEosOscMsg m);
     
     string multiChannelPrefix = "";

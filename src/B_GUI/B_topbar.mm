@@ -53,6 +53,12 @@ void ofApp::settingsBar(float _x, float _y, float _w, float _h, float _weight) {
     panTiltPage.showPage("FOCUS", centerX - plusMinusButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
     encoderPage.showPage("FORM", centerX + plusMinusButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
     directSelectPage.showPage("DS", centerX + plusMinusButtonWidth * 1.5, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
+    
+//    shutterPage.showPage("SHUTTER", centerX - (plusMinusButtonWidth / 1.1) * 2, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth / 1.1, settingsBarHeight);
+//    panTiltPage.showPage("FOCUS", centerX - plusMinusButtonWidth / 1.1, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth / 1.1, settingsBarHeight);
+//    encoderPage.showPage("FORM", centerX, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth / 1.1, settingsBarHeight);
+//    directSelectPage.showPage("DS", centerX + plusMinusButtonWidth / 1.1, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth / 1.1, settingsBarHeight);
+//    directSelectPage.showPage("INT", centerX + (plusMinusButtonWidth / 1.1) * 2, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth / 1.1, settingsBarHeight);
 }
 
 //--------------------------------------------------------------

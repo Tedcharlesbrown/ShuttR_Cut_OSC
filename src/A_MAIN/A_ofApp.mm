@@ -107,6 +107,7 @@ void ofApp::buttonAction() {
 void ofApp::channelButtonAction() {
     if ((shutterPage.clicked || panTiltPage.clicked || encoderPage.clicked || directSelectPage.clicked) && !settingsMenu) {
         if (keyboard.clickedOff) {
+            selectedChannel = oldChannel;
             channelButton.clicked = false;
             keyboard.close();
         } else if (channelButton.action && channelButton.clicked) {

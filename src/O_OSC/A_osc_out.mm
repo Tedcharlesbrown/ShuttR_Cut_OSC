@@ -113,7 +113,7 @@ void ofApp::sendShutterHome(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
-        ofxEosOscMsg a,b,c,d,m;
+        ofxEosOscMsg a,b,c,d;
         if (parameter == "THRUST") {
             a.setAddress("/eos/user/" + inputID + "/param/frame thrust a/home");
             b.setAddress("/eos/user/" + inputID + "/param/frame thrust b/home");
@@ -130,18 +130,7 @@ void ofApp::sendShutterHome(string parameter) {
             a.setAddress("/eos/user/" + inputID + "/param/shutter/home");
             eos.sendMessage(a);
         }
-        for (int i = 1; i >= 0; i--) {
-            m.clear();
-            m.setAddress("/eos/user/" + inputID + "/key/select_last");
-            m.addStringArg(ofToString(i));
-            eos.sendMessage(m);
-        }
-        for (int i = 1; i >= 0; i--) {
-            m.clear();
-            m.setAddress("eos/user/" + inputID + "/key/enter");
-            m.addStringArg(ofToString(i));
-            eos.sendMessage(m);
-        }
+//        eos.sendMessage(a); eos.sendMessage(b); eos.sendMessage(c); eos.sendMessage(d);
     }
 }
 

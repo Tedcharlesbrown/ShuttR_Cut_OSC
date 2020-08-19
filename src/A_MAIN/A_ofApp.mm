@@ -35,11 +35,11 @@ void ofApp::update() {
     oscEvent();
     stateUpdate();
     
-    if (connectRequest) {
-        IPAddress = getIPAddress();
-        connect();
-        saveXML();
-    }
+//    if (connectRequest) {
+//        IPAddress = getIPAddress();
+//        connect();
+//    }
+    
     heartBeat();
     
     keyboard.update();

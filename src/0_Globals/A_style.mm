@@ -61,6 +61,13 @@ float settingsBarStrokeWeight, buttonStrokeWeight, shutterStrokeWeight, outsideW
 float  consoleWidth, consoleHeight, consolePadding;
 vector<string> console_log;
 
+string log_CheckIP = "CHECK IP, COULD NOT CONNECT";
+string log_NoConnect = "COULD NOT CONNECT";
+string log_YesConnect = "SUCCESSFULLY CONNECTED";
+string log_CheckOSC = "CHECK OSC SETTINGS";
+string log_Connecting = "CONNECTING TO: ";
+string log_UserSwitch = "SWITCHING TO USER: ";
+
 // ----------------------- SHUTTER PAGE CONSTANTS -----------------------
 float assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
 int assemblyDiameter;

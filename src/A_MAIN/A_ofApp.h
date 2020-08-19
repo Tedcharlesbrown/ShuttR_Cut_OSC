@@ -177,12 +177,6 @@ public:
     string userInputIP = "";
     string userInputID = "1";
     int keySwitch = 0;
-    
-    int connectTime = 0;
-    int deltaTime = 0;
-    int lastPing = 0;
-    
-    void heartBeat();
 
     string getIPAddress();
     
@@ -216,6 +210,16 @@ public:
     ofxEosSync eos;
     
     void connect();
+    
+    void checkConnection();
+    
+    void pingTimeOut();
+    void heartBeat();
+    
+//    int checkTime;
+    unsigned long long connectTime = 0;
+    unsigned long long deltaTime = 0;
+    unsigned long long lastPing = 0;
     
     // ----------------------- INCOMING OSC -----------------------
     void oscEvent();

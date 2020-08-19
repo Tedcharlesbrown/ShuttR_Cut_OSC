@@ -10,8 +10,6 @@ void ofApp::saveXML() {
     XML.setValue("settings::id", inputID);
     XML.saveFile( ofxiOSGetDocumentsDirectory() + "settings.xml" );
     XML.saveFile( "settings.xml" );
-    
-//    cout << "SAVED XML" << endl;
 }
 
 //--------------------------------------------------------------
@@ -27,8 +25,6 @@ void ofApp::getXML() {
     
     inputIP = XML.getValue("settings::ip", "");
     inputID = XML.getValue("settings::id", "1");
-    
-//    cout << message << endl;
 }
 
 //--------------------------------------------------------------

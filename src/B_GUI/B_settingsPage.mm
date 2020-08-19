@@ -40,8 +40,7 @@ void ofApp::settingsUpdate() {
                 if (keyboard.enter) {
                     ipFieldButton.clicked = false; keyboard.close();
                     inputIP = userInputIP;
-                    console_log.push_back("CONNECTING TO: " + inputIP);
-                    connectRequest = true;
+                    connect();
                     keySwitch = 0;
                 }
                 break;
@@ -50,8 +49,9 @@ void ofApp::settingsUpdate() {
                 if (keyboard.enter) {
                     idFieldButton.clicked = false; keyboard.close();
                     inputID = userInputID;
-                    console_log.push_back("SWITCHING TO USER: " + inputID);
-                    connectRequest = true;
+                    console_log.push_back(log_UserSwitch + inputID);
+//                    connect();
+//                    connectRequest = true;
                     keySwitch = 0;
                 }
                 break;

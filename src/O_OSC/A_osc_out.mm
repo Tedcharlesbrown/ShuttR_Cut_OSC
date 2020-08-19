@@ -226,6 +226,7 @@ void ofApp::sendDS(string bank, string buttonID){
 
 void ofApp::sendPing() {
     oscSentTime = ofGetElapsedTimeMillis();
+    connectTime = ofGetElapsedTimeMillis();
     
     ofxEosOscMsg m;
     

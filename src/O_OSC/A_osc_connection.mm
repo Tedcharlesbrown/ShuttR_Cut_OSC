@@ -3,50 +3,45 @@
 //--------------------------------------------------------------
 
 void ofApp::connect() {
-    isConnected = false;
+//    isConnected = false;
+    
+    saveXML();
     
     eos.close();
     eos.setup(inputIP, 3032);
     
+    console_log.push_back(log_Connecting + inputIP);
     
-    sendPing();
-    fineEncoder(0);
-    
-    connectRequest = false;
-    
-    if (!eos.isConnected()) { //IF IP IS NOT VALID
-        console_log.push_back("CHECK IP, INVALID ADDRESS");
+    connectRequest = true;
+}
+
+//--------------------------------------------------------------
+
+void ofApp::checkConnection() {
+    if (ofGetElapsedTimeMillis() > lastPing) {
+        isConnected = false;
     }
+    connectRequest = false;
 }
 
 //--------------------------------------------------------------
 
 void ofApp::heartBeat() {
-    float elapsedTime = 10000;
+    float checkTime = 10000;
+    
     if (!hasWifi) {
-        elapsedTime = 1000;
+        checkTime = 1000;
     }
     
-    
     deltaTime = ofGetElapsedTimeMillis() - connectTime;
-    
-//    int seconds = ofGetElapsedTimeMillis() / 1000;
-    
-//    cout << seconds << ">" << lastPing / 1000 + elapsedTime / 1000  + 1 << endl;
-//    cout << deltaTime << ">" << connectTime << endl;
-    
-//    if (ofGetElapsedTimeMillis() > lastPing + elapsedTime + 1000) {
-////        cout << "NOT CONNECTED  " << seconds <<  endl;
-//        isConnected = false;
-//    }
-    
-    
-    if (deltaTime > elapsedTime) {
+        
+    if (deltaTime > checkTime || connectRequest) {
         IPAddress = getIPAddress();
     
-//        sendPing();
+        sendPing();
+//        fineEncoder(0);
         
-        connectTime = ofGetElapsedTimeMillis();
+        checkConnection();
     }
 }
 

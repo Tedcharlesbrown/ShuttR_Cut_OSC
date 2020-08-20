@@ -2,57 +2,81 @@
 
 //--------------------------------------------------------------
 
-void ofApp::connect() {
-    saveXML();
+void ofApp::connect(bool log) {
+    
         
     eos.close();
     eos.waitForThread();
     eos.setup(inputIP, 3032);
     
-    console_log.push_back(log_Connecting + inputIP);
+    if (log) {
+        console_log.push_back(log_Connecting + inputIP);
+        saveXML();
+    }
+    
     
     connectRequest = true;
+    pingSent = false;
+    
+    //    if (eos.isConnected()) {
+    //        connectRequest = true;
+    //        pingSent = false;
+    //    } else {
+    //        isConnected = false;
+    //        console_log.push_back(log_CheckIP);
+    //    }
+    
 }
 
 //--------------------------------------------------------------
 
 void ofApp::checkConnection() {
-    if (ofGetElapsedTimeMillis() > lastPing + 1000) {
-        isConnected = false;
-    } else {
-        if (!isConnected) {
-            connect();
+    
+    
+    if (receivedPingTime > sentPingTime || ofGetElapsedTimeMillis() > sentPingTime + 3000) { //IF GOT NEW PING OR TIME OUT
+        
+        if (sentPingTime > receivedPingTime && !hasOSC) { //IF CURRENT TIME IS > NEW PING TIME + BUFFER
+            isConnected = false;
+            if (console_log.back().find(log_Connecting) != string::npos) {
+                console_log.push_back(log_NoConnect);
+            }
+            if (!isConnected) {
+                connect(false);
+            }
+        } else {
+            //             << eos.isConnected() << endl;
+            
         }
+        connectRequest = false; //RESET
+        pingSent = false;       //RESET
     }
-    connectRequest = false;
 }
 
 //--------------------------------------------------------------
 
 void ofApp::heartBeat() {
-    checkTime = 5000;
+    checkTime = 10000;
     
-    if (!hasWifi) {
-        checkTime = 1000;
+    if (!hasWifi || !isConnected) {
+        checkTime = 3000;
     }
-    
-    deltaTime = ofGetElapsedTimeMillis() - connectTime;
-    
-    //    if (deltaTime > checkTime || connectRequest) {
-    if (connectRequest) {
         
-        IPAddress = getIPAddress();
+    deltaTime = ofGetElapsedTimeMillis() - sentPingTime;
+    
+    if ((deltaTime > checkTime || connectRequest) && eos.isConnected()) { //IF TIMED PING OR CONNECT REQUEST
         
-        sendPing();
-//        fineEncoder(0);
+        if (!pingSent) {
+            hasOSC = false; //RESET OSC CONNECTION
+            ofSleepMillis(20); //not proud of this //20
+            IPAddress = getIPAddress();
+            sendPing();
+            pingSent = true;
+        }
+        
+        //        fineEncoder(0);
         
         checkConnection();
-    }
-    
-    if (isConnected) {
-        if (console_log.back().find(log_Connecting) != string::npos) {
-            console_log.push_back(log_YesConnect);
-        }
+        
     }
 }
 

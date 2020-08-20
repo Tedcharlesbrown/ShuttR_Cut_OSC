@@ -16,7 +16,7 @@ void ofApp::setup() {
     getXML();
         
     if (inputIP.length() > 0) {
-        connect();
+        connect(true);
     }
 
     shutterPage.clicked = true;
@@ -34,7 +34,7 @@ void ofApp::setup() {
 void ofApp::update() {
     oscEvent();
     stateUpdate();
-    
+        
     keyboard.update();
     
     topBarUpdate();

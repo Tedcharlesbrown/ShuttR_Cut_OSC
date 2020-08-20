@@ -6,6 +6,12 @@ void ofApp::oscEvent() {
     while(eos.hasWaitingMessages()){
         oscReceivedTime = ofGetElapsedTimeMillis();
         isConnected = true;
+        hasOSC = true;
+        if (console_log.back().find(log_Connecting) != string::npos) {
+            console_log.push_back(log_YesConnect);
+        }
+        
+        // ----------------------- OSC MESSAGE START -----------------------
         ofxEosOscMsg m = eos.getNextMessage();
         
         // ----------------------- GET SHOW NAME -----------------------
@@ -25,8 +31,7 @@ void ofApp::oscEvent() {
         }
         // ----------------------- GET CONNECTION STATUS -----------------------
         if (m.getAddress() == "/eos/out/ping") {
-            lastPing = ofGetElapsedTimeMillis();
-            cout << lastPing << endl;
+            receivedPingTime = ofGetElapsedTimeMillis();
         }
         // ----------------------- GET ALL LIVE / BLIND STATUS -----------------------
         if (m.getAddress() == "/eos/out/event/state") {

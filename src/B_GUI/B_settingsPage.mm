@@ -40,7 +40,7 @@ void ofApp::settingsUpdate() {
                 if (keyboard.enter) {
                     ipFieldButton.clicked = false; keyboard.close();
                     inputIP = userInputIP;
-                    connect();
+                    connect(true);
                     keySwitch = 0;
                 }
                 break;

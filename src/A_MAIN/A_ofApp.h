@@ -209,17 +209,18 @@ public:
     
     ofxEosSync eos;
     
-    void connect();
+    void connect(bool log);
     
     void checkConnection();
     
     void pingTimeOut();
     void heartBeat();
     
+    bool pingSent = false;
     int checkTime;
-    unsigned long long connectTime = 0;
+    unsigned long long sentPingTime = 0;
     unsigned long long deltaTime = 0;
-    unsigned long long lastPing = 0;
+    unsigned long long receivedPingTime = 0;
     
     // ----------------------- INCOMING OSC -----------------------
     void oscEvent();

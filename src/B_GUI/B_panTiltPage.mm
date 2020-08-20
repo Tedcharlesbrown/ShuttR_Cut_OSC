@@ -4,13 +4,13 @@
 // MARK: ---------- PAN TILT PAGE - SETUP / UPDATE / DRAW ----------
 //--------------------------------------------------------------
 
-void ofApp::panTiltPageSetup(){
+void ofApp::focusPageSetup(){
     focusEncoder.setup(assemblyDiameter / 1.25);
     
     ofAddListener(focusEncoder.oscOutputPercent, this, &ofApp::sendFocusEncoder);
 }
 //--------------------------------------------------------------
-void ofApp::panTiltPageUpdate(){
+void ofApp::focusPageUpdate(){
     string _parameter = "";
     if (panButton.action && panButton.clicked) {
         panButton.clicked = true; tiltButton.clicked = false;
@@ -37,7 +37,7 @@ void ofApp::panTiltPageUpdate(){
 }
 
 //--------------------------------------------------------------
-void ofApp::panTiltPageDraw(){
+void ofApp::focusPageDraw(){
     
     panButton.showBig("PAN",panPercent, guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
     tiltButton.showBig("TILT",tiltPercent, guiCenterAlign + genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
@@ -53,7 +53,7 @@ void ofApp::panTiltPageDraw(){
 // MARK: ---------- TOUCH EVENTS ----------
 //--------------------------------------------------------------
 
-void ofApp::panTiltPageTouchDown(ofTouchEventArgs & touch){
+void ofApp::focusPageTouchDown(ofTouchEventArgs & touch){
     minusButton.touchDown(touch);
     plusButton.touchDown(touch);
     fineButton.touchDown(touch, true);
@@ -72,12 +72,12 @@ void ofApp::panTiltPageTouchDown(ofTouchEventArgs & touch){
 }
 
 //--------------------------------------------------------------
-void ofApp::panTiltPageTouchMoved(ofTouchEventArgs & touch){
+void ofApp::focusPageTouchMoved(ofTouchEventArgs & touch){
     focusEncoder.touchMoved(touch);
 }
 
 //--------------------------------------------------------------
-void ofApp::panTiltPageTouchUp(ofTouchEventArgs & touch){
+void ofApp::focusPageTouchUp(ofTouchEventArgs & touch){
     minusButton.touchUp(touch);
     plusButton.touchUp(touch);
     flashButton.touchUp(touch);
@@ -94,7 +94,7 @@ void ofApp::panTiltPageTouchUp(ofTouchEventArgs & touch){
 }
 
 //--------------------------------------------------------------
-void ofApp::panTiltPageDoubleTap(ofTouchEventArgs & touch){
+void ofApp::focusPageDoubleTap(ofTouchEventArgs & touch){
 
 }
 

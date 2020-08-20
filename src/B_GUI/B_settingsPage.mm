@@ -117,8 +117,9 @@ void ofApp::about() {
     string aboutOne = appName + " " + version;
     string thisIP = "Local IP Address: " + IPAddress;
     string aboutTwo =  "Made by Ted Charles Brown | TedCharlesBrown.com";
-    string aboutThree = "Please email all questions / bugs / requests";
-    string aboutFour = "to Tedcharlesbrown@gmail.com";
+//    string aboutThree = "Please email all questions / bugs / requests";
+    string aboutThree = "Have suggestions? See a bug? Want to connect / buy me a coffee?";
+    string aboutFour = "Email me at TedCharlesBrown+ShuttR@Gmail.com!";
     
     ofPushMatrix();
     ofTranslate(0,fontMedium.stringHeight(aboutOne));
@@ -127,7 +128,7 @@ void ofApp::about() {
     fontMedium.drawString(thisIP, centerX - fontMedium.stringWidth(thisIP) / 2, height - fontSmall.stringHeight(aboutOne) * 4.5); //4.25
     fontSmall.drawString(aboutTwo, centerX - fontSmall.stringWidth(aboutTwo) / 2, height - fontSmall.stringHeight(aboutOne) * 2.75);
     fontSmall.drawString(aboutThree, centerX - fontSmall.stringWidth(aboutThree) / 2, height - fontSmall.stringHeight(aboutOne) * 1.5);
-    fontSmall.drawString(aboutFour, centerX - fontSmall.stringWidth(aboutFour) / 2, height - fontSmall.stringHeight(aboutOne) * 0.25);
+    fontSmall.drawString(aboutFour, centerX - fontSmall.stringWidth(aboutFour) / 2, height - fontSmall.stringHeight(aboutOne) * 0.15);
     
     ofPopMatrix();
 }

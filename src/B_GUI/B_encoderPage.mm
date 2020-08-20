@@ -4,7 +4,7 @@
 // MARK: ---------- ENCODER - SETUP / UPDATE / DRAW ----------
 //--------------------------------------------------------------
 
-void ofApp::encoderPageSetup() {
+void ofApp::formPageSetup() {
     formEncoder.setup(assemblyDiameter / 1.25);
     
     ofAddListener(formEncoder.oscOutputPercent, this, &ofApp::sendFormEncoder);
@@ -12,7 +12,7 @@ void ofApp::encoderPageSetup() {
 
 //--------------------------------------------------------------
 
-void ofApp::encoderPageUpdate() {
+void ofApp::formPageUpdate() {
     if (irisButton.action && irisButton.clicked) {
         irisButton.clicked = true; edgeButton.clicked = false; zoomButton.clicked = false; frostButton.clicked = false;
         irisButton.action = false;
@@ -47,7 +47,7 @@ void ofApp::encoderPageUpdate() {
 
 //--------------------------------------------------------------
 
-void ofApp::encoderPageDraw() {
+void ofApp::formPageDraw() {
     
     irisButton.showBig("IRIS",irisPercent, guiLeftAlign, row3Padding, plusMinusButtonWidth, buttonHeight);
     edgeButton.showBig("EDGE",edgePercent, guiCenterAlign - genericButtonWidth / 2, row3Padding, plusMinusButtonWidth, buttonHeight);
@@ -65,7 +65,7 @@ void ofApp::encoderPageDraw() {
 // MARK: ---------- TOUCH EVENTS ----------
 //--------------------------------------------------------------
 
-void ofApp::encoderPageTouchDown(ofTouchEventArgs & touch) {
+void ofApp::formPageTouchDown(ofTouchEventArgs & touch) {
     minusButton.touchDown(touch);
     plusButton.touchDown(touch);
     fineButton.touchDown(touch, true);
@@ -84,12 +84,12 @@ void ofApp::encoderPageTouchDown(ofTouchEventArgs & touch) {
     formEncoder.touchDown(touch);
 }
 
-void ofApp::encoderPageTouchMoved(ofTouchEventArgs & touch) {
+void ofApp::formPageTouchMoved(ofTouchEventArgs & touch) {
     formEncoder.touchMoved(touch);
 }
 
 
-void ofApp::encoderPageTouchUp(ofTouchEventArgs & touch) {
+void ofApp::formPageTouchUp(ofTouchEventArgs & touch) {
     minusButton.touchUp(touch);
     plusButton.touchUp(touch);
     flashButton.touchUp(touch);

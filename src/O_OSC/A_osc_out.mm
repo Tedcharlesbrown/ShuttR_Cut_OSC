@@ -159,45 +159,49 @@ void ofApp::fineEncoder(int message) { //ONLY USED TO RESET OSC TICKS, ONLY CALL
 
 //--------------------------------------------------------------
 void ofApp::sendEncoder(string parameter, float message){
-    oscSentTime = ofGetElapsedTimeMillis();
-    
-    ofxEosOscMsg m;
-    m.setAddress("/eos/user/" + inputID + "/wheel/" + parameter);
-    m.addFloatArg(message);
-    eos.sendMessage(m);
+    if (isPaidVersion) {
+        oscSentTime = ofGetElapsedTimeMillis();
+        
+        ofxEosOscMsg m;
+        m.setAddress("/eos/user/" + inputID + "/wheel/" + parameter);
+        m.addFloatArg(message);
+        eos.sendMessage(m);
+    }
 }
 
 //--------------------------------------------------------------
 
 void ofApp::sendEncoderPercent(string parameter, int message) {
-    oscSentTime = ofGetElapsedTimeMillis();
-    
-    ofxEosOscMsg m;
-    for (int i = 0; i >= 0; i--) { //SEND ENTER
+    if (isPaidVersion) {
+        oscSentTime = ofGetElapsedTimeMillis();
+        
+        ofxEosOscMsg m;
+        for (int i = 0; i >= 0; i--) { //SEND ENTER
+            m.clear();
+            m.setAddress("/eos/user/" + inputID + "/key/enter");
+            m.addIntArg(i);
+            eos.sendMessage(m);
+        }
+        for (int i = 0; i >= 0; i--) { //SEND SELECT_LAST
+            m.clear();
+            m.setAddress("/eos/user/" + inputID + "/key/select_last");
+            m.addIntArg(i);
+            eos.sendMessage(m);
+        }
         m.clear();
-        m.setAddress("/eos/user/" + inputID + "/key/enter");
-        m.addIntArg(i);
+        switch(message) {
+            case -1:
+                m.setAddress("/eos/user/" + inputID + "/param/" + parameter + "/-%");
+                break;
+            case 0:
+                m.setAddress("/eos/user/" + inputID + "/param/" + parameter + "/home");
+                break;
+            case 1:
+                m.setAddress("/eos/user/" + inputID + "/param/" + parameter + "/+%");
+                break;
+        }
         eos.sendMessage(m);
     }
-    for (int i = 0; i >= 0; i--) { //SEND SELECT_LAST
-        m.clear();
-        m.setAddress("/eos/user/" + inputID + "/key/select_last");
-        m.addIntArg(i);
-        eos.sendMessage(m);
-    }
-    m.clear();
-    switch(message) {
-        case -1:
-            m.setAddress("/eos/user/" + inputID + "/param/" + parameter + "/-%");
-            break;
-        case 0:
-            m.setAddress("/eos/user/" + inputID + "/param/" + parameter + "/home");
-            break;
-        case 1:
-            m.setAddress("/eos/user/" + inputID + "/param/" + parameter + "/+%");
-            break;
-    }
-    eos.sendMessage(m);
 }
 
 //--------------------------------------------------------------
@@ -211,14 +215,16 @@ void ofApp::sendDSPage(string bank, string direction){
 void ofApp::sendDSRequest(string bank, string parameter){
     oscSentTime = ofGetElapsedTimeMillis();
     ofxEosOscMsg m;
-    m.setAddress("eos/user/" + inputID + "/ds/" + bank + "/" + parameter + "/1/20"); 
+    m.setAddress("eos/user/" + inputID + "/ds/" + bank + "/" + parameter + "/1/20");
     eos.sendMessage(m);
 }
 void ofApp::sendDS(string bank, string buttonID){
-    oscSentTime = ofGetElapsedTimeMillis();
-    ofxEosOscMsg m;
-    m.setAddress("eos/user/" + inputID + "/ds/" + bank + "/" + buttonID);
-    eos.sendMessage(m);
+    if (isPaidVersion) {
+        oscSentTime = ofGetElapsedTimeMillis();
+        ofxEosOscMsg m;
+        m.setAddress("eos/user/" + inputID + "/ds/" + bank + "/" + buttonID);
+        eos.sendMessage(m);
+    }
 }
 
 
@@ -235,3 +241,18 @@ void ofApp::sendPing() {
 }
 
 //--------------------------------------------------------------
+
+
+//--------------------------------------------------------------
+
+void ofApp::testSend() {
+    oscSentTime = ofGetElapsedTimeMillis();
+    
+    ofxEosOscMsg m;
+    
+    m.setAddress("/eos/param/Gobo IndSpd");
+    eos.sendMessage(m);
+}
+
+//--------------------------------------------------------------
+

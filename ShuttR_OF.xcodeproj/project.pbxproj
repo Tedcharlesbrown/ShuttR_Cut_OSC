@@ -41,6 +41,7 @@
 		AEA2BE8D22DDBDC82404E880 /* A_osc_connection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1A3EFBF3857E14C41106A982 /* A_osc_connection.mm */; };
 		B490433952DD772FE0CAA5F2 /* D_bank.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6925EA105101873F4EA5D44B /* D_bank.mm */; };
 		B73A18F324EF2C3400A74C61 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B73A18F224EF2C3400A74C61 /* README.md */; };
+		B73A18F524EF3CE600A74C61 /* B_imagePage.mm in Sources */ = {isa = PBXBuildFile; fileRef = B73A18F424EF3CE600A74C61 /* B_imagePage.mm */; };
 		B7EEEB0224EF098300062D20 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EEEB0124EF098300062D20 /* Metal.framework */; };
 		B7EEEB0424EF098900062D20 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EEEB0324EF098900062D20 /* MetalKit.framework */; };
 		BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD80F2B2AB500518274 /* QuartzCore.framework */; };
@@ -145,6 +146,7 @@
 		B396E04A19DA2B315A6C0CD7 /* EosSyncLib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EosSyncLib.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/include/EosSyncLib.h; sourceTree = SOURCE_ROOT; };
 		B705C3964A5506AAC5858C03 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlSettings.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		B73A18F224EF2C3400A74C61 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		B73A18F424EF3CE600A74C61 /* B_imagePage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_imagePage.mm; path = B_GUI/B_imagePage.mm; sourceTree = "<group>"; };
 		B7EEEB0124EF098300062D20 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		B7EEEB0324EF098900062D20 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		BB16EBD10F2B2A9500518274 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -329,6 +331,7 @@
 				A9F52505206AE3D7C7784917 /* B_shutterPage.mm */,
 				2F482A352B13D096C62BF6EE /* B_panTiltPage.mm */,
 				800D966D23EA9F0C7784791B /* B_encoderPage.mm */,
+				B73A18F424EF3CE600A74C61 /* B_imagePage.mm */,
 				99C73447A868904A5D281326 /* B_directSelectPage.mm */,
 				8597ADE367216AE6A17551C2 /* B_settingsPage.mm */,
 			);
@@ -680,6 +683,7 @@
 				A342715B475F0386C05B9C0B /* ofxUDPManager.cpp in Sources */,
 				758F42B79CFB7DF1EBD6A0EC /* tinyxml.cpp in Sources */,
 				EC8921C6969C6E5E2DF78835 /* tinyxmlerror.cpp in Sources */,
+				B73A18F524EF3CE600A74C61 /* B_imagePage.mm in Sources */,
 				0A66D4D0B483A5E52210F62A /* tinyxmlparser.cpp in Sources */,
 				55CFC13EC55E35345488CA2F /* ofxXmlSettings.cpp in Sources */,
 			);

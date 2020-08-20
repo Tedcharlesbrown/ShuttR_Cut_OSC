@@ -20,6 +20,9 @@
     -   Added outside stroke to the shutter assembly
     
     ### Version 0.4.1
-    
+-   Visual changes
+    -   Fixed bug that made GUI sized for iPhone 8+ only
+-   Business model
+    -   Added free version vs paid version
  
 

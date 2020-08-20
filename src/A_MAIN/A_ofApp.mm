@@ -22,8 +22,8 @@ void ofApp::setup() {
     shutterPage.clicked = true;
     
     shutterPageSetup();
-    panTiltPageSetup();
-    encoderPageSetup();
+    focusPageSetup();
+    formPageSetup();
     DSPageSetup();
     settingsSetup();
     
@@ -54,10 +54,10 @@ void ofApp::update() {
 void ofApp::pageButtonAction() {
     if (shutterPage.clicked && !settingsMenu) {
         shutterPageUpdate();
-    } else if (panTiltPage.clicked && !settingsMenu) {
-        panTiltPageUpdate();
-    } else if (encoderPage.clicked && !settingsMenu) {
-        encoderPageUpdate();
+    } else if (focusPage.clicked && !settingsMenu) {
+        focusPageUpdate();
+    } else if (formPage.clicked && !settingsMenu) {
+        formPageUpdate();
     } else if (directSelectPage.clicked && !settingsMenu) {
         DSPageUpdate();
     }
@@ -100,7 +100,7 @@ void ofApp::buttonAction() {
 //--------------------------------------------------------------
 
 void ofApp::channelButtonAction() {
-    if ((shutterPage.clicked || panTiltPage.clicked || encoderPage.clicked || directSelectPage.clicked) && !settingsMenu) {
+    if ((shutterPage.clicked || focusPage.clicked || formPage.clicked || directSelectPage.clicked) && !settingsMenu) {
         if (keyboard.clickedOff) {
             selectedChannel = oldChannel;
             channelButton.clicked = false;
@@ -155,11 +155,11 @@ void ofApp::draw() {
     if (shutterPage.clicked && !settingsMenu) {
         shutterPageDraw();
     }
-    if (panTiltPage.clicked && !settingsMenu) {
-        panTiltPageDraw();
+    if (focusPage.clicked && !settingsMenu) {
+        focusPageDraw();
     }
-    if (encoderPage.clicked && !settingsMenu) {
-        encoderPageDraw();
+    if (formPage.clicked && !settingsMenu) {
+        formPageDraw();
     }
     if (directSelectPage.clicked && !settingsMenu) {
         DSPageDraw();
@@ -167,7 +167,7 @@ void ofApp::draw() {
     if (settingsMenu) {
         settingsDraw();
     }
-    if ((shutterPage.clicked || encoderPage.clicked|| panTiltPage.clicked) && !settingsMenu) {
+    if ((shutterPage.clicked || formPage.clicked|| focusPage.clicked) && !settingsMenu) {
         string channel = "SELECTED CHANNEL";
         minusButton.show("-",guiLeftAlign,row1Padding,plusMinusButtonWidth,buttonHeight,"LARGE");
         plusButton.show("+",guiRightAlign,row1Padding,plusMinusButtonWidth,buttonHeight,"LARGE");
@@ -199,16 +199,16 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
         channelButton.clicked = false;
     }
     shutterPage.touchDown(touch);
-    panTiltPage.touchDown(touch);
-    encoderPage.touchDown(touch);
+    focusPage.touchDown(touch);
+    formPage.touchDown(touch);
     directSelectPage.touchDown(touch);
     
     if (shutterPage.clicked && !settingsMenu && !keyboard.show) {
         shutterPageTouchDown(touch);
-    } else if (panTiltPage.clicked && !settingsMenu && !keyboard.show) {
-        panTiltPageTouchDown(touch);
-    } else if (encoderPage.clicked && !settingsMenu && !keyboard.show) {
-        encoderPageTouchDown(touch);
+    } else if (focusPage.clicked && !settingsMenu && !keyboard.show) {
+        focusPageTouchDown(touch);
+    } else if (formPage.clicked && !settingsMenu && !keyboard.show) {
+        formPageTouchDown(touch);
     } else if (directSelectPage.clicked && !settingsMenu) {
         DSPageTouchDown(touch);
     } else if (settingsMenu) {
@@ -229,11 +229,11 @@ void ofApp::touchMoved(ofTouchEventArgs & touch){
     if (shutterPage.clicked && !settingsMenu) {
         shutterPageTouchMoved(touch);
     }
-    if (panTiltPage.clicked && !settingsMenu) {
-        panTiltPageTouchMoved(touch);
+    if (focusPage.clicked && !settingsMenu) {
+        focusPageTouchMoved(touch);
     }
-    if (encoderPage.clicked && !settingsMenu) {
-        encoderPageTouchMoved(touch);
+    if (formPage.clicked && !settingsMenu) {
+        formPageTouchMoved(touch);
     }
 }
 
@@ -242,10 +242,10 @@ void ofApp::touchMoved(ofTouchEventArgs & touch){
 void ofApp::touchUp(ofTouchEventArgs & touch){
     if (shutterPage.clicked && !settingsMenu) {
         shutterPageTouchUp(touch);
-    } else if (panTiltPage.clicked && !settingsMenu && !keyboard.show) {
-        panTiltPageTouchUp(touch);
-    } else if (encoderPage.clicked && !settingsMenu) {
-        encoderPageTouchUp(touch);
+    } else if (focusPage.clicked && !settingsMenu && !keyboard.show) {
+        focusPageTouchUp(touch);
+    } else if (formPage.clicked && !settingsMenu) {
+        formPageTouchUp(touch);
     } else if (directSelectPage.clicked && !settingsMenu) {
         DSPageTouchUp(touch);
     }
@@ -258,9 +258,9 @@ void ofApp::touchUp(ofTouchEventArgs & touch){
 void ofApp::touchDoubleTap(ofTouchEventArgs & touch){
     if (shutterPage.clicked && !settingsMenu) {
         shutterPageDoubleTap(touch);
-    } else if (panTiltPage.clicked && !settingsMenu && !keyboard.show) {
-        panTiltPageDoubleTap(touch);
-    } else if (encoderPage.clicked && !settingsMenu) {
+    } else if (focusPage.clicked && !settingsMenu && !keyboard.show) {
+        focusPageDoubleTap(touch);
+    } else if (formPage.clicked && !settingsMenu) {
         //pageTwoDoubleTap(touch);
     } else if (directSelectPage.clicked && !settingsMenu) {
         DSPageDoubleTap(touch);

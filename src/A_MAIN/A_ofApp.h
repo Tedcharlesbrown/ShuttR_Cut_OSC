@@ -70,7 +70,7 @@ public:
     
     string oldChannel = "";
     
-    BUTTON shutterPage, encoderPage, directSelectPage, panTiltPage, minusButton, plusButton, fineButton, highButton, flashButton, channelButton;
+    BUTTON shutterPage, formPage, directSelectPage, focusPage, imagePage, minusButton, plusButton, fineButton, highButton, flashButton, channelButton;
     
     //--------------------------------------------------------------
     // MARK: ----------SHUTTER PAGE----------
@@ -111,14 +111,14 @@ public:
     // MARK: ----------PAN TILT PAGE----------
     //--------------------------------------------------------------
     
-    void panTiltPageSetup();
-    void panTiltPageUpdate();
-    void panTiltPageDraw();
+    void focusPageSetup();
+    void focusPageUpdate();
+    void focusPageDraw();
     
-    void panTiltPageTouchDown(ofTouchEventArgs & touch);
-    void panTiltPageTouchMoved(ofTouchEventArgs & touch);
-    void panTiltPageTouchUp(ofTouchEventArgs & touch);
-    void panTiltPageDoubleTap(ofTouchEventArgs & touch);
+    void focusPageTouchDown(ofTouchEventArgs & touch);
+    void focusPageTouchMoved(ofTouchEventArgs & touch);
+    void focusPageTouchUp(ofTouchEventArgs & touch);
+    void focusPageDoubleTap(ofTouchEventArgs & touch);
     
     void sendFocusEncoder(float & oscOutputPercent);
     
@@ -131,14 +131,14 @@ public:
     // MARK: ----------ENCODER PAGE----------
     //--------------------------------------------------------------
     
-    void encoderPageSetup();
-    void encoderPageUpdate();
-    void encoderPageDraw();
+    void formPageSetup();
+    void formPageUpdate();
+    void formPageDraw();
     
-    void encoderPageTouchDown(ofTouchEventArgs & touch);
-    void encoderPageTouchMoved(ofTouchEventArgs & touch);
-    void encoderPageTouchUp(ofTouchEventArgs & touch);
-    void encoderPageDoubleTap(ofTouchEventArgs & touch);
+    void formPageTouchDown(ofTouchEventArgs & touch);
+    void formPageTouchMoved(ofTouchEventArgs & touch);
+    void formPageTouchUp(ofTouchEventArgs & touch);
+    void formPageDoubleTap(ofTouchEventArgs & touch);
     
     void sendFormEncoder(float & oscOutputPercent);
     
@@ -146,6 +146,19 @@ public:
     string irisPercent, edgePercent, zoomPercent, frostPercent, formParameter, parameterShow = "";
     
     BUTTON irisButton, edgeButton, zoomButton, frostButton, minusPercentButton, homeButton, plusPercentButton;
+    
+    //--------------------------------------------------------------
+    // MARK: ----------IMAGE PAGE----------
+    //--------------------------------------------------------------
+    
+    void imagePageSetup();
+    void imagePageUpdate();
+    void imagePageDraw();
+    
+    void imagePageTouchDown(ofTouchEventArgs & touch);
+    void imagePageTouchMoved(ofTouchEventArgs & touch);
+    void imagePageTouchUp(ofTouchEventArgs & touch);
+    void imagePageDoubleTap(ofTouchEventArgs & touch);
     
     //--------------------------------------------------------------
     // MARK: ----------DIRECT SELECT PAGE----------
@@ -273,6 +286,8 @@ public:
     void sendDSPage(string bank, string direction);
     void sendDSRequest(string bank, string parameter);
     void sendDS(string bank, string buttonID);
+    
+    void testSend();
     
 private:
 };

@@ -35,13 +35,6 @@ void ofApp::update() {
     oscEvent();
     stateUpdate();
     
-//    if (connectRequest) {
-//        IPAddress = getIPAddress();
-//        connect();
-//    }
-    
-    heartBeat();
-    
     keyboard.update();
     
     topBarUpdate();
@@ -50,6 +43,8 @@ void ofApp::update() {
     buttonAction();
     settingsUpdate();
     channelButtonAction();
+    
+    heartBeat();
 }
 
 //--------------------------------------------------------------

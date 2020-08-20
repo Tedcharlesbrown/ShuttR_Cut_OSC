@@ -3,11 +3,10 @@
 //--------------------------------------------------------------
 
 void ofApp::connect() {
-//    isConnected = false;
-    
     saveXML();
-    
+        
     eos.close();
+    eos.waitForThread();
     eos.setup(inputIP, 3032);
     
     console_log.push_back(log_Connecting + inputIP);
@@ -18,8 +17,12 @@ void ofApp::connect() {
 //--------------------------------------------------------------
 
 void ofApp::checkConnection() {
-    if (ofGetElapsedTimeMillis() > lastPing) {
+    if (ofGetElapsedTimeMillis() > lastPing + 1000) {
         isConnected = false;
+    } else {
+        if (!isConnected) {
+            connect();
+        }
     }
     connectRequest = false;
 }
@@ -27,21 +30,29 @@ void ofApp::checkConnection() {
 //--------------------------------------------------------------
 
 void ofApp::heartBeat() {
-    float checkTime = 10000;
+    checkTime = 5000;
     
     if (!hasWifi) {
         checkTime = 1000;
     }
     
     deltaTime = ofGetElapsedTimeMillis() - connectTime;
-        
-    if (deltaTime > checkTime || connectRequest) {
-        IPAddress = getIPAddress();
     
+    //    if (deltaTime > checkTime || connectRequest) {
+    if (connectRequest) {
+        
+        IPAddress = getIPAddress();
+        
         sendPing();
 //        fineEncoder(0);
         
         checkConnection();
+    }
+    
+    if (isConnected) {
+        if (console_log.back().find(log_Connecting) != string::npos) {
+            console_log.push_back(log_YesConnect);
+        }
     }
 }
 

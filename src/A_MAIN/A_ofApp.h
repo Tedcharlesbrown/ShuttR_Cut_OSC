@@ -216,7 +216,7 @@ public:
     void pingTimeOut();
     void heartBeat();
     
-//    int checkTime;
+    int checkTime;
     unsigned long long connectTime = 0;
     unsigned long long deltaTime = 0;
     unsigned long long lastPing = 0;

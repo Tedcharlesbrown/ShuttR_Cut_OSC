@@ -57,7 +57,7 @@ void ofApp::checkConnection() {
 //--------------------------------------------------------------
 
 void ofApp::heartBeat() {
-    checkTime = 10000;
+    checkTime = 60 * 1000;
     
     if (!hasWifi || !isConnected) {
         checkTime = 3000;

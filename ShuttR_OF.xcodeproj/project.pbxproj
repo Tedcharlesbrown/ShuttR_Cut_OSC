@@ -40,6 +40,7 @@
 		AAACB8FDECB13FD0DE78318C /* EosLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B094CB7B81BD45A76287D678 /* EosLog.cpp */; };
 		AEA2BE8D22DDBDC82404E880 /* A_osc_connection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1A3EFBF3857E14C41106A982 /* A_osc_connection.mm */; };
 		B490433952DD772FE0CAA5F2 /* D_bank.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6925EA105101873F4EA5D44B /* D_bank.mm */; };
+		B73A18F324EF2C3400A74C61 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B73A18F224EF2C3400A74C61 /* README.md */; };
 		B7EEEB0224EF098300062D20 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EEEB0124EF098300062D20 /* Metal.framework */; };
 		B7EEEB0424EF098900062D20 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EEEB0324EF098900062D20 /* MetalKit.framework */; };
 		BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD80F2B2AB500518274 /* QuartzCore.framework */; };
@@ -143,6 +144,7 @@
 		B094CB7B81BD45A76287D678 /* EosLog.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = EosLog.cpp; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/src/EosLog.cpp; sourceTree = SOURCE_ROOT; };
 		B396E04A19DA2B315A6C0CD7 /* EosSyncLib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EosSyncLib.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxEtcTcpOsc/libs/EosSyncLib/include/EosSyncLib.h; sourceTree = SOURCE_ROOT; };
 		B705C3964A5506AAC5858C03 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlSettings.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
+		B73A18F224EF2C3400A74C61 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		B7EEEB0124EF098300062D20 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		B7EEEB0324EF098900062D20 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		BB16EBD10F2B2A9500518274 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -516,6 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				E4D8936B11527B74007E1F53 /* main.mm */,
+				B73A18F224EF2C3400A74C61 /* README.md */,
 				476B95D73E45AEFA6F67915E /* 0_Globals */,
 				FBDB6EC143282803010D0E8A /* A_MAIN */,
 				4E9C6BFADA958C5203267AC2 /* B_GUI */,
@@ -612,6 +615,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B73A18F324EF2C3400A74C61 /* README.md in Resources */,
 				9936F6101BFA4DEE00891288 /* Images.xcassets in Resources */,
 				9936F6121BFA65F100891288 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -710,7 +714,7 @@
 				"GCC_WARN_64_TO_32_BIT_CONVERSION[arch=*64]" = NO;
 				INFOPLIST_FILE = "ofxiOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 0.3;
+				MARKETING_VERSION = 0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tedcharlesbrown.shuttrcutosc;
 				PRODUCT_NAME = "Shutter Cut OSC";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -735,7 +739,7 @@
 				"GCC_WARN_64_TO_32_BIT_CONVERSION[arch=*64]" = NO;
 				INFOPLIST_FILE = "ofxiOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 0.3;
+				MARKETING_VERSION = 0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tedcharlesbrown.shuttrcutosc;
 				PRODUCT_NAME = "Shutter Cut OSC";
 				TARGETED_DEVICE_FAMILY = 1;

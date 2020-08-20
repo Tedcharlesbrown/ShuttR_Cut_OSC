@@ -16,7 +16,7 @@ void ofApp::setup() {
     getXML();
         
     if (inputIP.length() > 0) {
-        connect(true);
+        connect(true, true, true);
     }
 
     shutterPage.clicked = true;
@@ -26,7 +26,7 @@ void ofApp::setup() {
     encoderPageSetup();
     DSPageSetup();
     settingsSetup();
-
+    
 }
 
 //--------------------------------------------------------------

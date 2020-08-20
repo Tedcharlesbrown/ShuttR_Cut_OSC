@@ -40,7 +40,8 @@ void ofApp::settingsUpdate() {
                 if (keyboard.enter) {
                     ipFieldButton.clicked = false; keyboard.close();
                     inputIP = userInputIP;
-                    connect(true);
+                    ipChanged = true;
+                    connect(false, false, true);
                     keySwitch = 0;
                 }
                 break;
@@ -55,6 +56,11 @@ void ofApp::settingsUpdate() {
                     keySwitch = 0;
                 }
                 break;
+        }
+        
+        if (ipChanged && keyboard.isOffScreen) {
+            connect(true, true, false);
+            ipChanged = false;
         }
     }
 }

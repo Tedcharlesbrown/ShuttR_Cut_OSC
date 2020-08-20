@@ -7,8 +7,10 @@ void ofApp::oscEvent() {
         oscReceivedTime = ofGetElapsedTimeMillis();
         isConnected = true;
         hasOSC = true;
-        if (console_log.back().find(log_Connecting) != string::npos) {
+        if (console_log.back().find(log_Connecting) != string::npos || console_log.back() == log_CheckOSC) { //ON GAINED CONNECTION
             console_log.push_back(log_YesConnect);
+        } else if (console_log.back() == log_lostConnect) {  //IF LOST CONNECTION
+            console_log.push_back(log_reConnect + inputIP);
         }
         
         // ----------------------- OSC MESSAGE START -----------------------

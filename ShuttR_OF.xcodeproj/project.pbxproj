@@ -713,7 +713,7 @@
 				MARKETING_VERSION = 0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tedcharlesbrown.shuttrcutosc;
 				PRODUCT_NAME = "Shutter Cut OSC";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
@@ -738,7 +738,7 @@
 				MARKETING_VERSION = 0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tedcharlesbrown.shuttrcutosc;
 				PRODUCT_NAME = "Shutter Cut OSC";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;

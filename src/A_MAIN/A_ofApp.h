@@ -2,6 +2,8 @@
 
 #include "ofxiOS.h"
 
+#include "ofxNetwork.h"
+
 #include "ofxEosOscMsg.h" //TCP OSC
 #include "ofxEosSync.h"
 
@@ -177,6 +179,7 @@ public:
     string userInputIP = "";
     string userInputID = "1";
     int keySwitch = 0;
+    bool ipChanged = false;
 
     string getIPAddress();
     
@@ -208,8 +211,10 @@ public:
     //--------------------------------------------------------------
     
     ofxEosSync eos;
+    ofxTCPClient tcp;
     
-    void connect(bool log);
+    void connect(bool connectTCP, bool connectEOS, bool log);
+    void connectRunDelay();
     
     void checkConnection();
     
@@ -217,6 +222,8 @@ public:
     void heartBeat();
     
     bool pingSent = false;
+    bool connectDelay = false;
+    bool connectRun = false;
     int checkTime;
     unsigned long long sentPingTime = 0;
     unsigned long long deltaTime = 0;

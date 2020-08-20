@@ -55,7 +55,7 @@ extern float settingsBarStrokeWeight, buttonStrokeWeight, shutterStrokeWeight, o
 extern float  consoleWidth, consoleHeight, consolePadding;
 extern vector<string> console_log;
 
-extern string log_CheckIP, log_NoConnect, log_YesConnect, log_CheckOSC, log_Connecting, log_UserSwitch;
+extern string log_NoConnect, log_YesConnect, log_CheckOSC, log_Connecting, log_UserSwitch, log_lostConnect, log_reConnect;
 
 // ----------------------- SHUTTER PAGE CONSTANTS -----------------------
 extern float assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;

@@ -67,16 +67,20 @@ void KEYBOARD::close() {
 void KEYBOARD::draw(){
     float buttonWidth = plusMinusButtonWidth;
     float buttonPadding = buttonWidth * 1.25;
-    
+
     ofPushMatrix();
     
     if (!show) {
         if (slide < 1){
             slide += 0.05;
+        } else {
+            isOffScreen = true;
         }
     } else if (show) {
         if (slide > 0) {
             slide -= 0.05;
+        } else {
+            isOffScreen = false;
         }
         
     }

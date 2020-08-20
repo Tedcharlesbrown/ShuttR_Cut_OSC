@@ -61,12 +61,13 @@ float settingsBarStrokeWeight, buttonStrokeWeight, shutterStrokeWeight, outsideW
 float  consoleWidth, consoleHeight, consolePadding;
 vector<string> console_log;
 
-string log_CheckIP = "CHECK IP, COULD NOT CONNECT";
-string log_NoConnect = "COULD NOT CONNECT";
+string log_NoConnect = "ERROR: COULD NOT CONNECT";
 string log_YesConnect = "SUCCESSFULLY CONNECTED";
-string log_CheckOSC = "CHECK OSC SETTINGS";
+string log_CheckOSC = "ERROR: CHECK IF OSC RX AND TX ARE ENABLED";
 string log_Connecting = "CONNECTING TO: ";
 string log_UserSwitch = "SWITCHING TO USER: ";
+string log_lostConnect = "LOST CONNECTION...";
+string log_reConnect = "RE-CONNECTED TO: ";
 
 // ----------------------- SHUTTER PAGE CONSTANTS -----------------------
 float assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
@@ -111,6 +112,7 @@ void ofApp::stateUpdate(){
             EOSBarState = EOSBlue;
         }
     } else {
+        headerName = defaultName;
         EOSState = EOSLightGrey;
         EOSBarState = EOSDarkGrey;
     }

@@ -24,6 +24,7 @@ public:
     string input = "";
     float slide = 1;
     bool show = false;
+    bool isOffScreen = false;
     bool enter = false;
     bool clickedOff = false;
     

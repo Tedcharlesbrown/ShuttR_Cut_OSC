@@ -29,7 +29,6 @@
 		8E57E2346BA4C4EC4CBB75C6 /* EosUdp_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EF6768D8BCE94BC5F04813F /* EosUdp_Mac.cpp */; };
 		8F0BB1975CB77BC04BEA743E /* B_settingsPage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8597ADE367216AE6A17551C2 /* B_settingsPage.mm */; };
 		8F3564A366BEC7654169DFCB /* D_button.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85ED3E2745DDDE9E9142BCFD /* D_button.mm */; };
-		901808C12053638E004A7774 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901808BF2053636F004A7774 /* GLKit.framework */; };
 		9936F6101BFA4DEE00891288 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9936F60F1BFA4DEE00891288 /* Images.xcassets */; };
 		9936F6121BFA65F100891288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9936F6111BFA65F100891288 /* LaunchScreen.storyboard */; };
 		9969E7561C782C4500DEF0F6 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9969E7551C782C4500DEF0F6 /* CoreMotion.framework */; };
@@ -43,7 +42,6 @@
 		B490433952DD772FE0CAA5F2 /* D_bank.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6925EA105101873F4EA5D44B /* D_bank.mm */; };
 		B7EEEB0224EF098300062D20 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EEEB0124EF098300062D20 /* Metal.framework */; };
 		B7EEEB0424EF098900062D20 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EEEB0324EF098900062D20 /* MetalKit.framework */; };
-		BB16EBD20F2B2A9500518274 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD10F2B2A9500518274 /* OpenGLES.framework */; };
 		BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD80F2B2AB500518274 /* QuartzCore.framework */; };
 		BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */; };
 		C438CCD58D705B0B06547E24 /* ofxEosOscMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD4C54E1D1DF33A1676C93BA /* ofxEosOscMsg.cpp */; };
@@ -186,11 +184,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9969E7561C782C4500DEF0F6 /* CoreMotion.framework in Frameworks */,
-				901808C12053638E004A7774 /* GLKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
-				BB16EBD20F2B2A9500518274 /* OpenGLES.framework in Frameworks */,
 				BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */,
 				BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */,
 				53F323EB10A20EDB00E0DAE4 /* OpenAL.framework in Frameworks */,

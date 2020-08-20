@@ -4,19 +4,22 @@
 
 void ofApp::connect(bool log) {
     
-        
+    tcp.close();
     eos.close();
     eos.waitForThread();
+    tcp.setup(inputIP, 3032);
     eos.setup(inputIP, 3032);
+    
     
     if (log) {
         console_log.push_back(log_Connecting + inputIP);
         saveXML();
     }
     
-    
-    connectRequest = true;
-    pingSent = false;
+    if (tcp.isConnected()) {
+        connectRequest = true;
+        pingSent = false;
+    }
     
     //    if (eos.isConnected()) {
     //        connectRequest = true;
@@ -41,7 +44,7 @@ void ofApp::checkConnection() {
                 console_log.push_back(log_NoConnect);
             }
             if (!isConnected) {
-                connect(false);
+//                connect(false);
             }
         } else {
             //             << eos.isConnected() << endl;

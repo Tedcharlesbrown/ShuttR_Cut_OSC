@@ -2,6 +2,8 @@
 
 #include "ofxiOS.h"
 
+#include "ofxNetwork.h"
+
 #include "ofxEosOscMsg.h" //TCP OSC
 #include "ofxEosSync.h"
 
@@ -208,6 +210,7 @@ public:
     //--------------------------------------------------------------
     
     ofxEosSync eos;
+    ofxTCPClient tcp;
     
     void connect(bool log);
     

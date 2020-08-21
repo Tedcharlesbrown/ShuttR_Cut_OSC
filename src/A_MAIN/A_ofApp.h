@@ -37,12 +37,14 @@ public:
     void draw();
     
     void channelButtonAction();
+    void intensityButtonAction();
     void pageButtonAction();
     void oscLightUpdate();
     
     void buttonAction();
     
     KEYBOARD keyboard;
+    OVERLAY intOverlay;
     
     //--------------------------------------------------------------
     // MARK: ----------XML----------
@@ -200,7 +202,7 @@ public:
 
     string getIPAddress();
     
-    BUTTON ipFieldButton, idFieldButton, incomingButton, outgoingButton, helpButton;
+    BUTTON ipFieldButton, idFieldButton, incomingButton, outgoingButton;
     ofImage settingsHelp;
     
     //--------------------------------------------------------------
@@ -267,6 +269,8 @@ public:
     // ----------------------- OUTGOING OSC -----------------------
     void sendPing();
     
+    void sendIntensity(ofVec2f & intensityVector);
+    
     void sendChannel(string parameter);
     void sendChannelNumber(string parameter);
     
@@ -284,7 +288,11 @@ public:
     void sendDSRequest(string bank, string parameter);
     void sendDS(string bank, string buttonID);
     
-    void testSend();
+    // ----------------------- OUTGOING KEY PRESSES -----------------------
+    
+    void sendKey(string key);
+    void sendKey(string key, bool toggle);
+    
     
 private:
 };

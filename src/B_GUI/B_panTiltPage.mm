@@ -7,7 +7,7 @@
 void ofApp::focusPageSetup(){
     focusEncoder.setup(assemblyDiameter / 1.25);
     
-    ofAddListener(focusEncoder.oscOutputPercent, this, &ofApp::sendFocusEncoder);
+    ofAddListener(focusEncoder.oscOutputEvent, this, &ofApp::sendFocusEncoder);
 }
 //--------------------------------------------------------------
 void ofApp::focusPageUpdate(){
@@ -42,9 +42,9 @@ void ofApp::focusPageDraw(){
     panButton.showBig("PAN",panPercent, guiCenterAlign - genericButtonWidth / 2, row3Padding, smallButtonWidth, buttonHeight);
     tiltButton.showBig("TILT",tiltPercent, guiCenterAlign + genericButtonWidth / 2, row3Padding, smallButtonWidth, buttonHeight);
     
-    minusPercentButton.show("-%", guiLeftAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
-    homeButton.show(panTiltShow, "HOME", guiCenterAlign, row5Padding, genericButtonWidth, buttonHeight);
-    plusPercentButton.show("+%", guiRightAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
+    minusPercentButton.show("-%", guiLeftAlign, rowBottomPadding, genericButtonWidth, buttonHeight, "MEDIUM");
+    homeButton.show(panTiltShow, "HOME", guiCenterAlign, rowBottomPadding, genericButtonWidth, buttonHeight);
+    plusPercentButton.show("+%", guiRightAlign, rowBottomPadding, genericButtonWidth, buttonHeight, "MEDIUM");
     
     focusEncoder.draw(centerX, centerY);
 }
@@ -54,13 +54,6 @@ void ofApp::focusPageDraw(){
 //--------------------------------------------------------------
 
 void ofApp::focusPageTouchDown(ofTouchEventArgs & touch){
-    minusButton.touchDown(touch);
-    plusButton.touchDown(touch);
-    fineButton.touchDown(touch, true);
-    highButton.touchDown(touch, true);
-    flashButton.touchDown(touch);
-    channelButton.touchDown(touch, true);
-    
     panButton.touchDown(touch, true);
     tiltButton.touchDown(touch, true);
     

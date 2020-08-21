@@ -123,15 +123,7 @@ void ofApp::assemblyFront() {
 // MARK: ---------- TOUCH EVENTS ----------
 //--------------------------------------------------------------
 
-void ofApp::shutterPageTouchDown(ofTouchEventArgs & touch) {
-    minusButton.touchDown(touch);
-    plusButton.touchDown(touch);
-    fineButton.touchDown(touch, true);
-    highButton.touchDown(touch, true);
-    flashButton.touchDown(touch);
-    channelButton.touchDown(touch, true);
-    intensityButton.touchDown(touch,true);
-    
+void ofApp::shutterPageTouchDown(ofTouchEventArgs & touch) {    
     thrustButton.touchDown(touch);
     angleButton.touchDown(touch);
     shutterButton.touchDown(touch);
@@ -185,10 +177,10 @@ void ofApp::shutterPageAddListeners() {
     ofAddListener(thrustC.buttonC.oscOutputPercent, this, &ofApp::sendThrustC);
     ofAddListener(thrustD.buttonD.oscOutputPercent, this, &ofApp::sendThrustD);
 
-    ofAddListener(angleA.oscOutputPercent, this, &ofApp::sendAngleA);
-    ofAddListener(angleB.oscOutputPercent, this, &ofApp::sendAngleB);
-    ofAddListener(angleC.oscOutputPercent, this, &ofApp::sendAngleC);
-    ofAddListener(angleD.oscOutputPercent, this, &ofApp::sendAngleD);
+    ofAddListener(angleA.oscOutputEvent, this, &ofApp::sendAngleA);
+    ofAddListener(angleB.oscOutputEvent, this, &ofApp::sendAngleB);
+    ofAddListener(angleC.oscOutputEvent, this, &ofApp::sendAngleC);
+    ofAddListener(angleD.oscOutputEvent, this, &ofApp::sendAngleD);
 
     ofAddListener(assembly.oscOutputPercent, this, &ofApp::sendAssembly);
 }

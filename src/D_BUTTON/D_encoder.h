@@ -23,9 +23,9 @@ public:
     bool clicked = false;
     
     float encoderOutput = 0;
-    ofEvent<float> oscOutputPercent;
+    ofEvent<float> oscOutputEvent;
     void sendOSC() {
-        ofNotifyEvent(oscOutputPercent,encoderOutput);
+        ofNotifyEvent(oscOutputEvent,encoderOutput);
     }
     
 private:

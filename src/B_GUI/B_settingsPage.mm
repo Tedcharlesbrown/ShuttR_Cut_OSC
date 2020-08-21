@@ -8,7 +8,7 @@ void ofApp::settingsSetup() {
     settingsHelp.load("settingsHelp.png");
     userInputIP = inputIP;
     userInputID = inputID;
-    ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false; helpButton.clicked = false; //BUTTON INIT
+    ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false; //BUTTON INIT
 }
 
 //--------------------------------------------------------------
@@ -51,8 +51,6 @@ void ofApp::settingsUpdate() {
                     idFieldButton.clicked = false; keyboard.close();
                     inputID = userInputID;
                     console_log.push_back(log_UserSwitch + inputID);
-//                    connect();
-//                    connectRequest = true;
                     keySwitch = 0;
                 }
                 break;
@@ -117,7 +115,6 @@ void ofApp::about() {
     string aboutOne = appName + " " + version;
     string thisIP = "Local IP Address: " + IPAddress;
     string aboutTwo =  "Made by Ted Charles Brown | TedCharlesBrown.com";
-//    string aboutThree = "Please email all questions / bugs / requests";
     string aboutThree = "Have suggestions? See a bug? Want to connect / buy me a coffee?";
     string aboutFour = "Email me at TedCharlesBrown+ShuttR@Gmail.com!";
     

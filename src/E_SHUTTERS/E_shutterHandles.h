@@ -59,9 +59,9 @@ public:
     ofVec3f angleVec;
     
     float anglePercent = 0;
-    ofEvent<float> oscOutputPercent;
+    ofEvent<float> oscOutputEvent;
     void sendOSC() {
-        ofNotifyEvent(oscOutputPercent,anglePercent);
+        ofNotifyEvent(oscOutputEvent,anglePercent);
     }
     
 private:

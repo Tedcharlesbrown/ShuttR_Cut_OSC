@@ -27,7 +27,11 @@ void ofApp::setup() {
     imagePageSetup();
     DSPageSetup();
     settingsSetup();
+    intOverlay.setup();
     
+    ofAddListener(intOverlay.oscOutputEvent, this, &ofApp::sendIntensity);
+    
+    intOverlay.show = true;
 }
 
 //--------------------------------------------------------------
@@ -37,13 +41,17 @@ void ofApp::update() {
     stateUpdate();
         
     keyboard.update();
+    intOverlay.update();
+    
+    intensityButtonAction();
+    channelButtonAction();
     
     topBarUpdate();
     pageButtonAction();
     oscLightUpdate();
     buttonAction();
     settingsUpdate();
-    channelButtonAction();
+    
     
     heartBeat();
 }
@@ -131,6 +139,39 @@ void ofApp::channelButtonAction() {
 }
 
 //--------------------------------------------------------------
+// MARK: ---------- INTENSITY BUTTON ----------
+//--------------------------------------------------------------
+
+void ofApp::intensityButtonAction() {
+    if ((shutterPage.clicked || focusPage.clicked || formPage.clicked || imagePage.clicked || dSelectPage.clicked) && !settingsMenu) {
+        if (intOverlay.clickedOff || plusButton.action || minusButton.action || channelButton.action) {
+            intensityButton.clicked = false;
+            intOverlay.close();
+        } else if (intensityButton.action && intensityButton.clicked) {
+            intensityButton.action = false;
+            intOverlay.open();
+        }
+//        else if (intensityButton.action && !intensityButton.clicked) {
+//            intensityButton.action = false;
+//            intOverlay.close();
+//        }
+        //        if (channelButton.clicked) {
+        //            selectedChannel = keyboard.input;
+        //        }
+        //        if (keyboard.enter) {
+        //            channelButton.clicked = false;
+        //            keyboard.close();
+        //            if (selectedChannel == "") {
+        //                selectedChannel = oldChannel;
+        //            } else {
+        //                noneSelected = false;
+        //                sendChannelNumber(selectedChannel);
+        //            }
+        //        }
+    }
+}
+
+//--------------------------------------------------------------
 // MARK: ---------- OSC LIGHT ----------
 //--------------------------------------------------------------
 
@@ -170,6 +211,9 @@ void ofApp::draw() {
     if (dSelectPage.clicked && !settingsMenu) {
         DSPageDraw();
     }
+    if (intensityButton.clicked && !settingsMenu) {
+//        intOverlay.draw();
+    }
     if (settingsMenu) {
         settingsDraw();
     }
@@ -182,7 +226,7 @@ void ofApp::draw() {
         highButton.show("HIGH",guiCenterAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE");
         flashButton.show("FLASH",guiRightAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE");
         
-        intensityButton.showInt(channelIntString,centerX,row1Padding + buttonHeight / 2, channelButtonWidth, buttonHeight);
+        intensityButton.showInt(channelIntString,centerX,row1Padding + buttonHeight / 2, channelButtonWidth, buttonHeight * 1.5);
         
         if (selectedChannel.length() <= 10) {
             channelButton.show(selectedChannel, centerX,row1Padding, channelButtonWidth, buttonHeight, "LARGE");
@@ -196,6 +240,7 @@ void ofApp::draw() {
     }
     topBarDraw();
     keyboard.draw();
+    intOverlay.draw();
 }
 
 //--------------------------------------------------------------
@@ -208,19 +253,31 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
         channelButton.clicked = false;
         intensityButton.clicked = false;
     }
+    
     shutterPage.touchDown(touch);
     focusPage.touchDown(touch);
     formPage.touchDown(touch);
     imagePage.touchDown(touch);
     dSelectPage.touchDown(touch);
     
-    if (shutterPage.clicked && !settingsMenu && !keyboard.show) {
+    if ((shutterPage.clicked || focusPage.clicked || formPage.clicked || imagePage.clicked) && !keyboard.show) {
+        minusButton.touchDown(touch);
+        plusButton.touchDown(touch);
+        fineButton.touchDown(touch, true);
+        highButton.touchDown(touch, true);
+        flashButton.touchDown(touch);
+        channelButton.touchDown(touch, true);
+        intensityButton.touchDown(touch,true);
+    }
+    
+    
+    if (shutterPage.clicked && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
         shutterPageTouchDown(touch);
-    } else if (focusPage.clicked && !settingsMenu && !keyboard.show) {
+    } else if (focusPage.clicked && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
         focusPageTouchDown(touch);
-    } else if (formPage.clicked && !settingsMenu && !keyboard.show) {
+    } else if (formPage.clicked && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
         formPageTouchDown(touch);
-    } else if (imagePage.clicked && !settingsMenu && !keyboard.show) {
+    } else if (imagePage.clicked && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
         imagePageTouchDown(touch);
     } else if (dSelectPage.clicked && !settingsMenu) {
         DSPageTouchDown(touch);
@@ -229,10 +286,12 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
         idFieldButton.touchDown(touch, true);
         outgoingButton.touchDown(touch, true);
         incomingButton.touchDown(touch, true);
-        helpButton.touchDown(touch, true);
     }
     if (keyboard.show) {
         keyboard.touchDown(touch);
+    }
+    if (intOverlay.show) {
+        intOverlay.touchDown(touch);
     }
 }
 
@@ -247,6 +306,9 @@ void ofApp::touchMoved(ofTouchEventArgs & touch){
     }
     if (formPage.clicked && !settingsMenu) {
         formPageTouchMoved(touch);
+    }
+    if (intensityButton.clicked && !settingsMenu) {
+        intOverlay.touchMoved(touch, fineButton.clicked);
     }
 }
 
@@ -266,6 +328,7 @@ void ofApp::touchUp(ofTouchEventArgs & touch){
     }
     
     keyboard.touchUp(touch);
+    intOverlay.touchUp(touch);
 }
 
 //--------------------------------------------------------------

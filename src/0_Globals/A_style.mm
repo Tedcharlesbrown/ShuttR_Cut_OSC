@@ -49,7 +49,7 @@ float notchHeight;
 
 // ----------------------- GUI HEIGHT -----------------------
 float settingsBarHeight;
-float row1Padding, row2Padding, row3Padding, row4Padding, row5Padding;
+float row1Padding, row2Padding, row3Padding, row4Padding, row5Padding, row6Padding, row7Padding, row8Padding, row9Padding, row10Padding, rowBottomPadding;
 
 // ----------------------- GUI ALIGN -----------------------
 float guiLeftAlign, guiCenterAlign, guiRightAlign;
@@ -185,8 +185,14 @@ void ofApp::styleInit(){
     row1Padding = (settingsBarHeight + buttonHeight) + notchHeight;
     row2Padding = row1Padding + height / 9; //13
     row3Padding = row2Padding + height / 14; //13
-    row4Padding = row3Padding + buttonHeight / 2;
-    row5Padding = (height - height / 15) + notchHeight;
+    row4Padding = row3Padding + height / 14;
+    row5Padding = row4Padding + height / 14;
+    row6Padding = row5Padding + height / 14;
+    row7Padding = row6Padding + height / 14;
+    row8Padding = row7Padding + height / 14;
+    row9Padding = row8Padding + height / 14;
+    row10Padding = row9Padding + height / 14;
+    rowBottomPadding = (height - height / 15) + notchHeight;
     consolePadding = (height / 2) + notchHeight;
     
     //---------- TEXT STYLES ----------

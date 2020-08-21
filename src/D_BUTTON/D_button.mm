@@ -239,7 +239,7 @@ void BUTTON::showInt(string _ID, float _x, float _y, float _w, float _h) { //ONE
     
     ofSetColor(EOSState);
 //    ofSetColor(shutterColor);
-    ofDrawRectRounded(_x, _y, _w, _h * 1.5, buttonCorner);
+    ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
     
     ofColor intensityColor = shutterColor;
     
@@ -249,15 +249,15 @@ void BUTTON::showInt(string _ID, float _x, float _y, float _w, float _h) { //ONE
     } else {
         ofSetColor(black);
     }
-    ofDrawRectRounded(_x, _y, _w - buttonStrokeWeight, _h * 1.5 - buttonStrokeWeight, buttonCorner);
+    ofDrawRectRounded(_x, _y, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
     
     intensityColor.setBrightness(100);
     ofSetColor(intensityColor);
-    fontMedium.drawString(_ID, _x - fontMedium.stringWidth(_ID) / 2.1, _y + (fontMedium.stringHeight(_ID) / 2) + _h / 2.85);//INPUT
+    fontMedium.drawString(_ID, _x - fontMedium.stringWidth(_ID) / 2.1, _y + (fontMedium.stringHeight(_ID) / 2) + _h / 3.85);//INPUT
     
     intensityColor.setBrightness(255);
     ofSetColor(intensityColor);
-    fontMedium.drawString(_ID, _x - fontMedium.stringWidth(_ID) / 2, _y + (fontMedium.stringHeight(_ID) / 2) + _h / 3);//INPUT
+    fontMedium.drawString(_ID, _x - fontMedium.stringWidth(_ID) / 2, _y + (fontMedium.stringHeight(_ID) / 2) + _h / 4);//INPUT
     
     ofPopStyle();
 }

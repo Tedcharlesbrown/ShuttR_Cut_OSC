@@ -42,6 +42,7 @@
 		B490433952DD772FE0CAA5F2 /* D_bank.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6925EA105101873F4EA5D44B /* D_bank.mm */; };
 		B73A18F324EF2C3400A74C61 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B73A18F224EF2C3400A74C61 /* README.md */; };
 		B73A18F524EF3CE600A74C61 /* B_imagePage.mm in Sources */ = {isa = PBXBuildFile; fileRef = B73A18F424EF3CE600A74C61 /* B_imagePage.mm */; };
+		B7469DBE24F05278004B551F /* C_overlay.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7469DBD24F05278004B551F /* C_overlay.mm */; };
 		B7EEEB0224EF098300062D20 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EEEB0124EF098300062D20 /* Metal.framework */; };
 		B7EEEB0424EF098900062D20 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EEEB0324EF098900062D20 /* MetalKit.framework */; };
 		BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD80F2B2AB500518274 /* QuartzCore.framework */; };
@@ -147,6 +148,7 @@
 		B705C3964A5506AAC5858C03 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlSettings.h; path = ../../OpenFrameworks/v0.11.0_IOS/addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		B73A18F224EF2C3400A74C61 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		B73A18F424EF3CE600A74C61 /* B_imagePage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = B_imagePage.mm; path = B_GUI/B_imagePage.mm; sourceTree = "<group>"; };
+		B7469DBD24F05278004B551F /* C_overlay.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = C_overlay.mm; path = C_KEYBOARD/C_overlay.mm; sourceTree = "<group>"; };
 		B7EEEB0124EF098300062D20 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		B7EEEB0324EF098900062D20 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		BB16EBD10F2B2A9500518274 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -425,13 +427,14 @@
 			path = mediaAssets;
 			sourceTree = "<group>";
 		};
-		A0E6FC22ECB433C6F40E4BEA /* C_KEYBOARD */ = {
+		A0E6FC22ECB433C6F40E4BEA /* C_OVERLAY */ = {
 			isa = PBXGroup;
 			children = (
 				4C4A2F787ABB0964ABDB6C81 /* C_keyboard.h */,
 				AB8A44955139670BD49EF55D /* C_keyboard.mm */,
+				B7469DBD24F05278004B551F /* C_overlay.mm */,
 			);
-			name = C_KEYBOARD;
+			name = C_OVERLAY;
 			sourceTree = "<group>";
 		};
 		B74429E8417AAED4A98A05F8 /* include */ = {
@@ -525,7 +528,7 @@
 				476B95D73E45AEFA6F67915E /* 0_Globals */,
 				FBDB6EC143282803010D0E8A /* A_MAIN */,
 				4E9C6BFADA958C5203267AC2 /* B_GUI */,
-				A0E6FC22ECB433C6F40E4BEA /* C_KEYBOARD */,
+				A0E6FC22ECB433C6F40E4BEA /* C_OVERLAY */,
 				7C31A216066E8CEE3269BF15 /* D_BUTTON */,
 				68E8BACF615FE6D56333FF76 /* E_SHUTTERS */,
 				DF395FC95283836DF9DEF853 /* O_OSC */,
@@ -655,6 +658,7 @@
 				B490433952DD772FE0CAA5F2 /* D_bank.mm in Sources */,
 				C6CBE0E70E49C8A2DE62A09A /* D_encoder.mm in Sources */,
 				8F3564A366BEC7654169DFCB /* D_button.mm in Sources */,
+				B7469DBE24F05278004B551F /* C_overlay.mm in Sources */,
 				4CE388AB67519EA11D3E6CAD /* A_osc_out.mm in Sources */,
 				AEA2BE8D22DDBDC82404E880 /* A_osc_connection.mm in Sources */,
 				C4A64ADDC3B0AD7FF672473A /* A_osc_In.mm in Sources */,

@@ -42,7 +42,7 @@ extern float notchHeight;
 
 // ----------------------- GUI HEIGHT -----------------------
 extern float settingsBarHeight;
-extern float row1Padding, row2Padding, row3Padding, row4Padding, row5Padding;
+extern float row1Padding, row2Padding, row3Padding, row4Padding, row5Padding, row6Padding, row7Padding, row8Padding, row9Padding, row10Padding, rowBottomPadding;
 
 // ----------------------- GUI ALIGN -----------------------
 extern float guiLeftAlign, guiCenterAlign, guiRightAlign;

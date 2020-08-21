@@ -7,7 +7,7 @@
 void ofApp::formPageSetup() {
     formEncoder.setup(assemblyDiameter / 1.25);
     
-    ofAddListener(formEncoder.oscOutputPercent, this, &ofApp::sendFormEncoder);
+    ofAddListener(formEncoder.oscOutputEvent, this, &ofApp::sendFormEncoder);
 }
 
 //--------------------------------------------------------------
@@ -54,9 +54,9 @@ void ofApp::formPageDraw() {
     zoomButton.showBig("ZOOM",zoomPercent, guiCenterAlign + genericButtonWidth / 2, row3Padding, smallButtonWidth, buttonHeight);
     frostButton.showBig("FROST",frostPercent, guiRightAlign, row3Padding, smallButtonWidth, buttonHeight);
     
-    minusPercentButton.show("-%", guiLeftAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
-    homeButton.show(parameterShow, "HOME", guiCenterAlign, row5Padding, genericButtonWidth, buttonHeight);
-    plusPercentButton.show("+%", guiRightAlign, row5Padding, genericButtonWidth, buttonHeight, "MEDIUM");
+    minusPercentButton.show("-%", guiLeftAlign, rowBottomPadding, genericButtonWidth, buttonHeight, "MEDIUM");
+    homeButton.show(parameterShow, "HOME", guiCenterAlign, rowBottomPadding, genericButtonWidth, buttonHeight);
+    plusPercentButton.show("+%", guiRightAlign, rowBottomPadding, genericButtonWidth, buttonHeight, "MEDIUM");
     
     formEncoder.draw(centerX, centerY);
 }
@@ -66,13 +66,6 @@ void ofApp::formPageDraw() {
 //--------------------------------------------------------------
 
 void ofApp::formPageTouchDown(ofTouchEventArgs & touch) {
-    minusButton.touchDown(touch);
-    plusButton.touchDown(touch);
-    fineButton.touchDown(touch, true);
-    highButton.touchDown(touch, true);
-    flashButton.touchDown(touch);
-    channelButton.touchDown(touch, true);
-    
     irisButton.touchDown(touch, true);
     edgeButton.touchDown(touch, true);
     zoomButton.touchDown(touch, true);

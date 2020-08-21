@@ -70,7 +70,7 @@ public:
     
     string oldChannel = "";
     
-    BUTTON shutterPage, formPage, directSelectPage, focusPage, imagePage, minusButton, plusButton, fineButton, highButton, flashButton, channelButton;
+    BUTTON shutterPage, formPage, dSelectPage, focusPage, imagePage, minusButton, plusButton, fineButton, highButton, flashButton, channelButton, intensityButton;
     
     //--------------------------------------------------------------
     // MARK: ----------SHUTTER PAGE----------
@@ -160,6 +160,10 @@ public:
     void imagePageTouchUp(ofTouchEventArgs & touch);
     void imagePageDoubleTap(ofTouchEventArgs & touch);
     
+    BUTTON wheelButton;
+    vector<BUTTON> imageWheel, imageWheelLeft, imageWheelRight;
+    vector<string> wheelSelect, wheelPercent;
+        
     //--------------------------------------------------------------
     // MARK: ----------DIRECT SELECT PAGE----------
     //--------------------------------------------------------------
@@ -251,6 +255,7 @@ public:
     void getWheel(ofxEosOscMsg incomingOSC);
     void getChannel(ofxEosOscMsg incomingOSC);
     void getColor(ofxEosOscMsg incomingOSC);
+    void getIntensity(ofxEosOscMsg incomingOSC);
     
     void clearParams();
     
@@ -258,14 +263,6 @@ public:
     
     string multiChannelPrefix = "";
     string noParameter = "";
-    
-    bool hasShutters = false;
-    bool hasIris = false;
-    bool hasEdge = false;
-    bool hasZoom = false;
-    bool hasFrost = false;
-    bool hasPanTilt = false;
-    
     
     // ----------------------- OUTGOING OSC -----------------------
     void sendPing();

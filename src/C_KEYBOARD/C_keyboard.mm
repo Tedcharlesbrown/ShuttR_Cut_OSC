@@ -65,7 +65,7 @@ void KEYBOARD::close() {
 //--------------------------------------------------------------
 
 void KEYBOARD::draw(){
-    float buttonWidth = plusMinusButtonWidth;
+    float buttonWidth = smallButtonWidth;
     float buttonPadding = buttonWidth * 1.25;
 
     ofPushMatrix();

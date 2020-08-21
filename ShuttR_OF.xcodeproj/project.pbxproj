@@ -389,8 +389,8 @@
 		7C31A216066E8CEE3269BF15 /* D_BUTTON */ = {
 			isa = PBXGroup;
 			children = (
-				6925EA105101873F4EA5D44B /* D_bank.mm */,
 				0484D6DFB619B21F34809E57 /* D_bank.h */,
+				6925EA105101873F4EA5D44B /* D_bank.mm */,
 				5F5596496ED691DD1A90EB1C /* D_encoder.h */,
 				010D69567EF2AD12D0092495 /* D_encoder.mm */,
 				C433A4A266B3CED27706AB90 /* D_button.h */,

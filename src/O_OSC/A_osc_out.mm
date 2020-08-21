@@ -6,7 +6,6 @@ void ofApp::sendChannel(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
-        clearParams();
         ofxEosOscMsg m;
         for (int i = 1; i >= 0; i--) { //SEND NEXT OR LAST KEY
             m.clear();
@@ -20,7 +19,6 @@ void ofApp::sendChannel(string parameter) {
 
 void ofApp::sendChannelNumber(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
-    clearParams();
     ofxEosOscMsg m;
     m.setAddress("/eos/user/" + inputID + "/cmd/" + parameter + "#");
     eos.sendMessage(m);

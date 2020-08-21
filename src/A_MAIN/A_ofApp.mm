@@ -24,6 +24,7 @@ void ofApp::setup() {
     shutterPageSetup();
     focusPageSetup();
     formPageSetup();
+    imagePageSetup();
     DSPageSetup();
     settingsSetup();
     
@@ -58,7 +59,9 @@ void ofApp::pageButtonAction() {
         focusPageUpdate();
     } else if (formPage.clicked && !settingsMenu) {
         formPageUpdate();
-    } else if (directSelectPage.clicked && !settingsMenu) {
+    } else if (imagePage.clicked && !settingsMenu) {
+        imagePageUpdate();
+    } else if (dSelectPage.clicked && !settingsMenu) {
         DSPageUpdate();
     }
 }
@@ -100,7 +103,7 @@ void ofApp::buttonAction() {
 //--------------------------------------------------------------
 
 void ofApp::channelButtonAction() {
-    if ((shutterPage.clicked || focusPage.clicked || formPage.clicked || directSelectPage.clicked) && !settingsMenu) {
+    if ((shutterPage.clicked || focusPage.clicked || formPage.clicked || imagePage.clicked || dSelectPage.clicked) && !settingsMenu) {
         if (keyboard.clickedOff) {
             selectedChannel = oldChannel;
             channelButton.clicked = false;
@@ -161,26 +164,32 @@ void ofApp::draw() {
     if (formPage.clicked && !settingsMenu) {
         formPageDraw();
     }
-    if (directSelectPage.clicked && !settingsMenu) {
+    if (imagePage.clicked && !settingsMenu) {
+        imagePageDraw();
+    }
+    if (dSelectPage.clicked && !settingsMenu) {
         DSPageDraw();
     }
     if (settingsMenu) {
         settingsDraw();
     }
-    if ((shutterPage.clicked || formPage.clicked|| focusPage.clicked) && !settingsMenu) {
+        
+    if ((shutterPage.clicked || formPage.clicked|| focusPage.clicked || imagePage.clicked) && !settingsMenu) {
         string channel = "SELECTED CHANNEL";
-        minusButton.show("-",guiLeftAlign,row1Padding,plusMinusButtonWidth,buttonHeight,"LARGE");
-        plusButton.show("+",guiRightAlign,row1Padding,plusMinusButtonWidth,buttonHeight,"LARGE");
+        minusButton.show("-",guiLeftAlign,row1Padding + buttonHeight / 2, smallButtonWidth,buttonHeight,"LARGE");
+        plusButton.show("+",guiRightAlign,row1Padding + buttonHeight / 2, smallButtonWidth,buttonHeight,"LARGE");
         fineButton.show("FINE",guiLeftAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE");
         highButton.show("HIGH",guiCenterAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE");
         flashButton.show("FLASH",guiRightAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE");
         
+        intensityButton.showInt(channelIntString,centerX,row1Padding + buttonHeight / 2, channelButtonWidth, buttonHeight);
+        
         if (selectedChannel.length() <= 10) {
-            channelButton.show(selectedChannel, centerX,row1Padding, activeChannelWidth, buttonHeight, "LARGE");
+            channelButton.show(selectedChannel, centerX,row1Padding, channelButtonWidth, buttonHeight, "LARGE");
         } else if (selectedChannel.length() > 10 && selectedChannel.length() < 15) {
-            channelButton.show(selectedChannel, centerX,row1Padding, activeChannelWidth, buttonHeight, "MEDIUM");
+            channelButton.show(selectedChannel, centerX,row1Padding, channelButtonWidth, buttonHeight, "MEDIUM");
         } else if (selectedChannel.length() >= 15) {
-            channelButton.show(selectedChannel, centerX,row1Padding, activeChannelWidth, buttonHeight, "SMALL");
+            channelButton.show(selectedChannel, centerX,row1Padding, channelButtonWidth, buttonHeight, "SMALL");
         }
         
         fontTiny.drawString(channel, centerX - fontTiny.stringWidth(channel) / 2, row1Padding - buttonHeight / 2 - fontTiny.stringHeight(channel) / 2);
@@ -197,11 +206,13 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
     if (touch.x > settingsX && touch.y < settingsHeight && touch.y > notchHeight) {
         settingsMenu = !settingsMenu;
         channelButton.clicked = false;
+        intensityButton.clicked = false;
     }
     shutterPage.touchDown(touch);
     focusPage.touchDown(touch);
     formPage.touchDown(touch);
-    directSelectPage.touchDown(touch);
+    imagePage.touchDown(touch);
+    dSelectPage.touchDown(touch);
     
     if (shutterPage.clicked && !settingsMenu && !keyboard.show) {
         shutterPageTouchDown(touch);
@@ -209,7 +220,9 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
         focusPageTouchDown(touch);
     } else if (formPage.clicked && !settingsMenu && !keyboard.show) {
         formPageTouchDown(touch);
-    } else if (directSelectPage.clicked && !settingsMenu) {
+    } else if (imagePage.clicked && !settingsMenu && !keyboard.show) {
+        imagePageTouchDown(touch);
+    } else if (dSelectPage.clicked && !settingsMenu) {
         DSPageTouchDown(touch);
     } else if (settingsMenu) {
         ipFieldButton.touchDown(touch, true);
@@ -246,7 +259,9 @@ void ofApp::touchUp(ofTouchEventArgs & touch){
         focusPageTouchUp(touch);
     } else if (formPage.clicked && !settingsMenu) {
         formPageTouchUp(touch);
-    } else if (directSelectPage.clicked && !settingsMenu) {
+    } else if (imagePage.clicked && !settingsMenu) {
+        imagePageTouchUp(touch);
+    } else if (dSelectPage.clicked && !settingsMenu) {
         DSPageTouchUp(touch);
     }
     
@@ -262,7 +277,7 @@ void ofApp::touchDoubleTap(ofTouchEventArgs & touch){
         focusPageDoubleTap(touch);
     } else if (formPage.clicked && !settingsMenu) {
         //pageTwoDoubleTap(touch);
-    } else if (directSelectPage.clicked && !settingsMenu) {
+    } else if (dSelectPage.clicked && !settingsMenu) {
         DSPageDoubleTap(touch);
     }
 }

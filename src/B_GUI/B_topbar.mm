@@ -6,20 +6,24 @@
 
 void ofApp::topBarUpdate() {
     if (shutterPage.action && shutterPage.clicked) {
-        shutterPage.clicked = true; focusPage.clicked = false; formPage.clicked = false; directSelectPage.clicked = false;
+        shutterPage.clicked = true; focusPage.clicked = false; formPage.clicked = false; imagePage.clicked = false; dSelectPage.clicked = false;
         shutterPage.action = false;
         settingsMenu = false;
     } else if (focusPage.action && focusPage.clicked) {
-        shutterPage.clicked = false; focusPage.clicked = true; formPage.clicked = false; directSelectPage.clicked = false;
+        shutterPage.clicked = false; focusPage.clicked = true; formPage.clicked = false; imagePage.clicked = false;  dSelectPage.clicked = false;
         focusPage.action = false;
         settingsMenu = false;
     } else if (formPage.action && formPage.clicked) {
-        shutterPage.clicked = false; focusPage.clicked = false; formPage.clicked = true; directSelectPage.clicked = false;
+        shutterPage.clicked = false; focusPage.clicked = false; formPage.clicked = true; imagePage.clicked = false;  dSelectPage.clicked = false;
         formPage.action = false;
         settingsMenu = false;
-    } else if (directSelectPage.action && directSelectPage.clicked) {
-        shutterPage.clicked = false; focusPage.clicked = false; formPage.clicked = false; directSelectPage.clicked = true;
-        directSelectPage.action = false;
+    } else if (imagePage.action && imagePage.clicked) {
+        shutterPage.clicked = false; focusPage.clicked = false; formPage.clicked = false; imagePage.clicked = true;  dSelectPage.clicked = false;
+        imagePage.action = false;
+        settingsMenu = false;
+    } else if (dSelectPage.action && dSelectPage.clicked) {
+        shutterPage.clicked = false; focusPage.clicked = false; formPage.clicked = false; imagePage.clicked = false;  dSelectPage.clicked = true;
+        dSelectPage.action = false;
         settingsMenu = false;
     }
 }
@@ -30,8 +34,8 @@ void ofApp::topBarDraw() {
     statusBarDraw();
     settingsBar(0,notchHeight,width,settingsBarHeight,settingsBarStrokeWeight);
     settingsButton(width - settingsBarHeight, notchHeight, settingsBarHeight, settingsBarHeight, buttonStrokeWeight);
-    oscLight("TX", smallButtonWidth / 2, (settingsBarHeight / 4) + notchHeight + settingsBarStrokeWeight, smallButtonWidth, settingsBarHeight / 2, buttonStrokeWeight);
-    oscLight("RX", smallButtonWidth / 2, (settingsBarHeight - settingsBarHeight / 4) + notchHeight, smallButtonWidth, settingsBarHeight / 2, buttonStrokeWeight);
+    oscLight("TX", lightWidth / 2, (settingsBarHeight / 4) + notchHeight + settingsBarStrokeWeight, lightWidth, settingsBarHeight / 2, buttonStrokeWeight);
+    oscLight("RX", lightWidth / 2, (settingsBarHeight - settingsBarHeight / 4) + notchHeight, lightWidth, settingsBarHeight / 2, buttonStrokeWeight);
 }
 
 //--------------------------------------------------------------
@@ -49,16 +53,20 @@ void ofApp::settingsBar(float _x, float _y, float _w, float _h, float _weight) {
     ofDrawRectangle(_x, _h + notchHeight, _w, _weight); //BOTTOM BAR
     ofPopStyle();
   
-//    shutterPage.showPage("SHUTTER", centerX - plusMinusButtonWidth * 1.5, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
-//    panTiltPage.showPage("FOCUS", centerX - plusMinusButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
-//    encoderPage.showPage("FORM", centerX + plusMinusButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
-//    directSelectPage.showPage("DS", centerX + plusMinusButtonWidth * 1.5, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth, settingsBarHeight);
+    bool imagePageTest = false;
     
-    shutterPage.showPage("SHUTTER", centerX - (plusMinusButtonWidth / 1.1) * 2, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth / 1.1, settingsBarHeight);
-    focusPage.showPage("FOCUS", centerX - plusMinusButtonWidth / 1.1, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth / 1.1, settingsBarHeight);
-    formPage.showPage("FORM", centerX, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth / 1.1, settingsBarHeight);
-    imagePage.showPage("IMAGE", centerX + plusMinusButtonWidth / 1.1, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth / 1.1, settingsBarHeight);
-    directSelectPage.showPage("DS", centerX + (plusMinusButtonWidth / 1.1) * 2, (settingsBarHeight / 2) + notchHeight, plusMinusButtonWidth / 1.1, settingsBarHeight);
+    if (imagePageTest) {
+        shutterPage.showPage("SHUTTER", centerX - smallButtonWidth * 1.5, (settingsBarHeight / 2) + notchHeight, smallButtonWidth, settingsBarHeight);
+        focusPage.showPage("FOCUS", centerX - smallButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, smallButtonWidth, settingsBarHeight);
+        formPage.showPage("FORM", centerX + smallButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, smallButtonWidth, settingsBarHeight);
+        dSelectPage.showPage("DS", centerX + smallButtonWidth * 1.5, (settingsBarHeight / 2) + notchHeight, smallButtonWidth, settingsBarHeight);
+    } else {
+        shutterPage.showPage("SHUTTER", centerX - (smallButtonWidth / 1.1) * 2, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
+        focusPage.showPage("FOCUS", centerX - smallButtonWidth / 1.1, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
+        formPage.showPage("FORM", centerX, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
+        imagePage.showPage("IMAGE", centerX + smallButtonWidth / 1.1, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
+        dSelectPage.showPage("DS", centerX + (smallButtonWidth / 1.1) * 2, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
+    }
 }
 
 //--------------------------------------------------------------

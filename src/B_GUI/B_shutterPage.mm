@@ -130,6 +130,7 @@ void ofApp::shutterPageTouchDown(ofTouchEventArgs & touch) {
     highButton.touchDown(touch, true);
     flashButton.touchDown(touch);
     channelButton.touchDown(touch, true);
+    intensityButton.touchDown(touch,true);
     
     thrustButton.touchDown(touch);
     angleButton.touchDown(touch);

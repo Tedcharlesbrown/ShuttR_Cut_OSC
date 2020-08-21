@@ -2,7 +2,7 @@
 #include "A_ofApp.h"
 
 //--------------------------------------------------------------
-// MARK: ----------NO TEXT----------
+// MARK: ----------PAGE BUTTONS----------
 //--------------------------------------------------------------
 
 void BUTTON::showPage(string _ID, float _x, float _y, float _w, float _h) { //ONE TEXT
@@ -220,6 +220,44 @@ void BUTTON::showBig(string _ID, string _ID2, float _x, float _y, float _w, floa
     ofSetColor(white);
     fontMedium.drawString(_ID, _x - fontMedium.stringWidth(_ID) / 2, _y + fontMedium.stringHeight(_ID) / 2);//INPUT
     fontMedium.drawString(_ID2, _x - fontMedium.stringWidth(_ID2) / 2, _y + _h / 1.25 + fontMedium.stringHeight(_ID2) / 2);//INPUT
+    
+    ofPopStyle();
+}
+
+//--------------------------------------------------------------
+// MARK: ----------INTENSITY----------
+//--------------------------------------------------------------
+
+void BUTTON::showInt(string _ID, float _x, float _y, float _w, float _h) { //ONE TEXT
+    this-> x = _x;
+    this-> y = _y;
+    this-> w = _w;
+    this-> h = _h;
+    
+    ofPushStyle();
+    ofSetRectMode(OF_RECTMODE_CENTER);
+    
+    ofSetColor(EOSState);
+//    ofSetColor(shutterColor);
+    ofDrawRectRounded(_x, _y, _w, _h * 1.5, buttonCorner);
+    
+    ofColor intensityColor = shutterColor;
+    
+    
+    if (this-> clicked) {
+        ofSetColor(buttonActive);
+    } else {
+        ofSetColor(black);
+    }
+    ofDrawRectRounded(_x, _y, _w - buttonStrokeWeight, _h * 1.5 - buttonStrokeWeight, buttonCorner);
+    
+    intensityColor.setBrightness(100);
+    ofSetColor(intensityColor);
+    fontMedium.drawString(_ID, _x - fontMedium.stringWidth(_ID) / 2.1, _y + (fontMedium.stringHeight(_ID) / 2) + _h / 2.85);//INPUT
+    
+    intensityColor.setBrightness(255);
+    ofSetColor(intensityColor);
+    fontMedium.drawString(_ID, _x - fontMedium.stringWidth(_ID) / 2, _y + (fontMedium.stringHeight(_ID) / 2) + _h / 3);//INPUT
     
     ofPopStyle();
 }

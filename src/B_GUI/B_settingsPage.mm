@@ -71,7 +71,7 @@ void ofApp::settingsDraw() {
     string IP = "IP ADDRESS";
     string ID = "USER";
     
-    ipFieldButton.show(userInputIP, centerX, row1Padding * 1.25, activeChannelWidth * 2, buttonHeight, "LARGE");
+    ipFieldButton.show(userInputIP, centerX, row1Padding * 1.25, channelButtonWidth * 2, buttonHeight, "LARGE");
     fontMedium.drawString(IP, centerX - fontMedium.stringWidth(IP) / 2, row1Padding * 1.25 - fontSmall.stringHeight(IP) / 2 - buttonHeight / 2);
     
     idFieldButton.show(userInputID, guiCenterAlign, row2Padding * 1.25, genericButtonWidth, buttonHeight, "LARGE");

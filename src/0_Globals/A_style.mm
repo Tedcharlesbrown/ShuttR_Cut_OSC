@@ -1,7 +1,7 @@
 #include "A_ofApp.h"
 
 // ----------------------- PAID VS FREE VERSION -----------------------
-bool isPaidVersion = false;
+bool isPaidVersion = true;
 
 //--------------------------------------------------------------
 // MARK: ---------- EOS SETTINGS ----------
@@ -30,6 +30,7 @@ bool hasOSC = false;
 float oscSentTime, oscReceivedTime = 0;
 
 // ----------------------- CHANNEL / INTENSITY -----------------------
+string channelIntString;
 int channelInt, channelInt255;
 float channelHue, channelSat;
 //--------------------------------------------------------------
@@ -54,7 +55,7 @@ float row1Padding, row2Padding, row3Padding, row4Padding, row5Padding;
 float guiLeftAlign, guiCenterAlign, guiRightAlign;
 
 // ----------------------- BUTTON WIDTH / HEIGHT -----------------------
-float smallButtonWidth, activeChannelWidth, genericButtonWidth, plusMinusButtonWidth, parameterButtonWidth;
+float lightWidth, channelButtonWidth, genericButtonWidth, smallButtonWidth, parameterButtonWidth;
 float buttonHeight;
 float buttonCorner;
 
@@ -172,9 +173,9 @@ void ofApp::styleInit(){
     
     //---------- GUI WIDTH ----------
     
-    smallButtonWidth = width / 10;
-    activeChannelWidth = (width / 4.5) * 1.5;
-    plusMinusButtonWidth = width / 6;
+    lightWidth = width / 10;
+    channelButtonWidth = (width / 4.5) * 1.5;
+    smallButtonWidth = width / 6;
     genericButtonWidth = width / 4.5;
     parameterButtonWidth = genericButtonWidth / 1.25;
     consoleWidth = width / 1.25;
@@ -182,8 +183,8 @@ void ofApp::styleInit(){
     //---------- GUI PADDDING ----------
     
     row1Padding = (settingsBarHeight + buttonHeight) + notchHeight;
-    row2Padding = row1Padding + height / 13;
-    row3Padding = row2Padding + height / 13;
+    row2Padding = row1Padding + height / 9; //13
+    row3Padding = row2Padding + height / 14; //13
     row4Padding = row3Padding + buttonHeight / 2;
     row5Padding = (height - height / 15) + notchHeight;
     consolePadding = (height / 2) + notchHeight;

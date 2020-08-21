@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void BANK::setup(int _ID){
     this-> ID = _ID;
-    buttonSize = plusMinusButtonWidth / 1.1;
+    buttonSize = smallButtonWidth / 1.1;
     directSelectSize = (((height - notchHeight) / 2) / 4) - ((buttonSize * 2) / 5);
     if (directSelectSize > buttonSize) {
         directSelectSize = buttonSize;

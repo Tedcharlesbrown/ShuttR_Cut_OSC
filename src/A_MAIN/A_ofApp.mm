@@ -115,6 +115,9 @@ void ofApp::channelButtonAction() {
             channelButton.clicked = false;
             keyboard.close();
         } else if (channelButton.action && channelButton.clicked) {
+            if (syntaxError) {
+                sendKey("clear_cmdline");
+            }
             oldChannel = selectedChannel;
             keyboard.input = "";
             channelButton.action = false;
@@ -223,7 +226,9 @@ void ofApp::draw() {
         
         intensityButton.showInt(channelIntString,centerX,row1Padding + buttonHeight / 2, channelButtonWidth, buttonHeight * 1.5);
         
-        if (selectedChannel.length() <= 10) {
+        if (syntaxError) {
+            channelButton.show("SYNTAX ERROR", centerX,row1Padding, channelButtonWidth, buttonHeight, "SMALL", EOSLightRed);
+        } else if (selectedChannel.length() <= 10) {
             channelButton.show(selectedChannel, centerX,row1Padding, channelButtonWidth, buttonHeight, "LARGE");
         } else if (selectedChannel.length() > 10 && selectedChannel.length() < 15) {
             channelButton.show(selectedChannel, centerX,row1Padding, channelButtonWidth, buttonHeight, "MEDIUM");

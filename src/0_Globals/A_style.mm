@@ -19,6 +19,7 @@ string IPAddress, inputIP, inputID, selectedChannel = "";
 bool noneSelected = true;
 bool ignoreOSC = false;
 bool isLive = true;
+bool syntaxError = false;
 
 // ----------------------- NETWORK BOOLEANS -----------------------
 bool connectRequest = false;

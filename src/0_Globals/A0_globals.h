@@ -13,7 +13,7 @@ extern bool isPaidVersion;
 extern string appName, version, headerName, IPAddress, inputIP, inputID, inputRX, inputTX, selectedChannel;
 
 // ----------------------- EOS BOOLEANS -----------------------
-extern bool noneSelected, ignoreOSC, isLive;
+extern bool noneSelected, ignoreOSC, isLive, syntaxError;
 
 // ----------------------- NETWORK BOOLEANS -----------------------
 extern bool connectRequest, isConnected, hasWifi, hasOSC;

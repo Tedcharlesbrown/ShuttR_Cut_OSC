@@ -92,47 +92,52 @@ void ofApp::getState(ofxEosOscMsg m){
 void ofApp::getCommandLine(ofxEosOscMsg m){
     string incomingOSC = m.getArgAsString(0);
     
-    if (incomingOSC.find("Highlight :") != string::npos) {
-        highButton.clicked = true;
+    if (incomingOSC.find("Error:") != string::npos) {
+//        selectedChannel = "SYNTAX ERROR";
+        syntaxError = true;
     } else {
-        highButton.clicked = false;
-    }
-    
-    if (incomingOSC.find("Thru") != string::npos && incomingOSC.find("#") != string::npos) {
-        int indexValueStart = incomingOSC.find("Chan") + 5;
-        incomingOSC = incomingOSC.substr(indexValueStart);
-        
-        int indexValueEnd = incomingOSC.find(" Thru");
-        string firstNumber = incomingOSC.substr(0, indexValueEnd);
-        
-        indexValueStart = incomingOSC.find("Thru") + 5;
-        
-        if (incomingOSC.find("#") < incomingOSC.find(":")) {
-            indexValueEnd = incomingOSC.find("#");
+        syntaxError = false;
+        if (incomingOSC.find("Highlight :") != string::npos) {
+            highButton.clicked = true;
         } else {
-            indexValueEnd = incomingOSC.find(":");
+            highButton.clicked = false;
         }
         
-        string secondNumber = incomingOSC.substr(indexValueStart, indexValueEnd - indexValueStart - 1);
-        multiChannelPrefix = firstNumber + "-" + secondNumber;
-    } else if (incomingOSC.find("Group") != string::npos && incomingOSC.find("#") != string::npos) {
-        int indexValueStart = incomingOSC.find("Group") + 6;
-        incomingOSC = incomingOSC.substr(indexValueStart);
-        
-        int indexValueEnd = 0;
-        if (incomingOSC.find("#") < incomingOSC.find(":")) {
-            indexValueEnd = incomingOSC.find("#") - 1;
-        } else {
-            indexValueEnd = incomingOSC.find(":") - 1;
+        if (incomingOSC.find("Thru") != string::npos && incomingOSC.find("#") != string::npos) {
+            int indexValueStart = incomingOSC.find("Chan") + 5;
+            incomingOSC = incomingOSC.substr(indexValueStart);
+            
+            int indexValueEnd = incomingOSC.find(" Thru");
+            string firstNumber = incomingOSC.substr(0, indexValueEnd);
+            
+            indexValueStart = incomingOSC.find("Thru") + 5;
+            
+            if (incomingOSC.find("#") < incomingOSC.find(":")) {
+                indexValueEnd = incomingOSC.find("#");
+            } else {
+                indexValueEnd = incomingOSC.find(":");
+            }
+            
+            string secondNumber = incomingOSC.substr(indexValueStart, indexValueEnd - indexValueStart - 1);
+            multiChannelPrefix = firstNumber + "-" + secondNumber;
+        } else if (incomingOSC.find("Group") != string::npos && incomingOSC.find("#") != string::npos) {
+            int indexValueStart = incomingOSC.find("Group") + 6;
+            incomingOSC = incomingOSC.substr(indexValueStart);
+            
+            int indexValueEnd = 0;
+            if (incomingOSC.find("#") < incomingOSC.find(":")) {
+                indexValueEnd = incomingOSC.find("#") - 1;
+            } else {
+                indexValueEnd = incomingOSC.find(":") - 1;
+            }
+            
+            incomingOSC = incomingOSC.substr(0,indexValueEnd);
+            multiChannelPrefix = "Gr " + incomingOSC;
+            
+        } else if (incomingOSC.find("#") != string::npos){
+            multiChannelPrefix = "";
         }
-        
-        incomingOSC = incomingOSC.substr(0,indexValueEnd);
-        multiChannelPrefix = "Gr " + incomingOSC;
-        
-    } else if (incomingOSC.find("#") != string::npos){
-        multiChannelPrefix = "";
     }
-    
 }
 
 //--------------------------------------------------------------

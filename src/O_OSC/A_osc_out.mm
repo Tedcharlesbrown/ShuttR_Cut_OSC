@@ -10,31 +10,32 @@ void ofApp::sendIntensity(ofVec2f & oscOutput) {
         m.setAddress("/eos/user/" + inputID + "/param/intensity");
         m.addFloatArg(oscOutput.y);
         eos.sendMessage(m);
-    } else if (oscOutput.x > 10){
-        sendKey("enter");
-        sendKey("clear_cmdline");
-        sendKey("select_last");
-        sendKey("intensity");
-        if (oscOutput.x == 11) {
-            sendKey("sneak");
-        } else {
-            sendKey("home");
-        }
-        sendKey("enter");
-//        sendKey("select_last");
-//        sendKey("enter");
-    } else {
+    } else if (oscOutput.x < 4) {
         int switchCase = oscOutput.x;
         string address = "/eos/user/" + inputID + "/param/intensity/";
         switch(switchCase) {
             case 1: address += "full"; break;
             case 2: address += "level"; break;
             case 3: address += "out"; break;
-            case 4: address += "-%"; break;
-            case 5: address += "+%"; break;
         }
         m.setAddress(address);
         eos.sendMessage(m);
+    } else {
+        sendKey("clear_cmdline");
+        sendKey("select_last");
+        if (oscOutput.x == 4) {
+            sendKey("-%");
+        } else if (oscOutput.x == 5) {
+            sendKey("+%");
+        } else {
+            sendKey("intensity");
+            if (oscOutput.x == 6) {
+                sendKey("sneak");
+            } else {
+                sendKey("home");
+            }
+            sendKey("enter");
+        }
     }
 }
 
@@ -61,7 +62,7 @@ void ofApp::sendChannelNumber(string parameter) {
 void ofApp::sendHigh() {
     oscSentTime = ofGetElapsedTimeMillis();
     
-    sendKey("enter");
+    sendKey("clear_cmdline");
     sendKey("highlight");
     sendKey("enter");
     sendKey("select_last");

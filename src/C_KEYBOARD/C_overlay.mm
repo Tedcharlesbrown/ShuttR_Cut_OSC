@@ -58,12 +58,12 @@ void OVERLAY::update(){
         plusPercentButton.action = false;
     }
     if (sneakButton.action) {
-        sliderVector.x = 11;
+        sliderVector.x = 6;
         sendOSC();
         sneakButton.action = false;
     }
     if (homeButton.action) {
-        sliderVector.x = 12;
+        sliderVector.x = 7;
         sendOSC();
         homeButton.action = false;
     }

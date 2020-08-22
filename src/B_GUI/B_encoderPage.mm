@@ -83,10 +83,6 @@ void ofApp::formPageTouchMoved(ofTouchEventArgs & touch) {
 
 
 void ofApp::formPageTouchUp(ofTouchEventArgs & touch) {
-    minusButton.touchUp(touch);
-    plusButton.touchUp(touch);
-    flashButton.touchUp(touch);
-    
     minusPercentButton.touchUp(touch);
     homeButton.touchUp(touch);
     plusPercentButton.touchUp(touch);

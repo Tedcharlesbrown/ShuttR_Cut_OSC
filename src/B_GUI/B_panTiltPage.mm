@@ -70,11 +70,7 @@ void ofApp::focusPageTouchMoved(ofTouchEventArgs & touch){
 }
 
 //--------------------------------------------------------------
-void ofApp::focusPageTouchUp(ofTouchEventArgs & touch){
-    minusButton.touchUp(touch);
-    plusButton.touchUp(touch);
-    flashButton.touchUp(touch);
-    
+void ofApp::focusPageTouchUp(ofTouchEventArgs & touch){  
     thrustButton.touchUp(touch);
     angleButton.touchUp(touch);
     shutterButton.touchUp(touch);

@@ -144,10 +144,6 @@ void ofApp::shutterPageTouchMoved(ofTouchEventArgs & touch) {
 //--------------------------------------------------------------
 
 void ofApp::shutterPageTouchUp(ofTouchEventArgs & touch) {
-    minusButton.touchUp(touch);
-    plusButton.touchUp(touch);
-    flashButton.touchUp(touch);
-    
     thrustButton.touchUp(touch);
     angleButton.touchUp(touch);
     shutterButton.touchUp(touch);

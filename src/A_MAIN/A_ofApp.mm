@@ -315,6 +315,12 @@ void ofApp::touchMoved(ofTouchEventArgs & touch){
 //--------------------------------------------------------------
 
 void ofApp::touchUp(ofTouchEventArgs & touch){
+    if ((shutterPage.clicked || focusPage.clicked || formPage.clicked || imagePage.clicked) && !keyboard.show) {
+    minusButton.touchUp(touch);
+    plusButton.touchUp(touch);
+    flashButton.touchUp(touch);
+    }
+    
     if (shutterPage.clicked && !settingsMenu) {
         shutterPageTouchUp(touch);
     } else if (focusPage.clicked && !settingsMenu && !keyboard.show) {

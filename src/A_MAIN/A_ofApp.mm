@@ -30,8 +30,6 @@ void ofApp::setup() {
     intOverlay.setup();
     
     ofAddListener(intOverlay.oscOutputEvent, this, &ofApp::sendIntensity);
-    
-    intOverlay.show = true;
 }
 
 //--------------------------------------------------------------
@@ -211,9 +209,6 @@ void ofApp::draw() {
     if (dSelectPage.clicked && !settingsMenu) {
         DSPageDraw();
     }
-    if (intensityButton.clicked && !settingsMenu) {
-//        intOverlay.draw();
-    }
     if (settingsMenu) {
         settingsDraw();
     }
@@ -251,6 +246,7 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
     if (touch.x > settingsX && touch.y < settingsHeight && touch.y > notchHeight) {
         settingsMenu = !settingsMenu;
         channelButton.clicked = false;
+        intOverlay.close();
         intensityButton.clicked = false;
     }
     

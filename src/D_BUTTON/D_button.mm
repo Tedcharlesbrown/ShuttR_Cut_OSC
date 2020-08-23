@@ -347,33 +347,46 @@ void BUTTON::showDS(string _ID, string _ID2, float _x, float _y, float _w, float
     string dName = _ID;
     vector<string> dNames;
     
-    if (fontDS.stringWidth(_ID) < w) {
-        dNames.push_back(_ID);
+    if (fontDS.stringWidth(dName) < w - buttonStrokeWeight / 2) {
+        dNames.push_back(dName);
     } else {
-        
         if (dName.find(" ") != string::npos) { //IF NAME HAS A SPACE
             int numSpaces = std::count(dName.begin(),dName.end(), ' ');
+            
             int indexValueEnd = dName.find(" ");
-            while (numSpaces >= 0) {
+            dNames.push_back(dName.substr(0,indexValueEnd));
+            dName = dName.substr(indexValueEnd + 1);
+            
+            if (fontDS.stringWidth(dName) < w - buttonStrokeWeight / 2) {
+                dNames.push_back(dName);
+            } else {
+                indexValueEnd = dName.find(" ");
                 dNames.push_back(dName.substr(0,indexValueEnd));
                 dName = dName.substr(indexValueEnd + 1);
-                indexValueEnd = dName.find(" ");
-                numSpaces--;
+                
+                if (fontDS.stringWidth(dName) < w - buttonStrokeWeight / 2) {
+                    dNames.push_back(dName);
+                }
+                else {
+                    indexValueEnd = dName.find(" ");
+                    dNames.push_back(dName.substr(0,indexValueEnd));
+                    dName = dName.substr(indexValueEnd + 1);
+                    
+                    if (fontDS.stringWidth(dName) < w - buttonStrokeWeight / 2) {
+                        dNames.push_back(dName);
+                    }
+                    else {
+                        indexValueEnd = dName.find(" ");
+                        dNames.push_back(dName.substr(0,indexValueEnd));
+                        dName = dName.substr(indexValueEnd + 1);
+                    }
+                }
             }
         } else { //IF NAME DOES NOT HAVE SPACE IN IT
             for (int i = 0; i < dName.length(); i += maxLineLength) {
                 dNames.push_back(dName.substr(i,maxLineLength));
             }
         }
-        
-//        for (int i = 0; i < dNames.size(); i++) {
-//            if (i + 1 < dNames.size()) {
-//                if (fontDS.stringWidth(dNames.at(i)) + fontDS.stringWidth(" ") + fontDS.stringWidth(dNames.at(i+1)) < w) {
-//                    dNames.at(i) += "" + dNames.at(i+1);
-//                }
-//            }
-//        }
-        
     }
     
     if (dNames.size() == 1) {

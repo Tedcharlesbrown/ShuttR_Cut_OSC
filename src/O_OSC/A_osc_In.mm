@@ -202,23 +202,13 @@ void ofApp::getWheel(ofxEosOscMsg m){
                 zoomPercent = m.getArgPercent(0) + " %";
             } else if (incomingOSC.find("Diffusn") != string::npos) { //FROST
                 frostPercent = m.getArgPercent(0) + " %";
-
-            } else if (incomingOSC.find("Gobo Select 2") != string::npos) { //GOBO WHEEL 2
-                wheelSelect.push_back("");
-                wheelPercent.push_back("");
-                
-                wheelSelect.insert(wheelSelect.begin() + 1, "Gobo Select 2");
-                wheelPercent.insert(wheelPercent.begin() + 1, m.getArgPercent(0));
-                //                wheelSelect.push_back("Gobo Select 2");
-                //                wheelPercent.push_back(m.getArgPercent(0));
-                //                wheelSelect.at(1) = "Gobo Select 2";
-                //                wheelPercent.at(1) = m.getArgPercent(0);
-            } else if (incomingOSC.find("Gobo Select") != string::npos) { //GOBO WHEEL 1
-//                wheelSelect.insert(wheelSelect.begin(), "Gobo Select 1");
-//                wheelPercent.insert(wheelPercent.begin(), m.getArgPercent(0));
-                wheelSelect.at(0) = "Gobo Select 1";
-                wheelPercent.at(0) = m.getArgPercent(0);
             }
+//            else if (incomingOSC.find("Gobo Select") != string::npos) { //GOBO WHEEL 1
+//                wheelSelect.at(0) = "Gobo Select 1";
+//                wheelGobo.at(0) = m.getArgPercent(0);
+//            } else if (incomingOSC.find("Gobo Ind/Spd") != string::npos) { //GOBO WHEEL 1
+//                wheelPercent.at(0) = m.getArgPercent(0) + " %";
+//            }
         }
     }
 }

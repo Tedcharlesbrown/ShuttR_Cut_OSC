@@ -283,13 +283,14 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
 void ofApp::touchMoved(ofTouchEventArgs & touch){
     if (shutterPage.clicked && !settingsMenu) {
         shutterPageTouchMoved(touch);
-    }
-    if (focusPage.clicked && !settingsMenu) {
+    } else if (focusPage.clicked && !settingsMenu) {
         focusPageTouchMoved(touch);
-    }
-    if (formPage.clicked && !settingsMenu) {
+    } else if (formPage.clicked && !settingsMenu) {
         formPageTouchMoved(touch);
+    } else if (imagePage.clicked && !settingsMenu) {
+        imagePageTouchMoved(touch);
     }
+    
     if (intensityButton.clicked && !settingsMenu) {
         intOverlay.touchMoved(touch, fineButton.clicked);
     }

@@ -55,7 +55,7 @@ void ofApp::settingsBar(float _x, float _y, float _w, float _h, float _weight) {
   
     bool imagePageTest = false;
     
-    if (imagePageTest) {
+    if (!imagePageTest) {
         shutterPage.showPage("SHUTTER", centerX - smallButtonWidth * 1.5, (settingsBarHeight / 2) + notchHeight, smallButtonWidth, settingsBarHeight);
         focusPage.showPage("FOCUS", centerX - smallButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, smallButtonWidth, settingsBarHeight);
         formPage.showPage("FORM", centerX + smallButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, smallButtonWidth, settingsBarHeight);

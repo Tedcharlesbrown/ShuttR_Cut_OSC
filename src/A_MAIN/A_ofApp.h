@@ -161,9 +161,10 @@ public:
     void imagePageTouchUp(ofTouchEventArgs & touch);
     void imagePageDoubleTap(ofTouchEventArgs & touch);
     
+    ENCODER imageEncoder;
     BUTTON wheelButton;
     vector<BUTTON> imageWheel, imageWheelLeft, imageWheelRight;
-    vector<string> wheelSelect, wheelPercent;
+    vector<string> wheelSelect, wheelGobo, wheelPercent;
         
     //--------------------------------------------------------------
     // MARK: ----------DIRECT SELECT PAGE----------

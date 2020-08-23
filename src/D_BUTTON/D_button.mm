@@ -225,6 +225,59 @@ void BUTTON::showBig(string _ID, string _ID2, float _x, float _y, float _w, floa
 }
 
 //--------------------------------------------------------------
+// MARK: ----------IMAGE BUTTON----------
+//--------------------------------------------------------------
+
+void BUTTON::showImage(string _ID, string _ID2, string _ID3, float _x, float _y, float _w, float _h) { //DOUBLE TEXT WITH BOTTOM
+    this-> x = _x;
+    this-> y = _y + _h / 2;
+    this-> w = _w;
+    this-> h = _h * 1.5;
+    
+    ofPushStyle();
+    ofSetRectMode(OF_RECTMODE_CENTER);
+
+    //BOTTOM
+    ofSetColor(EOSState);
+    ofDrawRectRounded(_x, _y + _h / 0.75, _w, _h, buttonCorner);
+    
+    if (this-> clicked) {
+        ofSetColor(buttonActive);
+    } else {
+        ofSetColor(black);
+    }
+    ofDrawRectRounded(_x, _y + _h / 0.75, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
+    
+    //MIDDLE
+    ofSetColor(EOSState);
+    ofDrawRectRounded(_x, _y + _h / 1.5, _w, _h, buttonCorner);
+    if (this-> clicked) {
+        ofSetColor(buttonActive);
+    } else {
+        ofSetColor(black);
+    }
+    ofDrawRectRounded(_x, _y + _h / 1.5, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
+    
+    //TOP
+    ofSetColor(EOSState);
+    ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
+    
+    if (this-> clicked) {
+        ofSetColor(buttonActive);
+    } else {
+        ofSetColor(black);
+    }
+    ofDrawRectRounded(_x, _y, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
+    
+    ofSetColor(white);
+    fontSmall.drawString(_ID, _x - fontSmall.stringWidth(_ID) / 2, _y + fontSmall.stringHeight(_ID) / 2);//INPUT
+    fontMedium.drawString(_ID2, _x - fontMedium.stringWidth(_ID2) / 2, _y + _h / 1.25 + fontMedium.stringHeight(_ID2) / 2);//INPUT
+    fontMedium.drawString(_ID3, _x - fontMedium.stringWidth(_ID3) / 2, _y + _h * 1.5 + fontMedium.stringHeight(_ID3) / 2);//INPUT
+    
+    ofPopStyle();
+}
+
+//--------------------------------------------------------------
 // MARK: ----------INTENSITY----------
 //--------------------------------------------------------------
 
@@ -290,32 +343,38 @@ void BUTTON::showDS(string _ID, string _ID2, float _x, float _y, float _w, float
     fontTiny.drawString(_ID2, _x + (_w / 4) - fontTiny.stringWidth(_ID2) / 2, _y + (_h / 3) + fontTiny.stringHeight(_ID2) / 2);//NUMBER
     
     
-    
     int maxLineLength = 7;
     string dName = _ID;
     vector<string> dNames;
-    if (dName.find(" ") != string::npos) { //IF NAME HAS A SPACE
-        int numSpaces = std::count(dName.begin(),dName.end(), ' ');
-        int indexValueEnd = dName.find(" ");
-        while (numSpaces >= 0) {
-            dNames.push_back(dName.substr(0,indexValueEnd));
-            dName = dName.substr(indexValueEnd + 1);
-            indexValueEnd = dName.find(" ");
-            numSpaces--;
-        }
-    } else { //IF NAME DOES NOT HAVE SPACE IN IT
-        for (int i = 0; i < dName.length(); i += maxLineLength) {
-            dNames.push_back(dName.substr(i,maxLineLength));
-        }
-    }
     
-//    for (int i = 0; i < dNames.size(); i++) {
-//        if (i + 1 < dNames.size()) {
-//            if (fontDS.stringWidth(dNames.at(i)) + fontDS.stringWidth(" ") + fontDS.stringWidth(dNames.at(i+1)) < w) {
-//                dNames.at(i) += "" + dNames.at(i+1);
+    if (fontDS.stringWidth(_ID) < w) {
+        dNames.push_back(_ID);
+    } else {
+        
+        if (dName.find(" ") != string::npos) { //IF NAME HAS A SPACE
+            int numSpaces = std::count(dName.begin(),dName.end(), ' ');
+            int indexValueEnd = dName.find(" ");
+            while (numSpaces >= 0) {
+                dNames.push_back(dName.substr(0,indexValueEnd));
+                dName = dName.substr(indexValueEnd + 1);
+                indexValueEnd = dName.find(" ");
+                numSpaces--;
+            }
+        } else { //IF NAME DOES NOT HAVE SPACE IN IT
+            for (int i = 0; i < dName.length(); i += maxLineLength) {
+                dNames.push_back(dName.substr(i,maxLineLength));
+            }
+        }
+        
+//        for (int i = 0; i < dNames.size(); i++) {
+//            if (i + 1 < dNames.size()) {
+//                if (fontDS.stringWidth(dNames.at(i)) + fontDS.stringWidth(" ") + fontDS.stringWidth(dNames.at(i+1)) < w) {
+//                    dNames.at(i) += "" + dNames.at(i+1);
+//                }
 //            }
 //        }
-//    }
+        
+    }
     
     if (dNames.size() == 1) {
         fontDS.drawString(dNames.at(0), _x - fontDS.stringWidth(dNames.at(0)) / 2, _y + fontDS.stringHeight(dNames.at(0)) / 2);//INPUT

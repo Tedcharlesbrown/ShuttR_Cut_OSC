@@ -16,6 +16,7 @@ public:
     void showInt(string ID, float x, float y , float width, float height);
     
     void showBig(string ID, string ID2, float x, float y, float width, float height); //TWO TEXT WITH BOTTOM
+    void showImage(string ID, string ID2, string ID3, float x, float y, float width, float height); //TWO TEXT WITH BOTTOM
     
     void showDS(string _ID, string _ID2, float _x, float _y, float _w, float _h, ofColor color); //DIRECT SELECT
     

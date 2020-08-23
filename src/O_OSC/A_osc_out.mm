@@ -229,12 +229,13 @@ void ofApp::sendDS(string bank, string buttonID){
 //--------------------------------------------------------------
 
 void ofApp::sendPing() {
-    oscSentTime = ofGetElapsedTimeMillis();
+//    oscSentTime = ofGetElapsedTimeMillis();
     sentPingTime = ofGetElapsedTimeMillis();
     
     ofxEosOscMsg m;
     
     m.setAddress("/eos/ping");
+    m.addStringArg(appName);
     eos.sendMessage(m);
 }
 

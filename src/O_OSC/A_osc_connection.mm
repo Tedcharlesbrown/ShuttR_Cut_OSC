@@ -34,7 +34,6 @@ void ofApp::connect(bool connectTCP,bool connectEOS, bool log) {
 
 void ofApp::checkConnection() {
     
-    
     if (receivedPingTime > sentPingTime || ofGetElapsedTimeMillis() > sentPingTime + 3000) { //IF GOT NEW PING OR TIME OUT
         
         if (sentPingTime > receivedPingTime && !hasOSC) { //IF CURRENT TIME IS > NEW PING TIME + BUFFER
@@ -57,7 +56,7 @@ void ofApp::checkConnection() {
 //--------------------------------------------------------------
 
 void ofApp::heartBeat() {
-    checkTime = 60 * 1000;
+    checkTime = 30 * 1000;
     
     if (!hasWifi || !isConnected) {
         checkTime = 3000;

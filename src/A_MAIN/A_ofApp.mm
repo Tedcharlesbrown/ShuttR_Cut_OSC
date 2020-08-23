@@ -50,7 +50,6 @@ void ofApp::update() {
     buttonAction();
     settingsUpdate();
     
-    
     heartBeat();
 }
 
@@ -90,7 +89,7 @@ void ofApp::buttonAction() {
         highButton.action = false;
     }
     if (flashButton.action) {
-        if (channelInt >= 90) {
+        if (channelInt >= 50) {
             sendFlash("FLASH_OFF");
         } else {
             sendFlash("FLASH_ON");
@@ -152,23 +151,6 @@ void ofApp::intensityButtonAction() {
             intensityButton.action = false;
             intOverlay.open();
         }
-//        else if (intensityButton.action && !intensityButton.clicked) {
-//            intensityButton.action = false;
-//            intOverlay.close();
-//        }
-        //        if (channelButton.clicked) {
-        //            selectedChannel = keyboard.input;
-        //        }
-        //        if (keyboard.enter) {
-        //            channelButton.clicked = false;
-        //            keyboard.close();
-        //            if (selectedChannel == "") {
-        //                selectedChannel = oldChannel;
-        //            } else {
-        //                noneSelected = false;
-        //                sendChannelNumber(selectedChannel);
-        //            }
-        //        }
     }
 }
 
@@ -197,19 +179,19 @@ void ofApp::oscLightUpdate() {
 void ofApp::draw() {
     ofBackground(EOSBackground);
     
-    if (shutterPage.clicked && !settingsMenu) {
+    if (shutterPage.clicked && !settingsMenu && !intOverlay.show) {
         shutterPageDraw();
     }
-    if (focusPage.clicked && !settingsMenu) {
+    if (focusPage.clicked && !settingsMenu && !intOverlay.show) {
         focusPageDraw();
     }
-    if (formPage.clicked && !settingsMenu) {
+    if (formPage.clicked && !settingsMenu && !intOverlay.show) {
         formPageDraw();
     }
-    if (imagePage.clicked && !settingsMenu) {
+    if (imagePage.clicked && !settingsMenu && !intOverlay.show) {
         imagePageDraw();
     }
-    if (dSelectPage.clicked && !settingsMenu) {
+    if (dSelectPage.clicked && !settingsMenu && !intOverlay.show) {
         DSPageDraw();
     }
     if (settingsMenu) {

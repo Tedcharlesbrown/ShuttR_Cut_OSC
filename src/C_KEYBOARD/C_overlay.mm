@@ -20,12 +20,15 @@ void OVERLAY::close() {
 //--------------------------------------------------------------
 
 void OVERLAY::setup(){
-    botLimit = centerY - assemblyRadius;
-    topLimit = centerY + assemblyRadius;
-    defaultY = centerY;
+    botLimit = centerY - assemblyRadius - clickRadius;
+    topLimit = centerY + assemblyRadius - clickRadius;
+    defaultY = centerY - clickRadius;
     
     sliderX = guiCenterAlign + genericButtonWidth / 1.25;
     sliderVector.set(0,0);
+    
+    fader.load("Fader.png");
+    fader.resize(clickDiameter, clickDiameter * 2);
 }
 
 void OVERLAY::update(){
@@ -87,16 +90,12 @@ void OVERLAY::draw(){
         plusPercentButton.show("+%", guiRightAlign, rowBottomPadding, genericButtonWidth, buttonHeight, "MEDIUM");
         
         ofSetColor(shutterOutsideStroke);
-        ofDrawRectRounded(sliderX - assemblyLineWeight / 4, centerY - assemblyRadius, assemblyLineWeight / 2, assemblyDiameter, buttonCorner);
+        ofDrawRectRounded(sliderX - assemblyLineWeight / 2, botLimit, assemblyLineWeight, assemblyDiameter, buttonCorner);
         
-        // ----------BUTTON----------
-        // OUTSIDE BUTTON
+        // ----------FADER----------
         ofSetColor(shutterFrameStroke);
-        ofDrawCircle(sliderX, sliderY, clickRadius);
-        // INSIDE BUTTON
-        ofSetColor(shutterOutsideStroke);
-        ofDrawCircle(sliderX, sliderY, clickRadius - assemblyButtonWeight);
-        
+        ofTranslate(sliderX, sliderY);
+        fader.draw(-fader.getWidth() / 2,-fader.getHeight() / 2);
         ofPopStyle();
     }
 }
@@ -109,7 +108,8 @@ void OVERLAY::touchDown(ofTouchEventArgs & touch){
     if (touch.y < row2Padding - buttonHeight / 2){
         clickedOff = true;
     }
-    if (touch.x > sliderX - clickRadius && touch.x < sliderX + clickRadius && touch.y > sliderY - clickRadius && touch.y < sliderY + clickRadius) {
+    //    if (touch.x > sliderX - clickRadius && touch.x < sliderX + clickRadius && touch.y > sliderY - clickRadius && touch.y < sliderY + clickRadius) {
+    if (touch.x > sliderX - fader.getWidth() / 2 && touch.x < sliderX + fader.getWidth() / 2 && touch.y > sliderY - fader.getHeight() / 2 && touch.y < sliderY + fader.getHeight() / 2) {
         clicked = true;
         sliderVector.x = 0;
     }

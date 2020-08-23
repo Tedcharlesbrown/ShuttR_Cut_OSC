@@ -50,6 +50,7 @@ public:
     //----------------------------------------------------
     
     BUTTON fullButton, levelButton, outButton, sneakButton, minusPercentButton, homeButton, plusPercentButton;
+    ofImage fader;
     
     //----------------------------------------------------
     

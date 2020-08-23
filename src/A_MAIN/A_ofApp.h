@@ -44,8 +44,7 @@ public:
     void buttonAction();
     
     KEYBOARD keyboard;
-    OVERLAY intOverlay;
-    
+    OVERLAY intOverlay;    
     //--------------------------------------------------------------
     // MARK: ----------XML----------
     //--------------------------------------------------------------

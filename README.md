@@ -20,8 +20,12 @@
     -   Added outside stroke to the shutter assembly
     
     ### Version 0.4.1
+-   OSC Changes
+    -   Fixed bug that made flash button not work on Image page
+    -   Added a way to affect intensity
 -   Visual changes
     -   Fixed bug that made GUI sized for iPhone 8+ only
+    -   Added a fader image
 -   Business model
     -   Added free version vs paid version
  

@@ -328,9 +328,13 @@ void ofApp::touchDoubleTap(ofTouchEventArgs & touch){
     } else if (focusPage.clicked && !settingsMenu && !keyboard.show) {
         focusPageDoubleTap(touch);
     } else if (formPage.clicked && !settingsMenu) {
-        //pageTwoDoubleTap(touch);
+        formPageDoubleTap(touch);
     } else if (dSelectPage.clicked && !settingsMenu) {
         DSPageDoubleTap(touch);
+    }
+    
+    if (intensityButton.clicked && !settingsMenu) {
+        intOverlay.touchDoubleTap(touch);
     }
 }
 

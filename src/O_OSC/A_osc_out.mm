@@ -41,6 +41,19 @@ void ofApp::sendIntensity(ofVec2f & oscOutput) {
 
 //--------------------------------------------------------------
 
+void ofApp::sendSneak(string parameter) {
+    oscSentTime = ofGetElapsedTimeMillis();
+    ofxEosOscMsg m;
+    
+    sendKey("clear_cmdline");
+    sendKey("select_last");
+    sendKey(parameter);
+    sendKey("sneak");
+    sendKey("enter");
+}
+
+//--------------------------------------------------------------
+
 void ofApp::sendChannel(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     

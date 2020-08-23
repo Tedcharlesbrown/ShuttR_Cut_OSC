@@ -269,6 +269,7 @@ public:
     void sendPing();
     
     void sendIntensity(ofVec2f & intensityVector);
+    void sendSneak(string parameter);
     
     void sendChannel(string parameter);
     void sendChannelNumber(string parameter);

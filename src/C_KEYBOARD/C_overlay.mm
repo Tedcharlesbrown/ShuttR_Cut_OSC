@@ -20,11 +20,11 @@ void OVERLAY::close() {
 //--------------------------------------------------------------
 
 void OVERLAY::setup(){
-    botLimit = centerY - assemblyRadius - clickRadius;
+    botLimit = centerY - assemblyRadius + clickRadius / 2;
     topLimit = centerY + assemblyRadius - clickRadius;
     defaultY = centerY - clickRadius;
     
-    sliderX = guiCenterAlign + genericButtonWidth / 1.25;
+    sliderX = guiCenterAlign;
     sliderVector.set(0,0);
     
     fader.load("Fader.png");
@@ -60,16 +60,16 @@ void OVERLAY::update(){
         sendOSC();
         plusPercentButton.action = false;
     }
-    if (sneakButton.action) {
+    if (homeButton.doubleClicked) {
         sliderVector.x = 6;
         sendOSC();
-        sneakButton.action = false;
-    }
-    if (homeButton.action) {
+        homeButton.action = false;
+    } else if (homeButton.action) {
         sliderVector.x = 7;
         sendOSC();
         homeButton.action = false;
     }
+    
 }
 
 //--------------------------------------------------------------
@@ -80,17 +80,16 @@ void OVERLAY::draw(){
         ofSetColor(EOSBackground,230);
         ofDrawRectangle(0, row2Padding + buttonHeight / 2, width, height);
         
-        fullButton.show("FULL",guiLeftAlign, row6Padding, genericButtonWidth, buttonHeight,"LARGE");
-        levelButton.show("LEVEL",guiLeftAlign, row7Padding, genericButtonWidth, buttonHeight,"LARGE");
-        outButton.show("OUT",guiLeftAlign,row8Padding,genericButtonWidth,buttonHeight,"LARGE");
-        sneakButton.show("SNEAK",guiLeftAlign,row10Padding,genericButtonWidth,buttonHeight,"LARGE");
+        fullButton.show("FULL",guiLeftAlign, row3Padding, genericButtonWidth, buttonHeight,"LARGE");
+        levelButton.show("LEVEL",guiCenterAlign, row3Padding, genericButtonWidth, buttonHeight,"LARGE");
+        outButton.show("OUT",guiRightAlign,row3Padding,genericButtonWidth,buttonHeight,"LARGE");
         
         minusPercentButton.show("-%", guiLeftAlign, rowBottomPadding, genericButtonWidth, buttonHeight, "MEDIUM");
-        homeButton.show("HOME", guiCenterAlign, rowBottomPadding, genericButtonWidth, buttonHeight, "MEDIUM");
+        homeButton.show("INTENS.", "HOME", guiCenterAlign, rowBottomPadding, genericButtonWidth, buttonHeight);
         plusPercentButton.show("+%", guiRightAlign, rowBottomPadding, genericButtonWidth, buttonHeight, "MEDIUM");
         
         ofSetColor(shutterOutsideStroke);
-        ofDrawRectRounded(sliderX - assemblyLineWeight / 2, botLimit, assemblyLineWeight, assemblyDiameter, buttonCorner);
+        ofDrawRectRounded(sliderX - assemblyLineWeight / 2, botLimit, assemblyLineWeight, assemblyDiameter - clickRadius, buttonCorner);
         
         // ----------FADER----------
         ofSetColor(shutterFrameStroke);
@@ -108,15 +107,15 @@ void OVERLAY::touchDown(ofTouchEventArgs & touch){
     if (touch.y < row2Padding - buttonHeight / 2){
         clickedOff = true;
     }
-    //    if (touch.x > sliderX - clickRadius && touch.x < sliderX + clickRadius && touch.y > sliderY - clickRadius && touch.y < sliderY + clickRadius) {
+    
     if (touch.x > sliderX - fader.getWidth() / 2 && touch.x < sliderX + fader.getWidth() / 2 && touch.y > sliderY - fader.getHeight() / 2 && touch.y < sliderY + fader.getHeight() / 2) {
         clicked = true;
         sliderVector.x = 0;
     }
+    
     fullButton.touchDown(touch);
     levelButton.touchDown(touch);
     outButton.touchDown(touch);
-    sneakButton.touchDown(touch);
     
     minusPercentButton.touchDown(touch);
     homeButton.touchDown(touch);
@@ -143,11 +142,14 @@ void OVERLAY::touchUp(ofTouchEventArgs & touch){
     fullButton.touchUp(touch);
     levelButton.touchUp(touch);
     outButton.touchUp(touch);
-    sneakButton.touchUp(touch);
     
     minusPercentButton.touchUp(touch);
     homeButton.touchUp(touch);
     plusPercentButton.touchUp(touch);
+}
+
+void OVERLAY::touchDoubleTap(ofTouchEventArgs & touch){
+    homeButton.touchDoubleTap(touch);
 }
 
 //--------------------------------------------------------------

@@ -44,12 +44,13 @@ public:
     void touchDown(ofTouchEventArgs & touch);
     void touchMoved(ofTouchEventArgs & touch, bool fine);
     void touchUp(ofTouchEventArgs & touch);
+    void touchDoubleTap(ofTouchEventArgs & touch);
     
     void incomingOSC(float value);
     
     //----------------------------------------------------
     
-    BUTTON fullButton, levelButton, outButton, sneakButton, minusPercentButton, homeButton, plusPercentButton;
+    BUTTON fullButton, levelButton, outButton, minusPercentButton, homeButton, plusPercentButton;
     ofImage fader;
     
     //----------------------------------------------------

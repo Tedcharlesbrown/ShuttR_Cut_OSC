@@ -37,7 +37,11 @@ void ofApp::formPageUpdate() {
         sendEncoderPercent(formParameter, -1);
         minusPercentButton.action = false;
     } else if (homeButton.action) {
-        sendEncoderPercent(formParameter, 0);
+        if (formParameter == "form" && homeButton.doubleClicked) { //If double tapped, sneak
+            sendSneak("form");
+        } else {
+            sendEncoderPercent(formParameter, 0);
+        }
         homeButton.action = false;
     } else if (plusPercentButton.action && formParameter != "form") { //if param is form, don't send.
         sendEncoderPercent(formParameter, 1);
@@ -88,6 +92,10 @@ void ofApp::formPageTouchUp(ofTouchEventArgs & touch) {
     plusPercentButton.touchUp(touch);
     
     formEncoder.touchUp(touch);
+}
+
+void ofApp::formPageDoubleTap(ofTouchEventArgs & touch){
+    homeButton.touchDoubleTap(touch);
 }
 
 

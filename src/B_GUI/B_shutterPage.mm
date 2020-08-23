@@ -39,6 +39,8 @@ void ofApp::shutterPageUpdate() {
             angleA.rotateAngle = 0; angleB.rotateAngle = 0; angleC.rotateAngle = 0; angleD.rotateAngle = 0;
             thrustA.buttonA.position = 1; thrustB.buttonB.position = 1; thrustC.buttonC.position = 1; thrustD.buttonD.position = 1;
             assembly.frameX = assembly.defaultX;
+        } else if (shutterButton.doubleClicked){
+            sendSneak("Shutter");
         } else {
             sendShutterHome("SHUTTER");
         }
@@ -58,7 +60,7 @@ void ofApp::shutterPageDraw() {
     thrustButton.show("THRUST", "HOME", guiLeftAlign, row3Padding, genericButtonWidth, buttonHeight);
     angleButton.show("ANGLE", "HOME", guiCenterAlign, row3Padding, genericButtonWidth, buttonHeight);
     shutterButton.show("SHUTTER", "HOME", guiRightAlign, row3Padding, genericButtonWidth, buttonHeight);
-    
+
     ofPushMatrix();
     ofTranslate(centerX, centerY);
     ofRotateDeg(rotation);
@@ -156,6 +158,8 @@ void ofApp::shutterPageTouchUp(ofTouchEventArgs & touch) {
 //--------------------------------------------------------------
 
 void ofApp::shutterPageDoubleTap(ofTouchEventArgs & touch) {
+    shutterButton.touchDoubleTap(touch);
+    
     thrustA.touchDoubleTap(touch); thrustB.touchDoubleTap(touch); thrustC.touchDoubleTap(touch); thrustD.touchDoubleTap(touch);
     angleA.touchDoubleTap(touch); angleB.touchDoubleTap(touch); angleC.touchDoubleTap(touch); angleD.touchDoubleTap(touch);
     assembly.touchDoubleTap(touch);

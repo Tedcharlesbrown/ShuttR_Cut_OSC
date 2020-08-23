@@ -28,7 +28,11 @@ void ofApp::focusPageUpdate(){
         sendEncoderPercent(focusParameter, -1);
         minusPercentButton.action = false;
     } else if (homeButton.action) {
-        sendEncoderPercent(focusParameter, 0);
+        if (focusParameter == "focus" && homeButton.doubleClicked) {  //If double tapped, sneak
+            sendSneak("focus");
+        } else {
+            sendEncoderPercent(focusParameter, 0);
+        }
         homeButton.action = false;
     } else if (plusPercentButton.action && focusParameter != "focus") { //if param is focus, don't send.
         sendEncoderPercent(focusParameter, 1);
@@ -84,7 +88,7 @@ void ofApp::focusPageTouchUp(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 void ofApp::focusPageDoubleTap(ofTouchEventArgs & touch){
-
+    homeButton.touchDoubleTap(touch);
 }
 
 

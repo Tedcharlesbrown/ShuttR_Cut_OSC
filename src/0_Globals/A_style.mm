@@ -119,6 +119,8 @@ void ofApp::stateUpdate(){
         }
     } else {
         headerName = defaultName;
+        selectedChannel = "";
+        clearParams();
         EOSState = EOSLightGrey;
         EOSBarState = EOSDarkGrey;
     }

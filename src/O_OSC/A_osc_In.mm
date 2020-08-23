@@ -93,7 +93,6 @@ void ofApp::getCommandLine(ofxEosOscMsg m){
     string incomingOSC = m.getArgAsString(0);
     
     if (incomingOSC.find("Error:") != string::npos) {
-//        selectedChannel = "SYNTAX ERROR";
         syntaxError = true;
     } else {
         syntaxError = false;

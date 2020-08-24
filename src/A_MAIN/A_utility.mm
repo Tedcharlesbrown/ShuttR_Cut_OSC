@@ -78,8 +78,8 @@ void ofApp::getNotchHeight() {
         int iPhoneID = iPhoneGeneration * 10 + iPhoneVersion; //SET ID TO GENERATION.VERSION NUMBER
         
 //        iPhoneID = 101; //IPHONE 8
-//        iPhoneID = 102; //IPHONE 8+
-//        iPhoneID = 123; //IPHONE PRO + PRO MAX
+//        iPhoneID = 102; //IPHONE 8+ //5.5inch screenshot
+//        iPhoneID = 123; //IPHONE PRO + PRO MAX //6.5inch screenshot
         
         switch(iPhoneID) {
             case 11: //iPhone           - 1x

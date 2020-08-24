@@ -20,13 +20,20 @@
     -   Added outside stroke to the shutter assembly
     
     ### Version 1.0.1
+- Connection / TCP
+    -   Connection pings ever 30 seconds
 -   OSC Changes
     -   Fixed bug that made flash button not work on Image page
     -   Added a way to affect intensity
+    -   Double tap home to sneak
+    -   Added syntax error to channel select
 -   Visual changes
     -   Fixed bug that made GUI sized for iPhone 8+ only
     -   Added a fader image
+    -   Direct selects are now parsed by text width
 -   Business model
     -   Added free version vs paid version
  
-
+    ### Version 1.0.2
+-   Corrected version numbers
+-   Added new screenshots

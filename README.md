@@ -19,7 +19,7 @@
 -   Visual changes
     -   Added outside stroke to the shutter assembly
     
-    ### Version 0.4.1
+    ### Version 1.0.1
 -   OSC Changes
     -   Fixed bug that made flash button not work on Image page
     -   Added a way to affect intensity

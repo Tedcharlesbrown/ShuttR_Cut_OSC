@@ -10,9 +10,10 @@ bool isPaidVersion = false;
 // ----------------------- NAME / IP / ID / RX / TX / SELECTED CHANNEL -----------------------
 //string appName = "ShuttR Cut OSC";
 string appName = "ShuttR Cut LITE";
+string version = "v1.0.2";
 string defaultName = appName + version;
 string headerName = defaultName;
-string version = "v1.0.2";
+
 string IPAddress, inputIP, inputID, selectedChannel = "";
 
 // ----------------------- EOS BOOLEANS -----------------------
@@ -34,6 +35,7 @@ float oscSentTime, oscReceivedTime = 0;
 string channelIntString;
 int channelInt, channelInt255;
 float channelHue, channelSat;
+
 //--------------------------------------------------------------
 // MARK: ---------- TEXT STYLES ----------
 //--------------------------------------------------------------
@@ -76,8 +78,7 @@ string log_lostConnect = "LOST CONNECTION...";
 string log_reConnect = "RE-CONNECTED TO: ";
 
 // ----------------------- SHUTTER PAGE CONSTANTS -----------------------
-float assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
-int assemblyDiameter;
+float assemblyDiameter, assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
 float rotation = 0;
 
 //--------------------------------------------------------------

@@ -34,8 +34,8 @@ void ofApp::topBarDraw() {
     statusBarDraw();
     settingsBar(0,notchHeight,width,settingsBarHeight,settingsBarStrokeWeight);
     settingsButton(width - settingsBarHeight, notchHeight, settingsBarHeight, settingsBarHeight, buttonStrokeWeight);
-    oscLight("TX", lightWidth / 2, (settingsBarHeight / 4) + notchHeight + settingsBarStrokeWeight, lightWidth, settingsBarHeight / 2, buttonStrokeWeight);
-    oscLight("RX", lightWidth / 2, (settingsBarHeight - settingsBarHeight / 4) + notchHeight, lightWidth, settingsBarHeight / 2, buttonStrokeWeight);
+    oscLight("TX", lightWidth / 2, notchHeight + settingsBarStrokeWeight, lightWidth, settingsBarHeight / 2, buttonStrokeWeight);
+    oscLight("RX", lightWidth / 2, settingsBarHeight / 2 + notchHeight, lightWidth, settingsBarHeight / 2, buttonStrokeWeight);
 }
 
 //--------------------------------------------------------------
@@ -99,27 +99,24 @@ void ofApp::settingsButton(float _x, float _y, float _w, float _h, float _weight
 void ofApp::oscLight(string _ID,float _x,float _y,float _w,float _h, float _weight){
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
+    _y =  _y + _h / 2;
     if (_ID == "TX") {
         ofSetColor(black); //stroke
-        ofFill();
         ofDrawRectRounded(_x, _y, _w, _h, buttonCorner / 2); //outer
         if (oscSendLight) {
             ofSetColor(EOSLightGreen); //fill
         } else {
             ofSetColor(EOSGreen); //fill
         }
-        ofFill();
         ofDrawRectRounded(_x, _y, _w - _weight, _h - _weight, buttonCorner / 2);
     } else if (_ID == "RX") {
         ofSetColor(black); //stroke
-        ofFill();
         ofDrawRectRounded(_x, _y, _w, _h, buttonCorner / 2);
         if (oscReceiveLight) {
             ofSetColor(EOSLightRed); //fill
         } else {
             ofSetColor(EOSRed); //fill
         }
-        ofFill();
         ofDrawRectRounded(_x, _y, _w - _weight, _h - _weight, buttonCorner / 2);
     }
     ofPopStyle();

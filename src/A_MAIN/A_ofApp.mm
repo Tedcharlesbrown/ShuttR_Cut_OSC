@@ -8,9 +8,9 @@ bool settingsMenu = false;
 
 void ofApp::setup() {
     getNotchHeight();
-    
     ofEnableSmoothing();
     ofSetCircleResolution(128);
+    
     IPAddress = getIPAddress();
     styleInit();
     getXML();
@@ -27,9 +27,9 @@ void ofApp::setup() {
     imagePageSetup();
     DSPageSetup();
     settingsSetup();
-    intOverlay.setup();
+    intensityOverlay.setup();
     
-    ofAddListener(intOverlay.oscOutputEvent, this, &ofApp::sendIntensity);
+    ofAddListener(intensityOverlay.oscOutputEvent, this, &ofApp::sendIntensity);
 }
 
 //--------------------------------------------------------------
@@ -39,7 +39,7 @@ void ofApp::update() {
     stateUpdate();
         
     keyboard.update();
-    intOverlay.update();
+    intensityOverlay.update();
     
     intensityButtonAction();
     channelButtonAction();
@@ -144,12 +144,12 @@ void ofApp::channelButtonAction() {
 
 void ofApp::intensityButtonAction() {
     if ((shutterPage.clicked || focusPage.clicked || formPage.clicked || imagePage.clicked || dSelectPage.clicked) && !settingsMenu) {
-        if (intOverlay.clickedOff || plusButton.action || minusButton.action || channelButton.action) {
+        if (intensityOverlay.clickedOff || plusButton.action || minusButton.action || channelButton.action) {
             intensityButton.clicked = false;
-            intOverlay.close();
+            intensityOverlay.close();
         } else if (intensityButton.action && intensityButton.clicked) {
             intensityButton.action = false;
-            intOverlay.open();
+            intensityOverlay.open();
         }
     }
 }
@@ -179,19 +179,19 @@ void ofApp::oscLightUpdate() {
 void ofApp::draw() {
     ofBackground(EOSBackground);
     
-    if (shutterPage.clicked && !settingsMenu && !intOverlay.show) {
+    if (shutterPage.clicked && !settingsMenu && !intensityOverlay.show) {
         shutterPageDraw();
     }
-    if (focusPage.clicked && !settingsMenu && !intOverlay.show) {
+    if (focusPage.clicked && !settingsMenu && !intensityOverlay.show) {
         focusPageDraw();
     }
-    if (formPage.clicked && !settingsMenu && !intOverlay.show) {
+    if (formPage.clicked && !settingsMenu && !intensityOverlay.show) {
         formPageDraw();
     }
-    if (imagePage.clicked && !settingsMenu && !intOverlay.show) {
+    if (imagePage.clicked && !settingsMenu && !intensityOverlay.show) {
         imagePageDraw();
     }
-    if (dSelectPage.clicked && !settingsMenu && !intOverlay.show) {
+    if (dSelectPage.clicked && !settingsMenu && !intensityOverlay.show) {
         DSPageDraw();
     }
     if (settingsMenu) {
@@ -222,7 +222,7 @@ void ofApp::draw() {
     }
     topBarDraw();
     keyboard.draw();
-    intOverlay.draw();
+    intensityOverlay.draw();
 }
 
 //--------------------------------------------------------------
@@ -233,7 +233,7 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
     if (touch.x > settingsX && touch.y < settingsHeight && touch.y > notchHeight) {
         settingsMenu = !settingsMenu;
         channelButton.clicked = false;
-        intOverlay.close();
+        intensityOverlay.close();
         intensityButton.clicked = false;
     }
     
@@ -273,8 +273,8 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
     if (keyboard.show) {
         keyboard.touchDown(touch);
     }
-    if (intOverlay.show) {
-        intOverlay.touchDown(touch);
+    if (intensityOverlay.show) {
+        intensityOverlay.touchDown(touch);
     }
 }
 
@@ -292,7 +292,7 @@ void ofApp::touchMoved(ofTouchEventArgs & touch){
     }
     
     if (intensityButton.clicked && !settingsMenu) {
-        intOverlay.touchMoved(touch, fineButton.clicked);
+        intensityOverlay.touchMoved(touch, fineButton.clicked);
     }
 }
 
@@ -318,7 +318,7 @@ void ofApp::touchUp(ofTouchEventArgs & touch){
     }
     
     keyboard.touchUp(touch);
-    intOverlay.touchUp(touch);
+    intensityOverlay.touchUp(touch);
 }
 
 //--------------------------------------------------------------
@@ -335,14 +335,8 @@ void ofApp::touchDoubleTap(ofTouchEventArgs & touch){
     }
     
     if (intensityButton.clicked && !settingsMenu) {
-        intOverlay.touchDoubleTap(touch);
+        intensityOverlay.touchDoubleTap(touch);
     }
-}
-
-//--------------------------------------------------------------
-
-void ofApp::touchCancelled(ofTouchEventArgs & touch){
-    
 }
 
 //--------------------------------------------------------------

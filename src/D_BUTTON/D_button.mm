@@ -16,7 +16,6 @@ void BUTTON::showPage(string _ID, float _x, float _y, float _w, float _h) { //ON
     
     ofSetColor(shutterOutsideStroke);
     ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
-    //    ofDrawRectangle(_x, _y, _w, _h);
     
     ofColor clickColor = white;
     
@@ -28,7 +27,6 @@ void BUTTON::showPage(string _ID, float _x, float _y, float _w, float _h) { //ON
     }
     
     ofDrawRectRounded(_x, _y, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
-    //    ofDrawRectangle(_x, _y, _w - buttonStrokeWeight, _h - buttonStrokeWeight);
     
     if (_ID != "DS") {
         ofSetColor(EOSBackground);

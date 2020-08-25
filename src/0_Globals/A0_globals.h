@@ -62,8 +62,7 @@ extern vector<string> console_log;
 extern string log_NoConnect, log_YesConnect, log_CheckOSC, log_Connecting, log_UserSwitch, log_lostConnect, log_reConnect;
 
 // ----------------------- SHUTTER PAGE CONSTANTS -----------------------
-extern float assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
-extern int assemblyDiameter;
+extern float assemblyDiameter, assemblyRadius, clickDiameter, clickRadius, thrustDiameter, encoderDiameter;
 extern float rotation;
 
 //--------------------------------------------------------------

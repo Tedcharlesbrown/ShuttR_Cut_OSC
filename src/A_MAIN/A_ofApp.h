@@ -44,7 +44,8 @@ public:
     void buttonAction();
     
     KEYBOARD keyboard;
-    OVERLAY intOverlay;    
+    OVERLAY intensityOverlay;
+    
     //--------------------------------------------------------------
     // MARK: ----------XML----------
     //--------------------------------------------------------------
@@ -54,7 +55,6 @@ public:
     
     ofxXmlSettings XML;
 
-    string xmlStructure;
     string message;
 
     //--------------------------------------------------------------
@@ -70,6 +70,7 @@ public:
     void statusBarDraw();
     
     string oldChannel = "";
+    float settingsX, settingsY, settingsWidth, settingsHeight;
     
     BUTTON shutterPage, formPage, dSelectPage, focusPage, imagePage, minusButton, plusButton, fineButton, highButton, flashButton, channelButton, intensityButton;
     
@@ -194,7 +195,6 @@ public:
     void console();
     void about();
     
-    float settingsX, settingsY, settingsWidth, settingsHeight;
     string userInputIP = "";
     string userInputID = "1";
     int keySwitch = 0;
@@ -212,18 +212,10 @@ public:
     void touchDown(ofTouchEventArgs & touch);
     void touchMoved(ofTouchEventArgs & touch);
     void touchUp(ofTouchEventArgs & touch);
-    void touchDoubleTap(ofTouchEventArgs & touch);
-    void touchCancelled(ofTouchEventArgs & touch);
-    
+    void touchDoubleTap(ofTouchEventArgs & touch);    
     
     void lostFocus();
     void gotFocus();
-    
-    //----------------------------------------------------
-    
-    bool oscSendLight = false;
-    bool oscReceiveLight = false;
-
     
     //--------------------------------------------------------------
     // MARK: ----------OSC EVENTS----------
@@ -231,6 +223,9 @@ public:
     
     ofxEosSync eos;
     ofxTCPClient tcp;
+    
+    bool oscSendLight = false;
+    bool oscReceiveLight = false;
     
     void connect(bool connectTCP, bool connectEOS, bool log);
     void connectRunDelay();

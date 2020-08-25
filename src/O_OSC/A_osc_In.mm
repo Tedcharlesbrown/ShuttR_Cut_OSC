@@ -157,7 +157,7 @@ void ofApp::getPanTilt(ofxEosOscMsg m) {
 
 void ofApp::getIntensity(ofxEosOscMsg m) {
     channelInt = ofToInt(m.getArgPercent(0));
-    intOverlay.incomingOSC(channelInt);
+    intensityOverlay.incomingOSC(channelInt);
     
     channelInt255 = ofMap(channelInt,0,100,50,255);
     shutterColor.setHsb(channelHue,channelSat,channelInt255);

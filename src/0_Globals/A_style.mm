@@ -1,15 +1,15 @@
 #include "A_ofApp.h"
 
 // ----------------------- PAID VS FREE VERSION -----------------------
-bool isPaidVersion = true;
+bool isPaidVersion = false;
 
 //--------------------------------------------------------------
 // MARK: ---------- EOS SETTINGS ----------
 //--------------------------------------------------------------
 
 // ----------------------- NAME / IP / ID / RX / TX / SELECTED CHANNEL -----------------------
-string appName = "ShuttR Cut OSC";
-//string appName = "ShuttR Cut LITE";
+//string appName = "ShuttR Cut OSC";
+string appName = "ShuttR Cut LITE";
 string defaultName = appName + version;
 string headerName = defaultName;
 string version = "v1.0.2";

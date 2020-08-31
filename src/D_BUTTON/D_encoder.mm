@@ -18,6 +18,9 @@ void ENCODER::draw(float _x, float _y){
 }
 
 //--------------------------------------------------------------
+// MARK: ----------ACTIONS----------
+//--------------------------------------------------------------
+
 void ENCODER::touchDown(ofTouchEventArgs & touch){
     if (ofDist(touch.x, touch.y, posX, posY) < encoder.getWidth() / 2) {
         this-> clicked = true;
@@ -71,11 +74,6 @@ void ENCODER::touchMoved(ofTouchEventArgs & touch){
         }
     }
 }
-
-void ENCODER::ticker(float start, float step){
-    
-}
-
 
 //--------------------------------------------------------------
 void ENCODER::touchUp(ofTouchEventArgs & touch){

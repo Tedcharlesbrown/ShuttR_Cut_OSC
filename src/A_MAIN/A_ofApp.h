@@ -202,8 +202,7 @@ public:
 
     string getIPAddress();
     
-    BUTTON ipFieldButton, idFieldButton; // incomingButton, outgoingButton;
-    // ofImage settingsHelp; //TODO: DELETE
+    BUTTON ipFieldButton, idFieldButton;
     
     //--------------------------------------------------------------
     // MARK: ----------TOUCH EVENTS----------

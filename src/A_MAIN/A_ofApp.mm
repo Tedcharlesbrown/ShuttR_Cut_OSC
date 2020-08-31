@@ -245,6 +245,7 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
     imagePage.touchDown(touch);     
     dSelectPage.touchDown(touch);   
     
+    // ---------- TOP GUI BUTTONS ----------
     if ((shutterPage.clicked || focusPage.clicked || formPage.clicked || imagePage.clicked) && !keyboard.show) {
         minusButton.touchDown(touch);
         plusButton.touchDown(touch);
@@ -255,7 +256,7 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
         intensityButton.touchDown(touch,true);
     }
     
-    
+    // ---------- PAGE ROUTING ----------
     if (shutterPage.clicked && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
         shutterPageTouchDown(touch);
     } else if (focusPage.clicked && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
@@ -269,9 +270,8 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
     } else if (settingsMenu) {
         ipFieldButton.touchDown(touch, true);
         idFieldButton.touchDown(touch, true);
-        outgoingButton.touchDown(touch, true);
-        incomingButton.touchDown(touch, true);
     }
+    // ---------- OVERLAYS ----------
     if (keyboard.show) {
         keyboard.touchDown(touch);
     }

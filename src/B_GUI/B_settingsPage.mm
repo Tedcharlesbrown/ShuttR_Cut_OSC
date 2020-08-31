@@ -5,10 +5,9 @@
 //--------------------------------------------------------------
 
 void ofApp::settingsSetup() {
-    settingsHelp.load("settingsHelp.png");
     userInputIP = inputIP;
     userInputID = inputID;
-    ipFieldButton.clicked = false; idFieldButton.clicked = false; outgoingButton.clicked = false; incomingButton.clicked = false; //BUTTON INIT
+    ipFieldButton.clicked = false; idFieldButton.clicked = false; //BUTTON INIT
 }
 
 //--------------------------------------------------------------
@@ -87,16 +86,16 @@ void ofApp::settingsDraw() {
 void ofApp::console() {
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
-    ofSetColor(255);
+    ofSetColor(white);
     ofDrawRectRounded(guiCenterAlign, consolePadding, consoleWidth, consoleHeight, buttonCorner);
     
-    ofSetColor(0);
+    ofSetColor(black);
     ofDrawRectRounded(guiCenterAlign, consolePadding, consoleWidth - settingsBarStrokeWeight, consoleHeight - settingsBarStrokeWeight, buttonCorner);
     
     
     ofPushMatrix();
     ofTranslate(- consoleWidth / 2.1, consolePadding + fontMedium.stringHeight("+") / 2);
-    ofSetColor(255);
+    ofSetColor(white);
     fontSmall.drawString(console_log[console_log.size() - 4], guiCenterAlign, - consoleHeight / 3);
     fontSmall.drawString(console_log[console_log.size() - 3], guiCenterAlign, - consoleHeight / 9);
     fontSmall.drawString(console_log[console_log.size() - 2], guiCenterAlign, consoleHeight / 9);

@@ -1,6 +1,21 @@
 #include "C_keyboard.h"
 #include "A_ofApp.h"
 
+
+//--------------------------------------------------------------
+// MARK: ---------- OPEN / CLOSE ----------
+//--------------------------------------------------------------
+
+void KEYBOARD::open() {
+    show = true;
+}
+
+void KEYBOARD::close() {
+    show = false;
+    clickedOff = false;
+    enter = false;
+}
+
 //--------------------------------------------------------------
 // MARK: ---------- UPDATE / DRAW ----------
 //--------------------------------------------------------------
@@ -50,16 +65,6 @@ void KEYBOARD::update(){
         enter = true;
         enterButton.action = false;
     }
-}
-
-void KEYBOARD::open() {
-    show = true;
-}
-
-void KEYBOARD::close() {
-    show = false;
-    clickedOff = false;
-    enter = false;
 }
 
 //--------------------------------------------------------------

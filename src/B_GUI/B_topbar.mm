@@ -46,11 +46,11 @@ void ofApp::settingsBar(float _x, float _y, float _w, float _h, float _weight) {
     ofPushStyle();
     ofSetColor(EOSBarState);
     ofDrawRectangle(_x, _y, _w, _h); //Settings Bar Background
+
     ofSetColor(shutterOutsideStroke);
-    if (notchHeight > 0) {
-        ofDrawRectangle(_x, notchHeight, _w, _weight); //TOP BAR
-    }
+    ofDrawRectangle(_x, notchHeight, _w, _weight); //TOP BAR
     ofDrawRectangle(_x, _h + notchHeight, _w, _weight); //BOTTOM BAR
+    
     ofPopStyle();
   
     bool imagePageTest = false;

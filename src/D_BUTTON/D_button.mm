@@ -404,7 +404,7 @@ void BUTTON::touchDown(ofTouchEventArgs & touch){
 }
 
 //--------------------------------------------------------------
-void BUTTON::touchDown(ofTouchEventArgs & touch, bool toggle){
+void BUTTON::touchDown(ofTouchEventArgs & touch, bool toggle){ //TOGGLE
     if (touch.x > x - w / 2 && touch.x < x + w / 2 && touch.y > y - h / 2 && touch.y < y + h / 2) {
         if (toggle) {
             this-> clicked = !clicked;

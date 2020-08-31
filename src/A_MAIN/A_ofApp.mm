@@ -230,6 +230,7 @@ void ofApp::draw() {
 //--------------------------------------------------------------
 
 void ofApp::touchDown(ofTouchEventArgs & touch){
+    // ---------- SETTINGS + INTOVERLAY RESET ----------
     if (touch.x > settingsX && touch.y < settingsHeight && touch.y > notchHeight) {
         settingsMenu = !settingsMenu;
         channelButton.clicked = false;
@@ -237,11 +238,12 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
         intensityButton.clicked = false;
     }
     
-    shutterPage.touchDown(touch);
-    focusPage.touchDown(touch);
-    formPage.touchDown(touch);
-    imagePage.touchDown(touch);
-    dSelectPage.touchDown(touch);
+    // ---------- TOP BAR BUTTONS ----------
+    shutterPage.touchDown(touch);   
+    focusPage.touchDown(touch);     
+    formPage.touchDown(touch);      
+    imagePage.touchDown(touch);     
+    dSelectPage.touchDown(touch);   
     
     if ((shutterPage.clicked || focusPage.clicked || formPage.clicked || imagePage.clicked) && !keyboard.show) {
         minusButton.touchDown(touch);

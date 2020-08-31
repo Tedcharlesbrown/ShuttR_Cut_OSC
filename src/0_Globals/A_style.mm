@@ -11,8 +11,7 @@ bool isPaidVersion = false;
 //string appName = "ShuttR Cut OSC";
 string appName = "ShuttR Cut LITE";
 string version = "v1.0.2";
-string defaultName = appName + version;
-string headerName = defaultName;
+string headerName = appName;
 
 string IPAddress, inputIP, inputID, selectedChannel = "";
 
@@ -119,7 +118,7 @@ void ofApp::stateUpdate(){
             EOSBarState = EOSBlue;
         }
     } else {
-        headerName = defaultName;
+        headerName = appName;
         selectedChannel = "";
         clearParams();
         EOSState = EOSLightGrey;
@@ -239,8 +238,8 @@ void ofApp::styleInit(){
     EOSDarkGrey = ofColor(30,30,30);
     
     //---------- EOS SPECIFIC COLORS ----------
-    
-    EOSBackground = ofColor(15,25,35);
+    EOSBackground = ofColor(15,25,35); //OLD
+    EOSBackground = ofColor(0,0,0); //NEW
     EOSLive = ofColor(183,128,6);
     EOSBlind = ofColor(10,115,222);
     

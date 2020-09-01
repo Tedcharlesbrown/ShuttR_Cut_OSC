@@ -11,7 +11,6 @@ void ofApp::focusPageSetup(){
 }
 //--------------------------------------------------------------
 void ofApp::focusPageUpdate(){
-    string _parameter = "";
     if (panButton.action && panButton.clicked) {
         panButton.clicked = true; tiltButton.clicked = false;
         panButton.action = false;
@@ -75,10 +74,6 @@ void ofApp::focusPageTouchMoved(ofTouchEventArgs & touch){
 
 //--------------------------------------------------------------
 void ofApp::focusPageTouchUp(ofTouchEventArgs & touch){  
-    thrustButton.touchUp(touch);
-    angleButton.touchUp(touch);
-    shutterButton.touchUp(touch);
-    
     minusPercentButton.touchUp(touch);
     homeButton.touchUp(touch);
     plusPercentButton.touchUp(touch);

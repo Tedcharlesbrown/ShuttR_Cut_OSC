@@ -239,7 +239,7 @@ void ofApp::styleInit(){
     
     //---------- EOS SPECIFIC COLORS ----------
     EOSBackground = ofColor(15,25,35); //OLD
-    EOSBackground = ofColor(0,0,0); //NEW
+    // EOSBackground = ofColor(0,0,0); //NEW
     EOSLive = ofColor(183,128,6);
     EOSBlind = ofColor(10,115,222);
     

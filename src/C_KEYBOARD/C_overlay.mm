@@ -77,8 +77,6 @@ void OVERLAY::update(){
 void OVERLAY::draw(){
     if (show) {
         ofPushStyle();
-        ofSetColor(EOSBackground,230);
-        ofDrawRectangle(0, row2Padding + buttonHeight / 2, width, height);
         
         fullButton.show("FULL",guiLeftAlign, row3Padding, genericButtonWidth, buttonHeight,"LARGE");
         levelButton.show("LEVEL",guiCenterAlign, row3Padding, genericButtonWidth, buttonHeight,"LARGE");
@@ -92,7 +90,6 @@ void OVERLAY::draw(){
         ofDrawRectRounded(sliderX - assemblyLineWeight / 2, botLimit, assemblyLineWeight, assemblyDiameter - clickRadius, buttonCorner);
         
         // ----------FADER----------
-        ofSetColor(shutterFrameStroke);
         ofTranslate(sliderX, sliderY);
         fader.draw(-fader.getWidth() / 2,-fader.getHeight() / 2);
         ofPopStyle();

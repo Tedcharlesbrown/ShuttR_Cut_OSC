@@ -195,7 +195,7 @@ void BUTTON::showBig(string _ID, string _ID2, float _x, float _y, float _w, floa
     ofSetRectMode(OF_RECTMODE_CENTER);
     
     ofSetColor(EOSState);
-    ofDrawRectRounded(_x, _y + _h / 1.5, _w, _h, buttonCorner);
+    ofDrawRectRounded(_x, _y + _h / 1.5, _w, _h, buttonCorner); //BOTTOM BUTTON
     if (this-> clicked) {
         ofSetColor(buttonActive);
     } else {
@@ -206,7 +206,7 @@ void BUTTON::showBig(string _ID, string _ID2, float _x, float _y, float _w, floa
     
     ofSetColor(EOSState);
     
-    ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
+    ofDrawRectRounded(_x, _y, _w, _h, buttonCorner); //TOP BUTTON
     
     if (this-> clicked) {
         ofSetColor(buttonActive);
@@ -289,11 +289,9 @@ void BUTTON::showInt(string _ID, float _x, float _y, float _w, float _h) { //ONE
     ofSetRectMode(OF_RECTMODE_CENTER);
     
     ofSetColor(EOSState);
-//    ofSetColor(shutterColor);
     ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
     
     ofColor intensityColor = shutterColor;
-    
     
     if (this-> clicked) {
         ofSetColor(buttonActive);

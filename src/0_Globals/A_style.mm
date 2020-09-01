@@ -108,9 +108,9 @@ ofColor shutterColor = ofColor(0);
 // MARK: ---------- INITIALIZERS ----------
 //--------------------------------------------------------------
 
-void ofApp::stateUpdate(){
+void ofApp::stateUpdate() {
     if (isConnected) {
-        if (isLive){
+        if (isLive) {
             EOSState = EOSLive;
             EOSBarState = EOSDarkGrey;
         } else {
@@ -126,28 +126,31 @@ void ofApp::stateUpdate(){
     }
 }
 //--------------------------------------------------------------
-void ofApp::styleInit(){
-    
-    shutterColor.setHsb(163.056,103.167,255);
-    
+void ofApp::styleInit() {
+
+    shutterColor.setHsb(163.056, 103.167, 255);
+
     //---------- PARENT WIDTH AND HEIGHT ----------
-    
+
     width = ofGetWidth();
     height = ofGetHeight() - notchHeight;
-    
+
     //---------- FRAME ASSEMBLY VARIABLES ----------
     clickDiameter = width / 9.6;
     clickRadius = clickDiameter / 2;
     encoderDiameter = width / 6;
     float screenAdjust = (height / width) - 1;
+    if (screenAdjust == 0) {
+        screenAdjust = 1;
+    }
     assemblyDiameter = width - (clickDiameter + (clickRadius / 2)) / screenAdjust;
     assemblyRadius = assemblyDiameter / 2;
     thrustDiameter = assemblyRadius / 2;
     centerX = width / 2;
     centerY = (height - assemblyDiameter + assemblyRadius / 3) + notchHeight;
-    
+
     ///---------- FRAME ASSEMBLY STYLES ----------
-    
+
     shutterStrokeWeight = width / 50; //72
     outsideWeight = width / 96; //15
     thrustWeight = width / 288; //5
@@ -155,36 +158,36 @@ void ofApp::styleInit(){
     crosshairWeight = width / 144;
     assemblyButtonWeight = width / 288; //5
     assemblyLineWeight = width / 144; //10
-    
+
     //---------- BUTTON STYLES ----------
-    
+
     buttonStrokeWeight = (width / 144) * 1.5;
     settingsBarStrokeWeight = 5;
     buttonCorner = width / 57.6;
-    
+
     //---------- GUI ALIGNMENT ----------
-    
+
     guiLeftAlign = centerX - centerX / 1.5;
     guiCenterAlign = centerX;
     guiRightAlign = centerX + centerX / 1.5;
-    
+
     //---------- GUI HEIGHT ----------
-    
+
     buttonHeight = height / 19.7;
     settingsBarHeight = height / 20;
     consoleHeight = height / 10;
-    
+
     //---------- GUI WIDTH ----------
-    
+
     lightWidth = width / 10;
     channelButtonWidth = (width / 4.5) * 1.5;
     smallButtonWidth = width / 6;
     genericButtonWidth = width / 4.5;
     parameterButtonWidth = genericButtonWidth / 1.25;
     consoleWidth = width / 1.25;
-    
+
     //---------- GUI PADDDING ----------
-    
+
     row1Padding = (settingsBarHeight + buttonHeight) + notchHeight;
     row2Padding = row1Padding + height / 9; //13
     row3Padding = row2Padding + height / 14; //13
@@ -197,14 +200,14 @@ void ofApp::styleInit(){
     row10Padding = row9Padding + height / 14;
     rowBottomPadding = (height - height / 15) + notchHeight;
     consolePadding = (height / 2) + notchHeight;
-    
+
     //---------- TEXT STYLES ----------
 
     largeTextSize = width / 19.2; //75
     mediumTextSize = width / 22.15; //65
     smallTextSize = width / 32; //45
     tinyTextSize = width / 57.6; //25
-    
+
     ofTrueTypeFont::setGlobalDpi(72);
     fontLarge.load("LondonBetween.ttf", largeTextSize);
     fontLarge.setLetterSpacing(1.25);
@@ -214,43 +217,43 @@ void ofApp::styleInit(){
     fontDS.load("LondonBetween.ttf", smallTextSize / 1.1);
     fontTiny.load("LondonBetween.ttf", tinyTextSize);
     fontTiny.setLetterSpacing(1.5);
-    
+
     console_log.push_back(appName + " " + version);
     console_log.push_back("");
     console_log.push_back("");
     console_log.push_back("");
 
-    
+
     //---------- COLOR ----------
     //---------- GENERIC COLOR ----------
-    
+
     white = ofColor(255);
     black = ofColor(0);
-    
+
     //---------- EOS GENERIC COLORS ----------
-    
-    EOSBlue = ofColor(22,40,58); //Channels In Use
-    EOSLightGreen = ofColor(6,155,37); //Light Green
-    EOSGreen = ofColor(6,55,37); //PSD
-    EOSLightRed = ofColor(165,21,23); //Light Red
-    EOSRed = ofColor(65,21,23); //Snapshots
-    EOSLightGrey = ofColor(85,90,101);
-    EOSDarkGrey = ofColor(30,30,30);
-    
+
+    EOSBlue = ofColor(22, 40, 58); //Channels In Use
+    EOSLightGreen = ofColor(6, 155, 37); //Light Green
+    EOSGreen = ofColor(6, 55, 37); //PSD
+    EOSLightRed = ofColor(165, 21, 23); //Light Red
+    EOSRed = ofColor(65, 21, 23); //Snapshots
+    EOSLightGrey = ofColor(85, 90, 101);
+    EOSDarkGrey = ofColor(30, 30, 30);
+
     //---------- EOS SPECIFIC COLORS ----------
-    EOSBackground = ofColor(15,25,35); //OLD
+    EOSBackground = ofColor(15, 25, 35); //OLD
     // EOSBackground = ofColor(0,0,0); //NEW
-    EOSLive = ofColor(183,128,6);
-    EOSBlind = ofColor(10,115,222);
-    
+    EOSLive = ofColor(183, 128, 6);
+    EOSBlind = ofColor(10, 115, 222);
+
     //---------- EOS SHUTTER COLORS ----------
-    
-    shutterBackground = ofColor(150,150,255); //180,181,255
-    shutterOutsideStroke = ofColor(125,115,130);
-    shutterFrameFill = ofColor(62,56,71);
-    shutterFrameStroke = ofColor(204,195,209);
-    shutterOutsideStroke = ofColor(125,115,130);
-    
+
+    shutterBackground = ofColor(150, 150, 255); //180,181,255
+    shutterOutsideStroke = ofColor(125, 115, 130);
+    shutterFrameFill = ofColor(62, 56, 71);
+    shutterFrameStroke = ofColor(204, 195, 209);
+    shutterOutsideStroke = ofColor(125, 115, 130);
+
     //---------- EOS DIRECT SELECT COLORS ----------
 
     EOSChannel = ofColor::fromHex(0x275787);
@@ -265,10 +268,10 @@ void ofApp::styleInit(){
     EOSSnap = ofColor::fromHex(0x9d1f2a);
     EOSMagic = ofColor::fromHex(0x891951);
     EOSScene = ofColor::fromHex(0x007e4e);
-    
+
     //---------------------------------------
     //---------- ASSIGNMENT COLORS ----------
-    
+
     BGFill = shutterBackground;
     buttonActive = EOSLightGrey;
 }

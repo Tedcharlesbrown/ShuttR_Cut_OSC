@@ -17,6 +17,8 @@ void THRUST_HANDLE::setup(string _ID) {
     }
 }
 
+//--------------------------------------------------------------
+
 void THRUST_HANDLE::update() {
     _thrustDiameter = thrustDiameter * 1.5;
     ofPushMatrix();
@@ -44,12 +46,16 @@ void THRUST_HANDLE::update() {
     ofPopMatrix();
 }
 
+//--------------------------------------------------------------
+
 void THRUST_HANDLE::touchDown(ofTouchEventArgs & touch){
     if (ofDist(touch.x, touch.y, this-> sliderX, this-> sliderY) < clickRadius) {
         this-> clicked = true;
         ignoreOSC = true;
     }
 }
+
+//--------------------------------------------------------------
 
 void THRUST_HANDLE::touchMoved(ofTouchEventArgs & touch, bool fine){
     if (fine) {
@@ -58,12 +64,6 @@ void THRUST_HANDLE::touchMoved(ofTouchEventArgs & touch, bool fine){
         this-> diff = cos(ofDegToRad(rotation) + rotateOffset) * (touch.x - ofGetPreviousMouseX()) + sin(ofDegToRad(rotation) + rotateOffset) * (touch.y - ofGetPreviousMouseY());
     }
     if (this-> clicked) {
-        //        if (pairAC) {
-        //            if (this-> ID == "A" || this-> ID == "C") { //WILL HAVE TO FLIP ONE INPUT
-        //                buttonA.addOffset(ofMap(this-> diff, 0, _thrustDiameter, 0, 1));
-        //                buttonC.addOffset(ofMap(this-> diff, 0, _thrustDiameter, 0, 1));
-        //            }
-        //        }
         if (this-> ID == "a") {
             buttonA.addOffset(ofMap(this-> diff, 0, _thrustDiameter, 0, 1));
         } else if (this-> ID == "b") {
@@ -75,6 +75,8 @@ void THRUST_HANDLE::touchMoved(ofTouchEventArgs & touch, bool fine){
         }
     }
 }
+
+//--------------------------------------------------------------
 
 void THRUST_HANDLE::touchUp(ofTouchEventArgs & touch){
     this-> clicked = false;
@@ -275,7 +277,8 @@ void THRUST_BUTTON::angleLimit(float _angleRotateLimit){
             break;
     }
     
-    float angleBotLimit = ofMap(angleLimit, 0, 50, 1, topLimit + 0.375);
+    // float angleBotLimit = ofMap(angleLimit, 0, 50, 1, topLimit + 0.375);
+    float angleBotLimit = ofMap(angleLimit, 0, 50, 1, (topLimit + 1) / 2);
     float angleTopLimit = 1 - angleBotLimit;
     position = ofClamp(position, topLimit + angleTopLimit, angleBotLimit);
 }
@@ -297,6 +300,8 @@ void ANGLE_HANDLE::setup(string _ID) {
     }
     magicNumber = clickRadius / 5.5; //THIS MAGIC NUMBER MUST BE FOUND
 }
+
+//--------------------------------------------------------------
 
 void ANGLE_HANDLE::update() {
     ofPushMatrix();
@@ -325,6 +330,8 @@ void ANGLE_HANDLE::update() {
     
     calculateAngle();
 }
+
+//--------------------------------------------------------------
 
 void ANGLE_HANDLE::frameDisplay(float _thrust) {
     ofPushMatrix();

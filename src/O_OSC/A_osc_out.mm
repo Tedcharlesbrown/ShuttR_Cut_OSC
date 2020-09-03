@@ -98,7 +98,7 @@ void ofApp::sendFlash(string parameter) {
         OSCPrefix = "eos/user/" + inputID + "/key/flash_on";
         released = true;
     }
-    m.clear();
+    // m.clear();
     m.setAddress(OSCPrefix);
     if (released) {
         m.addStringArg("0");
@@ -166,6 +166,7 @@ void ofApp::fineEncoder(int message) { //ONLY USED TO RESET OSC TICKS, ONLY CALL
 }
 
 //--------------------------------------------------------------
+
 void ofApp::sendEncoder(string parameter, float message){
     if (isPaidVersion) {
         oscSentTime = ofGetElapsedTimeMillis();
@@ -240,7 +241,6 @@ void ofApp::sendPing() {
 }
 
 //--------------------------------------------------------------
-
 
 void ofApp::sendKey(string key) {
     ofxEosOscMsg m;

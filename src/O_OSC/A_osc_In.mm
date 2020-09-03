@@ -145,6 +145,35 @@ void ofApp::getCommandLine(ofxEosOscMsg m){
 
 //--------------------------------------------------------------
 
+void ofApp::getChannel(ofxEosOscMsg m) {
+    string incomingOSC = m.getArgAsString(0);
+    
+    if (incomingOSC.length() > 0) {
+        noneSelected = false;
+        int oscLength = incomingOSC.length();
+        int indexValueEnd = incomingOSC.find(" ");
+        incomingOSC = incomingOSC.substr(0,indexValueEnd);
+        if (oscLength == 5 + incomingOSC.length()) { //IF NO CHANNEL IS PATCHED (OFFSET BY LENGTH OF CHANNEL NUMBER)
+            selectedChannel = "(" + incomingOSC + ")";
+            clearParams();
+        } else {
+            if (incomingOSC.find("-") != string::npos || incomingOSC.find(",") != string::npos) {
+                selectedChannel = multiChannelPrefix;
+            } else if (multiChannelPrefix.length() > 0) {
+                selectedChannel = multiChannelPrefix + " : " + incomingOSC;
+            } else {
+                selectedChannel = incomingOSC;
+            }
+        }
+    } else { // IF NO CHANNEL IS SELECTED
+        noneSelected = true;
+        selectedChannel = "---";
+        clearParams();
+    }
+}
+
+//--------------------------------------------------------------
+
 void ofApp::getPanTilt(ofxEosOscMsg m) {
     if (m.getNumArgs() > 0) {
         int panPercentInt = m.getArgAsFloat(4);
@@ -153,7 +182,6 @@ void ofApp::getPanTilt(ofxEosOscMsg m) {
         tiltPercent = ofToString(tiltPercentInt) + " %";
     }
 }
-
 
 //--------------------------------------------------------------
 
@@ -212,35 +240,6 @@ void ofApp::getWheel(ofxEosOscMsg m){
 //                wheelPercent.at(0) = m.getArgPercent(0) + " %";
 //            }
         }
-    }
-}
-
-//--------------------------------------------------------------
-
-void ofApp::getChannel(ofxEosOscMsg m) {
-    string incomingOSC = m.getArgAsString(0);
-    
-    if (incomingOSC.length() > 0) {
-        noneSelected = false;
-        int oscLength = incomingOSC.length();
-        int indexValueEnd = incomingOSC.find(" ");
-        incomingOSC = incomingOSC.substr(0,indexValueEnd);
-        if (oscLength == 5 + incomingOSC.length()) { //IF NO CHANNEL IS PATCHED (OFFSET BY LENGTH OF CHANNEL NUMBER)
-            selectedChannel = "(" + incomingOSC + ")";
-            clearParams();
-        } else {
-            if (incomingOSC.find("-") != string::npos || incomingOSC.find(",") != string::npos) {
-                selectedChannel = multiChannelPrefix;
-            } else if (multiChannelPrefix.length() > 0) {
-                selectedChannel = multiChannelPrefix + " : " + incomingOSC;
-            } else {
-                selectedChannel = incomingOSC;
-            }
-        }
-    } else { // IF NO CHANNEL IS SELECTED
-        noneSelected = true;
-        selectedChannel = "---";
-        clearParams();
     }
 }
 

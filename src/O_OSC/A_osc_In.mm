@@ -114,7 +114,16 @@ void ofApp::getCommandLine(ofxEosOscMsg m){
             highButton.clicked = false;
         }
         
-        if (incomingOSC.find("Thru") != string::npos && incomingOSC.find("#") != string::npos) {
+        if (incomingOSC.find("Group") != string::npos && incomingOSC.find("#") != string::npos) {
+            int indexValueStart = incomingOSC.find("Group") + 6;
+            incomingOSC = incomingOSC.substr(indexValueStart);
+            
+            int indexValueEnd = incomingOSC.find(" ");
+            
+            incomingOSC = incomingOSC.substr(0,indexValueEnd);
+            multiChannelPrefix = "Gr " + incomingOSC;
+            
+        } else if (incomingOSC.find("Thru") != string::npos && incomingOSC.find("#") != string::npos) {
             int indexValueStart = incomingOSC.find("Chan") + 5;
             incomingOSC = incomingOSC.substr(indexValueStart);
             
@@ -123,28 +132,11 @@ void ofApp::getCommandLine(ofxEosOscMsg m){
             
             indexValueStart = incomingOSC.find("Thru") + 5;
             
-            if (incomingOSC.find("#") < incomingOSC.find(":")) {
-                indexValueEnd = incomingOSC.find("#");
-            } else {
-                indexValueEnd = incomingOSC.find(":");
-            }
-            
-            string secondNumber = incomingOSC.substr(indexValueStart, indexValueEnd - indexValueStart - 1);
-            multiChannelPrefix = firstNumber + "-" + secondNumber;
-        } else if (incomingOSC.find("Group") != string::npos && incomingOSC.find("#") != string::npos) {
-            int indexValueStart = incomingOSC.find("Group") + 6;
             incomingOSC = incomingOSC.substr(indexValueStart);
-            
-            int indexValueEnd = 0;
-            if (incomingOSC.find("#") < incomingOSC.find(":")) {
-                indexValueEnd = incomingOSC.find("#") - 1;
-            } else {
-                indexValueEnd = incomingOSC.find(":") - 1;
-            }
-            
-            incomingOSC = incomingOSC.substr(0,indexValueEnd);
-            multiChannelPrefix = "Gr " + incomingOSC;
-            
+            indexValueEnd = incomingOSC.find(" ");
+
+            string secondNumber = incomingOSC.substr(0, indexValueEnd);
+            multiChannelPrefix = firstNumber + "-" + secondNumber;
         } else if (incomingOSC.find("#") != string::npos){
             multiChannelPrefix = "";
         }

@@ -28,10 +28,8 @@ void ofApp::oscEvent() {
             string headerAppend = "";
             int length = headerName.length();
             int maxLength = smallButtonWidth * 4;
-            if (fontSmall.stringWidth(headerName) > maxLength) {
-                headerAppend = "...";
-            }
             while (fontSmall.stringWidth(headerName) > maxLength) {
+                headerAppend = "...";
                 headerName = headerName.substr(0,length);
                 length--;
             }
@@ -42,7 +40,7 @@ void ofApp::oscEvent() {
             getState(m);
         }
         // ----------------------- GET LIGHT COLOR ----------------------------
-        if (m.getAddress() == "/eos/out/color/hs" && m.getNumArgs() > 0) {
+        if (m.getAddress() == "/eos/out/color/hs") {
             getColor(m);
         }
         // ----------------------- GET COMMAND LINE -----------------------
@@ -86,6 +84,18 @@ void ofApp::getState(ofxEosOscMsg m){
         default:
             isLive = true;
             break;
+    }
+}
+
+//--------------------------------------------------------------
+
+void ofApp::getColor(ofxEosOscMsg m){
+    if (m.getNumArgs() > 0) {
+        channelHue = m.getArgAsFloat(0);
+        channelSat = m.getArgAsFloat(1);
+        channelHue = ofMap(channelHue,0,360,0,255);
+        channelSat = ofMap(channelSat,0,100,0,255);
+        shutterColor.setHsb(channelHue,channelSat,channelInt255);
     }
 }
 
@@ -239,18 +249,6 @@ void ofApp::getChannel(ofxEosOscMsg m) {
         noneSelected = true;
         selectedChannel = "---";
         clearParams();
-    }
-}
-
-//--------------------------------------------------------------
-
-void ofApp::getColor(ofxEosOscMsg m){
-    if (m.getNumArgs() > 0) {
-        channelHue = m.getArgAsFloat(0);
-        channelSat = m.getArgAsFloat(1);
-        channelHue = ofMap(channelHue,0,360,0,255);
-        channelSat = ofMap(channelSat,0,100,0,255);
-        shutterColor.setHsb(channelHue,channelSat,channelInt255);
     }
 }
 

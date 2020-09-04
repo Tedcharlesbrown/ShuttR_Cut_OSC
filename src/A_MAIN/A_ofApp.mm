@@ -35,7 +35,7 @@ void ofApp::setup() {
 //--------------------------------------------------------------
 
 void ofApp::update() {
-    oscEvent();
+    oscEvent(); //C++ version = Receive events
     stateUpdate();
         
     keyboard.update();

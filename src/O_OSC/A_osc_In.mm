@@ -3,8 +3,8 @@
 //--------------------------------------------------------------
 
 void ofApp::oscEvent() {
-    while(eos.hasWaitingMessages()){
-        
+    while (eos.hasWaitingMessages()) {
+
         isConnected = true;
         hasOSC = true;
         if (console_log.back().find(log_Connecting) != string::npos || console_log.back() == log_CheckOSC) { //ON GAINED CONNECTION
@@ -12,10 +12,10 @@ void ofApp::oscEvent() {
         } else if (console_log.back() == log_lostConnect) {  //IF LOST CONNECTION
             console_log.push_back(log_reConnect + inputIP);
         }
-        
+
         // ----------------------- OSC MESSAGE START -----------------------
         ofxEosOscMsg m = eos.getNextMessage();
-        
+
         // ----------------------- GET CONNECTION STATUS -----------------------
         if (m.getAddress() == "/eos/out/ping" && m.getArgAsString(0) == appName) {
             receivedPingTime = ofGetElapsedTimeMillis();
@@ -30,7 +30,7 @@ void ofApp::oscEvent() {
             int maxLength = smallButtonWidth * 4;
             while (fontSmall.stringWidth(headerName) > maxLength) {
                 headerAppend = "...";
-                headerName = headerName.substr(0,length);
+                headerName = headerName.substr(0, length);
                 length--;
             }
             headerName = headerName + headerAppend;
@@ -40,7 +40,7 @@ void ofApp::oscEvent() {
             getState(m);
         }
         // ----------------------- GET LIGHT COLOR ----------------------------
-        if (m.getAddress() == "/eos/out/color/hs") {
+        if (m.getAddress() == "/eos/out/color/hs" && m.getNumArgs() > 0) {
             getColor(m);
         }
         // ----------------------- GET COMMAND LINE -----------------------
@@ -64,46 +64,44 @@ void ofApp::oscEvent() {
             for (int i = 1; i <= 2; i++) {
                 for (int j = 1; j <= 20; j++) {
                     if (m.getAddress() == "/eos/out/ds/" + ofToString(i) + "/" + ofToString(j)) {
-                        getDirectSelect(i,j,m);
+                        getDirectSelect(i, j, m);
                     }
                 }
             }
-            
+
         }
     }
 }
 
 //--------------------------------------------------------------
 
-void ofApp::getState(ofxEosOscMsg m){
-    switch(m.getArgAsInt(0)) {
-        case 0: //BLIND
-            isLive = false;
-            break;
-        case 1: //LIVE
-        default:
-            isLive = true;
-            break;
+void ofApp::getState(ofxEosOscMsg m) {
+    switch (m.getArgAsInt(0)) {
+    case 0: //BLIND
+        isLive = false;
+        break;
+    case 1: //LIVE
+    default:
+        isLive = true;
+        break;
     }
 }
 
 //--------------------------------------------------------------
 
-void ofApp::getColor(ofxEosOscMsg m){
-    if (m.getNumArgs() > 0) {
-        channelHue = m.getArgAsFloat(0);
-        channelSat = m.getArgAsFloat(1);
-        channelHue = ofMap(channelHue,0,360,0,255);
-        channelSat = ofMap(channelSat,0,100,0,255);
-        shutterColor.setHsb(channelHue,channelSat,channelInt255);
-    }
+void ofApp::getColor(ofxEosOscMsg m) {
+    channelHue = m.getArgAsFloat(0);
+    channelSat = m.getArgAsFloat(1);
+    channelHue = ofMap(channelHue, 0, 360, 0, 255);
+    channelSat = ofMap(channelSat, 0, 100, 0, 255);
+    shutterColor.setHsb(channelHue, channelSat, channelInt255);
 }
 
 //--------------------------------------------------------------
 
-void ofApp::getCommandLine(ofxEosOscMsg m){
+void ofApp::getCommandLine(ofxEosOscMsg m) {
     string incomingOSC = m.getArgAsString(0);
-    
+
     if (incomingOSC.find("Error:") != string::npos) {
         syntaxError = true;
     } else {
@@ -113,31 +111,31 @@ void ofApp::getCommandLine(ofxEosOscMsg m){
         } else {
             highButton.clicked = false;
         }
-        
+
         if (incomingOSC.find("Group") != string::npos && incomingOSC.find("#") != string::npos) {
             int indexValueStart = incomingOSC.find("Group") + 6;
             incomingOSC = incomingOSC.substr(indexValueStart);
-            
+
             int indexValueEnd = incomingOSC.find(" ");
-            
-            incomingOSC = incomingOSC.substr(0,indexValueEnd);
+
+            incomingOSC = incomingOSC.substr(0, indexValueEnd);
             multiChannelPrefix = "Gr " + incomingOSC;
-            
+
         } else if (incomingOSC.find("Thru") != string::npos && incomingOSC.find("#") != string::npos) {
             int indexValueStart = incomingOSC.find("Chan") + 5;
             incomingOSC = incomingOSC.substr(indexValueStart);
-            
+
             int indexValueEnd = incomingOSC.find(" Thru");
             string firstNumber = incomingOSC.substr(0, indexValueEnd);
-            
+
             indexValueStart = incomingOSC.find("Thru") + 5;
-            
+
             incomingOSC = incomingOSC.substr(indexValueStart);
             indexValueEnd = incomingOSC.find(" ");
 
             string secondNumber = incomingOSC.substr(0, indexValueEnd);
             multiChannelPrefix = firstNumber + "-" + secondNumber;
-        } else if (incomingOSC.find("#") != string::npos){
+        } else if (incomingOSC.find("#") != string::npos) {
             multiChannelPrefix = "";
         }
     }
@@ -147,12 +145,12 @@ void ofApp::getCommandLine(ofxEosOscMsg m){
 
 void ofApp::getChannel(ofxEosOscMsg m) {
     string incomingOSC = m.getArgAsString(0);
-    
+
     if (incomingOSC.length() > 0) {
         noneSelected = false;
         int oscLength = incomingOSC.length();
         int indexValueEnd = incomingOSC.find(" ");
-        incomingOSC = incomingOSC.substr(0,indexValueEnd);
+        incomingOSC = incomingOSC.substr(0, indexValueEnd);
         if (oscLength == 5 + incomingOSC.length()) { //IF NO CHANNEL IS PATCHED (OFFSET BY LENGTH OF CHANNEL NUMBER)
             selectedChannel = "(" + incomingOSC + ")";
             clearParams();
@@ -188,20 +186,20 @@ void ofApp::getPanTilt(ofxEosOscMsg m) {
 void ofApp::getIntensity(ofxEosOscMsg m) {
     channelInt = ofToInt(m.getArgPercent(0));
     intensityOverlay.incomingOSC(channelInt);
-    
-    channelInt255 = ofMap(channelInt,0,100,50,255);
-    shutterColor.setHsb(channelHue,channelSat,channelInt255);
-    
+
+    channelInt255 = ofMap(channelInt, 0, 100, 50, 255);
+    shutterColor.setHsb(channelHue, channelSat, channelInt255);
+
     channelIntString = m.getArgPercent(0) + " %";
 }
 
 //--------------------------------------------------------------
 
-void ofApp::getWheel(ofxEosOscMsg m){
+void ofApp::getWheel(ofxEosOscMsg m) {
     for (int i = 0; i < 200; i++) {
         if (m.getAddress() == "/eos/out/active/wheel/" + ofToString(i) && m.argHasPercent(0) && !ignoreOSC) {
             string incomingOSC = m.getArgAsString(0);
-            
+
             float outputInt = ofToFloat(m.getArgPercent(0));
             float outputBinary = ofMap(outputInt, 0, 100, 1, clickDiameter / assemblyRadius);
             if (incomingOSC.find("Intens") != string::npos) { //INTENSITY
@@ -230,7 +228,7 @@ void ofApp::getWheel(ofxEosOscMsg m){
                 edgePercent = m.getArgPercent(0) + " %";
             } else if (incomingOSC.find("Zoom") != string::npos) { //ZOOM
                 zoomPercent = m.getArgPercent(0) + " %";
-            } else if (incomingOSC.find("Diffusn") != string::npos) { //FROST
+            } else if (incomingOSC.find("Diffusn") != string::npos || incomingOSC.find("Diffusion") != string::npos) { //FROST
                 frostPercent = m.getArgPercent(0) + " %";
             }
 //            else if (incomingOSC.find("Gobo Select") != string::npos) { //GOBO WHEEL 1
@@ -245,17 +243,17 @@ void ofApp::getWheel(ofxEosOscMsg m){
 
 //--------------------------------------------------------------
 
-void ofApp::getDirectSelect(int bank, int buttonID, ofxEosOscMsg m){
+void ofApp::getDirectSelect(int bank, int buttonID, ofxEosOscMsg m) {
     string dNumber = "";
     if (m.argHasPercent(0)) {
         dNumber = "(" + m.getArgPercent(0) + ")";
     }
-    
+
     string dName = m.getArgAsString(0);
     int indexValueEnd = dName.find(" [");
-    
+
     dName = dName.substr(0, indexValueEnd);
-    
+
     if (bank == 1) {
         bankOne.bankText.at(buttonID - 1) = dName;
         bankOne.bankNumber.at(buttonID - 1) = dNumber;
@@ -267,15 +265,15 @@ void ofApp::getDirectSelect(int bank, int buttonID, ofxEosOscMsg m){
 
 //--------------------------------------------------------------
 
-void ofApp::clearParams(){
+void ofApp::clearParams() {
     channelIntString = noParameter;
-    shutterColor.setHsb(0,0,100);
-    
+    shutterColor.setHsb(0, 0, 100);
+
     irisPercent = noParameter;
     edgePercent = noParameter;
     zoomPercent = noParameter;
     frostPercent = noParameter;
-    
+
     panPercent = noParameter;
     tiltPercent = noParameter;
 }

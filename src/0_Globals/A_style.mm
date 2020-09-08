@@ -10,7 +10,7 @@ bool isPaidVersion = false;
 // ----------------------- NAME / IP / ID / RX / TX / SELECTED CHANNEL -----------------------
 //string appName = "ShuttR Cut OSC";
 string appName = "ShuttR Cut LITE";
-string version = "v1.0.2";
+string version = "v1.0.3";
 string headerName = appName;
 
 string IPAddress, inputIP, inputID, selectedChannel = "";

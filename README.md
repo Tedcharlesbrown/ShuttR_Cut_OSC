@@ -6,7 +6,7 @@
 ### Version 0.0.1.0
  -  Initial Release.
 
-### Version 0.0..2.0   
+### Version 0.0.2.0   
  -  Added User Field.
  -  Changed Highlight to work more like a toggle for the current channel selected.
  -  Fine now does something

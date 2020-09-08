@@ -1,3 +1,0 @@
-ofxEtcTcpOsc
-ofxNetwork
-ofxXmlSettings

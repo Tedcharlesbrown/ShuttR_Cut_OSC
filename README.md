@@ -1,7 +1,43 @@
 # ShuttR Cut OSC
- 
+  Credit to: Daniel Shiffman (Coding help), josephh (Coding help), Andreas Schlegel (Oscp5 Library)
  
  ## Change Log
+
+### Version 0.0.1.0
+ -  Initial Release.
+
+### Version 0.0..2.0   
+ -  Added User Field.
+ -  Changed Highlight to work more like a toggle for the current channel selected.
+ -  Fine now does something
+ -  Double tap to home
+ -  Saves IP and User Fields
+ -  Added splash screen
+
+### Version 0.0.2.1
+-   network optimization
+-   user feedback when connecting
+
+### Version 0.0.3.0
+
+-   Added encoder page
+-   UI reacts to Live/Blind
+-   Fixed some screen adjustment for different devices
+
+### Version 0.0.4.0
+
+-   Added dedicated number pad
+-   Button optimization
+-   Made encoder smaller
+-   User channel input
+
+### Version 0.0.5.0.1
+-   Direct Selects
+-   Channel select now iterates through selection
+-   Fixed an error that caused channel selection to add a space
+-   Path optimization
+
+### Processing to OpenFrameworks
  
  ### Version 0.3.1
  - Connection / TCP

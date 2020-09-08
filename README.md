@@ -39,5 +39,6 @@
 -   Added new screenshots
 
     ### Version 1.0.3
--   Added Android version (Changed code to mimic)
--   "Diffusion" now works (was "Diffusn")
+    -   Added Android version (Changed code to mimic)
+-   OSC Changes
+    -   "Diffusion" now works (was "Diffusn")

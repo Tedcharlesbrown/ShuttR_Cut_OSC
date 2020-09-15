@@ -78,3 +78,10 @@
     -   Added Android version (Changed code to mimic)
 -   OSC Changes
     -   "Diffusion" now works (was "Diffusn")
+    
+    ### Version 1.0.4
+-   iOS
+    -   Fixed connection issue when connecting to saved IP
+-   Lite Version
+    -   Added "LITE" Banner to deactivated pages
+    

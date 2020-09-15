@@ -10,7 +10,7 @@ bool isPaidVersion = true;
 // ----------------------- NAME / IP / ID / RX / TX / SELECTED CHANNEL -----------------------
 string appName = "ShuttR Cut OSC";
 //string appName = "ShuttR Cut LITE";
-string version = "v1.0.3";
+string version = "v1.0.4";
 string headerName = appName;
 
 string IPAddress, inputIP, inputID, selectedChannel = "";
@@ -127,7 +127,13 @@ void ofApp::stateUpdate() {
 }
 //--------------------------------------------------------------
 void ofApp::styleInit() {
-
+    
+    //---------- LITE IMAGE LOAD ----------
+    
+    liteBanner.load("Lite.png");
+    
+    //---------- SHUTTER COLOR INIT ----------
+    
     shutterColor.setHsb(163.056, 103.167, 255);
 
     //---------- PARENT WIDTH AND HEIGHT ----------

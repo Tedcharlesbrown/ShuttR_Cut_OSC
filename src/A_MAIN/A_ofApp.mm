@@ -223,6 +223,23 @@ void ofApp::draw() {
     topBarDraw();
     keyboard.draw();
     intensityOverlay.draw();
+    liteOverlay();
+}
+
+//--------------------------------------------------------------
+// MARK: ---------- LITE BANNER OVERLAY ----------
+//--------------------------------------------------------------
+
+void ofApp::liteOverlay() {
+    if (!isPaidVersion && (focusPage.clicked || formPage.clicked || imagePage.clicked || dSelectPage.clicked) && !settingsMenu) {
+        int bannerWidth = liteBanner.getWidth();
+        int bannerHeight = liteBanner.getHeight();
+        
+        ofPushMatrix();
+        ofTranslate(-bannerWidth / 2,-bannerHeight / 2);
+        liteBanner.draw(centerX,centerY);
+        ofPopMatrix();
+    }
 }
 
 //--------------------------------------------------------------
@@ -259,13 +276,13 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
     // ---------- PAGE ROUTING ----------
     if (shutterPage.clicked && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
         shutterPageTouchDown(touch);
-    } else if (focusPage.clicked && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
+    } else if (focusPage.clicked && isPaidVersion &&  !settingsMenu && !keyboard.show && !intensityButton.clicked) {
         focusPageTouchDown(touch);
-    } else if (formPage.clicked && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
+    } else if (formPage.clicked && isPaidVersion &&  !settingsMenu && !keyboard.show && !intensityButton.clicked) {
         formPageTouchDown(touch);
-    } else if (imagePage.clicked && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
+    } else if (imagePage.clicked && isPaidVersion &&  !settingsMenu && !keyboard.show && !intensityButton.clicked) {
         imagePageTouchDown(touch);
-    } else if (dSelectPage.clicked && !settingsMenu) {
+    } else if (dSelectPage.clicked && isPaidVersion && !settingsMenu) {
         DSPageTouchDown(touch);
     } else if (settingsMenu) {
         ipFieldButton.touchDown(touch, true);

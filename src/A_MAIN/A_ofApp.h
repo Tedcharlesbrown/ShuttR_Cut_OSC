@@ -35,6 +35,7 @@ public:
     void stateUpdate();
     
     void draw();
+    void liteOverlay();
     
     void channelButtonAction();
     void intensityButtonAction();
@@ -43,6 +44,7 @@ public:
     
     void buttonAction();
     
+    ofImage liteBanner;
     KEYBOARD keyboard;
     OVERLAY intensityOverlay;
     

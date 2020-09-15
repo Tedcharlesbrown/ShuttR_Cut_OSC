@@ -114,7 +114,7 @@ void ofApp::about() {
     string aboutOne = appName + " " + version;
     string thisIP = "Local IP Address: " + IPAddress;
     string aboutTwo =  "Made by Ted Charles Brown | TedCharlesBrown.com";
-    string aboutThree = "Have suggestions? See a bug? Want to connect / buy me a coffee?";
+    string aboutThree = "Have suggestions? See a bug? Want to connect?";
     string aboutFour = "Email me at TedCharlesBrown+ShuttR@Gmail.com!";
     
     ofPushMatrix();

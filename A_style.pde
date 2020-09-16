@@ -3,15 +3,15 @@
 //--------------------------------------------------------------
 
 // ----------------------- PAID VS FREE VERSION -----------------------
-boolean isPaidVersion = false;
+boolean isPaidVersion = true;
 
 //--------------------------------------------------------------
 // MARK: ---------- EOS SETTINGS ----------
 //--------------------------------------------------------------
 
 // ----------------------- NAME / IP / ID / RX / TX / SELECTED CHANNEL -----------------------
-// String appName = "ShuttR Cut OSC";
-String appName = "ShuttR Cut LITE";
+String appName = "ShuttR Cut OSC";
+// String appName = "ShuttR Cut LITE";
 
 String version = "v1.0.4";
 String headerName = appName;

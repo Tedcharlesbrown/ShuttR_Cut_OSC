@@ -84,4 +84,6 @@
     -   Fixed connection issue when connecting to saved IP
 -   Lite Version
     -   Added "LITE" Banner to deactivated pages
+-   General
+    -   Changed coffee text
     

@@ -13,7 +13,7 @@ boolean isPaidVersion = false;
 // String appName = "ShuttR Cut OSC";
 String appName = "ShuttR Cut LITE";
 
-String version = "v1.0.3";
+String version = "v1.0.4";
 String headerName = appName;
 
 String IPAddress, inputIP, inputID, selectedChannel = "";
@@ -177,11 +177,19 @@ void javaClassInit() {
 }
 //--------------------------------------------------------------
 void styleInit() {
+  //---------- SPLASH SCREEN LOAD ----------
   if (appName.indexOf("LITE") != -1) {
     splashImg = loadImage("icon-lite.png");
   } else {
     splashImg = loadImage("icon-pro.png");
   }
+  
+  //---------- LITE IMAGE LOAD ----------
+
+  liteBanner = loadImage("Lite.png");
+  liteBanner.resize(width,0);
+
+  //---------- SHUTTER COLOR INIT ----------
 
   push();
   colorMode(HSB, 255, 255, 255, 255);
@@ -209,7 +217,7 @@ void styleInit() {
 
   ///---------- FRAME ASSEMBLY STYLES ----------
 
-  shutterStrokeWeight = (width / 50) / 1.5; //width / 50
+  shutterStrokeWeight = (width / 50) / 1.25; //width / 50
   outsideWeight = width / 96; //15
   thrustWeight = width / 288; //5
   angleWeight = width / 288; //5

@@ -249,12 +249,26 @@ void draw() {
 		topBarDraw();
 		keyboard.draw();
 		intensityOverlay.draw();
+		liteOverlay();
 		pop();
 	}
 }
 
+PImage liteBanner;
 KEYBOARD keyboard;
 OVERLAY intensityOverlay;
+
+//--------------------------------------------------------------
+// MARK: ----------LITE BANNER OVERLAY----------
+//--------------------------------------------------------------
+void liteOverlay() {
+	if (!isPaidVersion && (focusPage.clicked || formPage.clicked || imagePage.clicked || dSelectPage.clicked) && !settingsMenu) {
+		push();
+		translate(-liteBanner.width / 2,-liteBanner.height / 2);
+		image(liteBanner,centerX,centerY);
+		pop();
+	}
+}
 
 //--------------------------------------------------------------
 // MARK: ----------TOP BAR----------
@@ -354,13 +368,13 @@ void mousePressed() {
 		// ---------- PAGE ROUTING ----------
 		if (shutterPage.clicked && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
 			shutterPageTouchDown();
-		} else if (focusPage.clicked && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
+		} else if (focusPage.clicked && isPaidVersion && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
 			focusPageTouchDown();
-		} else if (formPage.clicked && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
+		} else if (formPage.clicked && isPaidVersion && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
 			formPageTouchDown();
-		} else if (imagePage.clicked && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
+		} else if (imagePage.clicked && isPaidVersion && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
 			// imagePageTouchDown();
-		} else if (dSelectPage.clicked && !settingsMenu) {
+		} else if (dSelectPage.clicked && isPaidVersion && !settingsMenu) {
 			DSPageTouchDown();
 		} else if (settingsMenu) {
 			ipFieldButton.touchDown(true);

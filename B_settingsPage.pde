@@ -132,7 +132,7 @@ void about() {
 	String aboutOne = appName + " " + version;
 	String thisIP = "Local IP Address: " + IPAddress;
 	String aboutTwo =  "Made by Ted Charles Brown | TedCharlesBrown.com";
-	String aboutThree = "Have suggestions? See a bug? Want to connect / buy me a coffee?";
+	String aboutThree = "Have suggestions? See a bug? Want to connect?";
 	String aboutFour = "Email me at TedCharlesBrown+ShuttR@Gmail.com!";
 
 	push();

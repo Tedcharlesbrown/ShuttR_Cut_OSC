@@ -77,9 +77,9 @@ void ofApp::getNotchHeight() {
         int iPhoneVersion = ofToInt(deviceName.substr(indexValueEnd + 1)); //GET DEVICE VERSION
         int iPhoneID = iPhoneGeneration * 10 + iPhoneVersion; //SET ID TO GENERATION.VERSION NUMBER
         
-//        iPhoneID = 101; //IPHONE 8
-//        iPhoneID = 102; //IPHONE 8+ //5.5inch screenshot
-//        iPhoneID = 123; //IPHONE PRO + PRO MAX //6.5inch screenshot
+        //        iPhoneID = 101; //IPHONE 8
+        //        iPhoneID = 102; //IPHONE 8+ //5.5inch screenshot
+        //        iPhoneID = 123; //IPHONE PRO + PRO MAX //6.5inch screenshot
         
         switch(iPhoneID) {
             case 11: //iPhone           - 1x
@@ -156,6 +156,95 @@ void ofApp::getNotchHeight() {
                 break;
             default:
                 notchHeight = 44;
+        }
+    } else if (deviceName.find("iPad") != std::string::npos) {
+        int indexValueEnd = deviceName.find(",");
+        int iPhoneGeneration = ofToInt(deviceName.substr(6, indexValueEnd - 6)); //GET DEVICE GENERATION
+        int iPhoneVersion = ofToInt(deviceName.substr(indexValueEnd + 1)); //GET DEVICE VERSION
+        int iPhoneID = iPhoneGeneration * 10 + iPhoneVersion; //SET ID TO GENERATION.VERSION NUMBER
+        
+        switch(iPhoneID) {
+            case 11: // iPad
+            case 12: // iPad 3G
+            case 21: // 2nd Gen iPad
+            case 22: // 2nd Gen iPad GSM
+            case 23: // 2nd Gen iPad CDMA
+            case 24: // 2nd Gen iPad New Revision
+            case 25: // iPad mini
+            case 26: // iPad mini GSM+LTE
+            case 27: // iPad mini CDMA+LTE
+                notchHeight = 22;
+                break;
+            case 31: // 3rd Gen iPad
+            case 32: // 3rd Gen iPad CDMA
+            case 33: // 3rd Gen iPad GSM
+            case 34: // 4th Gen iPad
+            case 35: // 4th Gen iPad GSM+LTE
+            case 36: // 4th Gen iPad CDMA+LTE
+            case 41: // iPad Air (WiFi)
+            case 42: // iPad Air (GSM+CDMA)
+            case 43: // 1st Gen iPad Air (China)
+            case 44: // iPad mini Retina (WiFi)
+            case 45: // iPad mini Retina (GSM+CDMA)
+            case 46: // iPad mini Retina (China)
+            case 47: // iPad mini 3 (WiFi)
+            case 48: // iPad mini 3 (GSM+CDMA)
+            case 49: // iPad Mini 3 (China)
+            case 51: // iPad mini 4 (WiFi)
+            case 52: // 4th Gen iPad mini (WiFi+Cellular)
+            case 53: // iPad Air 2 (WiFi)
+            case 54: // iPad Air 2 (Cellular)
+            case 63: // iPad Pro (9.7 inch, WiFi)
+            case 64: // iPad Pro (9.7 inch, WiFi+LTE)
+            case 67: // iPad Pro (12.9 inch, WiFi)
+            case 68: // iPad Pro (12.9 inch, WiFi+LTE)
+            case 611: // iPad (2017)
+            case 612: // iPad (2017)
+            case 71: // iPad Pro 2nd Gen (WiFi)
+            case 72: // iPad Pro 2nd Gen (WiFi+Cellular)
+            case 73: // iPad Pro 10.5-inch
+            case 74: // iPad Pro 10.5-inch
+            case 75: // iPad 6th Gen (WiFi)
+            case 76: // iPad 6th Gen (WiFi+Cellular)
+            case 711: // iPad 7th Gen 10.2-inch (WiFi)
+            case 712: // iPad 7th Gen 10.2-inch (WiFi+Cellular)
+            case 81: // iPad Pro 11 inch (WiFi)
+            case 82: // iPad Pro 11 inch (1TB, WiFi)
+            case 83: // iPad Pro 11 inch (WiFi+Cellular)
+            case 84: // iPad Pro 11 inch (1TB, WiFi+Cellular)
+            case 85: // iPad Pro 12.9 inch 3rd Gen (WiFi)
+            case 86: // iPad Pro 12.9 inch 3rd Gen (1TB, WiFi)
+            case 87: // iPad Pro 12.9 inch 3rd Gen (WiFi+Cellular)
+            case 88: // iPad Pro 12.9 inch 3rd Gen (1TB, WiFi+Cellular)
+            case 89: // iPad Pro 11 inch 2nd Gen (WiFi)
+            case 111: // iPad mini 5th Gen (WiFi)
+            case 112: // iPad mini 5th Gen
+            case 113: // iPad Air 3rd Gen (WiFi)
+            case 114: // iPad Air 3rd Gen
+            case 810: // iPad Pro 11 inch 2nd Gen (WiFi+Cellular)
+            case 811: // iPad Pro 12.9 inch 4th Gen (WiFi)
+            case 812: // iPad Pro 12.9 inch 4th Gen (WiFi+Cellular)
+                notchHeight = 44;
+                break;
+        }
+    } else if (deviceName.find("iPod") != std::string::npos) {
+        int indexValueEnd = deviceName.find(",");
+        int iPhoneGeneration = ofToInt(deviceName.substr(6, indexValueEnd - 6)); //GET DEVICE GENERATION
+        int iPhoneVersion = ofToInt(deviceName.substr(indexValueEnd + 1)); //GET DEVICE VERSION
+        int iPhoneID = iPhoneGeneration * 10 + iPhoneVersion; //SET ID TO GENERATION.VERSION NUMBER
+        
+        switch(iPhoneID) {
+            case 11: // 1st Gen iPod
+            case 21: // 2nd Gen iPod
+            case 31: // 3rd Gen iPod
+                notchHeight = 22;
+                break;
+            case 41: // 4th Gen iPod
+            case 51: // 5th Gen iPod
+            case 71: // 6th Gen iPod
+            case 91: // 7th Gen iPod
+                notchHeight = 44;
+                break;
         }
     }
 }

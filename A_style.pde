@@ -3,17 +3,17 @@
 //--------------------------------------------------------------
 
 // ----------------------- PAID VS FREE VERSION -----------------------
-boolean isPaidVersion = true;
+boolean isPaidVersion = false;
 
 //--------------------------------------------------------------
 // MARK: ---------- EOS SETTINGS ----------
 //--------------------------------------------------------------
 
 // ----------------------- NAME / IP / ID / RX / TX / SELECTED CHANNEL -----------------------
-String appName = "ShuttR Cut OSC";
-// String appName = "ShuttR Cut LITE";
+// String appName = "ShuttR Cut OSC";
+String appName = "ShuttR Cut LITE";
 
-String version = "v1.0.4";
+String version = "v1.0.5";
 String headerName = appName;
 
 String IPAddress, inputIP, inputID, selectedChannel = "";
@@ -217,7 +217,7 @@ void styleInit() {
 
   ///---------- FRAME ASSEMBLY STYLES ----------
 
-  shutterStrokeWeight = (width / 50) / 1.25; //width / 50
+  shutterStrokeWeight = (width / 50); //width / 50
   outsideWeight = width / 96; //15
   thrustWeight = width / 288; //5
   angleWeight = width / 288; //5

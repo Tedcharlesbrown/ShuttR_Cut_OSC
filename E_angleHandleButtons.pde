@@ -206,7 +206,7 @@ class ANGLE_HANDLE {
 			float shutterHeight = assemblyRadius + outsideWeight;
 
 			stroke(shutterFrameStroke);
-			strokeWeight(shutterStrokeWeight);
+			strokeWeight(shutterStrokeWeight / 1.5);
 			fill(shutterFrameFill);
 
 			if (ID == "a") {

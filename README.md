@@ -86,4 +86,8 @@
     -   Added "LITE" Banner to deactivated pages
 -   General
     -   Changed coffee text
+    ### Version 1.0.4
+-   Android
+    -   Fixed cosmetic issue with Shutters
+-   Metadata updates
     

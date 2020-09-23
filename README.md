@@ -90,4 +90,8 @@
 -   Android
     -   Fixed cosmetic issue with Shutters
 -   Metadata updates
+    ### Version 1.1.0
+    -   Added "Image" page
+-   General
+    -   "Selected Channel" now changes to fixture type if channel is selected
     

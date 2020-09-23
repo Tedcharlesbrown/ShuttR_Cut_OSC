@@ -94,4 +94,7 @@
     -   Added "Image" page
 -   General
     -   "Selected Channel" now changes to fixture type if channel is selected
+-   OSC Changes
+    -   Auto-connect cancels if IP field is entered
+    -   Auto-connect time is slowed down (IOS)
     

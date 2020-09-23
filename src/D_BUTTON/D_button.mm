@@ -185,7 +185,7 @@ void BUTTON::show(string _ID, string _ID2, float _x, float _y, float _w, float _
 // MARK: ----------TWO LINE (WITH BOTTOM)----------
 //--------------------------------------------------------------
 
-void BUTTON::showBig(string _ID, string _ID2, float _x, float _y, float _w, float _h) { //DOUBLE TEXT WITH BOTTOM
+void BUTTON::showBig(string _ID, string _ID2, float _x, float _y, float _w, float _h, string _size) { //DOUBLE TEXT WITH BOTTOM
     this-> x = _x;
     this-> y = _y + _h / 2;
     this-> w = _w;
@@ -216,17 +216,22 @@ void BUTTON::showBig(string _ID, string _ID2, float _x, float _y, float _w, floa
     ofDrawRectRounded(_x, _y, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
     
     ofSetColor(white);
-    fontMedium.drawString(_ID, _x - fontMedium.stringWidth(_ID) / 2, _y + fontMedium.stringHeight(_ID) / 2);//INPUT
-    fontMedium.drawString(_ID2, _x - fontMedium.stringWidth(_ID2) / 2, _y + _h / 1.25 + fontMedium.stringHeight(_ID2) / 2);//INPUT
+    if (_size == "MEDIUM") {
+        fontMedium.drawString(_ID, _x - fontMedium.stringWidth(_ID) / 2, _y + fontMedium.stringHeight(_ID) / 2);//INPUT
+        fontMedium.drawString(_ID2, _x - fontMedium.stringWidth(_ID2) / 2, _y + _h / 1.25 + fontMedium.stringHeight(_ID2) / 2);//INPUT
+    } else if (_size == "SMALL") {
+        fontSmall.drawString(_ID, _x - fontSmall.stringWidth(_ID) / 2, _y + fontSmall.stringHeight(_ID) / 2);//INPUT
+        fontSmall.drawString(_ID2, _x - fontSmall.stringWidth(_ID2) / 2, _y + _h / 1.25 + fontSmall.stringHeight(_ID2) / 2);//INPUT
+    }
     
     ofPopStyle();
 }
 
 //--------------------------------------------------------------
-// MARK: ----------IMAGE BUTTON----------
+// MARK: ----------IMAGE BUTTON - COLOR----------
 //--------------------------------------------------------------
 
-void BUTTON::showImage(string _ID, string _ID2, string _ID3, float _x, float _y, float _w, float _h) { //DOUBLE TEXT WITH BOTTOM
+void BUTTON::showImage(string _ID, string _ID2, float _x, float _y, float _w, float _h, bool active) { //TWO TEXT
     this-> x = _x;
     this-> y = _y + _h / 2;
     this-> w = _w;
@@ -234,20 +239,13 @@ void BUTTON::showImage(string _ID, string _ID2, string _ID3, float _x, float _y,
     
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
-
-    //BOTTOM
-    ofSetColor(EOSState);
-    ofDrawRectRounded(_x, _y + _h / 0.75, _w, _h, buttonCorner);
-    
-    if (this-> clicked) {
-        ofSetColor(buttonActive);
-    } else {
-        ofSetColor(black);
-    }
-    ofDrawRectRounded(_x, _y + _h / 0.75, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
     
     //MIDDLE
-    ofSetColor(EOSState);
+    if (active) {
+        ofSetColor(EOSState);
+    } else {
+        ofSetColor(EOSDarkGrey);
+    }
     ofDrawRectRounded(_x, _y + _h / 1.5, _w, _h, buttonCorner);
     if (this-> clicked) {
         ofSetColor(buttonActive);
@@ -257,7 +255,11 @@ void BUTTON::showImage(string _ID, string _ID2, string _ID3, float _x, float _y,
     ofDrawRectRounded(_x, _y + _h / 1.5, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
     
     //TOP
-    ofSetColor(EOSState);
+    if (active) {
+        ofSetColor(EOSState);
+    } else {
+        ofSetColor(EOSDarkGrey);
+    }
     ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
     
     if (this-> clicked) {
@@ -269,8 +271,99 @@ void BUTTON::showImage(string _ID, string _ID2, string _ID3, float _x, float _y,
     
     ofSetColor(white);
     fontSmall.drawString(_ID, _x - fontSmall.stringWidth(_ID) / 2, _y + fontSmall.stringHeight(_ID) / 2);//INPUT
-    fontMedium.drawString(_ID2, _x - fontMedium.stringWidth(_ID2) / 2, _y + _h / 1.25 + fontMedium.stringHeight(_ID2) / 2);//INPUT
-    fontMedium.drawString(_ID3, _x - fontMedium.stringWidth(_ID3) / 2, _y + _h * 1.5 + fontMedium.stringHeight(_ID3) / 2);//INPUT
+    if (_ID2 == "---") {
+        fontSmall.drawString(_ID2, (_x - fontSmall.stringWidth(_ID2) / 2) + _w / 8, _y + _h / 1.05);//INPUT
+    } else {
+        fontSmall.drawString(_ID2, (_x - fontSmall.stringWidth(_ID2) / 2) + _w / 8, _y + _h / 1.25 + fontSmall.stringHeight(_ID2) / 2);//INPUT
+    }
+    
+    if (this-> clicked) {
+        ofSetColor(black);
+    } else {
+        ofSetColor(100);
+    }
+    string index = "INDEX: ";
+    fontTiny.drawString(index, (_x) - _w / 2.2, _y + _h / 1.25 + fontTiny.stringHeight(index) / 2);//INPUT
+    
+    ofPopStyle();
+}
+
+//--------------------------------------------------------------
+// MARK: ----------IMAGE BUTTON - GOBO,BEAM,ANIMATION----------
+//--------------------------------------------------------------
+
+void BUTTON::showImage(string _ID, string _ID2, string _ID3, float _x, float _y, float _w, float _h, bool active) { //THREE TEXT
+    this-> x = _x;
+    this-> y = _y + _h / 2;
+    this-> w = _w;
+    this-> h = _h * 1.5;
+    
+    ofPushStyle();
+    ofSetRectMode(OF_RECTMODE_CENTER);
+
+    //BOTTOM
+    if (active) {
+        ofSetColor(EOSState);
+    } else {
+        ofSetColor(EOSDarkGrey);
+    }
+    ofDrawRectRounded(_x, _y + _h / 0.75, _w, _h, buttonCorner);
+    
+    if (this-> clicked) {
+        ofSetColor(buttonActive);
+    } else {
+        ofSetColor(black);
+    }
+    ofDrawRectRounded(_x, _y + _h / 0.75, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
+    
+    //MIDDLE
+    if (active) {
+        ofSetColor(EOSState);
+    } else {
+        ofSetColor(EOSDarkGrey);
+    }
+    ofDrawRectRounded(_x, _y + _h / 1.5, _w, _h, buttonCorner);
+    if (this-> clicked) {
+        ofSetColor(buttonActive);
+    } else {
+        ofSetColor(black);
+    }
+    ofDrawRectRounded(_x, _y + _h / 1.5, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
+    
+    //TOP
+    if (active) {
+        ofSetColor(EOSState);
+    } else {
+        ofSetColor(EOSDarkGrey);
+    }
+    ofDrawRectRounded(_x, _y, _w, _h, buttonCorner);
+    
+    if (this-> clicked) {
+        ofSetColor(buttonActive);
+    } else {
+        ofSetColor(black);
+    }
+    ofDrawRectRounded(_x, _y, _w - buttonStrokeWeight, _h - buttonStrokeWeight, buttonCorner);
+    
+    ofSetColor(white);
+    fontSmall.drawString(_ID, _x - fontSmall.stringWidth(_ID) / 2, _y + fontSmall.stringHeight(_ID) / 2);//INPUT
+    if (_ID2 == "---") {
+        fontSmall.drawString(_ID2, (_x - fontSmall.stringWidth(_ID2) / 2) + _w / 8, _y + _h / 1.05);//INPUT
+        fontSmall.drawString(_ID3, (_x - fontSmall.stringWidth(_ID3) / 2) + _w / 8, _y + _h * 1.5);//INPUT
+    } else {
+        fontSmall.drawString(_ID2, (_x - fontSmall.stringWidth(_ID2) / 2) + _w / 8, _y + _h / 1.25 + fontSmall.stringHeight(_ID2) / 2);//INPUT
+        fontSmall.drawString(_ID3, (_x - fontSmall.stringWidth(_ID3) / 2) + _w / 8, _y + _h * 1.5 + fontSmall.stringHeight(_ID3) / 2);//INPUT
+    }
+    
+    if (this-> clicked) {
+        ofSetColor(black);
+    } else {
+        ofSetColor(100);
+    }
+    string index = "INDEX: ";
+    string speed = "IND/SPD: ";
+    fontTiny.drawString(index, (_x) - _w / 2.2, _y + _h / 1.25 + fontTiny.stringHeight(index) / 2);//INPUT
+    fontTiny.drawString(speed, (_x) - _w / 2.2, _y + _h * 1.5 + fontTiny.stringHeight(speed) / 2);//INPUT
     
     ofPopStyle();
 }

@@ -25,8 +25,9 @@ public:
     
     void showInt(string ID, float x, float y , float width, float height);
     
-    void showBig(string ID, string ID2, float x, float y, float width, float height); //TWO TEXT WITH BOTTOM
-    void showImage(string ID, string ID2, string ID3, float x, float y, float width, float height); //TWO TEXT WITH BOTTOM
+    void showBig(string ID, string ID2, float x, float y, float width, float height, string textSize); //TWO TEXT WITH BOTTOM
+    void showImage(string ID, string ID2, float x, float y, float width, float height, bool active); //TWO TEXT
+    void showImage(string ID, string ID2, string ID3, float x, float y, float width, float height, bool active); //THREE TEXT
     
     void showDS(string ID, string ID2, float x, float y, float w, float h, ofColor color); //DIRECT SELECT
     

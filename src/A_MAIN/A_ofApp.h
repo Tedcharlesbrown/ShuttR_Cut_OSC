@@ -164,10 +164,14 @@ public:
     void imagePageTouchUp(ofTouchEventArgs & touch);
     void imagePageDoubleTap(ofTouchEventArgs & touch);
     
-    ENCODER imageEncoder;
-    BUTTON wheelButton;
-    vector<BUTTON> imageWheel, imageWheelLeft, imageWheelRight;
-    vector<string> wheelSelect, wheelGobo, wheelPercent;
+    BUTTON gobo1Button, gobo2Button, gobo3Button, beam1Button, beam2Button, beam3Button, ani1Button, ani2Button, ani3Button, color1Button, color2Button, color3Button;
+    string gobo1Select, gobo2Select, gobo3Select, beam1Select, beam2Select, beam3Select, ani1Select, ani2Select, ani3Select, color1Select, color2Select, color3Select;
+    string gobo1Speed, gobo2Speed, gobo3Speed, beam1Speed, beam2Speed, beam3Speed, ani1Speed, ani2Speed, ani3Speed;
+    bool hasGobo1, hasGobo2, hasGobo3, hasBeam1, hasBeam2, hasBeam3, hasAni1, hasAni2, hasAni3, hasColor1, hasColor2, hasColor3 = false;
+    
+    string imageParamShow, imageIndexParameter, imageSpeedParameter = "";
+    
+    BUTTON minusSpeedButton, homeSpeedButton, plusSpeedButton;
         
     //--------------------------------------------------------------
     // MARK: ----------DIRECT SELECT PAGE----------
@@ -252,10 +256,13 @@ public:
     void getPanTilt(ofxEosOscMsg incomingOSC);
     void getWheel(ofxEosOscMsg incomingOSC);
     void getChannel(ofxEosOscMsg incomingOSC);
+    void getFixture(ofxEosOscMsg incomingOSC);
     void getColor(ofxEosOscMsg incomingOSC);
     void getIntensity(ofxEosOscMsg incomingOSC);
+    void getImage(ofxEosOscMsg incomingOSC);
     
     void clearParams();
+    void clearImage();
     
     void getDirectSelect(int bank, int buttonID, ofxEosOscMsg m);
     
@@ -277,6 +284,7 @@ public:
     void sendEncoder(string parameter, float message);
     void fineEncoder(int message);
     void sendEncoderPercent(string parameter, int message);
+    void sendImage(string parameter, string message, bool index);
     
     void sendShutter(string parameter, string ID, int message);
     void sendShutterHome(string parameter);

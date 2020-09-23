@@ -200,6 +200,9 @@ void ofApp::draw() {
         
     if ((shutterPage.clicked || formPage.clicked|| focusPage.clicked || imagePage.clicked) && !settingsMenu) {
         string channel = "SELECTED CHANNEL";
+        if (!noneSelected) {
+            channel = currentFixture;
+        }
         minusButton.show("-",guiLeftAlign,row1Padding + buttonHeight / 2, smallButtonWidth,buttonHeight,"LARGE");
         plusButton.show("+",guiRightAlign,row1Padding + buttonHeight / 2, smallButtonWidth,buttonHeight,"LARGE");
         fineButton.show("FINE",guiLeftAlign,row2Padding,genericButtonWidth,buttonHeight,"LARGE");
@@ -260,7 +263,7 @@ void ofApp::touchDown(ofTouchEventArgs & touch){
     focusPage.touchDown(touch);     
     formPage.touchDown(touch);      
     imagePage.touchDown(touch);     
-    dSelectPage.touchDown(touch);   
+    dSelectPage.touchDown(touch);
     
     // ---------- TOP GUI BUTTONS ----------
     if ((shutterPage.clicked || focusPage.clicked || formPage.clicked || imagePage.clicked) && !keyboard.show) {
@@ -349,6 +352,8 @@ void ofApp::touchDoubleTap(ofTouchEventArgs & touch){
         focusPageDoubleTap(touch);
     } else if (formPage.clicked && !settingsMenu) {
         formPageDoubleTap(touch);
+    } else if (imagePage.clicked && !settingsMenu) {
+        imagePageDoubleTap(touch);
     } else if (dSelectPage.clicked && !settingsMenu) {
         DSPageDoubleTap(touch);
     }

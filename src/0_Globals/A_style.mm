@@ -10,7 +10,7 @@ bool isPaidVersion = true;
 // ----------------------- NAME / IP / ID / RX / TX / SELECTED CHANNEL -----------------------
 string appName = "ShuttR Cut OSC";
 //string appName = "ShuttR Cut LITE";
-string version = "v1.0.5";
+string version = "v1.1.0";
 string headerName = appName;
 
 string IPAddress, inputIP, inputID, selectedChannel = "";
@@ -35,6 +35,9 @@ string channelIntString;
 int channelInt, channelInt255;
 float channelHue, channelSat;
 
+string oldFixture, currentFixture;
+bool newFixture;
+
 //--------------------------------------------------------------
 // MARK: ---------- TEXT STYLES ----------
 //--------------------------------------------------------------
@@ -57,7 +60,7 @@ float row1Padding, row2Padding, row3Padding, row4Padding, row5Padding, row6Paddi
 float guiLeftAlign, guiCenterAlign, guiRightAlign;
 
 // ----------------------- BUTTON WIDTH / HEIGHT -----------------------
-float lightWidth, channelButtonWidth, genericButtonWidth, smallButtonWidth, parameterButtonWidth;
+float lightWidth, channelButtonWidth, imageButtonWidth, genericButtonWidth, smallButtonWidth, parameterButtonWidth;
 float buttonHeight;
 float buttonCorner;
 
@@ -187,6 +190,7 @@ void ofApp::styleInit() {
 
     lightWidth = width / 10;
     channelButtonWidth = (width / 4.5) * 1.5;
+    imageButtonWidth = width / 3.5;
     smallButtonWidth = width / 6;
     genericButtonWidth = width / 4.5;
     parameterButtonWidth = genericButtonWidth / 1.25;

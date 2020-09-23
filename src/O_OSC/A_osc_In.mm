@@ -57,7 +57,11 @@ void ofApp::oscEvent() {
         }
         // ----------------------- GET ALL WHEEL PARAMS -----------------------
         if (m.getAsString().find("/eos/out/active/wheel/") != string::npos) {
-            getWheel(m);
+            if (m.getAsString().find("Ind/Spd") != string::npos || m.getAsString().find("Select") != string::npos) {
+                getImage(m);
+            } else {
+                getWheel(m);
+            }
         }
         // ----------------------- GET DIRECT SELECTS -----------------------
         if (m.getAsString().find("/eos/out/ds/") != string::npos) {
@@ -68,7 +72,6 @@ void ofApp::oscEvent() {
                     }
                 }
             }
-
         }
     }
 }
@@ -155,6 +158,7 @@ void ofApp::getChannel(ofxEosOscMsg m) {
             selectedChannel = "(" + incomingOSC + ")";
             clearParams();
         } else {
+            getFixture(m);
             if (incomingOSC.find("-") != string::npos || incomingOSC.find(",") != string::npos) {
                 selectedChannel = multiChannelPrefix;
             } else if (multiChannelPrefix.length() > 0) {
@@ -167,6 +171,29 @@ void ofApp::getChannel(ofxEosOscMsg m) {
         noneSelected = true;
         selectedChannel = "---";
         clearParams();
+    }
+}
+
+//--------------------------------------------------------------
+
+void ofApp::getFixture(ofxEosOscMsg m) {
+    string incomingOSC = m.getArgAsString(0);
+    int indexValueStart = incomingOSC.find("_");
+    int indexValueEnd = incomingOSC.find(" @");
+    int countBackwards = indexValueStart;
+    while (incomingOSC.at(countBackwards) != ' ') {
+        countBackwards--;
+    }
+    indexValueStart = countBackwards + 1;
+    incomingOSC = incomingOSC.substr(indexValueStart, indexValueEnd - indexValueStart);
+    
+    oldFixture = currentFixture;
+    currentFixture = incomingOSC;
+    
+    if (currentFixture != oldFixture) {
+        newFixture = true;
+    } else {
+        newFixture = false;
     }
 }
 
@@ -265,6 +292,99 @@ void ofApp::getDirectSelect(int bank, int buttonID, ofxEosOscMsg m) {
 
 //--------------------------------------------------------------
 
+void ofApp::getImage(ofxEosOscMsg m) {
+    string incomingOSC = m.getAsString();
+    string incomingWheel = m.getAsString();
+    int indexValueStart = incomingOSC.find("/eos") + 25;
+    int indexValueEnd = incomingOSC.find(" [");
+    incomingOSC = incomingOSC.substr(indexValueStart,indexValueEnd - indexValueStart);
+    
+    //SELECT
+    if (incomingOSC.find("Select") != string::npos) {
+        string incomingValue = m.getArgPercent(0);
+        if (ofToInt(incomingValue) == 1) {
+            incomingValue = "HOME";
+        }
+        //------------- GOBO ---------------
+        if (incomingOSC.find("Gobo") != string::npos) {
+            if (incomingOSC.find("2") == string::npos && incomingOSC.find("3") == string::npos && incomingOSC.find("MSpeed") == string::npos) {
+                hasGobo1 = true; gobo1Select = incomingValue;
+            } else if (incomingOSC.find("2") != string::npos) {
+                hasGobo2 = true; gobo2Select = incomingValue;
+            } else if (incomingOSC.find("3") != string::npos) {
+                hasGobo3 = true; gobo3Select = incomingValue;
+            }
+        }
+        //------------- BEAM ---------------
+        if (incomingOSC.find("Beam Fx") != string::npos) {
+            if (incomingOSC.find("2") == string::npos && incomingOSC.find("3") == string::npos && incomingOSC.find("MSpeed") == string::npos) {
+                hasBeam1 = true; beam1Select = incomingValue;
+            } else if (incomingOSC.find("2") != string::npos) {
+                hasBeam2 = true; beam2Select = incomingValue;
+            } else if (incomingOSC.find("3") != string::npos) {
+                hasBeam3 = true; beam3Select = incomingValue;
+            }
+        }
+        //------------- ANIMATION ---------------
+        if (incomingOSC.find("Animation") != string::npos) {
+            if (incomingOSC.find("2") == string::npos && incomingOSC.find("3") == string::npos && incomingOSC.find("MSpeed") == string::npos) {
+                hasAni1 = true; ani1Select = incomingValue;
+            } else if (incomingOSC.find("2") != string::npos) {
+                hasAni2 = true; ani2Select = incomingValue;
+            } else if (incomingOSC.find("3") != string::npos) {
+                hasAni3 = true; ani3Select = incomingValue;
+            }
+        }
+        //------------- COLOR ---------------
+        if (incomingOSC.find("Color") != string::npos) {
+            if (incomingOSC.find("2") == string::npos && incomingOSC.find("3") == string::npos && incomingOSC.find("MSpeed") == string::npos) {
+                hasColor1 = true; color1Select = incomingValue;
+            } else if (incomingOSC.find("2") != string::npos) {
+                hasColor2 = true; color2Select = incomingValue;
+            } else if (incomingOSC.find("3") != string::npos) {
+                hasColor3 = true; color3Select = incomingValue;
+            }
+        }
+    } else if (incomingOSC.find("Ind/Spd") != string::npos) { //INDEX / SPEED
+        string incomingValue = m.getArgPercent(0);
+        if (ofToInt(incomingValue) == 0) {
+            incomingValue = "HOME";
+        }
+        //------------- GOBO ---------------
+        if (incomingOSC.find("Gobo") != string::npos) {
+            if (incomingOSC.find("2") == string::npos && incomingOSC.find("3") == string::npos && incomingOSC.find("MSpeed") == string::npos) {
+                hasGobo1 = true; gobo1Speed = incomingValue;
+            } else if (incomingOSC.find("2") != string::npos) {
+                hasGobo2 = true; gobo2Speed = incomingValue;
+            } else if (incomingOSC.find("3") != string::npos) {
+                hasGobo3 = true; gobo3Speed = incomingValue;
+            }
+        }
+        //------------- BEAM ---------------
+        if (incomingOSC.find("Beam Fx") != string::npos) {
+            if (incomingOSC.find("2") == string::npos && incomingOSC.find("3") == string::npos && incomingOSC.find("MSpeed") == string::npos) {
+                hasBeam1 = true; beam1Speed = incomingValue;
+            } else if (incomingOSC.find("2") != string::npos) {
+                hasBeam2 = true; beam2Speed = incomingValue;
+            } else if (incomingOSC.find("3") != string::npos) {
+                hasBeam3 = true; beam3Speed = incomingValue;
+            }
+        }
+        //------------- ANIMATION ---------------
+        if (incomingOSC.find("Animation") != string::npos) {
+            if (incomingOSC.find("2") == string::npos && incomingOSC.find("3") == string::npos && incomingOSC.find("MSpeed") == string::npos) {
+                hasAni1 = true; ani1Speed = incomingValue;
+            } else if (incomingOSC.find("2") != string::npos) {
+                hasAni2 = true; ani2Speed = incomingValue;
+            } else if (incomingOSC.find("3") != string::npos) {
+                hasAni3 = true; ani3Speed = incomingValue;
+            }
+        }
+    }
+}
+
+//--------------------------------------------------------------
+
 void ofApp::clearParams() {
     channelIntString = noParameter;
     shutterColor.setHsb(0, 0, 100);
@@ -276,4 +396,15 @@ void ofApp::clearParams() {
 
     panPercent = noParameter;
     tiltPercent = noParameter;
+    
+    clearImage();
+}
+
+//--------------------------------------------------------------
+
+void ofApp::clearImage() {
+    hasGobo1 = false; hasGobo2 = false; hasGobo3 = false;
+    hasBeam1 = false; hasBeam2 = false; hasBeam3 = false;
+    hasAni1 = false; hasAni2 = false; hasAni3 = false;
+    hasColor1 = false; hasColor2 = false; hasColor3 = false;
 }

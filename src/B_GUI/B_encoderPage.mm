@@ -53,10 +53,10 @@ void ofApp::formPageUpdate() {
 
 void ofApp::formPageDraw() {
     
-    irisButton.showBig("IRIS",irisPercent, guiLeftAlign, row3Padding, smallButtonWidth, buttonHeight);
-    edgeButton.showBig("EDGE",edgePercent, guiCenterAlign - genericButtonWidth / 2, row3Padding, smallButtonWidth, buttonHeight);
-    zoomButton.showBig("ZOOM",zoomPercent, guiCenterAlign + genericButtonWidth / 2, row3Padding, smallButtonWidth, buttonHeight);
-    frostButton.showBig("FROST",frostPercent, guiRightAlign, row3Padding, smallButtonWidth, buttonHeight);
+    irisButton.showBig("IRIS",irisPercent, guiLeftAlign, row3Padding, smallButtonWidth, buttonHeight, "MEDIUM");
+    edgeButton.showBig("EDGE",edgePercent, guiCenterAlign - genericButtonWidth / 2, row3Padding, smallButtonWidth, buttonHeight, "MEDIUM");
+    zoomButton.showBig("ZOOM",zoomPercent, guiCenterAlign + genericButtonWidth / 2, row3Padding, smallButtonWidth, buttonHeight, "MEDIUM");
+    frostButton.showBig("FROST",frostPercent, guiRightAlign, row3Padding, smallButtonWidth, buttonHeight, "MEDIUM");
     
     minusPercentButton.show("-%", guiLeftAlign, rowBottomPadding, genericButtonWidth, buttonHeight, "MEDIUM");
     homeButton.show(parameterShow, "HOME", guiCenterAlign, rowBottomPadding, genericButtonWidth, buttonHeight);

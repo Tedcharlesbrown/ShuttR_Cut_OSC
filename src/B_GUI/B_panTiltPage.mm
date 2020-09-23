@@ -42,8 +42,8 @@ void ofApp::focusPageUpdate(){
 //--------------------------------------------------------------
 void ofApp::focusPageDraw(){
     
-    panButton.showBig("PAN",panPercent, guiCenterAlign - genericButtonWidth / 2, row3Padding, smallButtonWidth, buttonHeight);
-    tiltButton.showBig("TILT",tiltPercent, guiCenterAlign + genericButtonWidth / 2, row3Padding, smallButtonWidth, buttonHeight);
+    panButton.showBig("PAN",panPercent, guiCenterAlign - genericButtonWidth / 2, row3Padding, smallButtonWidth, buttonHeight, "MEDIUM");
+    tiltButton.showBig("TILT",tiltPercent, guiCenterAlign + genericButtonWidth / 2, row3Padding, smallButtonWidth, buttonHeight, "MEDIUM");
     
     minusPercentButton.show("-%", guiLeftAlign, rowBottomPadding, genericButtonWidth, buttonHeight, "MEDIUM");
     homeButton.show(panTiltShow, "HOME", guiCenterAlign, rowBottomPadding, genericButtonWidth, buttonHeight);

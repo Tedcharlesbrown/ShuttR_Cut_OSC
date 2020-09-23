@@ -26,6 +26,9 @@ extern string channelIntString;
 extern int channelInt, channelInt255;
 extern float channelHue, channelSat;
 
+extern string oldFixture, currentFixture;
+extern bool newFixture;
+
 //--------------------------------------------------------------
 // MARK: ---------- TEXT STYLES ----------
 //--------------------------------------------------------------
@@ -48,7 +51,7 @@ extern float row1Padding, row2Padding, row3Padding, row4Padding, row5Padding, ro
 extern float guiLeftAlign, guiCenterAlign, guiRightAlign;
 
 // ----------------------- BUTTON WIDTH / HEIGHT -----------------------
-extern float lightWidth, channelButtonWidth, genericButtonWidth, smallButtonWidth, parameterButtonWidth;
+extern float lightWidth, channelButtonWidth, imageButtonWidth, genericButtonWidth, smallButtonWidth, parameterButtonWidth;
 extern float buttonHeight;
 extern float buttonCorner;
 

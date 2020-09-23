@@ -58,7 +58,10 @@ void ofApp::sendChannel(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
+        sendKey("clear_cmdline");
+        sendKey("select_last");
         sendKey(parameter);
+        sendKey("enter");
     }
 }
 //--------------------------------------------------------------
@@ -66,6 +69,7 @@ void ofApp::sendChannel(string parameter) {
 void ofApp::sendChannelNumber(string parameter) {
     oscSentTime = ofGetElapsedTimeMillis();
     ofxEosOscMsg m;
+    sendKey("clear_cmdline");
     m.setAddress("/eos/user/" + inputID + "/cmd/" + parameter + "#");
     eos.sendMessage(m);
 }
@@ -200,6 +204,36 @@ void ofApp::sendEncoderPercent(string parameter, int message) {
                 break;
         }
         eos.sendMessage(m);
+    }
+}
+
+//--------------------------------------------------------------
+
+void ofApp::sendImage(string _parameter, string message, bool index) {
+    
+    if (isPaidVersion) {
+        if (selectedChannel != "---" && selectedChannel.find("(") == string::npos) {
+            string parameter = _parameter;
+            oscSentTime = ofGetElapsedTimeMillis();
+            
+            ofxEosOscMsg m;
+            m.clear();
+            parameter = selectedChannel + "/" + parameter;
+            if (index) {
+                if (message == "0") {
+                    m.setAddress("/eos/user/" + inputID + "/cmd/Chan/" + parameter + "/home/#");
+                } else {
+                    m.setAddress("/eos/user/" + inputID + "/cmd/Chan/" + parameter + "/" + message + "/#");
+                }
+            } else {
+                if (message == "0") {
+                    m.setAddress("/eos/user/" + inputID + "/cmd/Chan/" + parameter + "/home/#");
+                } else {
+                    m.setAddress("/eos/user/" + inputID + "/cmd/Chan/" + parameter + "/" + message + "/#");
+                }
+        }
+        eos.sendMessage(m);
+        }
     }
 }
 

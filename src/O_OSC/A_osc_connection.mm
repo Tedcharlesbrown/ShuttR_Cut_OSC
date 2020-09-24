@@ -63,12 +63,12 @@ void ofApp::heartBeat() {
     checkTime = 30 * 1000;
     
     if (!hasWifi || !isConnected) {
-        checkTime = 3000;
+        checkTime = 5 * 1000;
     }
             
     deltaTime = ofGetElapsedTimeMillis() - sentPingTime;
     
-    if (deltaTime > checkTime || connectRequest) { //IF TIMED PING OR CONNECT REQUEST
+    if ((deltaTime > checkTime || connectRequest) && !settingsMenu) { //IF TIMED PING OR CONNECT REQUEST
         
         if (!pingSent) {
             hasOSC = false; //RESET OSC CONNECTION

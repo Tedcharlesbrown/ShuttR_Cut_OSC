@@ -103,4 +103,6 @@
     - Fixed "Selected Channel" text when no fixture is patched
     - "Selected Channel" now replaces "_" with spaces
     - Fixed issue where if fixture is patched, but no address given, fixture would not update (ANDROID)
+-   OSC
+    - If new fixture, incoming OSC is delayed to clear parameters.
     

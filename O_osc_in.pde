@@ -56,8 +56,16 @@ void oscEvent(OscMessage m) {
 	}
 // ----------------------- GET ALL WHEEL PARAMS -----------------------
 	else if (m.toString().indexOf("/eos/out/active/wheel/") != -1) {
-		getWheel(m);
+		if (getAsString(m).indexOf("Ind/Spd") != -1 || getAsString(m).indexOf("Select") != -1) {
+			getImage(m);
+		} else {
+			getWheel(m);
+		}
 	}
+// ----------------------- GET IMAGE -----------------------
+	// else if (m.toString().indexOf("/eos/out/active/wheel/") != -1 && (m.toString().indexOf("Ind/Spd") != -1 || m.toString().indexOf("Select") != -1)) {
+	// 	getImage(m);
+	// }
 // ----------------------- GET DIRECT SELECTS -----------------------
 	else if (m.toString().indexOf("/eos/out/ds/") != -1 && m.checkTypetag("ss")) {
 		for (int i = 1; i <= 2; i++) {
@@ -165,6 +173,7 @@ void getChannel(OscMessage m) {
 			selectedChannel = "(" + incomingOSC + ")";
 			clearParams();
 		} else {
+			getFixture(m);
 			if (incomingOSC.indexOf("-") != -1 || incomingOSC.indexOf(",") != -1) {
 				selectedChannel = multiChannelPrefix;
 			} else if (multiChannelPrefix.length() > 0) {
@@ -177,6 +186,33 @@ void getChannel(OscMessage m) {
 		noneSelected = true;
 		selectedChannel = "---";
 		clearParams();
+	}
+}
+
+//--------------------------------------------------------------
+
+void getFixture(OscMessage m) {
+	String incomingOSC = getAsString(m);
+	int indexValueStart = incomingOSC.indexOf("_");
+	int indexValueEnd = incomingOSC.indexOf(" @");
+	if (indexValueEnd == -1) {
+		indexValueEnd = incomingOSC.length();
+	}
+	int countBackwards = indexValueStart;
+	while (incomingOSC.charAt(countBackwards) != ' ') {
+		countBackwards --;
+	}
+	indexValueStart = countBackwards + 1;
+	incomingOSC = incomingOSC.substring(indexValueStart, indexValueEnd);
+	incomingOSC = incomingOSC.replace('_', ' ');
+
+	oldFixture = currentFixture;
+	currentFixture = incomingOSC;
+
+	if (!currentFixture.equals(oldFixture)) {
+		newFixture = true;
+	} else {
+		newFixture = false;
 	}
 }
 
@@ -290,6 +326,104 @@ void getDirectSelect(int bank, int buttonID, OscMessage m) {
 
 //--------------------------------------------------------------
 
+void getImage(OscMessage m) {
+	try {
+		String incomingOSC = getAsString(m);
+		String incomingWheel = getAsString(m);
+		int indexValueStart = incomingOSC.indexOf("/eos") + 25;
+		int indexValueEnd = incomingOSC.indexOf(" [");
+		incomingOSC = incomingOSC.substring(indexValueStart, indexValueEnd);
+
+		//SELECT
+		if (incomingOSC.indexOf("Select") != -1) {
+			String incomingValue = getArgPercent(m, 0);
+			if (int(incomingValue) == 1) {
+				incomingValue = "HOME";
+			}
+			//------------- GOBO ---------------
+			if (incomingOSC.indexOf("Gobo") != -1) {
+				if (incomingOSC.indexOf("2") == -1 && incomingOSC.indexOf("3") == -1 && incomingOSC.indexOf("MSpeed") == -1) {
+					hasGobo1 = true; gobo1Select = incomingValue;
+				} else if (incomingOSC.indexOf("2") != -1) {
+					hasGobo2 = true; gobo2Select = incomingValue;
+				} else if (incomingOSC.indexOf("3") != -1) {
+					hasGobo3 = true; gobo3Select = incomingValue;
+				}
+			}
+			//------------- BEAM ---------------
+			if (incomingOSC.indexOf("Beam Fx") != -1) {
+				if (incomingOSC.indexOf("2") == -1 && incomingOSC.indexOf("3") == -1 && incomingOSC.indexOf("MSpeed") == -1) {
+					hasBeam1 = true; beam1Select = incomingValue;
+				} else if (incomingOSC.indexOf("2") != -1) {
+					hasBeam2 = true; beam2Select = incomingValue;
+				} else if (incomingOSC.indexOf("3") != -1) {
+					hasBeam3 = true; beam3Select = incomingValue;
+				}
+			}
+			//------------- ANIMATION ---------------
+			if (incomingOSC.indexOf("Animation") != -1) {
+				if (incomingOSC.indexOf("2") == -1 && incomingOSC.indexOf("3") == -1 && incomingOSC.indexOf("MSpeed") == -1) {
+					hasAni1 = true; ani1Select = incomingValue;
+				} else if (incomingOSC.indexOf("2") != -1) {
+					hasAni2 = true; ani2Select = incomingValue;
+				} else if (incomingOSC.indexOf("3") != -1) {
+					hasAni3 = true; ani3Select = incomingValue;
+				}
+			}
+			//------------- COLOR ---------------
+			if (incomingOSC.indexOf("Color") != -1) {
+				if (incomingOSC.indexOf("2") == -1 && incomingOSC.indexOf("3") == -1 && incomingOSC.indexOf("MSpeed") == -1) {
+					hasColor1 = true; color1Select = incomingValue;
+				} else if (incomingOSC.indexOf("2") != -1) {
+					hasColor2 = true; color2Select = incomingValue;
+				} else if (incomingOSC.indexOf("3") != -1) {
+					hasColor3 = true; color3Select = incomingValue;
+				}
+			}
+		} else if (incomingOSC.indexOf("Ind/Spd") != -1) { //INDEX / SPEED
+			String incomingValue = getArgPercent(m, 0);
+			if (int(incomingValue) == 0) {
+				incomingValue = "HOME";
+			}
+			//------------- GOBO ---------------
+			if (incomingOSC.indexOf("Gobo") != -1) {
+				if (incomingOSC.indexOf("2") == -1 && incomingOSC.indexOf("3") == -1 && incomingOSC.indexOf("MSpeed") == -1) {
+					hasGobo1 = true; gobo1Speed = incomingValue;
+				} else if (incomingOSC.indexOf("2") != -1) {
+					hasGobo2 = true; gobo2Speed = incomingValue;
+				} else if (incomingOSC.indexOf("3") != -1) {
+					hasGobo3 = true; gobo3Speed = incomingValue;
+				}
+			}
+			//------------- BEAM ---------------
+			if (incomingOSC.indexOf("Beam Fx") != -1) {
+				if (incomingOSC.indexOf("2") == -1 && incomingOSC.indexOf("3") == -1 && incomingOSC.indexOf("MSpeed") == -1) {
+					hasBeam1 = true; beam1Speed = incomingValue;
+				} else if (incomingOSC.indexOf("2") != -1) {
+					hasBeam2 = true; beam2Speed = incomingValue;
+				} else if (incomingOSC.indexOf("3") != -1) {
+					hasBeam3 = true; beam3Speed = incomingValue;
+				}
+			}
+			//------------- ANIMATION ---------------
+			if (incomingOSC.indexOf("Animation") != -1) {
+				if (incomingOSC.indexOf("2") == -1 && incomingOSC.indexOf("3") == -1 && incomingOSC.indexOf("MSpeed") == -1) {
+					hasAni1 = true; ani1Speed = incomingValue;
+				} else if (incomingOSC.indexOf("2") != -1) {
+					hasAni2 = true; ani2Speed = incomingValue;
+				} else if (incomingOSC.indexOf("3") != -1) {
+					hasAni3 = true; ani3Speed = incomingValue;
+				}
+			}
+		}
+	} catch (Exception e) {
+
+	}
+}
+
+
+//--------------------------------------------------------------
+
 void clearParams() {
 	channelIntString = noParameter;
 	push();
@@ -304,10 +438,24 @@ void clearParams() {
 
 	panPercent = noParameter;
 	tiltPercent = noParameter;
+
+	clearImage();
 }
 
-
-
+void clearImage() {
+	hasGobo1 = false;
+	hasGobo2 = false;
+	hasGobo3 = false;
+	hasBeam1 = false;
+	hasBeam2 = false;
+	hasBeam3 = false;
+	hasAni1 = false;
+	hasAni2 = false;
+	hasAni3 = false;
+	hasColor1 = false;
+	hasColor2 = false;
+	hasColor3 = false;
+}
 
 
 //--------------------------------------------------------------
@@ -328,4 +476,33 @@ String getArgPercent(OscMessage m, int index) {
 	int indexValueStart = incomingOSC.indexOf("[") + 1;
 	int indexValueEnd = incomingOSC.indexOf("]");
 	return incomingOSC.substring(indexValueStart, indexValueEnd);
+}
+
+String getAsString(OscMessage m) {
+	try {
+		String prefix = m.toString();
+		int indexValueStart = prefix.indexOf("|") + 2;
+		prefix = prefix.substring(indexValueStart);
+		int indexValueEnd = prefix.indexOf(" ");
+		prefix = prefix.substring(0, indexValueEnd);
+
+		String typeTag = m.typetag();
+		int argLength = typeTag.length();
+		String args = "";
+		for (int i = 0; i < argLength; i++) {
+			args += " ";
+			String indexType = str(typeTag.charAt(i));
+			if (indexType.equals("s")) {
+				args += m.get(i).stringValue();
+			} else if (indexType.equals("i")) {
+				args += str(m.get(i).intValue());
+			} else if (indexType.equals("f")) {
+				args += str(m.get(i).floatValue());
+			}
+		}
+
+		return prefix + args;
+	} catch (Exception e) {
+		return "";
+	}
 }

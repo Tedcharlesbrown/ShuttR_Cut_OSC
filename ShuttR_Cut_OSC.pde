@@ -41,7 +41,7 @@ void setup() {
 	shutterPageSetup();
 	focusPageSetup();
 	formPageSetup();
-	// imagePageSetup();
+	imagePageSetup();
 	DSPageSetup();
 	settingsSetup();
 	intensityOverlay.setup();
@@ -79,7 +79,7 @@ void pageButtonAction() {
 	} else if (formPage.clicked && !settingsMenu) {
 		formPageUpdate();
 	} else if (imagePage.clicked && !settingsMenu) {
-		// imagePageUpdate();
+		imagePageUpdate();
 	} else if (dSelectPage.clicked && !settingsMenu) {
 		DSPageUpdate();
 	}
@@ -213,7 +213,7 @@ void draw() {
 			formPageDraw();
 		}
 		if (imagePage.clicked && !settingsMenu && !intensityOverlay.show) {
-			// imagePageDraw();
+			imagePageDraw();
 		}
 		if (dSelectPage.clicked && !settingsMenu && !intensityOverlay.show) {
 			DSPageDraw();
@@ -224,6 +224,11 @@ void draw() {
 
 		if ((shutterPage.clicked || formPage.clicked || focusPage.clicked || imagePage.clicked) && !settingsMenu) {
 			String channel = "SELECTED CHANNEL";
+			if (!noneSelected && selectedChannel.indexOf("(") == -1) {
+				channel = currentFixture;
+			} else {
+				channel = "(CHANNEL NOT PATCHED)";
+			}
 			minusButton.show("-", guiLeftAlign, row1Padding + buttonHeight / 2, smallButtonWidth, buttonHeight, "LARGE");
 			plusButton.show("+", guiRightAlign, row1Padding + buttonHeight / 2, smallButtonWidth, buttonHeight, "LARGE");
 			fineButton.show("FINE", guiLeftAlign, row2Padding, genericButtonWidth, buttonHeight, "LARGE");
@@ -244,7 +249,11 @@ void draw() {
 			textAlign(CENTER, BOTTOM);
 			textFont(fontTiny);
 			fill(white);
-			text(channel, centerX, row1Padding - buttonHeight / 1.75); //INPUT
+			try {
+				text(channel, centerX, row1Padding - buttonHeight / 1.65); //INPUT
+			} catch (Exception e) {
+
+			}
 		}
 		topBarDraw();
 		keyboard.draw();
@@ -264,8 +273,8 @@ OVERLAY intensityOverlay;
 void liteOverlay() {
 	if (!isPaidVersion && (focusPage.clicked || formPage.clicked || imagePage.clicked || dSelectPage.clicked) && !settingsMenu) {
 		push();
-		translate(-liteBanner.width / 2,-liteBanner.height / 2);
-		image(liteBanner,centerX,centerY);
+		translate(-liteBanner.width / 2, -liteBanner.height / 2);
+		image(liteBanner, centerX, centerY);
 		pop();
 	}
 }
@@ -312,6 +321,15 @@ BUTTON irisButton, edgeButton, zoomButton, frostButton, minusPercentButton, home
 //--------------------------------------------------------------
 // MARK: ----------IMAGE PAGE----------
 //--------------------------------------------------------------
+
+BUTTON gobo1Button, gobo2Button, gobo3Button, beam1Button, beam2Button, beam3Button, ani1Button, ani2Button, ani3Button, color1Button, color2Button, color3Button;
+String gobo1Select, gobo2Select, gobo3Select, beam1Select, beam2Select, beam3Select, ani1Select, ani2Select, ani3Select, color1Select, color2Select, color3Select;
+String gobo1Speed, gobo2Speed, gobo3Speed, beam1Speed, beam2Speed, beam3Speed, ani1Speed, ani2Speed, ani3Speed;
+boolean hasGobo1, hasGobo2, hasGobo3, hasBeam1, hasBeam2, hasBeam3, hasAni1, hasAni2, hasAni3, hasColor1, hasColor2, hasColor3 = false;
+
+String imageParamShow, imageIndexParameter, imageSpeedParameter = "";
+
+BUTTON minusSpeedButton, homeSpeedButton, plusSpeedButton;
 
 //--------------------------------------------------------------
 // MARK: ----------DIRECT SELECT PAGE----------
@@ -373,7 +391,7 @@ void mousePressed() {
 		} else if (formPage.clicked && isPaidVersion && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
 			formPageTouchDown();
 		} else if (imagePage.clicked && isPaidVersion && !settingsMenu && !keyboard.show && !intensityButton.clicked) {
-			// imagePageTouchDown();
+			imagePageTouchDown();
 		} else if (dSelectPage.clicked && isPaidVersion && !settingsMenu) {
 			DSPageTouchDown();
 		} else if (settingsMenu) {
@@ -403,7 +421,7 @@ void mouseDragged() {
 		} else if (formPage.clicked && !settingsMenu) {
 			formPageTouchMoved();
 		} else if (imagePage.clicked && !settingsMenu) {
-			// imagePageTouchMoved(touch);
+			imagePageTouchMoved();
 		}
 
 		if (intensityButton.clicked && !settingsMenu) {
@@ -431,7 +449,7 @@ void mouseReleased() {
 		} else if (formPage.clicked && !settingsMenu) {
 			formPageTouchUp();
 		} else if (imagePage.clicked && !settingsMenu) {
-			// imagePageTouchUp();
+			imagePageTouchUp();
 		} else if (dSelectPage.clicked && !settingsMenu) {
 			DSPageTouchUp();
 		}

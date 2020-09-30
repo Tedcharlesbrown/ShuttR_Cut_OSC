@@ -75,7 +75,11 @@ void sendChannel(String parameter) {
 	oscSentTime = millis();
 
 	if (!noneSelected) { //IF A CHANNEL IS SELECTED
+		sendKey("clear_cmdline");
+		if (newFixture) { delay(250); }
+		sendKey("select_last");
 		sendKey(parameter);
+		sendKey("enter");
 	}
 }
 
@@ -84,6 +88,8 @@ void sendChannel(String parameter) {
 void sendChannelNumber(String parameter) {
 	oscSentTime = millis();
 	OscMessage m = new OscMessage("");
+	sendKey("clear_cmdline");
+	if (newFixture) { delay(250); }
 	m.setAddrPattern("/eos/user/" + inputID + "/cmd/" + parameter + "#");
 	eosSend(m);
 }
@@ -221,6 +227,36 @@ void sendEncoderPercent(String parameter, int message) {
 		}
 		eosSend(m);
 	}
+}
+
+//--------------------------------------------------------------
+
+void sendImage(String _parameter, String message, boolean index) {
+    
+    if (isPaidVersion) {
+        if (!selectedChannel.equals("---") && selectedChannel.indexOf("(") == -1) {
+            String parameter = _parameter;
+            oscSentTime = millis();
+            
+            OscMessage m = new OscMessage("");
+            m.clear();
+            parameter = selectedChannel + "/" + parameter;
+            if (index) {
+                if (message == "0") {
+                    m.setAddrPattern("/eos/user/" + inputID + "/cmd/Chan/" + parameter + "/home/#");
+                } else {
+                    m.setAddrPattern("/eos/user/" + inputID + "/cmd/Chan/" + parameter + "/" + message + "/#");
+                }
+            } else {
+                if (message == "0") {
+                    m.setAddrPattern("/eos/user/" + inputID + "/cmd/Chan/" + parameter + "/home/#");
+                } else {
+                    m.setAddrPattern("/eos/user/" + inputID + "/cmd/Chan/" + parameter + "/" + message + "/#");
+                }
+        }
+        eosSend(m);
+        }
+    }
 }
 
 //--------------------------------------------------------------

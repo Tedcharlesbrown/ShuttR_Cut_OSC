@@ -49,25 +49,17 @@ void settingsBar(float _x, float _y, float _w, float _h, float _weight) {
 
 	stroke(shutterOutsideStroke);
 	strokeWeight(_weight);
-    line(_x, notchHeight, _w, notchHeight); //TOP BAR
-    line(_x, _h + notchHeight, _w, _h + notchHeight); //BOTTOM BAR
+	line(_x, notchHeight, _w, notchHeight); //TOP BAR
+	line(_x, _h + notchHeight, _w, _h + notchHeight); //BOTTOM BAR
 
 	pop();
 
-	boolean imagePageTest = false;
+	shutterPage.showPage("SHUTTER", centerX - (smallButtonWidth / 1.1) * 2, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
+	focusPage.showPage("FOCUS", centerX - smallButtonWidth / 1.1, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
+	formPage.showPage("FORM", centerX, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
+	imagePage.showPage("IMAGE", centerX + smallButtonWidth / 1.1, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
+	dSelectPage.showPage("DS", centerX + (smallButtonWidth / 1.1) * 2, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
 
-	if (!imagePageTest) {
-		shutterPage.showPage("SHUTTER", centerX - smallButtonWidth * 1.5, (settingsBarHeight / 2) + notchHeight, smallButtonWidth, settingsBarHeight);
-		focusPage.showPage("FOCUS", centerX - smallButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, smallButtonWidth, settingsBarHeight);
-		formPage.showPage("FORM", centerX + smallButtonWidth / 2, (settingsBarHeight / 2) + notchHeight, smallButtonWidth, settingsBarHeight);
-		dSelectPage.showPage("DS", centerX + smallButtonWidth * 1.5, (settingsBarHeight / 2) + notchHeight, smallButtonWidth, settingsBarHeight);
-	} else {
-		shutterPage.showPage("SHUTTER", centerX - (smallButtonWidth / 1.1) * 2, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
-		focusPage.showPage("FOCUS", centerX - smallButtonWidth / 1.1, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
-		formPage.showPage("FORM", centerX, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
-		imagePage.showPage("IMAGE", centerX + smallButtonWidth / 1.1, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
-		dSelectPage.showPage("DS", centerX + (smallButtonWidth / 1.1) * 2, (settingsBarHeight / 2) + notchHeight, smallButtonWidth / 1.1, settingsBarHeight);
-	}
 }
 
 //--------------------------------------------------------------

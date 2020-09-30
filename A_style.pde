@@ -13,7 +13,7 @@ boolean isPaidVersion = false;
 // String appName = "ShuttR Cut OSC";
 String appName = "ShuttR Cut LITE";
 
-String version = "v1.0.5";
+String version = "v1.1.1";
 String headerName = appName;
 
 String IPAddress, inputIP, inputID, selectedChannel = "";
@@ -38,7 +38,8 @@ String channelIntString;
 int channelInt, channelInt255;
 float channelHue, channelSat;
 
-
+String oldFixture, currentFixture;
+boolean newFixture;
 //--------------------------------------------------------------
 // MARK: ---------- TEXT STYLES ----------
 //--------------------------------------------------------------
@@ -70,7 +71,7 @@ float row1Padding, row2Padding, row3Padding, row4Padding, row5Padding, row6Paddi
 float guiLeftAlign, guiCenterAlign, guiRightAlign;
 
 // ----------------------- BUTTON WIDTH / HEIGHT -----------------------
-float lightWidth, channelButtonWidth, genericButtonWidth, smallButtonWidth, parameterButtonWidth;
+float lightWidth, channelButtonWidth, imageButtonWidth, genericButtonWidth, smallButtonWidth, parameterButtonWidth;
 float buttonHeight;
 float buttonCorner;
 
@@ -167,8 +168,12 @@ void javaClassInit() {
 
   //---------- FORM PAGE ----------
   formEncoder = new ENCODER(); irisButton = new BUTTON(); edgeButton = new BUTTON(); zoomButton = new BUTTON(); frostButton = new BUTTON(); minusPercentButton = new BUTTON(); homeButton = new BUTTON(); plusPercentButton = new BUTTON();
+  //---------- IMAGE PAGE ----------
+  gobo1Button = new BUTTON(); gobo2Button = new BUTTON(); gobo3Button = new BUTTON(); beam1Button = new BUTTON(); beam2Button = new BUTTON(); beam3Button = new BUTTON(); ani1Button = new BUTTON(); ani2Button = new BUTTON(); ani3Button = new BUTTON(); color1Button = new BUTTON(); color2Button = new BUTTON(); color3Button = new BUTTON();
 
-  //---------- FORM PAGE ----------
+  minusSpeedButton = new BUTTON(); homeSpeedButton = new BUTTON(); plusSpeedButton = new BUTTON();
+
+  //---------- DS PAGE ----------
   bankOne = new BANK(); bankTwo = new BANK();
 
   //---------- SETTINGS ----------
@@ -183,11 +188,11 @@ void styleInit() {
   } else {
     splashImg = loadImage("icon-pro.png");
   }
-  
+
   //---------- LITE IMAGE LOAD ----------
 
   liteBanner = loadImage("Lite.png");
-  liteBanner.resize(width,0);
+  liteBanner.resize(width, 0);
 
   //---------- SHUTTER COLOR INIT ----------
 
@@ -247,6 +252,7 @@ void styleInit() {
 
   lightWidth = width / 10;
   channelButtonWidth = (width / 4.5) * 1.5;
+  imageButtonWidth = width / 3.5;
   smallButtonWidth = width / 6;
   genericButtonWidth = width / 4.5;
   parameterButtonWidth = genericButtonWidth / 1.25;
@@ -273,7 +279,7 @@ void styleInit() {
   mediumTextSize = width / 22.15; //65
   smallTextSize = width / 32; //45
   dsTextSize = (width / 32) / 1.1; //45
-  tinyTextSize = width / 57.6; //25
+  tinyTextSize = width / 45; //57.6
 
   fontLarge = createFont("LondonBetween.ttf", largeTextSize);
   fontMedium = createFont("LondonBetween.ttf", mediumTextSize);

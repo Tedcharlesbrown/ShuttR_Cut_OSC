@@ -295,8 +295,168 @@ class BUTTON {
     }
 
 //--------------------------------------------------------------
-// MARK: ----------IMAGE BUTTON----------
+// MARK: ----------IMAGE BUTTON - COLOR----------
 //--------------------------------------------------------------
+
+    void showImage(String _ID, String _ID2, float _x, float _y, float _w, float _h, boolean active) { //TWO TEXT
+        this.x = _x;
+        this.y = _y + _h / 2.4;
+        this.w = _w;
+        this.h = _h * 1.9;
+
+        push();
+        rectMode(CENTER);
+        strokeWeight(buttonStrokeWeight);
+
+        //MIDDLE
+        if (active) {
+            stroke(EOSState);
+        } else {
+            stroke(EOSDarkGrey);
+        }
+        if (this.clicked) {
+            fill(buttonActive);
+        } else {
+            fill(black);
+        }
+        rect(_x, _y + _h / 1.5, _w, _h, buttonCorner);
+        
+        //TOP
+        if (active) {
+            stroke(EOSState);
+        } else {
+            stroke(EOSDarkGrey);
+        }
+        if (this.clicked) {
+            fill(buttonActive);
+        } else {
+            fill(black);
+        }
+        rect(_x, _y, _w, _h, buttonCorner);
+
+        fill(white);
+        textAlign(CENTER, CENTER);
+        textFont(fontSmall);
+
+        try {
+            text(_ID, _x, _y); //INPUT
+            if (_ID2.equals("---")) {
+                text(_ID2, _x + _w / 10, _y + _h / 1.2); //INPUT
+            } else {
+                text(_ID2, _x + _w / 10, _y + _h / 1.2); //INPUT
+            }
+        } catch (Exception e) {
+
+        }
+
+        textFont(fontTiny);
+
+        if (this.clicked) {
+            fill(black);
+        } else {
+            fill(100);
+        }
+
+        try {
+            textAlign(LEFT, CENTER);
+            String index = "INDEX: ";
+            text(index, _x - _w / 2.2, _y + _h / 1.2); //INPUT
+        } catch (Exception e) {
+
+        }
+
+        pop();
+    }
+
+//--------------------------------------------------------------
+// MARK: ----------IMAGE BUTTON - GOBO,BEAM,ANIMATION----------
+//--------------------------------------------------------------
+
+    void showImage(String _ID, String _ID2, String _ID3, float _x, float _y, float _w, float _h, boolean active) { //THREE TEXT
+        this.x = _x;
+        this.y = _y + _h / 1.8;
+        this.w = _w;
+        this.h = _h * 2.5;
+
+        push();
+        rectMode(CENTER);
+        strokeWeight(buttonStrokeWeight);
+
+        //BOTTOM
+        if (active) {
+            stroke(EOSState);
+        } else {
+            stroke(EOSDarkGrey);
+        }
+        if (this.clicked) {
+            fill(buttonActive);
+        } else {
+            fill(black);
+        }
+
+        rect(_x, _y + _h / 0.75, _w, _h, buttonCorner);
+
+        //MIDDLE
+        if (active) {
+            stroke(EOSState);
+        } else {
+            stroke(EOSDarkGrey);
+        }
+         if (this.clicked) {
+            fill(buttonActive);
+        } else {
+            fill(black);
+        }
+        rect(_x, _y + _h / 1.5, _w, _h, buttonCorner);
+
+        //TOP
+        if (active) {
+            stroke(EOSState);
+        } else {
+            stroke(EOSDarkGrey);
+        }
+        if (this.clicked) {
+            fill(buttonActive);
+        } else {
+            fill(black);
+        }
+        rect(_x, _y, _w, _h, buttonCorner);
+
+        fill(white);
+        textAlign(CENTER, CENTER);
+        textFont(fontSmall);
+        try {
+            text(_ID, _x, _y); //INPUT
+            if (_ID2.equals("---")) {
+                text(_ID2, _x + _w / 10, _y + _h / 1.25); //INPUT
+                text(_ID3, _x + _w / 10, _y + _h * 1.5); //INPUT
+            } else {
+                text(_ID2, _x + _w / 10, _y + _h / 1.25); //INPUT
+                text(_ID3, _x + _w / 10, _y + _h * 1.5); //INPUT
+            }
+        } catch (Exception e) {
+
+        }
+
+        textFont(fontTiny);
+        if (this.clicked) {
+            fill(black);
+        } else {
+            fill(100);
+        }
+
+        try {
+            textAlign(LEFT, CENTER);
+            String index = "INDEX: ";
+            String speed = "IND/SPD: ";
+            text(index, _x - _w / 2.2, _y + _h / 1.2); //INPUT
+            text(speed, _x - _w / 2.2, _y + _h * 1.5); //INPUT
+        } catch (Exception e) {
+
+        }
+
+        pop();
+    }
 
 //--------------------------------------------------------------
 // MARK: ----------INTENSITY----------
@@ -404,7 +564,7 @@ class BUTTON {
                         numSpaces--;
                     }
                 } else { //IF NAME DOES NOT HAVE SPACE IN IT
-                    dNames.append(dName.substring(0,maxLineLength));
+                    dNames.append(dName.substring(0, maxLineLength));
                 }
             }
 

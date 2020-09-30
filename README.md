@@ -95,7 +95,7 @@
 -   General
     -   "Selected Channel" now changes to fixture type if channel is selected
 -   OSC Changes
-    -   Auto-connect cancels if on settings page
+    -   Auto-connect cancels if on settings page (IOS)
     -   Auto-connect time is slowed down (IOS)
     ### Version 1.1.1
 -   General

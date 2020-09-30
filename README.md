@@ -90,11 +90,15 @@
 -   Android
     -   Fixed cosmetic issue with Shutters
 -   Metadata updates
-    ### Version 1.1.0
+    ### Version 1.1.0 (IOS ONLY)
     -   Added "Image" page
 -   General
     -   "Selected Channel" now changes to fixture type if channel is selected
 -   OSC Changes
     -   Auto-connect cancels if on settings page
     -   Auto-connect time is slowed down (IOS)
+    ### Version 1.1.1
+-   General
+    - Fixed image page button range
+    - Fixed "Selected Channel" text when no fixture is patched
     

@@ -102,4 +102,5 @@
     - Fixed image page button range
     - Fixed "Selected Channel" text when no fixture is patched
     - "Selected Channel" now replaces "_" with spaces
+    - Fixed issue where if fixture is patched, but no address given, fixture would not update (ANDROID)
     

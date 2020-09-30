@@ -186,6 +186,7 @@ void ofApp::getFixture(ofxEosOscMsg m) {
     }
     indexValueStart = countBackwards + 1;
     incomingOSC = incomingOSC.substr(indexValueStart, indexValueEnd - indexValueStart);
+    ofStringReplace(incomingOSC,"_"," ");
     
     oldFixture = currentFixture;
     currentFixture = incomingOSC;

@@ -233,9 +233,9 @@ void BUTTON::showBig(string _ID, string _ID2, float _x, float _y, float _w, floa
 
 void BUTTON::showImage(string _ID, string _ID2, float _x, float _y, float _w, float _h, bool active) { //TWO TEXT
     this-> x = _x;
-    this-> y = _y + _h / 2;
+    this-> y = _y + _h / 2.4;
     this-> w = _w;
-    this-> h = _h * 1.5;
+    this-> h = _h * 1.9;
     
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
@@ -294,9 +294,9 @@ void BUTTON::showImage(string _ID, string _ID2, float _x, float _y, float _w, fl
 
 void BUTTON::showImage(string _ID, string _ID2, string _ID3, float _x, float _y, float _w, float _h, bool active) { //THREE TEXT
     this-> x = _x;
-    this-> y = _y + _h / 2;
+    this-> y = _y + _h / 1.8;
     this-> w = _w;
-    this-> h = _h * 1.5;
+    this-> h = _h * 2.5;
     
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);

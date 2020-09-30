@@ -46,6 +46,7 @@ void ofApp::sendSneak(string parameter) {
     ofxEosOscMsg m;
     
     sendKey("clear_cmdline");
+    if (newFixture) { ofSleepMillis(150); }
     sendKey("select_last");
     sendKey(parameter);
     sendKey("sneak");
@@ -59,6 +60,7 @@ void ofApp::sendChannel(string parameter) {
     
     if (!noneSelected) { //IF A CHANNEL IS SELECTED
         sendKey("clear_cmdline");
+        if (newFixture) { ofSleepMillis(150); }
         sendKey("select_last");
         sendKey(parameter);
         sendKey("enter");

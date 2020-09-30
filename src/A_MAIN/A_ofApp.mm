@@ -200,8 +200,10 @@ void ofApp::draw() {
         
     if ((shutterPage.clicked || formPage.clicked|| focusPage.clicked || imagePage.clicked) && !settingsMenu) {
         string channel = "SELECTED CHANNEL";
-        if (!noneSelected) {
+        if (!noneSelected && selectedChannel.find("(") == string::npos) {
             channel = currentFixture;
+        } else {
+            channel = "(CHANNEL NOT PATCHED)";
         }
         minusButton.show("-",guiLeftAlign,row1Padding + buttonHeight / 2, smallButtonWidth,buttonHeight,"LARGE");
         plusButton.show("+",guiRightAlign,row1Padding + buttonHeight / 2, smallButtonWidth,buttonHeight,"LARGE");

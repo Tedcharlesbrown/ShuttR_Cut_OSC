@@ -198,13 +198,18 @@ void getFixture(OscMessage m) {
 	if (indexValueEnd == -1) {
 		indexValueEnd = incomingOSC.length();
 	}
-	int countBackwards = indexValueStart;
-	while (incomingOSC.charAt(countBackwards) != ' ') {
-		countBackwards --;
+	if (indexValueStart != -1) {
+		int countBackwards = indexValueStart;
+		while (incomingOSC.charAt(countBackwards) != ' ') {
+			countBackwards --;
+		}
+		indexValueStart = countBackwards + 1;
+		incomingOSC = incomingOSC.substring(indexValueStart, indexValueEnd);
+		incomingOSC = incomingOSC.replace('_', ' ');
+	} else {
+		indexValueStart = incomingOSC.indexOf("]") + 2;
+		incomingOSC = incomingOSC.substring(indexValueStart, indexValueEnd);
 	}
-	indexValueStart = countBackwards + 1;
-	incomingOSC = incomingOSC.substring(indexValueStart, indexValueEnd);
-	incomingOSC = incomingOSC.replace('_', ' ');
 
 	oldFixture = currentFixture;
 	currentFixture = incomingOSC;

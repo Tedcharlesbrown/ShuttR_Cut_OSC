@@ -180,22 +180,26 @@ void ofApp::getFixture(ofxEosOscMsg m) {
     string incomingOSC = m.getArgAsString(0);
     int indexValueStart = incomingOSC.find("_");
     int indexValueEnd = incomingOSC.find(" @");
-    int countBackwards = indexValueStart;
-    while (incomingOSC.at(countBackwards) != ' ') {
-        countBackwards--;
+    if (indexValueStart != -1) {
+        int countBackwards = indexValueStart;
+        while (incomingOSC.at(countBackwards) != ' ') {
+            countBackwards--;
+        }
+        indexValueStart = countBackwards + 1;
+        incomingOSC = incomingOSC.substr(indexValueStart, indexValueEnd - indexValueStart);
+        ofStringReplace(incomingOSC,"_"," ");
+    } else { //IF GENERIC DIMMER
+        indexValueStart = incomingOSC.find("]") + 2;
+        incomingOSC = incomingOSC.substr(indexValueStart, indexValueEnd - indexValueStart);
     }
-    indexValueStart = countBackwards + 1;
-    incomingOSC = incomingOSC.substr(indexValueStart, indexValueEnd - indexValueStart);
-    ofStringReplace(incomingOSC,"_"," ");
+        oldFixture = currentFixture;
+        currentFixture = incomingOSC;
     
-    oldFixture = currentFixture;
-    currentFixture = incomingOSC;
-    
-    if (currentFixture != oldFixture) {
-        newFixture = true;
-    } else {
-        newFixture = false;
-    }
+        if (currentFixture != oldFixture) {
+            newFixture = true;
+        } else {
+            newFixture = false;
+        }
 }
 
 //--------------------------------------------------------------
